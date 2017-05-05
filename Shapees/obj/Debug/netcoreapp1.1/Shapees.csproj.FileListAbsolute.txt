@@ -1,0 +1,9 @@
+c:\users\ivana\documents\visual studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.deps.json
+c:\users\ivana\documents\visual studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.json
+c:\users\ivana\documents\visual studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.dev.json
+c:\users\ivana\documents\visual studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.dll
+c:\users\ivana\documents\visual studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.pdb
+c:\users\ivana\documents\visual studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csprojResolveAssemblyReference.cache
+c:\users\ivana\documents\visual studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
+c:\users\ivana\documents\visual studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
+c:\users\ivana\documents\visual studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb
