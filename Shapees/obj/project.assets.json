@@ -9808,15 +9808,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ivana\\.nuget\\packages\\": {}
+    "C:\\Users\\Damon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\ivana\\documents\\visual studio 2017\\Projects\\Shapees\\Shapees\\Shapees.csproj",
+      "projectUniqueName": "C:\\Users\\Damon\\Documents\\Uni assignments\\CSIT321\\shapees\\Shapees\\Shapees.csproj",
       "projectName": "Shapees",
-      "projectPath": "c:\\users\\ivana\\documents\\visual studio 2017\\Projects\\Shapees\\Shapees\\Shapees.csproj",
-      "outputPath": "c:\\users\\ivana\\documents\\visual studio 2017\\Projects\\Shapees\\Shapees\\obj\\",
+      "projectPath": "C:\\Users\\Damon\\Documents\\Uni assignments\\CSIT321\\shapees\\Shapees\\Shapees.csproj",
+      "outputPath": "C:\\Users\\Damon\\Documents\\Uni assignments\\CSIT321\\shapees\\Shapees\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
