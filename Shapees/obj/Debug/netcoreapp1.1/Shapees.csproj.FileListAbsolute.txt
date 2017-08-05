@@ -16,3 +16,4 @@ C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees\obj\Debug\netco
 C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
 C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
 C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\MySql.Data.Entity.dll

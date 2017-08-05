@@ -13,16 +13,37 @@ namespace Shapees.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Scheduler()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Scheduler";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Announcements()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Announcements";
+
+            return View();
+        }
+
+        public IActionResult Documents()
+        {
+            ViewData["Message"] = "Documents";
+
+            return View();
+        }
+
+        public IActionResult Groups()
+        {
+            ViewData["Message"] = "Groups";
+
+            return View();
+        }
+
+        public IActionResult Children()
+        {
+            ViewData["Message"] = "Children";
 
             return View();
         }
