@@ -34,9 +34,16 @@ namespace Shapees.Controllers
             return View();
         }
 
-        public IActionResult Groups()
+        public IActionResult Media()
         {
-            ViewData["Message"] = "Groups";
+            ViewData["Message"] = "Media";
+
+            return View();
+        }
+
+        public IActionResult Rooms()
+        {
+            ViewData["Message"] = "Rooms";
 
             return View();
         }
@@ -47,6 +54,21 @@ namespace Shapees.Controllers
 
             return View();
         }
+
+        public IActionResult Messages()
+        {
+            ViewData["Message"] = "Messages";
+
+            return View();
+        }
+
+        public IActionResult AccountSettings()
+        {
+            ViewData["Message"] = "Account Settings";
+
+            return View();
+        }
+
 
         public IActionResult Error()
         {

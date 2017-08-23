@@ -13,6 +13,8 @@
             <th>Email</th>
             <th>Password</th>
             <th>User Type</th>
+            <th>Last logged in</th>
+            <th>Is logged in</th>
         </tr>
         @foreach (var item in Model)
         {
@@ -27,10 +29,16 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.pass)
+                    @Html.DisplayFor(modelItem => item.Pass)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.user_type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.last_login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.is_logged_in)
                 </td>
             </tr>
         }
