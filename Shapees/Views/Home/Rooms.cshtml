@@ -3,6 +3,83 @@
     ViewData["Title"] = "Rooms";
     Layout = "~/Views/Shared/RoomsLayout.cshtml";
 }
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h2>Rooms</h2>
 
-<h2>Rooms</h2>
+    <!-- First Form to Create Room-->
+    <h3> Create Room </h3>
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#roomFormCollapse" aria-expanded="false" aria-controls="collapse">
+        Create    
+    </button>
+
+    <div id="roomFormCollapse" class="collapse"> 
+        <form role="form">
+            <div class="rooms-group">
+                <label class="control-label" for="addRoom">Enter Room Name</label>
+                <input type="text" class="form-control" id="addRoom" placeholder="Enter room name">
+            </div>
+
+            <div class="rooms-group">
+                <label class="control-label" for="addChildren">Add children</label>
+                <input type="text" class="form-control" id="addChildren" placeholder="Add children">
+            </div>
+
+            <div class="rooms-group">
+                <label class="control-label" for="assignEducator">Assign Educator to Room</label>
+                <input type="text" class="form-control" id="addChildren" placeholder="Assign educator">
+            </div>
+            <br />
+            <button type="submit" class="btn btn-secondary">Create Room</button>
+        </form>
+    </div>
+
+    <!-- Second Form to Manage Rooms-->
+    <h3> Manage Rooms </h3>
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#manageRoomsForm" aria-expanded="false" aria-controls="collapse">
+        Manage
+    </button>
+    <br />
+        <div id="manageRoomsForm" class="collapse">
+            <form role="form">
+                <div class="rooms-group">
+                    <label class="control-label" for="deleteRoom">Enter Room Name to remove</label>
+                    <input type="text" class="form-control" id="addRoom" placeholder="Enter room name">
+                </div>
+                <br />
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+            <br />
+            <form role="form">
+                <div class="rooms-group">
+                    <label class="control-label" for="removeChild">Remove child from room</label>
+                    <input type="text" class="form-control" id="removeChild" placeholder="Remove child">
+                </div>
+                <br />
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+            <br />
+            <form role="form">
+                <div class="rooms-group">
+                    <label class="control-label" for="removeEducator">Remove Educator from Room</label>
+                    <input type="text" class="form-control" id="removeEducator" placeholder="Remove educator">
+                </div>
+                <br />
+                <button type="submit" class="btn btn-secondary">Submit</button>
+            </form>
+        </div> 
+<!--Collapsible to display room list-->
+    <h3>List Rooms</h3>
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#list" aria-expanded="false" aria-controls="collapse">
+        Display
+    </button>
+    <div id="list" class="collapse">
+        <ul class="roomList">
+            <li class="list-group-item">List item example</li>
+        </ul>
+    </div>
+</body>
 

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "e1beb27d754b1d4b3b9fc5560736a8ffdd114770"
+    "signature": "ddd451171023a92750438c86843e908580ba40ad"
   },
   "compilationOptions": {
     "defines": [
@@ -45,13 +45,19 @@
           "Pomelo.Data.MySql": "1.0.0",
           "Pomelo.EntityFrameworkCore.MySql": "1.1.2",
           "SapientGuardian.EntityFrameworkCore.MySql": "7.1.23",
-          "System.Data.SqlClient": "4.4.0-preview2-25405-01"
+          "System.Data.SqlClient": "4.4.0-preview2-25405-01",
+          "bootstrap": "3.3.7"
         },
         "runtime": {
           "Shapees.dll": {}
         },
         "compile": {
           "Shapees.dll": {}
+        }
+      },
+      "bootstrap/3.3.7": {
+        "dependencies": {
+          "jQuery": "1.9.1"
         }
       },
       "dapper/1.50.2": {
@@ -106,6 +112,7 @@
           "lib/netstandard1.0/Google.Protobuf.dll": {}
         }
       },
+      "jquery/1.9.1": {},
       "microsoft.applicationinsights/2.4.0": {
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -3841,6 +3848,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "bootstrap/3.3.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3YTWhPNh6UcnUvzw9u6A2/hy2w0h4lznxPbX6FY47lFia3+Ib4zBixTpW6YieYA/b2fLXbkjoD59OjcVF3cJXw==",
+      "path": "bootstrap/3.3.7",
+      "hashPath": "bootstrap.3.3.7.nupkg.sha512"
+    },
     "dapper/1.50.2": {
       "type": "package",
       "serviceable": true,
@@ -3854,6 +3868,13 @@
       "sha512": "sha512-W0TsIYM2ED9dc/FgdbdtP68vUP1JdbwaFscG3DeVtJNlfm8A/ozjAT0H3dWIk0jJd9Zcx6B7XZ1LYERF8PqqJA==",
       "path": "google.protobuf/3.3.0",
       "hashPath": "google.protobuf.3.3.0.nupkg.sha512"
+    },
+    "jquery/1.9.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HiX9icLyiJGgiL5EOIn0d1MBPHVV2M9mzWT4mANdniDNR51RvAFTyKEXEd2+5yQJ4PJ5xePOR61Vjj/omQzYcw==",
+      "path": "jquery/1.9.1",
+      "hashPath": "jquery.1.9.1.nupkg.sha512"
     },
     "microsoft.applicationinsights/2.4.0": {
       "type": "package",

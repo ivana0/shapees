@@ -8,6 +8,7 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="3.3.7" />
     <PackageReference Include="Dapper" Version="1.50.2" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />

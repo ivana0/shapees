@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;  
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MySql.Data.Entity;
+//using MySql.Data.Entity;
 
 
 namespace Shapees.Models
