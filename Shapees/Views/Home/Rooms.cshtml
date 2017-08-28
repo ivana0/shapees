@@ -1,4 +1,4 @@
-
+﻿
 @{
     ViewData["Title"] = "Rooms";
     Layout = "~/Views/Shared/RoomsLayout.cshtml";
@@ -9,40 +9,52 @@
 </head>
 <body>
     <h2>Rooms</h2>
+    <div class="tab">
+        <button class="tablinks" onclick="openOption(event, 'CreateRoom')">Create Room</button>
+        <button class="tablinks" onclick="openOption(event, 'ManageRoom')">Manage Rooms</button>
+        <button class="tablinks" onclick="openOption(event, 'ListRoom')">List Rooms</button>
+        <input type="text" name="search" id="searchbar" placeholder="Search Rooms...">
 
-    <!-- First Form to Create Room-->
-    <h3> Create Room </h3>
-    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#roomFormCollapse" aria-expanded="false" aria-controls="collapse">
-        Create    
-    </button>
-
-    <div id="roomFormCollapse" class="collapse"> 
-        <form role="form">
-            <div class="rooms-group">
-                <label class="control-label" for="addRoom">Enter Room Name</label>
-                <input type="text" class="form-control" id="addRoom" placeholder="Enter room name">
-            </div>
-
-            <div class="rooms-group">
-                <label class="control-label" for="addChildren">Add children</label>
-                <input type="text" class="form-control" id="addChildren" placeholder="Add children">
-            </div>
-
-            <div class="rooms-group">
-                <label class="control-label" for="assignEducator">Assign Educator to Room</label>
-                <input type="text" class="form-control" id="addChildren" placeholder="Assign educator">
-            </div>
-            <br />
-            <button type="submit" class="btn btn-secondary">Create Room</button>
-        </form>
     </div>
 
-    <!-- Second Form to Manage Rooms-->
-    <h3> Manage Rooms </h3>
-    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#manageRoomsForm" aria-expanded="false" aria-controls="collapse">
-        Manage
-    </button>
-    <br />
+    <div id="CreateRoom" class="tabcontent">
+
+        <!-- First Form to Create Room-->
+        <h3> Create Room </h3>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#roomFormCollapse" aria-expanded="false" aria-controls="collapse">
+            Create
+        </button>
+
+        <div id="roomFormCollapse" class="collapse">
+            <form role="form">
+                <div class="rooms-group">
+                    <label class="control-label" for="addRoom">Enter Room Name</label>
+                    <input type="text" class="form-control" id="addRoom" placeholder="Enter room name" float="left">
+                </div>
+                <br />
+                <div class="rooms-group">
+                    <label class="control-label" for="addChildren">Add children</label>
+                    <input type="text" class="form-control" id="addChildren" placeholder="Add children">
+                </div>
+                <br />
+                <div class="rooms-group">
+                    <label class="control-label" for="assignEducator">Assign Educator to Room</label>
+                    <input type="text" class="form-control" id="addChildren" placeholder="Assign educator">
+                </div>
+                <br />
+                <button type="submit" class="btn btn-secondary">Create Room</button>
+            </form>
+        </div>
+        </div>
+
+    <div id="ManageRoom" class="tabcontent">
+
+        <!-- Second Form to Manage Rooms-->
+        <h3> Manage Rooms </h3>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#manageRoomsForm" aria-expanded="false" aria-controls="collapse">
+            Manage
+        </button>
+        <br />
         <div id="manageRoomsForm" class="collapse">
             <form role="form">
                 <div class="rooms-group">
@@ -70,16 +82,103 @@
                 <br />
                 <button type="submit" class="btn btn-secondary">Submit</button>
             </form>
-        </div> 
-<!--Collapsible to display room list-->
-    <h3>List Rooms</h3>
-    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#list" aria-expanded="false" aria-controls="collapse">
-        Display
-    </button>
-    <div id="list" class="collapse">
-        <ul class="roomList">
-            <li class="list-group-item">List item example</li>
-        </ul>
+        </div>
+        </div>
+
+    <div id="ListRoom" class="tabcontent">
+        <!--Collapsible to display room list-->
+        <h3>List Rooms</h3>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#list" aria-expanded="false" aria-controls="collapse">
+            Display
+        </button>
+        <div id="list" class="collapse">
+            <ul class="roomList">
+                <li class="list-group-item">List item example</li>
+            </ul>
+        </div>
     </div>
 </body>
+
+<style>
+    /* search bar styling*/
+    #searchbar {
+        width: 200px;
+        height: 48px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        float: right;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: white;
+        background-image: url(search.png);
+        background-position: 10px 12px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+    }
+
+        /* When the input field gets focus, change its width to 100% */
+        #searchbar {
+            width: 100%;
+        }
+    /* Style the tab */
+    div.tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+            /* Change background color of buttons on hover */
+            div.tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            div.tab button.active {
+                background-color: #ccc;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+</style>
+
+<script>
+    function openOption(evt, optionName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(optionName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
 

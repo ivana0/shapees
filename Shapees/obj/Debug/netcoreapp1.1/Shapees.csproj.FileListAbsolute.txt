@@ -26,3 +26,12 @@ C:\Users\Nicole\Desktop\321Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shape
 C:\Users\Nicole\Desktop\321Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb
 C:\Users\Nicole\Desktop\321Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.dll
 C:\Users\Nicole\Desktop\321Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.pdb
+D:\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.deps.json
+D:\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.json
+D:\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.dev.json
+D:\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.dll
+D:\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.pdb
+D:\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csprojResolveAssemblyReference.cache
+D:\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
+D:\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
+D:\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb

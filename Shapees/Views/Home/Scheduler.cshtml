@@ -4,3 +4,109 @@
 }
 
 <h2>Scheduler</h2>
+<div class="tab">
+    <button class="tablinks" onclick="openOption(event, 'Home')">Scheduler Home</button>
+    <button class="tablinks" onclick="openOption(event, 'Set')">Set Tasks</button>
+    <button class="tablinks" onclick="openOption(event, 'Edit')">View/Edit Tasks</button>
+    <input type="text" name="search" placeholder="Search Scheduler...">
+
+</div>
+
+<div id="Home" class="tabcontent">
+    <h3>Scheduler Home</h3>
+    <p>
+        This is the scheduler home page.
+    </p>
+</div>
+
+<div id="Set" class="tabcontent">
+    <h3>Set Tasks</h3>
+    <p>Here you can set tasks.</p>
+</div>
+
+<div id="Edit" class="tabcontent">
+    <h3>View/Edit Tasks</h3>
+    <p>here you can view tasks and edit.</p>
+</div>
+<style>
+    /* search bar styling*/
+    input[type=text] {
+        width: 200px;
+        height: 48px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        float: right;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: white;
+        background-image: url(search.png);
+        background-position: 10px 12px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+    }
+
+        /* When the input field gets focus, change its width to 100% */
+        input[type=text]:focus {
+            width: 100%;
+        }
+    /* Style the tab */
+    div.tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+            /* Change background color of buttons on hover */
+            div.tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            div.tab button.active {
+                background-color: #ccc;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+</style>
+
+<script>
+    function openOption(evt, optionName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(optionName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
