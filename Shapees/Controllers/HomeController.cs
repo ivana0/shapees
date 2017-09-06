@@ -1,4 +1,17 @@
-﻿using System;
+﻿/* ---------------------------------- SHAPEES 2017 ---------------------------------- */
+/*                                                                                    */
+/* Created and Edited by Four Corner Solutions team:                                  */
+/* Ivana Ozakovic, Nicole Lardner, Damon Walker,                                      */
+/* Cassandra Kalabric, Matthew Mauri, Sima Narain                                     */
+/*                                                                                    */
+/* Created for Kid's Uni, University of Wollongong, Wollongong                        */
+/*                                                                                    */
+/* Filename: Controllers/HomeController.cs                                            */
+/*                                                                                    */
+/* File description: Home pages controller file.                                      */
+/* ---------------------------------------------------------------------------------- */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
