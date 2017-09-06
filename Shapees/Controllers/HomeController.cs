@@ -27,19 +27,13 @@ namespace Shapees.Controllers
             return View();
         }
 
-        public IActionResult Documents()
+        public IActionResult DocumentsAndMedia()
         {
-            ViewData["Message"] = "Documents";
+            ViewData["Message"] = "DocumentsAndMedia";
 
             return View();
         }
 
-        public IActionResult Media()
-        {
-            ViewData["Message"] = "Media";
-
-            return View();
-        }
 
         public IActionResult Rooms()
         {
