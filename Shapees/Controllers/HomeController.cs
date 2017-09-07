@@ -21,25 +21,13 @@ namespace Shapees.Controllers
 {
     public class HomeController : Controller
     {
+        //  Dashboard/Home page     
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Scheduler()
-        {
-            ViewData["Message"] = "Scheduler";
-
-            return View();
-        }
-
-        public IActionResult Announcements()
-        {
-            ViewData["Message"] = "Announcements";
-
-            return View();
-        }
-
+        //  Documents and Media page  
         public IActionResult DocumentsAndMedia()
         {
             ViewData["Message"] = "DocumentsAndMedia";
@@ -47,7 +35,23 @@ namespace Shapees.Controllers
             return View();
         }
 
+        //  Scheduler page 
+        public IActionResult Scheduler()
+        {
+            ViewData["Message"] = "Scheduler";
 
+            return View();
+        }
+
+        //  Announcements page - Admin Only
+        public IActionResult Announcements()
+        {
+            ViewData["Message"] = "Announcements";
+
+            return View();
+        }
+
+        //  Rooms page              
         public IActionResult Rooms()
         {
             ViewData["Message"] = "Rooms";
@@ -55,6 +59,7 @@ namespace Shapees.Controllers
             return View();
         }
 
+        //  Children page            
         public IActionResult Children()
         {
             ViewData["Message"] = "Children";
@@ -62,6 +67,7 @@ namespace Shapees.Controllers
             return View();
         }
 
+        //  Messages page
         public IActionResult Messages()
         {
             ViewData["Message"] = "Messages";
@@ -69,6 +75,7 @@ namespace Shapees.Controllers
             return View();
         }
 
+        //  Account Settings page
         public IActionResult AccountSettings()
         {
             ViewData["Message"] = "Account Settings";
@@ -76,7 +83,7 @@ namespace Shapees.Controllers
             return View();
         }
 
-
+        //  Error page
         public IActionResult Error()
         {
             return View();

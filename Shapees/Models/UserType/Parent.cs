@@ -1,4 +1,4 @@
-/* ---------------------------------- SHAPEES 2017 ---------------------------------- */
+﻿/* ---------------------------------- SHAPEES 2017 ---------------------------------- */
 /*                                                                                    */
 /* Created and Edited by Four Corner Solutions team:                                  */
 /* Ivana Ozakovic, Nicole Lardner, Damon Walker,                                      */
@@ -6,45 +6,32 @@
 /*                                                                                    */
 /* Created for Kid's Uni, University of Wollongong, Wollongong                        */
 /*                                                                                    */
-/* Filename: Controllers/LoginController.cs                                           */
+/* Filename: Models/UserType/Parent.cs                                                */
+/* DB Context file: Models/ShapeesDB.cs                                               */
 /*                                                                                    */
-/* File description: Login pages controller file.                                     */
+/* File description: Parent user type model.                                          */
 /* ---------------------------------------------------------------------------------- */
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Shapees.Models;
-using Dapper;
-using System.Data.SqlClient;
-using Microsoft.Extensions.Options;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-
-namespace Shapees.Controllers
+namespace Shapees.Models
 {
-    public partial class LoginController : Controller
+    public partial class Parent
     {
-        private ShapeesDB usercontext { get; set; }
+        private ShapeesDB context;
 
-         public LoginController(ShapeesDB context)
-         {
-             usercontext = context;
-         }
-
-        //  Login page   
-        public IActionResult Index()
-         {
-            return View();
-
-        }
-
-        //  Users page - Admin Only   
-        public IActionResult Users()
-        {
-            return View(usercontext.Users.ToList());
-
-        }
+        //public int UserID { get; set; }
+        //public string Username {get; set;}
+        //public string Email { get; set; }
+        //public string Pass { get; set; }
+        //public int user_type { get; set; }
+        // [DataType(DataType.Date)]
+        //public DateTime last_login { get; set; }
+        //public int is_logged_in { get; set; }
     }
 }
