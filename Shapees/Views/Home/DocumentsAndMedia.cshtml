@@ -19,30 +19,29 @@
     Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
 }
 
-<h2>Documents</h2>
+<h2>Documents and Media</h2>
 <div class="tab">
-    <button class="tablinks" onclick="openOption(event, 'Home')">Documents Home</button>
-    <button class="tablinks" onclick="openOption(event, 'Create')">Create File</button>
-    <button class="tablinks" onclick="openOption(event, 'Edit')">View/Edit Files</button>
+    <button class="tablinks" onclick="openOption(event, 'Home')">View Documents &amp; Media</button>
+    <button class="tablinks" onclick="openOption(event, 'Create')">Create Report</button>
+    <button class="tablinks" onclick="openOption(event, 'Edit')">Add Documents/Files</button>
     <button class="tablinks" onclick="openOption(event, 'Media')">Add Media</button>
-    <input type="text" name="search" placeholder="Search Documents...">
+    <!--<input type="text" name="search" placeholder="Search Documents...">-->
 </div>
 
 <div id="Home" class="tabcontent">
-    <h3>Scheduler Home</h3>
+    <h3>Documents Home</h3>
     <p>
-        This is the documents home page.
-
+        This is the documents home page. Initially latest submitted documents/files/media appear on home page (by Educator or in general latest for Director).
     </p>
 </div>
 
 <div id="Create" class="tabcontent">
-    <h3>Create Files</h3>
-    <p>Here you can create files.</p>
+    <h3>Create Report</h3>
+    <p>Here you can create reports.</p>
 </div>
 
 <div id="Edit" class="tabcontent">
-    <h3>View/Edit Files</h3>
+    <h3>Add Documents/Files</h3>
     <p>here you can view files and edit.</p>
     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filesList" aria-expanded="false" aria-controls="collapse">
         Display
@@ -79,23 +78,6 @@
 
 
 <style>
-    /* search bar styling*/
-    input[type=text] {
-        width: 200px;
-        height: 48px;
-        -webkit-transition: width 0.4s ease-in-out;
-        transition: width 0.4s ease-in-out;
-        float: right;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        font-size: 14px;
-        background-color: white;
-        background-image: url(search.png);
-        background-position: 10px 12px;
-        background-repeat: no-repeat;
-        padding: 12px 20px 12px 40px;
-    }
 
         /* When the input field gets focus, change its width to 100% */
         input[type=text]:focus {

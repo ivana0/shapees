@@ -21,7 +21,7 @@ namespace Shapees.Controllers
 {
     public class HomeController : Controller
     {
-        //  Dashboard/Home page     
+        //  Dashboard/Home page    
         public IActionResult Index()
         {
             return View();

@@ -6,10 +6,10 @@
 /*                                                                                    */
 /* Created for Kid's Uni, University of Wollongong, Wollongong                        */
 /*                                                                                    */
-/* Filename: Models/Files/Report.cs                                                   */
+/* Filename: Models/Files/Document.cs                                                 */
 /* DB Context file: Models/ShapeesDB.cs                                               */
 /*                                                                                    */
-/* File description: Report entity type model.                                        */
+/* File description: Document entity type model.                                      */
 /* ---------------------------------------------------------------------------------- */
 
 using System;
@@ -21,7 +21,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shapees.Models
 {
-    public partial class Children
+    public partial class Document
     {
         private ShapeesDB context;
 
