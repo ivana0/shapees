@@ -18,31 +18,111 @@
     ViewData["Title"] = "DocumentsAndMedia";
     Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
 }
-
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
 <h2>Documents and Media</h2>
-<div class="tab">
-    <button class="tablinks" onclick="openOption(event, 'Home')">View Documents &amp; Media</button>
-    <button class="tablinks" onclick="openOption(event, 'Create')">Create Report</button>
+
+<!--Tab System -->
+<div class="tab" id="tabsystem">
+    <button class="tablinks" onclick="openOption(event, 'Home')" >View Documents &amp; Media</button>
+    <button class="tablinks" onclick="openOption(event, 'Create')">Create Document</button>
     <button class="tablinks" onclick="openOption(event, 'Edit')">Add Documents/Files</button>
-    <button class="tablinks" onclick="openOption(event, 'Media')">Add Media</button>
-    <!--<input type="text" name="search" placeholder="Search Documents...">-->
+    <button class="tablinks" onclick="openOption(event, 'Settings')">Settings</button>
+    <button class="tablinks" onclick="openOption(event, 'Help')">Help</button>
+
 </div>
 
 <div id="Home" class="tabcontent">
+    <!-- Documents Home View-->
     <h3>Documents Home</h3>
     <p>
         This is the documents home page. Initially latest submitted documents/files/media appear on home page (by Educator or in general latest for Director).
     </p>
 </div>
 
+<!-- Create Report View-->
 <div id="Create" class="tabcontent">
-    <h3>Create Report</h3>
-    <p>Here you can create reports.</p>
-</div>
+    <h3>Create Document</h3>
+    <p>Here you can create Documents.</p>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class=" col-lg-8">
+                    <form action="/createDocument.php" method="post" style="border:1px  hidden black; background-color: aliceblue">
+                        <fieldset>
+                            <legend>Form</legend>
+                            <div class="col-lg-12">
+                                Form Name: <br />
+                                <input type="text" name="formName" placeholder="Enter form name..." />
+                                <br />
+                                Subject: <br /> <input type="text" name="formSubject" placeholder="Enter subject..." />
+                                <br /> <br />
+                                Message: <br /> <textarea name="formMessage" rows="15" cols="100" placeholder="Enter message of document/report...">Enter message of document/report... </textarea>
+                                <br /><br />
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            Add to Group <br />
+                                            <input type="checkbox" name="groupType" value="Ages 6 weeks"> Ages 6 weeks - 2 years <br />
+                                            <input type="checkbox" name="groupType" value="Another"> Ages 2-5 years <br />
+                                            <input type="checkbox" name="groupType" value="Another"> Ages 5-12 years <br />
+                                            <input type="checkbox" name="groupType" value="Another"> Other <br />
 
+                                        </div>
+                                        <div class="col-lg-4">
+                                            Set Type <br />
+                                            <input type="radio" name="documentType" value="News"> News <br />
+                                            <input type="radio" name="documentType" value="Reports"> Reports  <br />
+                                            <input type="radio" name="documentType" value="Documents"> Documents <br />
+                                            <input type="radio" name="documentType" value="Media"> Media <br />
+                                            <input type="radio" name="documentType" value="Other"> Other <br />
+                                        </div>
+                                    </div>
+                                    Add other media to form: <br />
+                                    <div class="container">
+                                        <div class="row">
+
+                                            <div class="form-group files color">
+                                                <label>Upload Your File </label>
+                                                <input type="file" class="form-control" multiple="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="col-lg-2">
+                            <input type="submit" class="btn btn-success" name="saveReport" value="Save Report" onclick="alert('Report Created!')" />
+                            </div>
+                            <div class="col-lg-7">
+                                <input type="reset" class="btn btn-default" name="cancelReport" value="Cancel" />
+                            </div>
+                            <div class="col-lg-1">
+                            <input type="reset" class="btn btn-danger" name="deleteReport" value="Delete Report" />
+                            </div>
+                            <br />
+                        </fieldset>
+
+                    </form>
+                </div>
+            <div class="col-lg-4">
+                <h3>More</h3> <br />
+                Form Templates: <br />
+
+                <input type="button" name="customTemplate" value="Custom"/>
+            </div>
+            </div>
+</div>
+</div>
+    </div>
+
+
+<!-- Edit Documents and Media View-->
 <div id="Edit" class="tabcontent">
-    <h3>Add Documents/Files</h3>
-    <p>here you can view files and edit.</p>
+    <h3>Edit Documents/Media</h3>
+    <p>Here you can view files and edit.</p>
     <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filesList" aria-expanded="false" aria-controls="collapse">
         Display
     </button>
@@ -51,26 +131,38 @@
             <li class="list-group-item">List item example</li>
         </ul>
     </div>
-</div>
-<div id="Media" class="tabcontent">
-    <h3>Add Media</h3>
-    <p>Here you can add media...</p>
-    <form role="form" action="/action_page.php"
-          enctype="multipart/form-data" method="post">
-        <p>
-            Please specify a file, or a set of files:<br>
-            <input type="file" name="datafile" size="40">
-        </p>
-        <div>
-            <input class="btn btn-success" type="submit" value="Send">
-        </div>
-        <h4>Leave a Comment:</h4>
 
-        <div class="form-group">
-            <textarea class="form-control" rows="3" required></textarea>
+    <br /><br /><br />
+    <p>Here you can add files...</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form role="form" method="post" action="#" id="#" enctype="multipart/form-data">
+                    <div class="form-group files color">
+                        <label>Upload Your File </label>
+                        <input type="file" name="datafile" class="form-control" multiple="">
+                    </div>
+
+                    <h4>Leave a Comment:</h4>
+
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+    </div>
+   
+</div>
+
+<!--Another tab-->
+<div id="Settings" class="tabcontent">
+    
+</div>
+<!--Another tab-->
+<div id="Help" class="tabcontent">
+
 </div>
 
 
@@ -78,7 +170,66 @@
 
 
 <style>
+    /* Styling for file upload */
+    .files input {
+        outline: 2px dashed #92b0b3;
+        outline-offset: -10px;
+        -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        transition: outline-offset .15s ease-in-out, background-color .15s linear;
+        padding: 120px 0px 85px 35%;
+        text-align: center !important;
+        margin: 0;
+        width: 100% !important;
+    }
 
+        .files input:focus {
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            border: 1px solid #92b0b3;
+        }
+
+    .files {
+        position: relative
+    }
+
+        .files:after {
+            pointer-events: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 50px;
+            right: 0;
+            height: 56px;
+            content: "";
+            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+            display: block;
+            margin: 0 auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+    .color input {
+        background-color: #f1f1f1;
+    }
+
+    .files:before {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        pointer-events: none;
+        width: 100%;
+        right: 0;
+        height: 57px;
+        content: " or drag it here. ";
+        display: block;
+        margin: 0 auto;
+        color: #2ea591;
+        font-weight: 600;
+        text-transform: capitalize;
+        text-align: center;
+    }
         /* When the input field gets focus, change its width to 100% */
         input[type=text]:focus {
             width: 100%;
@@ -115,10 +266,12 @@
     /* Style the tab content */
     .tabcontent {
         display: none;
-        padding: 6px 12px;
+        padding: 14px 26px;
         border: 1px solid #ccc;
         border-top: none;
     }
+
+   
 </style>
 
 <script>
