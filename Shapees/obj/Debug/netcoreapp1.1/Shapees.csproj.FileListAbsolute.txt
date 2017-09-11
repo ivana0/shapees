@@ -44,3 +44,14 @@ D:\New Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csprojResolveAsse
 D:\New Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
 D:\New Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
 D:\New Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.deps.json
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.json
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.dev.json
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.dll
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.pdb
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csprojResolveAssemblyReference.cache
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csproj.CoreCompileInputs.cache
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfoInputs.cache
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
+C:\Users\Matthew\Desktop\CSIT321 Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb
