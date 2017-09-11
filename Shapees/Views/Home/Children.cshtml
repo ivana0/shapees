@@ -1,4 +1,4 @@
-@* ---------------------------------- SHAPEES 2017 ---------------------------------- *@
+﻿@* ---------------------------------- SHAPEES 2017 ---------------------------------- *@
 @*                                                                                    *@
 @*  Created and Edited by Four Corner Solutions team:                                 *@
 @*      Ivana Ozakovic, Nicole Lardner, Damon Walker,                                 *@
@@ -20,9 +20,289 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
 
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-   
+    <h2>Children</h2>
+    <div class="tab">
+        <button class="tablinks" onclick="openOption(event, 'AddChildren')">Add Children </button>
+        <button class="tablinks" onclick="openOption(event, 'ManageChildren')">Manage Children</button>
+        <button class="tablinks" onclick="openOption(event, 'ListChildren')">List Children</button>
+
+    </div>
+
+    <div id="AddChildren" class="tabcontent">
+
+        <!-- First Form to Add Children-->
+        <h3> Add Children </h3>
+        <form role="form" action="#" method="post">
+            <div class="children-group">
+                <label class="control-label" for="addRoom">Enter Child's Name</label>
+                <input type="text" class="form-control" id="addRoom" placeholder="Enter child's name" float="left">
+            </div>
+            <br />
+            <div class="children-group">
+                <label class="control-label" for="addChildren">Add Child</label>
+                <input type="text" class="form-control" id="addChildren" placeholder="Add children">
+            </div>
+            <br />
+            <div class="children-group">
+                <label class="control-label" for="assignEducator">Assign Educator to Child</label>
+                <input type="text" class="form-control" id="addChildren" placeholder="Assign educator">
+            </div>
+            <br />
+            <div class="children-group">
+                <label class="control-label" for="assignGroup">Assign Child to Group</label> <br />
+                <input type="radio"  id="addChildren" value="group1"> 6 Weeks - 2 Years <br />
+                <input type="radio"  id="addChildren" value="group1"> 2 Years - 6 Years <br />
+                <input type="radio"  id="addChildren" value="group1"> 6 Years - 12 Years <br />
+
+            </div>
+            <br />
+            <button type="submit" class="btn btn-secondary">Add Child</button>
+        </form>
+
+    </div>
+
+    <div id="ManageChildren" class="tabcontent">
+
+        <!-- Second Form to Manage Children-->
+        <h3> Manage Children </h3>
+        <form role="form" action="#">
+            <div class="children-group">
+                <label class="control-label" for="deleteChildren">Enter Child's Name to remove</label>
+                <input type="text" class="form-control" id="addChildren" placeholder="Enter child's name">
+            </div>
+            <br />
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+        <br />
+        <form role="form">
+            <div class="children-group">
+                <label class="control-label" for="removeChild">Remove child </label>
+                <input type="text" class="form-control" id="removeChild" placeholder="Remove child">
+            </div>
+            <br />
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+        <br />
+        <form role="form" action="#" method="post">
+            <div class="children-group">
+                <label class="control-label" for="removeChild">Remove Children from Room</label>
+                <input type="text" class="form-control" id="removeEducator" placeholder="Remove child">
+            </div>
+            <br />
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div>
+
+
+    <div id="ListChildren" class="tabcontent">
+        <!--Collapsible to display children list-->
+        <h3>List Children</h3>
+
+        <br /><br />
+        <div class="container" name="childrenList">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-primary">All Children</button>
+                        <button type="button" class="btn btn-default">6 weeks-2yrs</button>
+                        <button type="button" class="btn btn-default">2yrs-6yrs</button>
+                        <button type="button" class="btn btn-default">6yrs-12yrs</button>
+                        <!--button type="button" class="btn btn-default">Announcements</button-->
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+
+                    <div class="row">
+
+                        <div class="col-md-8 text-right">
+
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-gray dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Filters <span class="caret"></span></button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">All Rooms</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Other...</a></li>
+                                    </ul>
+                                </div><!-- /btn-group -->
+                                <input type="text" class="form-control" placeholder="Search" aria-label="...">
+                            </div><!-- /input-group -->
+
+                        </div>
+                        <div class="col-md-3 text-right">
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Add Item <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Add Children</a></li>
+                                    <li><a href="#">Remove Children</a></li>
+                                    <li><a href="#">Edit Children</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Other...</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11">
+
+                    <div class="topcis-header">
+
+                        <div class="row">
+
+                            <div class="col-md-10">
+                                <ul> </ul>
+                            </div>
+
+                            <div class="col-md-1 text-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-gray borderless dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        Sort By <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">All Children</a></li>
+                                        <li><a href="#">6wk-2yrs</a></li>
+                                        <li><a href="#">2yrs-6yrs else</a></li>
+                                        <li><a href="#">6yrs-12yrs else</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Other...</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
+<style>
+    /* search bar styling*/
+    #searchbar {
+        width: 200px;
+        height: 48px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+        float: right;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: white;
+        background-image: url(search.png);
+        background-position: 10px 12px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+    }
+
+    /* When the input field gets focus, change its width to 100% */
+    #searchbar {
+        width: 100%;
+    }
+    /* Style the tab */
+    div.tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+            /* Change background color of buttons on hover */
+            div.tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            div.tab button.active {
+                background-color: #ccc;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+</style>
+
+<script>
+    function openOption(evt, optionName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(optionName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script> 
 

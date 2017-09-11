@@ -17,30 +17,66 @@
     ViewData["Title"] = "Scheduler";
     Layout = "~/Views/Shared/SchedulerLayout.cshtml";
 }
+<head>
+<meta name="Description" content="" />
+<meta name="Keywords" content="" />
+<meta name="Author" content="AddEvent" />
 
-<h2>Scheduler</h2>
-<div class="tab">
-    <button class="tablinks" onclick="openOption(event, 'Home')">Scheduler Home</button>
-    <button class="tablinks" onclick="openOption(event, 'Set')">Set Tasks</button>
-    <button class="tablinks" onclick="openOption(event, 'Edit')">View/Edit Tasks</button>
-</div>
+<meta charset="utf-8" />
 
-<div id="Home" class="tabcontent">
-    <h3>Scheduler Home</h3>
-   
+<!-- AddEvent theme css -->
+<link rel="stylesheet" href="css/theme1.css" type="text/css" media="screen" />
 
+<!-- AddEvent -->
+<script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js"></script>
 
-</div>
+<!-- AddEvent Settings -->
+<script type="text/javascript">
+    addeventatc.settings({
+        license: "replace-with-your-licensekey",
+        css: false
+    });
+</script>
+</head>
+<body>
+    <h2>Scheduler</h2>
+    <div class="tab">
+        <button class="tablinks" onclick="openOption(event, 'Home')">Scheduler Home</button>
+        <button class="tablinks" onclick="openOption(event, 'Set')">Set Tasks</button>
+        <button class="tablinks" onclick="openOption(event, 'Edit')">View/Edit Tasks</button>
+    </div>
 
-<div id="Set" class="tabcontent">
-    <h3>Set Tasks</h3>
-    <p>Here you can set tasks.</p>
-</div>
+    <div id="Home" class="tabcontent">
+        <h3>Scheduler Home</h3>
+        <iframe src="https://calendar.google.com/calendar/embed?title=Kids%27%20Uni%20Scheduler&amp;height=600&amp;wkst=2&amp;hl=en&amp;bgcolor=%23ffffff&amp;src=3j8f52d0vlal916n644jjefn8k%40group.calendar.google.com&amp;color=%230F4B38&amp;ctz=Australia%2FSydney" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
 
-<div id="Edit" class="tabcontent">
-    <h3>View/Edit Tasks</h3>
-    <p>here you can view tasks and edit.</p>
-</div>
+    <div id="Set" class="tabcontent">
+        <h3>Set Tasks</h3>
+        <p>Here you can set tasks.</p>
+        <script type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js" async defer></script>
+        <div title="Add to Calendar" class="addeventatc" data-direct="google">
+            Add to Calendar
+            <span class="start">09/24/2017 09:00 AM</span>
+            <span class="end">09/24/2017 11:00 AM</span>
+            <span class="timezone">Australia/Sydney</span>
+            <span class="title">Summary of the event</span>
+            <span class="description">Description of the event</span>
+            <span class="location">Location of the event</span>
+            <span class="date_format">MM/DD/YYYY</span>
+            <span class="client">azNigbJmQzwcSaGrfmYP30912</span>
+        </div>
+        <br />
+        
+
+    </div>
+
+    <div id="Edit" class="tabcontent">
+        <h3>View/Edit Tasks</h3>
+        <p>Here you can view tasks and edit.</p>
+        <iframe src="https://calendar.google.com/calendar/embed?title=Kids%27%20Uni%20Scheduler&amp;mode=AGENDA&amp;height=600&amp;wkst=2&amp;hl=en&amp;bgcolor=%23ffffff&amp;src=3j8f52d0vlal916n644jjefn8k%40group.calendar.google.com&amp;color=%230F4B38&amp;ctz=Australia%2FSydney" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+</body>
 <style>
         /* When the input field gets focus, change its width to 100% */
         input[type=text]:focus {
@@ -104,4 +140,79 @@
         document.getElementById(optionName).style.display = "block";
         evt.currentTarget.className += " active";
     }
+</script>
+<!-- AddEvent Settings -->
+<script type="text/javascript">
+    window.addeventasync = function () {
+        addeventatc.settings({
+            license: "azNigbJmQzwcSaGrfmYP30912",
+            mouse: false,
+            css: true,
+            google: { show: true, text: "Google <em>(online)</em>" },
+        });
+    };
+
+    // Capture click on button
+    window.addeventasync = function () {
+        addeventatc.register('button-click', function (obj) {
+
+            // Console log example
+            console.log('button-click -> ' + obj.id);
+
+        });
+    };
+
+    // Capture mouseover on button
+    window.addeventasync = function () {
+        addeventatc.register('button-mouseover', function (obj) {
+
+            // Console log example
+            console.log('button-mouseover -> ' + obj.id);
+
+        });
+    };
+
+    // Capture mouseout on button
+    window.addeventasync = function () {
+        addeventatc.register('button-mouseout', function (obj) {
+
+            // Console log example
+            console.log('button-mouseout -> ' + obj.id);
+
+        });
+    };
+
+    // Capture when drop down is being displayed
+    window.addeventasync = function () {
+        addeventatc.register('button-dropdown-show', function (obj) {
+
+            // Console log example
+            console.log('button-dropdown-show -> ' + obj.id);
+
+        });
+    };
+
+    // Capture when drop down is being hidden
+    window.addeventasync = function () {
+        addeventatc.register('button-dropdown-hide', function (obj) {
+
+            // Console log example
+            console.log('button-dropdown-hide -> ' + obj.id);
+
+        });
+    };
+
+    // Capture when an option in the drop down is clicked
+    window.addeventasync = function () {
+        addeventatc.register('button-dropdown-click', function (obj) {
+
+            // Console log example
+            console.log('button-dropdown-click -> ' + obj.id + ', service -> ' + obj.service);
+
+            // Track event click with e.g. Google Analytics (using analytics.js)
+            // https://developers.google.com/analytics/devguides/collection/analyticsjs/events
+            ga('send', 'event', 'AddToCalendar', 'play', 'Fall Campaign');
+
+        });
+    };
 </script>
