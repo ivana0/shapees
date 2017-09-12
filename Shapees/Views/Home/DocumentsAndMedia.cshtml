@@ -20,12 +20,45 @@
 }
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
 <h2>Documents and Media</h2>
-
+<body>
 <!--Tab System -->
 <div class="tab" id="tabsystem">
-    <button class="tablinks" onclick="openOption(event, 'Home')" >View Documents &amp; Media</button>
+    <button class="tablinks" onclick="openOption(event, 'Home')">View Documents &amp; Media</button>
     <button class="tablinks" onclick="openOption(event, 'Create')">Create Document</button>
     <button class="tablinks" onclick="openOption(event, 'Edit')">Add Documents/Files</button>
     <button class="tablinks" onclick="openOption(event, 'Settings')">Settings</button>
@@ -38,6 +71,98 @@
     <h3>Documents Home</h3>
     <p>
         This is the documents home page. Initially latest submitted documents/files/media appear on home page (by Educator or in general latest for Director).
+       <div class="container" name="documentList">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-primary">All Documents</button>
+                    <button type="button" class="btn btn-default">All Media</button>
+                    <button type="button" class="btn btn-default">Other option</button>
+                    <button type="button" class="btn btn-default">Other option</button>
+                    <!--button type="button" class="btn btn-default">Announcements</button-->
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <div class="row">
+
+                    <div class="col-md-8 text-right">
+
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-gray dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Filters <span class="caret"></span></button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">All Documents</a></li>
+                                    <li><a href="#">All Media</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Other...</a></li>
+                                </ul>
+                            </div><!-- /btn-group -->
+                            <input type="text" class="form-control" placeholder="Search" aria-label="...">
+                        </div><!-- /input-group -->
+
+                    </div>
+                    <div class="col-md-3 text-right">
+
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                Add Item <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Add document</a></li>
+                                <li><a href="#">Something else</a></li>
+                                <li><a href="#">Something else</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+
+                <div class="topcis-header">
+
+                    <div class="row">
+
+                        <div class="col-md-10">
+                            <ul> </ul>
+                        </div>
+
+                        <div class="col-md-1 text-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-gray borderless dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Sort By <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">All</a></li>
+                                    <li><a href="#">Asc Date</a></li>
+                                    <li><a href="#">Desc Date</a></li>
+                                    <li><a href="#">Educator</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Other...</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+</div>
+
     </p>
 </div>
 
@@ -50,15 +175,15 @@
             <div class="row">
                 <div class=" col-lg-8">
                     <form action="/createDocument.php" method="post" style="border:1px  hidden black; background-color: aliceblue">
-                        <fieldset>
-                            <legend>Form</legend>
+                        <fieldset style="font-size: 18px">
+                            <legend style="text-align:center; font-size: 25px;">Kid's Uni: General Form</legend>
                             <div class="col-lg-12">
                                 Form Name: <br />
                                 <input type="text" name="formName" placeholder="Enter form name..." />
                                 <br />
                                 Subject: <br /> <input type="text" name="formSubject" placeholder="Enter subject..." />
                                 <br /> <br />
-                                Message: <br /> <textarea name="formMessage" rows="15" cols="100" placeholder="Enter message of document/report...">Enter message of document/report... </textarea>
+                                Message: <br /> <textarea placeholder="Enter content/message of document..." type="text" name="formMessage" rows="12" cols="100"></textarea>
                                 <br /><br />
                                 <div class="container">
                                     <div class="row">
@@ -75,7 +200,7 @@
                                             <input type="radio" name="documentType" value="News"> News <br />
                                             <input type="radio" name="documentType" value="Reports"> Reports  <br />
                                             <input type="radio" name="documentType" value="Documents"> Documents <br />
-                                            <input type="radio" name="documentType" value="Media"> Media <br />
+                                            <input type="radio" name="documentType" value="Media"> Portfolio <br />
                                             <input type="radio" name="documentType" value="Other"> Other <br />
                                         </div>
                                     </div>
@@ -89,34 +214,102 @@
                                             </div>
                                         </div>
                                     </div>
+                                   
+                                    <div id="Custom">
+                                        <div class="container">
+                                            <div class="row">
+                                                <input type="hidden" name="count" value="1" />
+                                                <div class="control-group" id="fields">
+                                                    <label class="control-label" for="field1">Other:</label> <br />
+                                                    <div class="controls" id="profs">
+                                                        <div class="input-append">
+                                                            <div id="field"><input autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="Type something" data-items="8" /><button id="b1" class="btn add-more" type="button">+</button></div>
+                                                        </div>
+                                                        <br>
+                                                        <small>Press + to add another form field...</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
 
-                            <br />
+                            <br /> <br />
                             <div class="col-lg-2">
-                            <input type="submit" class="btn btn-success" name="saveReport" value="Save Report" onclick="alert('Report Created!')" />
+                                <input type="submit" class="btn btn-success" name="saveReport" value="Save Report" onclick="alert('Report Created!')" style="font-size: 18px;"/>
                             </div>
                             <div class="col-lg-7">
-                                <input type="reset" class="btn btn-default" name="cancelReport" value="Cancel" />
+                                <input type="reset" class="btn btn-default" name="cancelReport" value="Cancel" style="font-size: 18px;"/>
                             </div>
                             <div class="col-lg-1">
-                            <input type="reset" class="btn btn-danger" name="deleteReport" value="Delete Report" />
+                                <input type="reset" class="btn btn-danger" name="deleteReport" value="Delete Report" style="font-size: 18px;"/>
                             </div>
                             <br />
                         </fieldset>
 
                     </form>
-                </div>
-            <div class="col-lg-4">
-                <h3>More</h3> <br />
-                Form Templates: <br />
+                    
+                    <!--New field-->
 
-                <input type="button" name="customTemplate" value="Custom"/>
+
+
+                    <form id="bookForm" method="post" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-xs-1 control-label">Book</label>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" name="book[0].title" placeholder="Title" />
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" name="book[0].isbn" placeholder="ISBN" />
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="text" class="form-control" name="book[0].price" placeholder="Price" />
+                            </div>
+                            <div class="col-xs-1">
+                                <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- The template for adding new field -->
+                        <div class="form-group hide" id="bookTemplate">
+                            <div class="col-xs-4 col-xs-offset-1">
+                                <input type="text" class="form-control" name="title" placeholder="Title" />
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" name="isbn" placeholder="ISBN" />
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="text" class="form-control" name="price" placeholder="Price" />
+                            </div>
+                            <div class="col-xs-1">
+                                <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-5 col-xs-offset-1">
+                                <button type="submit" class="btn btn-default">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <h3>More</h3> <br />
+                    Form Templates: <br />
+                    <img src="http://placehold.it/50x50/336699" alt="">
+                    <img src="http://placehold.it/50x50/336699" alt="">
+                    <img src="http://placehold.it/50x50/336699" alt="">
+                    <br /><br />
+
+                    <input type="button" name="customTemplate" value="Custom" />
+                    
+                </div>
             </div>
-            </div>
-</div>
-</div>
+        </div>
     </div>
+</div>
 
 
 <!-- Edit Documents and Media View-->
@@ -153,12 +346,12 @@
             </div>
         </div>
     </div>
-   
+
 </div>
 
 <!--Another tab-->
 <div id="Settings" class="tabcontent">
-    
+
 </div>
 <!--Another tab-->
 <div id="Help" class="tabcontent">
@@ -167,9 +360,22 @@
 
 
 
-
+</body>
 
 <style>
+    /*Other field*/
+    #field1{
+        border-radius: 0 !important;
+    }
+
+    #field {
+        margin-bottom: 20px;
+    }
+    /*Text area*/
+    .textarea{
+        width:800px;
+
+    }
     /* Styling for file upload */
     .files input {
         outline: 2px dashed #92b0b3;
@@ -226,14 +432,14 @@
         display: block;
         margin: 0 auto;
         color: #2ea591;
-        font-weight: 600;
+        font-weight: 500;
         text-transform: capitalize;
         text-align: center;
     }
-        /* When the input field gets focus, change its width to 100% */
-        input[type=text]:focus {
-            width: 100%;
-        }
+    /* When the input field gets focus, change its width to 100% */
+    input[type=text]:focus {
+        width: 100%;
+    }
 
     /* Style the tab */
     div.tab {
@@ -270,8 +476,6 @@
         border: 1px solid #ccc;
         border-top: none;
     }
-
-   
 </style>
 
 <script>
@@ -295,4 +499,103 @@
         document.getElementById(optionName).style.display = "block";
         evt.currentTarget.className += " active";
     }
+
+
+    
 </script>
+
+
+<!--
+<script>
+    //Script for other field option
+    $(document).ready(function () {
+        var titleValidators = {
+            row: '.col-xs-4',   // The title is placed inside a <div class="col-xs-4"> element
+            validators: {
+                notEmpty: {
+                    message: 'The title is required'
+                }
+            }
+        },
+            isbnValidators = {
+                row: '.col-xs-4',
+                validators: {
+                    notEmpty: {
+                        message: 'The ISBN is required'
+                    },
+                    isbn: {
+                        message: 'The ISBN is not valid'
+                    }
+                }
+            },
+            priceValidators = {
+                row: '.col-xs-2',
+                validators: {
+                    notEmpty: {
+                        message: 'The price is required'
+                    },
+                    numeric: {
+                        message: 'The price must be a numeric number'
+                    }
+                }
+            },
+            bookIndex = 0;
+
+        $('#bookForm')
+            .formValidation({
+                framework: 'bootstrap',
+                icon: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    'book[0].title': titleValidators,
+                    'book[0].isbn': isbnValidators,
+                    'book[0].price': priceValidators
+                }
+            })
+
+            // Add button click handler
+            .on('click', '.addButton', function () {
+                bookIndex++;
+                var $template = $('#bookTemplate'),
+                    $clone = $template
+                        .clone()
+                        .removeClass('hide')
+                        .removeAttr('id')
+                        .attr('data-book-index', bookIndex)
+                        .insertBefore($template);
+
+                // Update the name attributes
+                $clone
+                    .find('[name="title"]').attr('name', 'book[' + bookIndex + '].title').end()
+                    .find('[name="isbn"]').attr('name', 'book[' + bookIndex + '].isbn').end()
+                    .find('[name="price"]').attr('name', 'book[' + bookIndex + '].price').end();
+
+                // Add new fields
+                // Note that we also pass the validator rules for new field as the third parameter
+                $('#bookForm')
+                    .formValidation('addField', 'book[' + bookIndex + '].title', titleValidators)
+                    .formValidation('addField', 'book[' + bookIndex + '].isbn', isbnValidators)
+                    .formValidation('addField', 'book[' + bookIndex + '].price', priceValidators);
+            })
+
+            // Remove button click handler
+            .on('click', '.removeButton', function () {
+                var $row = $(this).parents('.form-group'),
+                    index = $row.attr('data-book-index');
+
+                // Remove fields
+                $('#bookForm')
+                    .formValidation('removeField', $row.find('[name="book[' + index + '].title"]'))
+                    .formValidation('removeField', $row.find('[name="book[' + index + '].isbn"]'))
+                    .formValidation('removeField', $row.find('[name="book[' + index + '].price"]'));
+
+                // Remove element containing the fields
+                $row.remove();
+            });
+    });
+</script>
+    -->
+

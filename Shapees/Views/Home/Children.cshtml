@@ -20,6 +20,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/ChildrensViewStyle.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <style>
         .btn-gray {
             color: #fff;
@@ -53,200 +60,323 @@
             padding-bottom: 5px;
         }
     </style>
+
 </head>
 <body>
     <h2>Children</h2>
     <div class="tab">
-        <button class="tablinks" onclick="openOption(event, 'AddChildren')">Add Children </button>
-        <button class="tablinks" onclick="openOption(event, 'ManageChildren')">Manage Children</button>
-        <button class="tablinks" onclick="openOption(event, 'ListChildren')">List Children</button>
-
+        <button class="tablinks" onclick="openOption(event, 'ManageChildren')">Manage Children </button>
+        <button class="tablinks" onclick="openOption(event, 'Portfolio')">Children Portfolios</button>
     </div>
 
-    <div id="AddChildren" class="tabcontent">
-
-        <!-- First Form to Add Children-->
-        <h3> Add Children </h3>
-        <form role="form" action="#" method="post">
-            <div class="children-group">
-                <label class="control-label" for="addRoom">Enter Child's Name</label>
-                <input type="text" class="form-control" id="addRoom" placeholder="Enter child's name" float="left">
-            </div>
-            <br />
-            <div class="children-group">
-                <label class="control-label" for="addChildren">Add Child</label>
-                <input type="text" class="form-control" id="addChildren" placeholder="Add children">
-            </div>
-            <br />
-            <div class="children-group">
-                <label class="control-label" for="assignEducator">Assign Educator to Child</label>
-                <input type="text" class="form-control" id="addChildren" placeholder="Assign educator">
-            </div>
-            <br />
-            <div class="children-group">
-                <label class="control-label" for="assignGroup">Assign Child to Group</label> <br />
-                <input type="radio"  id="addChildren" value="group1"> 6 Weeks - 2 Years <br />
-                <input type="radio"  id="addChildren" value="group1"> 2 Years - 6 Years <br />
-                <input type="radio"  id="addChildren" value="group1"> 6 Years - 12 Years <br />
-
-            </div>
-            <br />
-            <button type="submit" class="btn btn-secondary">Add Child</button>
-        </form>
-
-    </div>
-
+    <!--Educators view of childrens page-->
     <div id="ManageChildren" class="tabcontent">
+        <main class="container">
+            <div class="col-lg-11">
+                <div class="card-header"><h3>Currently Enrolled Children</h3></div>
+                <div class="card-block p-0">
+                    <table class="table table-bordered table-sm m-0">
+                        <thead>
+                            <tr>
+                                <th width="100px"><em class="fa fa-cog"></em></th>
+                                <th width="325px">Childs Name</th>
+                                <th width="150px">Room</th>
+                                <th width="150px">Childs Portfolio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="center">
+                                    <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                                    <a class="btn btn-default"><em class="fa fa-plus"></em></a>
+                                    <a class="btn btn-default"><em class="fa fa-trash"></em></a>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="#" class="btn btn-default a-btn-slide-text">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                        <span><strong>View Portfolio</strong></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <!--Buttons - navigate to previous/next page displaying children-->
+                    <div class="nav-button">
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <em class="fa fa-mail-reply" aria-hidden="true"></em>
+                        </a>
 
-        <!-- Second Form to Manage Children-->
-        <h3> Manage Children </h3>
-        <form role="form" action="#">
-            <div class="children-group">
-                <label class="control-label" for="deleteChildren">Enter Child's Name to remove</label>
-                <input type="text" class="form-control" id="addChildren" placeholder="Enter child's name">
-            </div>
-            <br />
-            <button type="submit" class="btn btn-secondary">Submit</button>
-        </form>
-        <br />
-        <form role="form">
-            <div class="children-group">
-                <label class="control-label" for="removeChild">Remove child </label>
-                <input type="text" class="form-control" id="removeChild" placeholder="Remove child">
-            </div>
-            <br />
-            <button type="submit" class="btn btn-secondary">Submit</button>
-        </form>
-        <br />
-        <form role="form" action="#" method="post">
-            <div class="children-group">
-                <label class="control-label" for="removeChild">Remove Children from Room</label>
-                <input type="text" class="form-control" id="removeEducator" placeholder="Remove child">
-            </div>
-            <br />
-            <button type="submit" class="btn btn-secondary">Submit</button>
-        </form>
-    </div>
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <span><strong>1</strong></span>
+                        </a>
 
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <span><strong>2</strong></span>
+                        </a>
 
-    <div id="ListChildren" class="tabcontent">
-        <!--Collapsible to display children list-->
-        <h3>List Children</h3>
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <span><strong>3</strong></span>
+                        </a>
 
-        <br /><br />
-        <div class="container" name="childrenList">
-            <div class="row">
-
-                <div class="col-md-6">
-                    <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-primary">All Children</button>
-                        <button type="button" class="btn btn-default">6 weeks-2yrs</button>
-                        <button type="button" class="btn btn-default">2yrs-6yrs</button>
-                        <button type="button" class="btn btn-default">6yrs-12yrs</button>
-                        <!--button type="button" class="btn btn-default">Announcements</button-->
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <em class="fa fa-mail-forward" aria-hidden="true"></em>
+                        </a>
                     </div>
-
                 </div>
-                <div class="col-md-6">
+            </div>
+        </main>
+        <!--END Educators view of childrens page-->
+ 
+        <!--Directors view of Childrens page-->
+        <main class="container">
+            <div class="col-lg-11">
+                <div class="card-header"><h3>Recently Enrolled Children</h3></div>
+                <div class="card-block p-0">
+                    <table class="table table-bordered table-sm m-0">
+                        <thead>
+                            <tr>
+                                <th width="150px"><em class="fa fa-cog"></em></th>
+                                <th width="300px">Childs Name</th>
+                                <th width="150px">Room</th>
+                                <th width="150px">Educators Name</th>
+                                <th width="150px">Childs Portfolio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="center">
+                                    <a class="btn btn-default"><em class="fa fa-pencil"></em></a>
+                                    <a class="btn btn-default"><em class="fa fa-plus"></em></a>
+                                    <a class="btn btn-default"><em class="fa fa-trash"></em></a>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <a href="#" class="btn btn-default a-btn-slide-text">
+                                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                        <span><strong>View Portfolio</strong></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <!--Buttons - navigate to previous/next page displaying children-->
+                    <div class="nav-button">
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <em class="fa fa-mail-reply" aria-hidden="true"></em>
+                        </a>
 
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <span><strong>1</strong></span>
+                        </a>
+
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <span><strong>2</strong></span>
+                        </a>
+
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <span><strong>3</strong></span>
+                        </a>
+
+                        <a href="#" class="btn btn-default a-btn-slide-text">
+                            <em class="fa fa-mail-forward" aria-hidden="true"></em>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        </div>
+        <!--END Directors view of childrens page-->
+   
+    <div id="Portfolio" class="tabcontent">
+
+        <!--Parents view of childrens page / PORTFOLIO-->
+        <div class="container">
+            <div class="col-lg-11">
+                <h2><span class="name-of-child"><!--Name of the child goes here--></span> Portfolio</h2>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#PBasicInfo">Basic Information</a></li>
+                    <li><a data-toggle="tab" href="#PDocumentation">Documents</a></li>
+                    <li><a data-toggle="tab" href="#PMedia">Media</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="PBasicInfo" class="tab-pane fade in active">
+                        <h3><span class="name-of-child"><!--Name of child goes here--></span> Portfolio</h3>
+                        <!--Parents view of Basic Information tab-->
+                        <table class="table">
+                            <tbody>
+                                <!--Childs information will be displayed in a table-->
+                                <tr>
+                                    <th></th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--END Parents view of Basic Information tab-->
+                <!--Parents view of Documentation tab-->
+                <div class="container">
                     <div class="row">
-
-                        <div class="col-md-8 text-right">
-
-                            <div class="input-group">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-gray dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Filters <span class="caret"></span></button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">All Rooms</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Other...</a></li>
-                                    </ul>
-                                </div><!-- /btn-group -->
-                                <input type="text" class="form-control" placeholder="Search" aria-label="...">
-                            </div><!-- /input-group -->
-
-                        </div>
-                        <div class="col-md-3 text-right">
-
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    Add Item <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Add Children</a></li>
-                                    <li><a href="#">Remove Children</a></li>
-                                    <li><a href="#">Edit Children</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Other...</a></li>
-                                </ul>
+                        <div class="col-lg-11">
+                            <div id="PDocumentation" class="tab-pane fade">
+                                <h3>Documents</h3>
+                                <p><span class="name-of-child"><!--Name of child--></span>Medical Documents</p>
+                                <hr />
+                                <span class="medical-doc"><!--Any medical related documents will go here--></span>
+                                <br />
+                                <br />
+                                <p><span class="name-of-child"><!--Name of child--></span> Incident Reports</p>
+                                <hr />
+                                <span class="child-report"><!--Childs report will go here--></span>
                             </div>
-
+                            <!--END Parents view of Documentations tab-->
+                            <!--Parents view of Media tab-->
+                            <div id="PMedia" class="tab-pane fade">
+                                <h3>Your Childs Activities</h3><!--Childs media will be displayed here-->
+                                <span class="childs-media"></span>
+                            </div>
+                            <!--END Parents view of Media tab-->
                         </div>
-
                     </div>
-
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-11">
 
-                    <div class="topcis-header">
+                <!--END parents view of childrens page / PORTFOLIO-->
 
-                        <div class="row">
 
-                            <div class="col-md-10">
-                                <ul> </ul>
-                            </div>
+                <p>Director's view of portfolio</p>
+                <!--Directors view of PORTFOLIO-->
+                <div class="container">
+                    <div class="col-lg-11">
+                        <h2><span class="name-of-child"><!--Name of the child goes here--></span> Portfolio</h2>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#DBasicInfo">Basic Information</a></li>
+                            <li><a data-toggle="tab" href="#DDocumentation">Documents</a></li>
+                            <li><a data-toggle="tab" href="#DMedia">Media</a></li>
+                        </ul>
 
-                            <div class="col-md-1 text-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-gray borderless dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        Sort By <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">All Children</a></li>
-                                        <li><a href="#">6wk-2yrs</a></li>
-                                        <li><a href="#">2yrs-6yrs else</a></li>
-                                        <li><a href="#">6yrs-12yrs else</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Other...</a></li>
-                                    </ul>
+                        <div class="tab-content">
+                            <div id="DBasicInfo" class="tab-pane fade in active">
+                                <h3><span class="name-of-child"><!--Name of child goes here--></span> Basic Information</h3>
+                                <div class="col-lg-11">
+                                    <textarea name="portfolioChild" rows="10" cols="30"> </textarea>
                                 </div>
+                                <!--Directors view of Basic Information tab-->
+                                <!-- FORM TO UPDATE CHILD DETAILS
+                                    
+                        name
+                        dob
+                        educator
+                        room
+                        phone number
+                        contact number
+                        cancel button
+                        save button-->
                             </div>
+                            <!--END Directors view of Basic Information tab-->
+                            <!--Directors view of Documentation tab-->
+                            <div id="DDocumentation" class="tab-pane fade">
+                                <h3>Upload Documents</h3>
+                                <p>Upload Medical Documents</p>
+                                <!--This is where the Medical Documents will be uploaded-->
+                                <form role="form" action="/action_page.php"
+                                      enctype="multipart/form-data" method="post">
+                                    <p>
+                                        Please select a file to upload<br>
+                                        <input type="file" name="datafile" size="40">
+                                    </p>
+                                    <div>
+                                        <input class="btn btn-default" type="submit" value="Upload">
+                                    </div>
+                                </form>
+
+                                <span class="medical-doc"><!--Any medical related documents will be displayed here--></span>
+
+                                <br />
+                                <hr />
+                                <br />
+                                <h3>Upload Incident Reports</h3>
+                                <!--This is where the Incident Reports will be uploaded-->
+                                <form role="form" action="/action_page.php"
+                                      enctype="multipart/form-data" method="post">
+                                    <p>
+                                        Please select a file to upload<br>
+                                        <input type="file" name="datafile" size="40">
+                                    </p>
+                                    <div>
+                                        <input class="btn btn-default" type="submit" value="Upload">
+                                    </div>
+                                </form>
+
+                                <span class="incident-rep"><!--Any Incident reports will be displayed here--></span>
+                                <br />
+                                <br />
+                                <span class=""></span>
+                            </div>
+                            <!--END Directors view of Documentation tab-->
+                            <!--Directors view of Media tab-->
+                            <div id="DMedia" class="tab-pane fade">
+
+
+                                <h3>Upload Media</h3>
+                                <!--This is where the media file is uploaded-->
+                                <form role="form" action="/action_page.php"
+                                      enctype="multipart/form-data" method="post">
+                                    <p>
+                                        Please select a file to upload<br>
+                                        <input type="file" name="datafile" size="40">
+                                    </p>
+                                    <div>
+                                        <input class="btn btn-default" type="submit" value="Upload">
+                                    </div>
+                                </form>
+                            </div>
+                            <br />
+
                         </div>
+                        <!--END Directors view of Media tab-->
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+        <!--END Directors view of PORTFOLIO-->
+
+
+
 </body>
-
+   
 <style>
-    /* search bar styling*/
-    #searchbar {
-        width: 200px;
-        height: 48px;
-        -webkit-transition: width 0.4s ease-in-out;
-        transition: width 0.4s ease-in-out;
-        float: right;
-        box-sizing: border-box;
-        border: 2px solid #ccc;
-        border-radius: 4px;
-        font-size: 14px;
-        background-color: white;
-        background-image: url(search.png);
-        background-position: 10px 12px;
-        background-repeat: no-repeat;
-        padding: 12px 20px 12px 40px;
-    }
-
-    /* When the input field gets focus, change its width to 100% */
-    #searchbar {
-        width: 100%;
-    }
-    /* Style the tab */
+     /* Style the tab */
     div.tab {
         overflow: hidden;
         border: 1px solid #ccc;
@@ -304,5 +434,6 @@
         document.getElementById(optionName).style.display = "block";
         evt.currentTarget.className += " active";
     }
-</script> 
+</script>
+
 
