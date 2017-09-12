@@ -12,13 +12,17 @@
 @*  File description: Dashboard/Home page file.                                       *@
 @* ---------------------------------------------------------------------------------- *@
 
-
 @{
     ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<<<<<<< HEAD
 <head>
 
+=======
+
+<head>
+>>>>>>> 03ab181202127506a6e47c4f98ad4cc6c369f35e
     <style>
         .ds-btn li {
             list-style: none;
@@ -26,6 +30,7 @@
             padding: 10px;
         }
 
+<<<<<<< HEAD
             .ds-btn li a span {
                 padding-left: 15px;
                 padding-right: 5px;
@@ -39,6 +44,21 @@
                     display: inline-block;
                     text-align: left;
                 }
+=======
+        .ds-btn li a span {
+            padding-left: 15px;
+            padding-right: 5px;
+            width: 100%;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .ds-btn li a span small {
+             width: 100%;
+             display: inline-block;
+             text-align: left;
+         }
+>>>>>>> 03ab181202127506a6e47c4f98ad4cc6c369f35e
 
         .user-row {
             margin-bottom: 14px;
@@ -70,7 +90,46 @@
                 border-top: 0;
             }
     </style>
+<<<<<<< HEAD
 </head>
+=======
+    <script>
+        $(document).ready(function () {
+            var panels = $('.user-infos');
+            var panelsButton = $('.dropdown-user');
+            panels.hide();
+
+            //Click dropdown
+            panelsButton.click(function () {
+                //get data-for attribute
+                var dataFor = $(this).attr('data-for');
+                var idFor = $(dataFor);
+
+                //current button
+                var currentButton = $(this);
+                idFor.slideToggle(400, function () {
+                    //Completed slidetoggle
+                    if (idFor.is(':visible')) {
+                        currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
+                    }
+                    else {
+                        currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
+                    }
+                })
+            });
+
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('button').click(function (e) {
+                e.preventDefault();
+                alert("This is a demo.\n :-)");
+            });
+        });
+    </script>
+</head>
+
+>>>>>>> 03ab181202127506a6e47c4f98ad4cc6c369f35e
 <body>
 
     @*
@@ -88,13 +147,21 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         col-md-12 (needs to add up to 12)
+=======
+        col-md-12 (needs to add up to 12) 
+>>>>>>> 03ab181202127506a6e47c4f98ad4cc6c369f35e
 
         xs (for phones)
         sm (for tablets)
         md (for desktops)
         lg (for larger desktops)
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 03ab181202127506a6e47c4f98ad4cc6c369f35e
     *@
 
     <div class="container">
@@ -148,7 +215,11 @@
                                     <tbody>
                                         <tr>
                                             <td>Department</td>
+<<<<<<< HEAD
                                             <td>Director</td>
+=======
+                                            <td>Programming</td>
+>>>>>>> 03ab181202127506a6e47c4f98ad4cc6c369f35e
                                         </tr>
                                         <tr>
                                             <td>Hire date</td>
