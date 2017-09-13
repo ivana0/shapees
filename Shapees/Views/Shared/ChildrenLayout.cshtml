@@ -31,7 +31,44 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
+    <style>
+        body {
+            font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
 
+        main {
+            text-align: center;
+        }
+
+        
+
+        .table {
+            border: none;
+            text-align: center;
+        }
+
+        .table-definition thead th:first-child {
+            pointer-events: none;
+            background: white;
+            border: none;
+        }
+
+        .table td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .table th {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .page-item > * {
+            border: none;
+        }
+        
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -141,5 +178,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>
