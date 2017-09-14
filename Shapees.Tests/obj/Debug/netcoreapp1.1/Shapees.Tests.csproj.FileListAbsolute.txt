@@ -1,0 +1,15 @@
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\xunit.runner.utility.netstandard15.dll
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\xunit.runner.reporters.netstandard15.dll
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\Shapees.Tests.deps.json
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\Shapees.Tests.runtimeconfig.json
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\Shapees.Tests.runtimeconfig.dev.json
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\Shapees.Tests.dll
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\Shapees.Tests.pdb
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\obj\Debug\netcoreapp1.1\Shapees.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\obj\Debug\netcoreapp1.1\Shapees.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\obj\Debug\netcoreapp1.1\Shapees.Tests.AssemblyInfo.cs
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\obj\Debug\netcoreapp1.1\Shapees.Tests.dll
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\obj\Debug\netcoreapp1.1\Shapees.Tests.pdb
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\Shapees.dll
+C:\Users\Damon\Documents\Uni assignments\CSIT321\shapees\Shapees.Tests\bin\Debug\netcoreapp1.1\Shapees.pdb
