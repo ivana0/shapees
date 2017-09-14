@@ -46,6 +46,10 @@ GO
 DROP TABLE [dbo].[users]
 GO
 
+
+
+
+
 CREATE TABLE [dbo].[address]
 (
 	[address_id] INT NOT NULL PRIMARY KEY, 
@@ -53,7 +57,7 @@ CREATE TABLE [dbo].[address]
     [city] NCHAR(20) NOT NULL, 
     [postcode] INT NOT NULL, 
     [state] NCHAR(20) NOT NULL,
-    [country] NCHAR(20) NOT NULL
+    [country] NCHAR(20) NOT NULL, 
 )
 
 
@@ -70,7 +74,13 @@ CREATE TABLE [dbo].[userprofile]
     CONSTRAINT [FK_userprofile_userprofile] FOREIGN KEY ([address_id]) REFERENCES [address]([address_id])
 )
 
+INSERT [dbo].[address] (address_id, street, city, postcode, state, country)  
+    VALUES (11111110, '1 Porter Street', 'Wollongong', 2500, 'NSW', 'AUSTRALIA') 
+GO 
 
+INSERT [dbo].[userprofile] (profile_id, first_name, last_name, dob, home_phone, mobile_phone, address_id, photo_path)  
+    VALUES (11111110, 'Ivana', 'Ozakovic', GETDATE(), '06666666', '0451666666', 11111110, 'picture') 
+GO 
 
 
 CREATE TABLE [dbo].[users]
@@ -92,7 +102,6 @@ GO
 
 
 
-
 CREATE TABLE [dbo].[manager]
 (
 	[manager_id] INT NOT NULL PRIMARY KEY, 
@@ -102,7 +111,9 @@ CREATE TABLE [dbo].[manager]
 	CONSTRAINT [FK_manager_manager] FOREIGN KEY ([userid]) REFERENCES [users]([userid])
 )
 
-
+INSERT [dbo].[manager] (manager_id, userid, employed_on, short_bio)  
+    VALUES (11111111, 11111111, GETDATE(), 'The Boss.')  
+GO 
 
 
 CREATE TABLE [dbo].[educator]
@@ -122,3 +133,5 @@ CREATE TABLE [dbo].[parent]
     [other_contact] NCHAR(100) NULL,
 	CONSTRAINT [FK_parent_parent] FOREIGN KEY ([userid]) REFERENCES [users]([userid])
 )
+
+
