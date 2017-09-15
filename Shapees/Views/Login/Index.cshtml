@@ -31,20 +31,21 @@
 <body>
 
     <!-- you can substitue the span of reauth email for a input with the email and include the remember me checkbox -->
-
-<div class="container">
+    <div class="container">
     <center>
-        <img id="logo" src="~/images/logo.png" />
-            <h1>Login</h1>
-            <div class="card card-container">
+        <img id="logo" src="~/images/logo.png" style="padding:20px; width:45%;height:45%;" />
+            
+            <div class="row ">
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-
-                <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-                    <p id="profile-name" class="profile-name-card"></p>
-
+            <div class="col-md-4" style="background-color:ivory;padding-top:10px;padding-bottom:20px;border-radius:10px;margin:0 auto;float:none;"><!-- /little-container -->
+                    <h2>Login</h2>
+                    
                     <form class="form-signin">
-                    <span id="reauth-email" class="reauth-email"></span>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus><br />
+                    <i class="glyphicon glyphicon-user"></i>
+                    <label for="inputUsername">Username</label>
+                    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus><br />
+                    <i class="glyphicon glyphicon-lock"></i>
+                    <label for="inputPassword">Password</label>
                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
                     <div id="remember" class="checkbox">
@@ -55,9 +56,11 @@
 
                         <button class="btn btn-lg btn-primary btn-signin" type="submit">Sign in</button>
                     </form>       <!-- /form -->
-
+                    <br/>
                     <a href="#" class="forgot-password">Forgot the password?</a>
+                </div>     <!-- /little-container -->
             </div>     <!-- /card-container -->
+
     </center>
-    </div> <!-- /container -->
+    </div>
 </body>
