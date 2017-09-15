@@ -17,6 +17,38 @@
     ViewData["Title"] = "Scheduler";
     Layout = "~/Views/Shared/SchedulerLayout.cshtml";
 }
+<script>
+    //open tab function
+    function openOption(evt, optionName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(optionName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+    }
+    //open users home page on body load
+    function loadSchedulerHome() {
+        // Show the users home tab
+        document.getElementById('Home').style.display = "block";
+        // Set button to active
+        document.getElementById("openTab").className += " active";
+    }
+</script>
+
 <head>
     <meta name="Description" content="" />
     <meta name="Keywords" content="" />
@@ -38,10 +70,10 @@
         });
     </script>
 </head>
-<body>
+<body onload="loadSchedulerHome()">
     <h2>Scheduler</h2>
     <div class="tab">
-        <button class="tablinks" onclick="openOption(event, 'Home')">Scheduler Home</button>
+        <button id="openTab" class="tablinks" onclick="openOption(event, 'Home')">Scheduler Home</button>
         <button class="tablinks" onclick="openOption(event, 'Set')">Set Tasks</button>
         <button class="tablinks" onclick="openOption(event, 'Edit')">View/Edit Tasks</button>
     </div>
@@ -119,28 +151,7 @@
     }
 </style>
 
-<script>
-    function openOption(evt, optionName) {
-        // Declare all variables
-        var i, tabcontent, tablinks;
 
-        // Get all elements with class="tabcontent" and hide them
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-
-        // Get all elements with class="tablinks" and remove the class "active"
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        // Show the current tab, and add an "active" class to the button that opened the tab
-        document.getElementById(optionName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-</script>
 <!-- AddEvent Settings -->
 <script type="text/javascript">
     window.addeventasync = function () {

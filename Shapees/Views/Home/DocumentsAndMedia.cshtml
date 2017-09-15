@@ -18,6 +18,37 @@
     ViewData["Title"] = "DocumentsAndMedia";
     Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
 }
+<script>
+    //open tab function
+    function openOption(evt, optionName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(optionName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+    }
+    //open users home page on body load
+    function loadDocumentsHome() {
+        // Show the users home tab
+        document.getElementById('Home').style.display = "block";
+        // Set button to active
+        document.getElementById("openTab").className += " active";
+    }
+</script>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
@@ -55,10 +86,10 @@
     </style>
 </head>
 <h2>Documents and Media</h2>
-<body>
+<body onload="loadDocumentsHome()">
 <!--Tab System -->
 <div class="tab" id="tabsystem">
-    <button class="tablinks" onclick="openOption(event, 'Home')">View Documents &amp; Media</button>
+    <button id="openTab" class="tablinks" onclick="openOption(event, 'Home')">View Documents &amp; Media</button>
     <button class="tablinks" onclick="openOption(event, 'Create')">Create Document</button>
     <button class="tablinks" onclick="openOption(event, 'Edit')">Add Documents/Files</button>
     <button class="tablinks" onclick="openOption(event, 'Settings')">Settings</button>
