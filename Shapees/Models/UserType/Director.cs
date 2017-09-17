@@ -25,13 +25,10 @@ namespace Shapees.Models
     {
         private ShapeesDB context;
 
-        //public int UserID { get; set; }
-        //public string Username {get; set;}
-        //public string Email { get; set; }
-        //public string Pass { get; set; }
-        //public int user_type { get; set; }
-       // [DataType(DataType.Date)]
-        //public DateTime last_login { get; set; }
-        //public int is_logged_in { get; set; }
+        public int DirectorID { get; set; }
+        public DateTime EmployedOn { get; set; }
+        public string ShortBio {get; set;}
+
+
     }
 }

@@ -6,10 +6,10 @@
 /*                                                                                    */
 /* Created for Kid's Uni, University of Wollongong, Wollongong                        */
 /*                                                                                    */
-/* Filename: Models/UserType/Educator.cs                                              */
+/* Filename: Models/Address.cs                                                        */
 /* DB Context file: Models/ShapeesDB.cs                                               */
 /*                                                                                    */
-/* File description: Educator user type model.                                        */
+/* File description: Users entity type model.                                         */
 /* ---------------------------------------------------------------------------------- */
 
 using System;
@@ -21,12 +21,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shapees.Models
 {
-    public partial class Educator
+    public partial class Address
     {
         private ShapeesDB context;
 
-        public int EducatorID { get; set; }
-        public DateTime EmployedOn { get; set; }
-        public string ShortBio { get; set; }
+        public int AddressID { get; set; }
+        public string Street {get; set;}
+        public string City { get; set; }
+        public string State { get; set; }
+        public int Postcode { get; set; }
+
+
     }
 }

@@ -32,5 +32,11 @@ namespace Shapees.Models
         public int user_type { get; set; }
         public DateTime last_login { get; set; }
         public int is_logged_in { get; set; }
+
+        public int? profile_id { get; set; }
+
+        public UserProfile UserProfile { get; set; }
+
+
     }
 }

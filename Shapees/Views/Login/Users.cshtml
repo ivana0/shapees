@@ -20,6 +20,7 @@
         Layout = "~/Views/Shared/UsersLayout.cshtml";
     }
 
+
 <!------------------------------>
 <!--        START HEAD        -->
 <!------------------------------>
@@ -293,6 +294,7 @@
         </table>
         <nav aria-label="..."><ul class="pagination"></ul></nav>
     </div>
+
     <!--    SECOND TAB - Create User    -->
     <div id="CreateUser" class="tabcontent">
         <!-- Second Form to Create User -->
@@ -302,6 +304,8 @@
                 <hr  width="90%" />
                 <div class="row">
                     <div class="col-md-3 mb-3">
+                        <!-- <img src="e alt="User Logo" asp-append-version="true" /> -->
+                        <!-- <input type="file" asp-for="UploadedImage" /> -->
                         <label for="email" style="font-weight:normal;">Email</label>
                         <input style="width: 100%; max-width:none; " type="email" class="form-control" id="useremail" placeholder="Email" value="" required>
                     </div>
@@ -436,7 +440,7 @@
                 <div class="row justify-content-center">
                 <hr width="90%" />
                     <div class="col-md-4">
-                    </div>
+                    </div> 
                     <div class="col-md-2">
                         <button style="width: 100%; max-width:none; " class="btn btn-gray" type="reset" onclick="hideAdditionalForm()">Reset form</button>
                     </div>

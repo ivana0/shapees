@@ -43,8 +43,10 @@ namespace Shapees.Controllers
         //  Users page - Admin Only   
         public IActionResult Users()
         {
+
             return View(usercontext.Users.ToList());
 
         }
+
     }
 }

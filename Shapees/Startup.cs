@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Shapees.Models;
+using Shapees.Models.TestModels;
 
 using MySql.Data.MySqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -39,7 +40,8 @@ namespace Shapees
 
             var sqlconnection = @"Server=DESKTOP-5S4GO2O;Database=master;Trusted_Connection=True;MultipleActiveResultSets=true";
             services.AddDbContext<ShapeesDB>(dbcontextoption => dbcontextoption.UseSqlServer(sqlconnection));
-     
+            services.AddDbContext<masterContext>(dbcontextoption => dbcontextoption.UseSqlServer(sqlconnection));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

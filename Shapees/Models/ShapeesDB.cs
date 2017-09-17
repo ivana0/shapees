@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;  
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Shapees.Models;
 
 
 namespace Shapees.Models
@@ -39,10 +40,26 @@ namespace Shapees.Models
             modelBuilder.Entity<Users>()
                 .HasKey(t => new { t.UserID });
 
+            modelBuilder.Entity<UserProfile>()
+                .HasKey(t => new { t.profile_id });
+
+            modelBuilder.Entity<Address>()
+                .HasKey(t => new { t.AddressID });
+
+
         }
 
         //Variables for sets of entities
-        public DbSet<Users> Users { get; set; }             //Users
+
+        public DbSet<Users> Users { get; set; }                         //Users
+
+
+        public DbSet<UserProfile> UserProfiles { get; set; }            //User Profiles
+        public DbSet<Address> UsersAddress { get; set; }                //User Address
+        public DbSet<Director> Director { get; set; }                   //Director
+        public DbSet<Educator> Educator { get; set; }                   //Educator
+        public DbSet<Parent> Parent { get; set; }                       //Educator
+
     } 
 
     
