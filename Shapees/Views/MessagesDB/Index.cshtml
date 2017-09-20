@@ -1,0 +1,108 @@
+@model IEnumerable<Shapees.Models.DatabaseModel.Message>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Authorfirst)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Authorlast)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Receiverfirst)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Receiverlast)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Datesent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Datereceived)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dateopened)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Isopened)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Isrepliedto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Receiver)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorfirst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorlast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Receiverfirst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Receiverlast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datesent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datereceived)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateopened)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isopened)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isrepliedto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Receiver.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Messageid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Messageid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Messageid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

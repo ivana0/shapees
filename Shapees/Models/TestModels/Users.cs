@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Shapees.Models.TestModels
 {
     public partial class Users
@@ -18,7 +20,9 @@ namespace Shapees.Models.TestModels
         public DateTime? LastLogin { get; set; }
         public int IsLoggedIn { get; set; }
         public int? ProfileId { get; set; }
+        
 
         public virtual ICollection<Userprofile> Userprofile { get; set; }
+
     }
 }

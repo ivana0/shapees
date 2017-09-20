@@ -1,0 +1,102 @@
+@model Shapees.Models.DatabaseModel.Message
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Messageid" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Receiverfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Receiverfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Receiverlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Receiverlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datesent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datesent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datereceived)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datereceived)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateopened)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dateopened)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Isopened)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Isopened)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Isrepliedto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Isrepliedto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Receiver)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Receiver.Email)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

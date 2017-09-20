@@ -1,0 +1,171 @@
+@model Shapees.Models.DatabaseModel.Report
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Report</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Reporttype" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Reporttype" class="form-control" />
+                <span asp-validation-for="Reporttype" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorfirst" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Authorfirst" class="form-control" />
+                <span asp-validation-for="Authorfirst" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorlast" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Authorlast" class="form-control" />
+                <span asp-validation-for="Authorlast" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Authorid" class ="form-control" asp-items="ViewBag.Authorid"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Childid" class ="form-control" asp-items="ViewBag.Childid"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childfirst" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Childfirst" class="form-control" />
+                <span asp-validation-for="Childfirst" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childlast" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Childlast" class="form-control" />
+                <span asp-validation-for="Childlast" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Datecreated" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Datecreated" class="form-control" />
+                <span asp-validation-for="Datecreated" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Lastmodified" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Lastmodified" class="form-control" />
+                <span asp-validation-for="Lastmodified" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Subject" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Bodytext" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Bodytext" class="form-control" />
+                <span asp-validation-for="Bodytext" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Filepath" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Filepath" class="form-control" />
+                <span asp-validation-for="Filepath" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Datesubmitted" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Datesubmitted" class="form-control" />
+                <span asp-validation-for="Datesubmitted" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Datecompleted" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Datecompleted" class="form-control" />
+                <span asp-validation-for="Datecompleted" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Issubmitted" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Issubmitted" class="form-control" />
+                <span asp-validation-for="Issubmitted" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Iscompleted" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Iscompleted" class="form-control" />
+                <span asp-validation-for="Iscompleted" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Taskid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Taskid" class="form-control" />
+                <span asp-validation-for="Taskid" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Duedate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Duedate" class="form-control" />
+                <span asp-validation-for="Duedate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Attachmentpaths" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Attachmentpaths" class="form-control" />
+                <span asp-validation-for="Attachmentpaths" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Attachmentcount" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Attachmentcount" class="form-control" />
+                <span asp-validation-for="Attachmentcount" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

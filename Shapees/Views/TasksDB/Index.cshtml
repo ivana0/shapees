@@ -1,0 +1,138 @@
+@model IEnumerable<Shapees.Models.DatabaseModel.Task>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Taskforeducator)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Taskforchild)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Taskforfirst)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Taskforlast)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Authorfirst)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Authorlast)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Authorid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Childfirst)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Childlast)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dateassigned)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Datecompleted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Duedate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Reportpath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Issubmitted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Iscompleted)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignedfor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Child)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Report)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Taskforeducator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Taskforchild)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Taskforfirst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Taskforlast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorfirst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorlast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Childfirst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Childlast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateassigned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datecompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duedate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reportpath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Issubmitted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iscompleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignedfor.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Child.Childfirstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Report.Authorfirst)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Taskid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Taskid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Taskid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

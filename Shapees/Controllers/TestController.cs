@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shapees.Models.TestModels;
 
-namespace Shapees.Controllers
+namespace Shapees.TestModels
 {
     public class TestController : Controller
     {
-        private readonly masterContext _context;
+        private readonly testMasterContext _context;
 
-        public TestController(masterContext context)
+        public TestController(testMasterContext context)
         {
             _context = context;    
         }
@@ -21,8 +21,6 @@ namespace Shapees.Controllers
         // GET: Test
         public async Task<IActionResult> Index()
         {
-            //var users = await _context.Users.ToListAsync();
-           // return View(users);
             return View(await _context.Users.ToListAsync());
         }
 
@@ -36,16 +34,10 @@ namespace Shapees.Controllers
 
             var users = await _context.Users
                 .SingleOrDefaultAsync(m => m.Userid == id);
-
-            var profiles = await _context.Userprofile
-                .SingleOrDefaultAsync(u => u.ProfileId == id);
-
             if (users == null)
             {
                 return NotFound();
             }
-
-            users.Userprofile.Add(profiles);
 
             return View(users);
         }
@@ -61,7 +53,7 @@ namespace Shapees.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Userid,Username,Email,Pass,UserType,LastLogin,IsLoggedIn")] Users users)
+        public async Task<IActionResult> Create([Bind("Userid,Username,Email,Pass,UserType,LastLogin,IsLoggedIn,ProfileId")] Users users)
         {
             if (ModelState.IsValid)
             {
@@ -93,7 +85,7 @@ namespace Shapees.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Userid,Username,Email,Pass,UserType,LastLogin,IsLoggedIn")] Users users)
+        public async Task<IActionResult> Edit(int id, [Bind("Userid,Username,Email,Pass,UserType,LastLogin,IsLoggedIn,ProfileId")] Users users)
         {
             if (id != users.Userid)
             {
@@ -133,8 +125,6 @@ namespace Shapees.Controllers
 
             var users = await _context.Users
                 .SingleOrDefaultAsync(m => m.Userid == id);
-
-
             if (users == null)
             {
                 return NotFound();

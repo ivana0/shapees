@@ -1,0 +1,184 @@
+@model Shapees.Models.DatabaseModel.Childinfo
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Childinfo</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Inroom" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Inroom" class="form-control" />
+                <span asp-validation-for="Inroom" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Educatorfname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Educatorfname" class="form-control" />
+                <span asp-validation-for="Educatorfname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Educatorlname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Educatorlname" class="form-control" />
+                <span asp-validation-for="Educatorlname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Educatorid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Educatorid" class ="form-control" asp-items="ViewBag.Educatorid"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Street" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Street" class="form-control" />
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="City" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Postcode" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Postcode" class="form-control" />
+                <span asp-validation-for="Postcode" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="State" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childfirstname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Childfirstname" class="form-control" />
+                <span asp-validation-for="Childfirstname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childlastname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Childlastname" class="form-control" />
+                <span asp-validation-for="Childlastname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Dob" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Dob" class="form-control" />
+                <span asp-validation-for="Dob" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Currentage" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Currentage" class="form-control" />
+                <span asp-validation-for="Currentage" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contacnumber1" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Contacnumber1" class="form-control" />
+                <span asp-validation-for="Contacnumber1" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contacnumber2" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Contacnumber2" class="form-control" />
+                <span asp-validation-for="Contacnumber2" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Parent1" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Parent1" class ="form-control" asp-items="ViewBag.Parent1"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Parent1fname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Parent1fname" class="form-control" />
+                <span asp-validation-for="Parent1fname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Parent1lname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Parent1lname" class="form-control" />
+                <span asp-validation-for="Parent1lname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Parent2" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Parent2" class ="form-control" asp-items="ViewBag.Parent2"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Parent2fname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Parent2fname" class="form-control" />
+                <span asp-validation-for="Parent2fname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Parent2lname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Parent2lname" class="form-control" />
+                <span asp-validation-for="Parent2lname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Shortinfo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Shortinfo" class="form-control" />
+                <span asp-validation-for="Shortinfo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Specialneeds" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Specialneeds" class="form-control" />
+                <span asp-validation-for="Specialneeds" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Profileimage" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Profileimage" class="form-control" />
+                <span asp-validation-for="Profileimage" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,96 @@
+@model IEnumerable<Shapees.Models.DatabaseModel.Media>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mediatype)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Authorfirst)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Authorlast)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Childfirst)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Childlast)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dateuploaded)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Filepath)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Child)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mediatype)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorfirst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Authorlast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Childfirst)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Childlast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dateuploaded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filepath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Child.Childfirstname)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Mediaid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Mediaid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Mediaid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

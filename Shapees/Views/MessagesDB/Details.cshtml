@@ -1,0 +1,97 @@
+@model Shapees.Models.DatabaseModel.Message
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Receiverfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Receiverfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Receiverlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Receiverlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datesent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datesent)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datereceived)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datereceived)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateopened)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dateopened)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Isopened)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Isopened)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Isrepliedto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Isrepliedto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Receiver)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Receiver.Email)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Messageid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

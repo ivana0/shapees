@@ -1,0 +1,90 @@
+@model Shapees.Models.DatabaseModel.Media
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Media</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Mediaid" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Mediatype)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mediatype)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateuploaded)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dateuploaded)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Filepath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Filepath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Child)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Child.Childfirstname)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

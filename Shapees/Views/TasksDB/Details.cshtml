@@ -1,0 +1,127 @@
+@model Shapees.Models.DatabaseModel.Task
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Task</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskforeducator)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Taskforeducator)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskforchild)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Taskforchild)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskforfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Taskforfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskforlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Taskforlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateassigned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dateassigned)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datecompleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datecompleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Duedate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duedate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Reportpath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reportpath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Issubmitted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Issubmitted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Iscompleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Iscompleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Assignedfor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Assignedfor.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Child)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Child.Childfirstname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Report)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Report.Authorfirst)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Taskid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

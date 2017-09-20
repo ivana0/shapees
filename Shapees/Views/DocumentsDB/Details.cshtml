@@ -1,0 +1,85 @@
+@model Shapees.Models.DatabaseModel.Document
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Document</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Documenttype)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Documenttype)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateuploaded)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dateuploaded)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Filepath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Filepath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Child)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Child.Childfirstname)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Documentid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

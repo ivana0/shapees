@@ -5,26 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Shapees.Models.TestModels;
+using Shapees.Models.DatabaseModel;
 
-namespace Shapees.Controllers
+namespace Shapees.Controllers.DatabaseModelControllers
 {
-    public class AddressController : Controller
+    public class UserinfoDBController : Controller
     {
-        private readonly testMasterContext _context;
+        private readonly masterContext _context;
 
-        public AddressController(testMasterContext context)
+        public UserinfoDBController(masterContext context)
         {
             _context = context;    
         }
 
-        // GET: Address
+        // GET: UserinfoDB
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Address.ToListAsync());
+            return View(await _context.Userinfo.ToListAsync());
         }
 
-        // GET: Address/Details/5
+        // GET: UserinfoDB/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +32,39 @@ namespace Shapees.Controllers
                 return NotFound();
             }
 
-            var address = await _context.Address
-                .SingleOrDefaultAsync(m => m.AddressId == id);
-            if (address == null)
+            var userinfo = await _context.Userinfo
+                .SingleOrDefaultAsync(m => m.Userid == id);
+            if (userinfo == null)
             {
                 return NotFound();
             }
 
-            return View(address);
+            return View(userinfo);
         }
 
-        // GET: Address/Create
+        // GET: UserinfoDB/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Address/Create
+        // POST: UserinfoDB/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AddressId,Street,City,Postcode,State")] Address address)
+        public async Task<IActionResult> Create([Bind("Userid,Username,Email,Pass,Usertype,Lastlogin,Isloggedin,Street,City,Postcode,State,Firstname,Lastname,Dob,Homephone,Mobilephone,Employedon,Roomassigned,Shortbio,Taskscompleted,Totaltasks,Othercontact,Parentof,Profileimage")] Userinfo userinfo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(address);
+                _context.Add(userinfo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(address);
+            return View(userinfo);
         }
 
-        // GET: Address/Edit/5
+        // GET: UserinfoDB/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +72,22 @@ namespace Shapees.Controllers
                 return NotFound();
             }
 
-            var address = await _context.Address.SingleOrDefaultAsync(m => m.AddressId == id);
-            if (address == null)
+            var userinfo = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == id);
+            if (userinfo == null)
             {
                 return NotFound();
             }
-            return View(address);
+            return View(userinfo);
         }
 
-        // POST: Address/Edit/5
+        // POST: UserinfoDB/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("AddressId,Street,City,Postcode,State")] Address address)
+        public async Task<IActionResult> Edit(int id, [Bind("Userid,Username,Email,Pass,Usertype,Lastlogin,Isloggedin,Street,City,Postcode,State,Firstname,Lastname,Dob,Homephone,Mobilephone,Employedon,Roomassigned,Shortbio,Taskscompleted,Totaltasks,Othercontact,Parentof,Profileimage")] Userinfo userinfo)
         {
-            if (id != address.AddressId)
+            if (id != userinfo.Userid)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace Shapees.Controllers
             {
                 try
                 {
-                    _context.Update(address);
+                    _context.Update(userinfo);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AddressExists(address.AddressId))
+                    if (!UserinfoExists(userinfo.Userid))
                     {
                         return NotFound();
                     }
@@ -112,10 +112,10 @@ namespace Shapees.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(address);
+            return View(userinfo);
         }
 
-        // GET: Address/Delete/5
+        // GET: UserinfoDB/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +123,30 @@ namespace Shapees.Controllers
                 return NotFound();
             }
 
-            var address = await _context.Address
-                .SingleOrDefaultAsync(m => m.AddressId == id);
-            if (address == null)
+            var userinfo = await _context.Userinfo
+                .SingleOrDefaultAsync(m => m.Userid == id);
+            if (userinfo == null)
             {
                 return NotFound();
             }
 
-            return View(address);
+            return View(userinfo);
         }
 
-        // POST: Address/Delete/5
+        // POST: UserinfoDB/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var address = await _context.Address.SingleOrDefaultAsync(m => m.AddressId == id);
-            _context.Address.Remove(address);
+            var userinfo = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == id);
+            _context.Userinfo.Remove(userinfo);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool AddressExists(int id)
+        private bool UserinfoExists(int id)
         {
-            return _context.Address.Any(e => e.AddressId == id);
+            return _context.Userinfo.Any(e => e.Userid == id);
         }
     }
 }

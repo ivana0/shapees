@@ -1,0 +1,168 @@
+@model IEnumerable<Shapees.Models.DatabaseModel.Childinfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inroom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Educatorfname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Educatorlname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Street)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Postcode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.State)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Childfirstname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Childlastname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dob)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Currentage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contacnumber1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Contacnumber2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Parent1fname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Parent1lname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Parent2fname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Parent2lname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Shortinfo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Specialneeds)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Profileimage)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Educator)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parent1Navigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parent2Navigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inroom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Educatorfname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Educatorlname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postcode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Childfirstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Childlastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dob)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contacnumber1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contacnumber2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent1fname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent1lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent2fname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent2lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shortinfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specialneeds)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profileimage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Educator.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent1Navigation.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parent2Navigation.Email)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Childid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Childid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Childid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

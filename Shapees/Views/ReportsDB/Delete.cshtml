@@ -1,0 +1,150 @@
+@model Shapees.Models.DatabaseModel.Report
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Report</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Reportid" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Reporttype)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reporttype)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datecreated)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datecreated)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastmodified)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lastmodified)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bodytext)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bodytext)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Filepath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Filepath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datesubmitted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datesubmitted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datecompleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datecompleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Issubmitted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Issubmitted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Iscompleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Iscompleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Taskid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Duedate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duedate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Attachmentpaths)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Attachmentpaths)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Attachmentcount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Attachmentcount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Child)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Child.Childfirstname)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

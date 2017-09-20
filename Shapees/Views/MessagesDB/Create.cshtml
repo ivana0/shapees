@@ -1,0 +1,115 @@
+@model Shapees.Models.DatabaseModel.Message
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Message</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Authorfirst" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Authorfirst" class="form-control" />
+                <span asp-validation-for="Authorfirst" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorlast" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Authorlast" class="form-control" />
+                <span asp-validation-for="Authorlast" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Authorid" class ="form-control" asp-items="ViewBag.Authorid"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Receiverfirst" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Receiverfirst" class="form-control" />
+                <span asp-validation-for="Receiverfirst" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Receiverlast" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Receiverlast" class="form-control" />
+                <span asp-validation-for="Receiverlast" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Receiverid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Receiverid" class ="form-control" asp-items="ViewBag.Receiverid"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Datesent" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Datesent" class="form-control" />
+                <span asp-validation-for="Datesent" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Datereceived" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Datereceived" class="form-control" />
+                <span asp-validation-for="Datereceived" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Dateopened" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Dateopened" class="form-control" />
+                <span asp-validation-for="Dateopened" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Isopened" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Isopened" class="form-control" />
+                <span asp-validation-for="Isopened" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Isrepliedto" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Isrepliedto" class="form-control" />
+                <span asp-validation-for="Isrepliedto" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Subject" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
