@@ -1,187 +1,531 @@
-@model Shapees.Models.DatabaseModel.Userinfo
+﻿@model Shapees.Models.DatabaseModel.Userinfo
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/UsersLayout.cshtml";
 }
 
-<h2>Create</h2>
 
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <h4>Userinfo</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Username" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Email" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Pass" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Pass" class="form-control" />
-                <span asp-validation-for="Pass" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Usertype" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Usertype" class="form-control" />
-                <span asp-validation-for="Usertype" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Lastlogin" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Lastlogin" class="form-control" />
-                <span asp-validation-for="Lastlogin" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Isloggedin" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Isloggedin" class="form-control" />
-                <span asp-validation-for="Isloggedin" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Street" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Street" class="form-control" />
-                <span asp-validation-for="Street" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="City" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Postcode" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Postcode" class="form-control" />
-                <span asp-validation-for="Postcode" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="State" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="State" class="form-control" />
-                <span asp-validation-for="State" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Firstname" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Firstname" class="form-control" />
-                <span asp-validation-for="Firstname" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Lastname" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Lastname" class="form-control" />
-                <span asp-validation-for="Lastname" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Dob" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Dob" class="form-control" />
-                <span asp-validation-for="Dob" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Homephone" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Homephone" class="form-control" />
-                <span asp-validation-for="Homephone" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Mobilephone" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Mobilephone" class="form-control" />
-                <span asp-validation-for="Mobilephone" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Employedon" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Employedon" class="form-control" />
-                <span asp-validation-for="Employedon" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Roomassigned" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Roomassigned" class="form-control" />
-                <span asp-validation-for="Roomassigned" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Shortbio" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Shortbio" class="form-control" />
-                <span asp-validation-for="Shortbio" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Taskscompleted" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Taskscompleted" class="form-control" />
-                <span asp-validation-for="Taskscompleted" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Totaltasks" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Totaltasks" class="form-control" />
-                <span asp-validation-for="Totaltasks" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Othercontact" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Othercontact" class="form-control" />
-                <span asp-validation-for="Othercontact" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Parentof" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Parentof" class="form-control" />
-                <span asp-validation-for="Parentof" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Profileimage" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Profileimage" class="form-control" />
-                <span asp-validation-for="Profileimage" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+<!------------------------------>
+<!--        START HEAD        -->
+<!------------------------------>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--        START CSS        -->
+    <style>
+        /***********    TABS CSS       ***********/
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+       .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+       }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+
+        /***********    HR (LINE) CSS       ***********/
+        .hr.styleSeparator {
+            height: 10px;
+            border: 0;
+            box-shadow: 0 10px 10px -10px #8c8b8b inset;
+        }
+
+
+        /***********    SEARCH BAR CSS       ***********/
+        #searchbar {
+            width: 200px;
+            height: 48px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            float: right;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+            background-image: url(search.png);
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        #searchbar {
+            width: 100%;
+        }
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+                background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+                background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_users {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_users {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #user_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <!--        END CSS        -->
+    <!--        START SCRIPT        -->
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("Index", "UserinfoDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("Create", "UserinfoDB")';
+
+        }
+        function openEdit() {
+
+            document.getElementById("edit_users").onclick = function() {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_users").onclick = function() {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("user_details").onclick = function() {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        //open users home page on body load
+        function loadUsersCreate() {
+            // Show the users home tab
+            document.getElementById('CreateUser').style.display = "block";
+            // Set button to active
+            document.getElementById("create_users").className += " active";
+        }
+
+
+
+    </script>
+
+    <!--    SCRIPT FUNCTIONS FOR HIDE/SHOW ADDITIONAL INFO BASED ON USER TYPE   -->
+    <script type="text/javascript">
+
+        function hideAdditionalForm() {
+            document.getElementById('employee1').style.display = "none";
+            document.getElementById('employee2').style.display = "none";
+            document.getElementById('parent1').style.display = "none";
+            document.getElementById('parent2').style.display = "none";
+            document.getElementById('educator1').style.display = "none";
+        }
+        function openDirectorAdditionalInfo() {
+            document.getElementById('employee1').style.display = "block";
+            document.getElementById('employee2').style.display = "block";
+            document.getElementById('educator1').style.display = "none";
+            document.getElementById('parent1').style.display = "none";
+            document.getElementById('parent2').style.display = "none";
+        }
+        function openEducatorAdditionalInfo() {
+            document.getElementById('educator1').style.display = "block";
+            document.getElementById('employee1').style.display = "block";
+            document.getElementById('employee2').style.display = "block";
+            document.getElementById('parent1').style.display = "none";
+            document.getElementById('parent2').style.display = "none";
+   
+        }
+        function openParentAdditionalInfo() {
+            document.getElementById('employee1').style.display = "none";
+            document.getElementById('employee2').style.display = "none";
+            document.getElementById('parent1').style.display = "block";
+            document.getElementById('parent2').style.display = "block";
+            document.getElementById('educator1').style.display = "none";
+        }
+
+        function loadFormType() {
+            var userType = document.getElementById("usertype");
+
+            switch (userType.options.selectedIndex) {
+                    case 0:
+                        hideAdditionalForm();
+                        break;
+                    case 1:
+                        openParentAdditionalInfo();
+                        break;
+                    case 2:
+                        openEducatorAdditionalInfo();
+                        break;
+                    case 3:
+                        openDirectorAdditionalInfo();
+                        break;
+                    default:
+                        break;
+            }
+        }
+
+    </script>
+    <!--        END SCRIPT        -->
+</head>
+<!----------------------------->
+<!--        END HEAD        --->
+<!----------------------------->
+<!------------------------------>
+<!--        START BODY        -->
+<!------------------------------>
+
+<body onload="loadUsersCreate()">
+    <h2>Create User</h2>
+    <div class="tab">
+        <button id="home_users" class="tablinks" onclick="openIndex()">Search Users</button>
+        <button id="create_users" class="tablinks" onclick="openOption(event, 'CreateUser')">Create User</button>
+        <button id="edit_users" class="tablinks" onclick="openEdit()">Edit User</button>
+        <button id="delete_users" class="tablinks" onclick="openDelete()">Delete User</button>
+        <button id="user_details" class="tablinks" onclick="openDetails()">User Details</button>
     </div>
-</form>
+    <!--       START TABS        -->
+    <!--    FIRST TAB - List Users    -->
+    <div id="ListUsers" class="tabcontent">
+    </div>
+    <!--    END FIRST TAB - List Users    -->
+    <!--    SECOND TAB - Create User    -->
+    <div id="CreateUser" class="tabcontent">
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+        <!-- Second Form to Create User -->
+        <form asp-action="Create" method="post" enctype="multipart/form-data" class="container">
+            <br />
+            <h4>Login information</h4>
+            <hr width="90%" />
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <!-- <img src="e alt="User Logo" asp-append-version="true" /> -->
+                    <!-- <input type="file" asp-for="UploadedImage" /> -->
+                    <label for="email" style="font-weight:normal;">Email</label>
+                    <input asp-for="Email" style="width: 100%; max-width:none; " type="email" class="form-control" id="useremail" placeholder="E-mail" value="" required>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="username" style="font-weight:normal;">Username</label>
+                    <input asp-for="Username" type="text" class="form-control" id="username" placeholder="Username" value="" style="width: 100%; max-width:none; " required>
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                    <small id="userhelp" class="text-muted">
+                        Your username must contain letters and numbers only.
+                    </small>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    Password
+                    <input asp-for="Pass" type="password" class="form-control" id="password" placeholder="Password" value="" style="width: 100%; max-width:none; " required>
+                    <span asp-validation-for="Pass" class="text-danger"></span>
+                    <small id="passhelp" class="text-muted">
+                        Your password must be 8-20 characters long, contain letters, numbers and special characters.
+                    </small>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-1 mb-2"> User Type </div>
+                <div class="col-md-3 mb-3">
+                    <select asp-for="Usertype" class="form-control" id="usertype" name="usertype" onchange="loadFormType()" required>
+                        <option value="0">Choose Type ...</option>
+                        <option value="1">Parent</option>
+                        <option value="2">Educator</option>
+                        <option value="3">Director</option>
+                    </select>
+                    <!--<input asp-for="Usertype" class="form-control" />-->
+                    <span asp-validation-for="Usertype" class="text-danger"></span>  
+                    <br />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2">
+                    Upload profile picture:
+                </div>
+                <div class="col-md-10">
+                    <input type="file" name="file" />
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2 mb-2"> Is Logged In </div>
+                <div class="col-md-3 mb-3">
+                   <select asp-for="Isloggedin" class="form-control" id="usertype" name="usertype" onchange="loadFormType()" required>
+                        <option value="notype">Choose ...</option>
+                        <option value="0">Yes</option>
+                        <option value="-1">No</option>
+                    </select>
+                    <!-- <input asp-for="Isloggedin" class="form-control" />-->
+                    <span asp-validation-for="Isloggedin" class="text-danger"></span>
+                    <br />
+                </div>
+            </div>
+            <br/>
+            <h4>User information</h4>
+            <hr width="90%" />
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="firstname" style="font-weight:normal;">First Name</label>
+                    <small style="width: 100%; max-width:none; " id="namehelp" class="text-muted">
+                        (Include middle names if any)
+                    </small>
+                    <input asp-for="Firstname" style="width: 100%; max-width:none; " type="text" class="form-control" id="firstname" placeholder="First name" value="" required>
+                    <span asp-validation-for="Firstname" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="lastname" style="font-weight:normal;">Last Name</label>
+                    <input asp-for="Lastname" style="width: 100%; max-width:none; " type="text" class="form-control" id="lastname" placeholder="Last name" value="" required>
+                    <span asp-validation-for="Lastname" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div id="dob" class="col-md-5 mb-3" style="display:none;">
+                    <label for="dob" style="font-weight:normal;">Date of Birth </label>
+                    <input asp-for="Dob" type="date" class="form-control" id="dob">
+                    <span asp-validation-for="Dob" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="address" style="font-weight:normal;font-size:larger;">Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11">
+                    <label for="street" style="font-weight:normal;">Street </label>
+                    <small style="width: 100%; max-width:none; " id="namehelp" class="text-muted">
+                        (If building, include Unit and Street number)
+                    </small>
+                    <input asp-for="Street" style="width: 100%; max-width:none; " type="text" class="form-control" id="street" placeholder="E.g. 1 Northfields Avenue" required>
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="city" style="font-weight:normal;">City</label>
+                    <input asp-for="City" style="width: 100%; max-width:none;" type="text" class="form-control" id="city" placeholder="City" required>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="State" style="font-weight:normal;">State </label>
+                    <!--<select asp-for="State" class="form-control" id="state" name="state" required>
+                        <option value="nostate">Choose State ...</option>
+                        <option value="nsw">NSW</option>
+                        <option value="qld">QLD</option>
+                        <option value="act">ACT</option>
+                        <option value="vic">VIC</option>
+                        <option value="sa">SA</option>
+                        <option value="vic">VIC</option>
+                        <option value="wa">WA</option>
+                    </select>-->
+                    <input asp-for="State" class="form-control" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label for="postcode" style="font-weight:normal;">Postcode</label>
+                    <input asp-for="Postcode" type="text" class="form-control" id="postcode" placeholder="Postcode" required>
+                    <span asp-validation-for="Postcode" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="contactinformation" style="font-weight:normal;font-size:larger;">Contact Information</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <label for="homephone" style="font-weight:normal;">Home Phone</label>
+                    <input asp-for="Homephone" style="width: 100%; max-width:none; " type="text" class="form-control" id="homephone" placeholder="Home phone (e.g. 02 1234 5678)" value="">
+                    <span asp-validation-for="Homephone" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label for="mobilephone" style="font-weight:normal;">Mobile Phone</label>
+                    <input asp-for="Mobilephone" style="width: 100%; max-width:none; " type="text" class="form-control" id="mobilephone" placeholder="Mobile phone (e.g. 0451 123 456)" value="">
+                    <span asp-validation-for="Mobilephone" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <h4>Additional information</h4>
+            <hr width="90%" />
+            <div class="row">
+                <div id="parent1" class="col-md-5 mb-3" style="display:none;">
+                    <label for="additionalcontact" style="font-weight:normal;">Additional contact number </label>
+                    <input asp-for="Othercontact" type="text" class="form-control" id="additionalcontact" placeholder="Enter contact number here ..." value="">
+                    <span asp-validation-for="Othercontact" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div id="parent2" class="col-md-3 mb-3" style="display:none;">
+                    <label for="parentof" style="font-weight:normal;">Parent of </label>
+                    <input asp-for="Parentof" type="text" class="form-control" id="additionalcontact" placeholder="Enter Child's Full Name ..." value="">
+                    <span asp-validation-for="Parentof" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div id="educator1" class="col-md-3 mb-3" style="display:none;">
+                    <label for="roomassigned" style="font-weight:normal;">Room assigned </label>
+                    <input asp-for="Roomassigned" type="text" class="form-control" id="roomassigned" placeholder="Enter Child's Full Name ..." value="">
+                    <span asp-validation-for="Roomassigned" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div id="employee1" class="col-md-5 mb-3" style="display:none;">
+                    <label for="employedon" style="font-weight:normal;">Employed on </label>
+                    <input asp-for="Employedon" type="date" class="form-control" id="employedon">
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div id="employee2" class="col-md-6" style="display:none;">
+                    <label for="shortbio" style="font-weight:normal;">Short Biography</label>
+                    <textarea asp-for="Shortbio" style="width: 100%; max-width:none; " class="form-control" id="shortbio" rows="6"></textarea>
+                    <span asp-validation-for="Shortbio" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group" justify-content-center">
+                <hr width="90%" />
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-2">
+                    <button style="width: 100%; max-width:none; " class="btn btn-gray" type="reset" onclick="hideAdditionalForm()">Reset form</button>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" style="width: 100%; max-width:none; " class="btn btn-primary" value="Create">
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <br />
+            <br />
+        </form>
+    </div>
+    <!--        END SECOND TAB      -->
+    <!--    3RD TAB - Edit User    -->
+    <div id="EditUser" class="tabcontent">
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        <br /><br />
+    </div>
+    <!---->
+    <!--    4TH TAB - Delete User    -->
+    <div id="DeleteUser" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    5TH TAB -  User  Details  -->
+    <div id="UserDetails" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+    <!---->
+</body>
+
+<!----------------------------->
+<!--        END BODY        -->
+<!----------------------------->
+
 

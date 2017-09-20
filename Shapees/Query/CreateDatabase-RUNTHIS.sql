@@ -106,7 +106,7 @@ CREATE TABLE [dbo].[userinfo]
     [mobilephone] NCHAR(20) NULL, 
 
 	[employedon] DATE NULL,
-	[roomassigned] NCHAR(250) NOT NULL,
+	[roomassigned] NCHAR(250) NULL,
 	[shortbio] NCHAR(250) NULL,
 
 	[taskscompleted] INT NULL,

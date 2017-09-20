@@ -1,157 +1,444 @@
-@model Shapees.Models.DatabaseModel.Userinfo
+﻿@model Shapees.Models.DatabaseModel.Userinfo
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/UsersLayout.cshtml";
 }
 
-<h2>Details</h2>
+<!------------------------------>
+<!--        START HEAD        -->
+<!------------------------------>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--        START CSS        -->
+    <style>
+        /***********    TABS CSS       ***********/
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
 
-<div>
-    <h4>Userinfo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Pass)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Pass)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Usertype)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Usertype)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Lastlogin)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Lastlogin)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Isloggedin)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Isloggedin)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Street)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Street)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Postcode)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Postcode)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.State)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Firstname)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Firstname)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Lastname)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Lastname)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Dob)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Dob)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Homephone)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Homephone)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Mobilephone)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Mobilephone)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Employedon)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Employedon)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Roomassigned)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Roomassigned)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Shortbio)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Shortbio)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Taskscompleted)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Taskscompleted)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Totaltasks)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Totaltasks)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Othercontact)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Othercontact)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Parentof)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Parentof)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Profileimage)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Profileimage)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Userid">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+       .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+       }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+
+        /***********    HR (LINE) CSS       ***********/
+        .hr.styleSeparator {
+            height: 10px;
+            border: 0;
+            box-shadow: 0 10px 10px -10px #8c8b8b inset;
+        }
+
+
+        /***********    SEARCH BAR CSS       ***********/
+        #searchbar {
+            width: 200px;
+            height: 48px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            float: right;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+            background-image: url(search.png);
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        #searchbar {
+            width: 100%;
+        }
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_users {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_users {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <!--        END CSS        -->
+    <!--        START SCRIPT        -->
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("Index", "UserinfoDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("Create", "UserinfoDB")';
+
+        }
+        function openEdit() {
+
+            document.getElementById("edit_users").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_users").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("user_details").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+        //open users home page on body load
+        function loadUsersDetails() {
+            // Show the users home tab
+            document.getElementById('UserDetails').style.display = "block";
+            // Set button to active
+            document.getElementById("user_details").className += " active";
+        }
+
+
+
+    </script>
+
+    <!--    SCRIPT FUNCTIONS FOR HIDE/SHOW ADDITIONAL INFO BASED ON USER TYPE   -->
+    <script type="text/javascript">
+
+        function hideAdditionalForm() {
+            document.getElementById('employee1').style.display = "none";
+            document.getElementById('employee2').style.display = "none";
+            document.getElementById('parent1').style.display = "none";
+        }
+        function openEmployeeAdditionalInfo() {
+            document.getElementById('employee1').style.display = "block";
+            document.getElementById('employee2').style.display = "block";
+            document.getElementById('parent1').style.display = "none";
+        }
+        function openParentAdditionalInfo() {
+            document.getElementById('employee1').style.display = "none";
+            document.getElementById('employee2').style.display = "none";
+            document.getElementById('parent1').style.display = "block";
+        }
+
+        function loadFormType() {
+            var userType = document.getElementById("usertype");
+
+            switch (userType.options.selectedIndex) {
+                    case 0:
+                        hideAdditionalForm();
+                        break;
+                    case 1:
+                        openParentAdditionalInfo();
+                        break;
+                    case 2:
+                        openEmployeeAdditionalInfo();
+                        break;
+                    case 3:
+                        openEmployeeAdditionalInfo();
+                        break;
+                    default:
+                        break;
+            }
+        }
+
+    </script>
+    <!--        END SCRIPT        -->
+</head>
+<!----------------------------->
+<!--        END HEAD        --->
+<!----------------------------->
+<!------------------------------>
+<!--        START BODY        -->
+<!------------------------------>
+
+<body onload="loadUsersDetails()">
+    <h2>User Details</h2>
+    <div class="tab">
+        <button id="home_users" class="tablinks" onclick="openIndex()">Search Users</button>
+        <button id="create_users" class="tablinks" onclick="openCreate()">Create User</button>
+        <button id="edit_users" class="tablinks" onclick="openEdit()">Edit User</button>
+        <button id="delete_users" class="tablinks" onclick="openDelete()">Delete User</button>
+        <button id="user_details" class="tablinks" onclick="openOption(event, 'UserDetails')">User Details</button>
+    </div>
+    <!--       START TABS        -->
+    <!--    FIRST TAB - List Users    -->
+    <div id="ListUsers" class="tabcontent">
+    </div>
+    <!--    END FIRST TAB - List Users    -->
+    <!--    SECOND TAB - Create User    -->
+    <div id="CreateUser" class="tabcontent">
+    </div>
+    <!--        END SECOND TAB      -->
+    <!--    3RD TAB - Edit User    -->
+    <div id="EditUser" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    4TH TAB - Delete User    -->
+    <div id="DeleteUser" class="tabcontent">
+    </div>
+    <!---->
+    <!--    5TH TAB -  User  Details  -->
+    <div id="UserDetails" class="tabcontent">
+        <div>
+            <br />
+            <h4>User details</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-10">
+                    <img height="150" width="150" src="@ViewBag.imagesrc" /><br />
+                </div>
+            </div>
+            <br />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Username)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Username)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Pass)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Pass)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Usertype)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Usertype)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Lastlogin)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Lastlogin)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Isloggedin)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Isloggedin)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Street)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Street)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.City)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.City)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Postcode)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Postcode)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.State)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.State)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Firstname)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Firstname)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Lastname)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Lastname)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Dob)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Dob)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Homephone)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Homephone)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Mobilephone)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Mobilephone)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Employedon)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Employedon)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Roomassigned)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Roomassigned)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Shortbio)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Shortbio)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Taskscompleted)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Taskscompleted)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Totaltasks)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Totaltasks)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Othercontact)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Othercontact)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Parentof)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Parentof)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Profileimage)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Profileimage)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Userid">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+        <br /><br />
+    </div>
+    <!---->
+</body>
+
+<!----------------------------->
+<!--        END BODY        -->
+<!----------------------------->
+

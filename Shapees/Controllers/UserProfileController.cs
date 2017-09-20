@@ -97,7 +97,7 @@ namespace Shapees.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProfileId,FirstName,LastName,Dob,HomePhone,MobilePhone,AddressId,Userid,Profileimage")] Userprofile userprofile, IFormFile file)
         {
-
+            //file handling
             if (file == null || file.Length == 0)
                 return Content("file not selected");
 

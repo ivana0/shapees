@@ -1,168 +1,394 @@
-@model IEnumerable<Shapees.Models.DatabaseModel.Userinfo>
+﻿@model IEnumerable<Shapees.Models.DatabaseModel.Userinfo>
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/UsersLayout.cshtml";
 }
 
-<h2>Index</h2>
+<!------------------------------>
+<!--        START HEAD        -->
+<!------------------------------>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--        START CSS        -->
+    <style>
+        /***********    TABS CSS       ***********/
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Username)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Pass)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Usertype)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Lastlogin)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Isloggedin)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Street)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.City)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Postcode)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.State)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Firstname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Lastname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Dob)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Homephone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Mobilephone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Employedon)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Roomassigned)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Shortbio)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Taskscompleted)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Totaltasks)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Othercontact)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Parentof)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Profileimage)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pass)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Usertype)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lastlogin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Isloggedin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Street)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Postcode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lastname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dob)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Homephone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mobilephone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employedon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Roomassigned)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shortbio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Taskscompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Totaltasks)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Othercontact)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Parentof)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profileimage)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Userid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Userid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Userid">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+
+        /***********    HR (LINE) CSS       ***********/
+        .hr.styleSeparator {
+            height: 10px;
+            border: 0;
+            box-shadow: 0 10px 10px -10px #8c8b8b inset;
+        }
+
+
+        /***********    SEARCH BAR CSS       ***********/
+        #searchbar {
+            width: 200px;
+            height: 48px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            float: right;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+            background-image: url(search.png);
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        #searchbar {
+            width: 100%;
+        }
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+           background-color: inherit;
+           float: left;
+           border: none;
+           outline: none;
+           cursor: pointer;
+           padding: 14px 16px;
+           transition: 0.3s;
+        }
+
+         /* Change background color of buttons on hover */
+         div.tab button:hover {
+            background-color: #ddd;
+         }
+
+        
+         /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_users {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_users {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #user_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+
+    </style>
+    <!--        END CSS        -->
+    <!--        START SCRIPT        -->
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open users home page on body load
+        function loadUsersHome() {
+            // Show the users home tab
+            document.getElementById('ListUsers').style.display = "block";
+            // Set button to active
+            document.getElementById("home_users").className += " active";
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("Index", "UserinfoDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("Create", "UserinfoDB")';
+
+        }
+
+
+        function openEdit() {
+
+            document.getElementById("edit_users").onclick = function () {
+                //disable
+                this.disabled = true;
+
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_users").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("user_details").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+
+        function blockHover() {
+            document.getElementById("delete_users").style.backgroundColor = inherit;
+            document.getElementById("edit_users").style.backgroundColor = inherit;
+            document.getElementById("user_details").style.backgroundColor = inherit;
+        }
+
+
+
+    </script>
+
+    <!--    SCRIPT FUNCTIONS FOR HIDE/SHOW ADDITIONAL INFO BASED ON USER TYPE   -->
+    <script type="text/javascript">
+
+        function hideAdditionalForm() {
+            document.getElementById('employee1').style.display = "none";
+            document.getElementById('employee2').style.display = "none";
+            document.getElementById('parent1').style.display = "none";
+        }
+        function openEmployeeAdditionalInfo() {
+            document.getElementById('employee1').style.display = "block";
+            document.getElementById('employee2').style.display = "block";
+            document.getElementById('parent1').style.display = "none";
+        }
+        function openParentAdditionalInfo() {
+            document.getElementById('employee1').style.display = "none";
+            document.getElementById('employee2').style.display = "none";
+            document.getElementById('parent1').style.display = "block";
+        }
+
+        function loadFormType() {
+            var userType = document.getElementById("usertype");
+
+            switch (userType.options.selectedIndex) {
+                    case 0:
+                        hideAdditionalForm();
+                        break;
+                    case 1:
+                        openParentAdditionalInfo();
+                        break;
+                    case 2:
+                        openEmployeeAdditionalInfo();
+                        break;
+                    case 3:
+                        openEmployeeAdditionalInfo();
+                        break;
+                    default:
+                        break;
+            }
+        }
+
+    </script>
+    <!--        END SCRIPT        -->
+</head>
+<!----------------------------->
+<!--        END HEAD        --->
+<!----------------------------->
+<!------------------------------>
+<!--        START BODY        -->
+<!------------------------------>
+
+<body onload="loadUsersHome()">
+    <h2>Users</h2>
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_users" class="tablinks" onclick="openOption(event, 'ListUsers')">Search Users</button>
+        <button id="create_users" class="tablinks" onclick="openCreate()">Create User</button>
+        <button onmouseover="blockHover()"  id="edit_users" class="tablinks" onclick="openEdit()">Edit User</button>
+        <button onmouseover="blockHover()" id="delete_users" class="tablinks" onclick="openDelete()">Delete User</button>
+        <button onmouseover="blockHover()" id="user_details" class="tablinks" onclick="openDetails()">User Details</button>
+
+    </div>
+    <!--    FIRST TAB - Home (list of users)    -->
+    <div id="ListUsers" class="tabcontent">
+        <!--   START USER SEARCH BAR   -->
+        <div class="container" style="height: 50px; ">
+            <div class="row" style="height: 50px; ">
+                <div class="navbar" style="padding-top:15px;float:left;margin:0 auto; ">&emsp;Search user&emsp;</div>
+                <div class="navbar" style="padding-top:10px;float:left;margin:0 auto; ">
+                    <div class="input-group" style="float:left;margin:0 auto;">
+                        <select class="form-control">
+                            <option value="byfirstlast">By First &amp; Last name</option>
+                            <option value="byfirstname">By First name</option>
+                            <option value="bylastname">By Last name</option>
+                            <option value="bytype">By Type</option>
+                        </select><!-- /select-group -->
+                    </div>
+                </div>
+                <div class="col-lg-3" style="padding-top:10px; ">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </div><!--/input-group -->
+                </div>
+            </div>
+        </div>
+        <!--   END USER SEARCH BAR   -->
+        <!--    END FIRST TAB   -->
+        <br />
+        <h4>User List</h4>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        First Name
+                        <!-- @Html.DisplayNameFor(model => model.Firstname)-->
+                    </th>
+                    <th>
+                        Last Name
+                        <!-- @Html.DisplayNameFor(model => model.Lastname)-->
+                    </th>
+                    <th>
+                        Username
+                       <!-- @Html.DisplayNameFor(model => model.Username)-->
+                    </th>
+                    <th>
+                        E-mail
+                       <!-- @Html.DisplayNameFor(model => model.Email)-->
+                    </th>
+                    <th>
+                        User Type
+                       <!-- @Html.DisplayNameFor(model => model.Usertype)-->
+                    </th> 
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Firstname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lastname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Username)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Usertype)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Userid">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Userid">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Userid">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <nav aria-label="..."><ul class="pagination"></ul></nav>
+    </div>
+
+    <!--    SECOND TAB - Create User    -->
+    <div id="CreateUser" class="tabcontent">
+        
+    </div>
+    <!--        END SECOND TAB      -->
+    <!--    3RD TAB - Edit User    -->
+    <div id="EditUser" class="tabcontent">
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    4TH TAB - Delete User    -->
+    <div id="DeleteUser" class="tabcontent">
+       
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    5TH TAB -  User  Details  -->
+    <div id="UserDetails" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+    <!---->
+</body>
+
+<!----------------------------->
+<!--        END BODY        -->
+<!----------------------------->

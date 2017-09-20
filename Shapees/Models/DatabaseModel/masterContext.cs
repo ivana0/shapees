@@ -614,7 +614,6 @@ namespace Shapees.Models.DatabaseModel
                     .HasColumnType("nchar(255)");
 
                 entity.Property(e => e.Roomassigned)
-                    .IsRequired()
                     .HasColumnName("roomassigned")
                     .HasColumnType("nchar(250)");
 

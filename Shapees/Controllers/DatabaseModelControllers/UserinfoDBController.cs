@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shapees.Models.DatabaseModel;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace Shapees.Controllers.DatabaseModelControllers
 {
@@ -39,7 +41,42 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 return NotFound();
             }
 
+            //added for image load
+            var filename = userinfo.Profileimage;
+
+            string path = FileStrem.GetFilePath("wwwroot/uploads/profilepictures/" + filename);
+            byte[] imagebyte = LoadImage.GetPictureData(path);
+            var base64 = Convert.ToBase64String(imagebyte);
+            ViewBag.imagesrc = string.Format("data:image/png;base64,{0}", base64);
+            ViewBag.imagelegth = base64.Length;
+
             return View(userinfo);
+        }
+
+        //added for image load
+        public static class LoadImage
+        {
+
+            public static byte[] GetPictureData(string imagePath)
+            {
+                FileStream fs = new FileStream(imagePath, FileMode.Open);
+                byte[] byteData = new byte[fs.Length];
+                fs.Read(byteData, 0, byteData.Length);
+                return byteData;
+            }
+        }
+        //added for image load
+        public static class FileStrem
+        {
+            /// <summary>
+            /// get absolute path
+            /// </summary>
+            /// <param name="relativepath">"TextFile.txt"</param>
+            /// <returns></returns>
+            public static string GetFilePath(string relativepath)
+            {
+                return Path.Combine(Directory.GetCurrentDirectory(), relativepath);
+            }
         }
 
         // GET: UserinfoDB/Create
@@ -53,10 +90,27 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Userid,Username,Email,Pass,Usertype,Lastlogin,Isloggedin,Street,City,Postcode,State,Firstname,Lastname,Dob,Homephone,Mobilephone,Employedon,Roomassigned,Shortbio,Taskscompleted,Totaltasks,Othercontact,Parentof,Profileimage")] Userinfo userinfo)
+        public async Task<IActionResult> Create([Bind("Userid,Username,Email,Pass,Usertype,Lastlogin,Isloggedin,Street,City,Postcode,State,Firstname,Lastname,Dob,Homephone,Mobilephone,Employedon,Roomassigned,Shortbio,Taskscompleted,Totaltasks,Othercontact,Parentof,Profileimage")] Userinfo userinfo, IFormFile file)
         {
+            //file handling
+            if (file == null || file.Length == 0)
+                return Content("file not selected");
+
+            var filename = userinfo.Userid.ToString() + file.FileName;
+
+            var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot/uploads/profilepictures",
+                        file.FileName);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
             if (ModelState.IsValid)
             {
+                userinfo.Profileimage = file.FileName;
+
                 _context.Add(userinfo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -147,6 +201,48 @@ namespace Shapees.Controllers.DatabaseModelControllers
         private bool UserinfoExists(int id)
         {
             return _context.Userinfo.Any(e => e.Userid == id);
+        }
+
+        //FILE UPLOAD/DOWNLOAD
+        [HttpPost]
+        public async Task<IActionResult> UploadFile(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return Content("file not selected");
+
+            var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot",
+                        file.FileName);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Download(string filename)
+        {
+            if (filename == null)
+                return Content("filename not present");
+
+            var path = Path.Combine(
+                           Directory.GetCurrentDirectory(),
+                           "wwwroot", filename);
+
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            return File(memory, GetContentType(path), Path.GetFileName(path));
+        }
+
+        private string GetContentType(string path)
+        {
+            throw new NotImplementedException();
         }
     }
 }
