@@ -94,9 +94,12 @@ namespace Shapees.Controllers.DatabaseModelControllers
         {
             //file handling
             if (file == null || file.Length == 0)
-                return Content("file not selected");
+            {
+                //return Content("file not selected");
+                return RedirectToAction("Create");
+            }
 
-            var filename = userinfo.Userid.ToString() + file.FileName;
+            var filename = userinfo.Userid.ToString() + file.FileName + userinfo.Userid.ToString(); 
 
             var path = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot/uploads/profilepictures",
@@ -109,6 +112,9 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
+                //initialize islogged in variable (-1 for not logged in, 0 for logged in)
+                userinfo.Isloggedin = -1;
+                //set user's profile image path
                 userinfo.Profileimage = file.FileName;
 
                 _context.Add(userinfo);
@@ -148,6 +154,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
+
                 try
                 {
                     _context.Update(userinfo);

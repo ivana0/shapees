@@ -201,36 +201,50 @@
             document.getElementById('employee1').style.display = "none";
             document.getElementById('employee2').style.display = "none";
             document.getElementById('parent1').style.display = "none";
+            document.getElementById('parent2').style.display = "none";
+            document.getElementById('educator1').style.display = "none";
         }
-        function openEmployeeAdditionalInfo() {
+        function openDirectorAdditionalInfo() {
+            document.getElementById('employee1').style.display = "block";
+            document.getElementById('employee2').style.display = "block";
+            document.getElementById('educator1').style.display = "none";
+            document.getElementById('parent1').style.display = "none";
+            document.getElementById('parent2').style.display = "none";
+        }
+        function openEducatorAdditionalInfo() {
+            document.getElementById('educator1').style.display = "block";
             document.getElementById('employee1').style.display = "block";
             document.getElementById('employee2').style.display = "block";
             document.getElementById('parent1').style.display = "none";
+            document.getElementById('parent2').style.display = "none";
+
         }
         function openParentAdditionalInfo() {
             document.getElementById('employee1').style.display = "none";
             document.getElementById('employee2').style.display = "none";
             document.getElementById('parent1').style.display = "block";
+            document.getElementById('parent2').style.display = "block";
+            document.getElementById('educator1').style.display = "none";
         }
 
         function loadFormType() {
             var userType = document.getElementById("usertype");
 
             switch (userType.options.selectedIndex) {
-                    case 0:
-                        hideAdditionalForm();
-                        break;
-                    case 1:
-                        openParentAdditionalInfo();
-                        break;
-                    case 2:
-                        openEmployeeAdditionalInfo();
-                        break;
-                    case 3:
-                        openEmployeeAdditionalInfo();
-                        break;
-                    default:
-                        break;
+                case 0:
+                    hideAdditionalForm();
+                    break;
+                case 1:
+                    openParentAdditionalInfo();
+                    break;
+                case 2:
+                    openEducatorAdditionalInfo();
+                    break;
+                case 3:
+                    openDirectorAdditionalInfo();
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -275,6 +289,8 @@
     <!---->
     <!--    5TH TAB -  User  Details  -->
     <div id="UserDetails" class="tabcontent">
+    <!--------------------------     EDITING TEMPLATE   BELOW    -------------------------------->
+
         <div>
             <br />
             <h4>User details</h4>
@@ -288,66 +304,6 @@
             </div>
             <br />
             <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Username)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Username)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Email)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Email)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Pass)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Pass)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Usertype)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Usertype)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Lastlogin)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Lastlogin)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Isloggedin)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Isloggedin)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Street)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Street)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.City)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.City)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Postcode)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Postcode)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.State)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.State)
-                </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.Firstname)
                 </dt>
@@ -366,6 +322,83 @@
                 <dd>
                     @Html.DisplayFor(model => model.Dob)
                 </dd>
+                <!--        LOGIN INFO      -->
+                <dt>
+                    @Html.DisplayNameFor(model => model.Username)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Username)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <!--        END LOGIN INFO      -->
+                <!--        USER TYPE       -->
+                <dt>
+                    @Html.DisplayNameFor(model => model.Usertype)
+                </dt>
+                <dd>
+                    @if (Model.Roomassigned != null)
+                    {
+                        @Html.DisplayFor(model => model.Roomassigned);
+                    }
+                    @Html.DisplayFor(model => model.Usertype)
+                </dd>
+                <!--        END USER TYPE       -->
+                <!--        USER ADDRESSS       -->
+                <dt>
+                    @if (Model.Street != null)
+                    {
+                        @Html.DisplayNameFor(model => model.Street)
+                    } 
+                </dt>
+                <dd>
+                     @if (Model.Street != null)
+                     {
+                        @Html.DisplayFor(model => model.Street)
+                     } 
+                </dd>
+                <dt>
+                    @if (Model.City != null)
+                    {
+                        @Html.DisplayNameFor(model => model.City)
+                    }
+                </dt>
+                <dd>
+                    @if (Model.City != null)
+                    {
+                        @Html.DisplayFor(model => model.City)
+                    }
+                </dd>
+                <dt>
+                    @if (Model.Postcode != null)
+                    {
+                        @Html.DisplayNameFor(model => model.Postcode)
+                    }
+                </dt>
+                <dd>
+                    @if (Model.Postcode != null)
+                    {
+                        @Html.DisplayFor(model => model.Postcode)
+                    }
+                </dd>
+                <dt>
+                    @if (Model.State != null)
+                    {
+                        @Html.DisplayNameFor(model => model.State)
+                    }
+                </dt>
+                <dd>
+                    @if (Model.Postcode != null)
+                    {
+                        @Html.DisplayFor(model => model.State)
+                    }
+                </dd>
+                <!--       END USER ADDRESSS       -->
+                <!--       USER CONTACT INFO       -->
                 <dt>
                     @Html.DisplayNameFor(model => model.Homephone)
                 </dt>
@@ -378,53 +411,58 @@
                 <dd>
                     @Html.DisplayFor(model => model.Mobilephone)
                 </dd>
+                <!--       USER CONTACT INFO       -->
+                <!--     FIELDS ONLY DISPLAYED FOR EMPLOYEE INFO    -->
                 <dt>
-                    @Html.DisplayNameFor(model => model.Employedon)
+                    @if (Model.Employedon != null)
+                    {
+                        @Html.DisplayNameFor(model => model.Employedon);
+                    }
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Employedon)
+                    @if (Model.Employedon != null)
+                    {
+                        @Html.DisplayFor(model => model.Employedon)
+                    }
+                </dd>
+                
+                <dt>
+                    @if (Model.Roomassigned != null)
+                    {
+                        @Html.DisplayNameFor(model => model.Roomassigned);
+                    }  
+                </dt>
+                <dd>
+                    @if (Model.Roomassigned != null)
+                    {
+                        @Html.DisplayFor(model => model.Roomassigned);
+                    }
+                </dd>
+                <!--     FIELDS ONLY DISPLAYED FOR PARENT INFO    -->
+                <dt>
+                   @if (Model.Othercontact != null)
+                   {
+                        @Html.DisplayNameFor(model => model.Othercontact);
+                   }
+                </dt>
+                <dd>
+                    @if (Model.Othercontact != null)
+                    {
+                        @Html.DisplayFor(model => model.Othercontact);
+                    } 
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Roomassigned)
+                   
+                   @if (Model.Parentof != null)
+                   {
+                       @Html.DisplayFor(modelItem => Model.Parentof);
+                   } 
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Roomassigned)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Shortbio)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Shortbio)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Taskscompleted)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Taskscompleted)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Totaltasks)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Totaltasks)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Othercontact)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Othercontact)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Parentof)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Parentof)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Profileimage)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Profileimage)
+                    @if (Model.Parentof != null)
+                    {
+                        @Html.DisplayFor(modelItem => Model.Parentof);
+                    }
                 </dd>
             </dl>
         </div>

@@ -217,36 +217,50 @@
             document.getElementById('employee1').style.display = "none";
             document.getElementById('employee2').style.display = "none";
             document.getElementById('parent1').style.display = "none";
+            document.getElementById('parent2').style.display = "none";
+            document.getElementById('educator1').style.display = "none";
         }
-        function openEmployeeAdditionalInfo() {
+        function openDirectorAdditionalInfo() {
+            document.getElementById('employee1').style.display = "block";
+            document.getElementById('employee2').style.display = "block";
+            document.getElementById('educator1').style.display = "none";
+            document.getElementById('parent1').style.display = "none";
+            document.getElementById('parent2').style.display = "none";
+        }
+        function openEducatorAdditionalInfo() {
+            document.getElementById('educator1').style.display = "block";
             document.getElementById('employee1').style.display = "block";
             document.getElementById('employee2').style.display = "block";
             document.getElementById('parent1').style.display = "none";
+            document.getElementById('parent2').style.display = "none";
+
         }
         function openParentAdditionalInfo() {
             document.getElementById('employee1').style.display = "none";
             document.getElementById('employee2').style.display = "none";
             document.getElementById('parent1').style.display = "block";
+            document.getElementById('parent2').style.display = "block";
+            document.getElementById('educator1').style.display = "none";
         }
 
         function loadFormType() {
             var userType = document.getElementById("usertype");
 
             switch (userType.options.selectedIndex) {
-                    case 0:
-                        hideAdditionalForm();
-                        break;
-                    case 1:
-                        openParentAdditionalInfo();
-                        break;
-                    case 2:
-                        openEmployeeAdditionalInfo();
-                        break;
-                    case 3:
-                        openEmployeeAdditionalInfo();
-                        break;
-                    default:
-                        break;
+                case 0:
+                    hideAdditionalForm();
+                    break;
+                case 1:
+                    openParentAdditionalInfo();
+                    break;
+                case 2:
+                    openEducatorAdditionalInfo();
+                    break;
+                case 3:
+                    openDirectorAdditionalInfo();
+                    break;
+                default:
+                    break;
             }
         }
 
