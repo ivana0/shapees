@@ -195,6 +195,12 @@
             document.getElementById("create_users").className += " active";
         }
 
+        function blockHover() {
+            document.getElementById("delete_users").style.backgroundColor = inherit;
+            document.getElementById("edit_users").style.backgroundColor = inherit;
+            document.getElementById("user_details").style.backgroundColor = inherit;
+        }
+
 
 
     </script>
@@ -268,9 +274,9 @@
     <div class="tab">
         <button id="home_users" class="tablinks" onclick="openIndex()">Search Users</button>
         <button id="create_users" class="tablinks" onclick="openOption(event, 'CreateUser')">Create User</button>
-        <button id="edit_users" class="tablinks" onclick="openEdit()">Edit User</button>
-        <button id="delete_users" class="tablinks" onclick="openDelete()">Delete User</button>
-        <button id="user_details" class="tablinks" onclick="openDetails()">User Details</button>
+        <button onmouseover="blockHover()" id="edit_users" class="tablinks" onclick="openEdit()">Edit User</button>
+        <button onmouseover="blockHover()" id="delete_users" class="tablinks" onclick="openDelete()">Delete User</button>
+        <button onmouseover="blockHover()" id="user_details" class="tablinks" onclick="openDetails()">User Details</button>
     </div>
     <!--       START TABS        -->
     <!--    FIRST TAB - List Users    -->
