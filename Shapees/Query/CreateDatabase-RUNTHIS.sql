@@ -91,6 +91,7 @@ CREATE TABLE [dbo].[userinfo]
     [email] NCHAR(20) NOT NULL, 
     [pass] NCHAR(20) NOT NULL, 
     [usertype] INT NOT NULL, 
+	[usertypename] NCHAR(20),
     [lastlogin] DATETIME NULL, 
     [isloggedin] INT NOT NULL,
 

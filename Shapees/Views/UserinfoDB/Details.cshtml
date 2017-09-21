@@ -322,10 +322,16 @@
                     @Html.DisplayFor(model => model.Lastname)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Dob)
+                    @if (Model.Dob != null)
+                    {
+                        @Html.DisplayNameFor(model => model.Dob)
+                    } 
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Dob)
+                    @if (Model.Dob != null)
+                    {
+                       @Html.DisplayFor(model => model.Dob)
+                    }
                 </dd>
                 <!--        LOGIN INFO      -->
                 <dt>
@@ -346,11 +352,22 @@
                     @Html.DisplayNameFor(model => model.Usertype)
                 </dt>
                 <dd>
-                    @if (Model.Roomassigned != null)
+                    @if (Model.Usertype == -1)
                     {
-                        @Html.DisplayFor(model => model.Roomassigned);
+                        @Html.Label("none")
                     }
-                    @Html.DisplayFor(model => model.Usertype)
+                    @if (Model.Usertype == 1)
+                    {
+                        @Html.Label("Parent")
+                    }
+                    @if (Model.Usertype == 2)
+                    {
+                        @Html.Label("Educator")
+                    }
+                    @if (Model.Usertype == 3)
+                    {
+                        @Html.Label("Director")
+                    }
                 </dd>
                 <!--        END USER TYPE       -->
                 <!--        USER ADDRESSS       -->
@@ -360,11 +377,10 @@
                         @Html.DisplayNameFor(model => model.Street)
                     } 
                 </dt>
-                <dd>
-                     @if (Model.Street != null)
-                     {
+                <dd>@if (Model.Street != null)
+                    {
                         @Html.DisplayFor(model => model.Street)
-                     } 
+                    }
                 </dd>
                 <dt>
                     @if (Model.City != null)
@@ -397,7 +413,7 @@
                     }
                 </dt>
                 <dd>
-                    @if (Model.Postcode != null)
+                    @if (Model.State != null)
                     {
                         @Html.DisplayFor(model => model.State)
                     }
@@ -405,16 +421,29 @@
                 <!--       END USER ADDRESSS       -->
                 <!--       USER CONTACT INFO       -->
                 <dt>
-                    @Html.DisplayNameFor(model => model.Homephone)
+                    @if (Model.Homephone != null)
+                    {
+                        @Html.DisplayNameFor(model => model.Homephone)
+                    }   
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Homephone)
+                    @if (Model.Homephone != null)
+                    {
+                        @Html.DisplayFor(model => model.Homephone)
+                    }               
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Mobilephone)
+                    @if (Model.Mobilephone != null)
+                    {
+                        @Html.DisplayNameFor(model => model.Mobilephone)
+                    }
+
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Mobilephone)
+                    @if (Model.Mobilephone != null)
+                    {
+                        @Html.DisplayFor(model => model.Mobilephone)
+                    } 
                 </dd>
                 <!--       USER CONTACT INFO       -->
                 <!--     FIELDS ONLY DISPLAYED FOR EMPLOYEE INFO    -->
@@ -469,6 +498,7 @@
                         @Html.DisplayFor(modelItem => Model.Parentof);
                     }
                 </dd>
+                
             </dl>
         </div>
         <div>
