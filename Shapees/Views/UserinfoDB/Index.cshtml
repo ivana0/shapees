@@ -204,6 +204,7 @@
             document.getElementById("delete_users").style.backgroundColor = inherit;
             document.getElementById("edit_users").style.backgroundColor = inherit;
             document.getElementById("user_details").style.backgroundColor = inherit;
+            
         }
 
 
@@ -280,9 +281,9 @@
     <div class="tab">
         <button id="home_users" class="tablinks" onclick="openOption(event, 'ListUsers')">Search Users</button>
         <button id="create_users" class="tablinks" onclick="openCreate()">Create User</button>
-        <button onmouseover="blockHover()"  id="edit_users" class="tablinks" onclick="openEdit()">Edit User</button>
-        <button onmouseover="blockHover()" id="delete_users" class="tablinks" onclick="openDelete()">Delete User</button>
-        <button onmouseover="blockHover()" id="user_details" class="tablinks" onclick="openDetails()">User Details</button>
+        <button id="edit_users" class="tablinks" onclick="openEdit()">Edit User</button>
+        <button id="delete_users" class="tablinks" onclick="openDelete()">Delete User</button>
+        <button id="user_details" class="tablinks" onclick="openDetails()">User Details</button>
 
     </div>
     <!--    FIRST TAB - Home (list of users)    -->
