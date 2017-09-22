@@ -21,13 +21,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
 </head>
 <body onload="loadRoomsHome()">
     <h2>Rooms</h2>
     <div class="tab">
         <button id="openTab" class="tablinks" onclick="openOption(event, 'ListRoom')">List Rooms</button>
-        <button  class="tablinks" onclick="openOption(event, 'CreateRoom')">Create Room</button>
+        <button class="tablinks" onclick="openOption(event, 'CreateRoom')">Create Room</button>
         <button class="tablinks" onclick="openOption(event, 'ManageRoom')">Manage Rooms</button>
 
     </div>
@@ -35,65 +35,63 @@
     <div id="CreateRoom" class="tabcontent">
 
         <!-- First Form to Create Room-->
-        <h3> Create Room </h3>             
-            <form role="form">
-                <div class="rooms-group">
-                    <label class="control-label" for="addRoom">Enter Room Name</label>
-                    <input type="text" class="form-control" id="addRoom" placeholder="Enter room name" float="left">
-                </div>
+        <h3> Create Room </h3>
+        <form role="form">
+            <div class="rooms-group">
+                <label class="control-label" for="addRoom">Enter Room Name</label>
+                <input type="text" class="form-control" id="addRoom" placeholder="Enter room name" float="left">
+            </div>
+            <br />
+            <div class="rooms-group">
+                <label class="control-label" for="addChildren">Age Group</label>
                 <br />
-                <div class="rooms-group">
-                    <label class="control-label" for="addChildren">Add children</label>
-                    <input type="text" class="form-control" id="addChildren" placeholder="Add children">
-                </div>
-                <br />
-                <div class="rooms-group">
-                    <label class="control-label" for="assignEducator">Assign Educator to Room</label>
-                    <input type="text" class="form-control" id="addChildren" placeholder="Assign educator">
-                </div>
-                <br />
-                <button type="submit" class="btn btn-secondary">Create Room</button>
-            </form>
-      
-        </div>
+                <input type="radio" name="ageGroup" value="sixtotwo"> 6 weeks to 2 years<br />
+                <input type="radio" name="ageGroup" value="twotosox"> 2 years to 6 years<br />
+                <input type="radio" name="ageGroup" value="sixtotwelve"> 6 years to 12 years<br />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-secondary">Create Room</button>
+        </form>
+
+    </div>
 
     <div id="ManageRoom" class="tabcontent">
 
         <!-- Second Form to Manage Rooms-->
-        <h3> Manage Rooms </h3>        
-            <form role="form">
-                <div class="rooms-group">
-                    <label class="control-label" for="deleteRoom">Enter Room Name to remove</label>
-                    <input type="text" class="form-control" id="addRoom" placeholder="Enter room name">
-                </div>
-                <br />
-                <button type="submit" class="btn btn-secondary">Submit</button>
-            </form>
+        <h3> Manage Rooms </h3>
+        <form role="form">
+            <div class="rooms-group">
+                <label class="control-label" for="deleteRoom">Enter Room Name to remove</label>
+                <input type="text" class="form-control" id="addRoom" placeholder="Enter room name">
+            </div>
             <br />
-            <form role="form">
-                <div class="rooms-group">
-                    <label class="control-label" for="removeChild">Remove child from room</label>
-                    <input type="text" class="form-control" id="removeChild" placeholder="Remove child">
-                </div>
-                <br />
-                <button type="submit" class="btn btn-secondary">Submit</button>
-            </form>
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+        <br />
+        <form role="form">
+            <div class="rooms-group">
+                <label class="control-label" for="removeChild">Remove child from room</label>
+                <input type="text" class="form-control" id="removeChild" placeholder="Remove child">
+            </div>
             <br />
-            <form role="form">
-                <div class="rooms-group">
-                    <label class="control-label" for="removeEducator">Remove Educator from Room</label>
-                    <input type="text" class="form-control" id="removeEducator" placeholder="Remove educator">
-                </div>
-                <br />
-                <button type="submit" class="btn btn-secondary">Submit</button>
-            </form>
-        </div>
-        
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+        <br />
+        <form role="form">
+            <div class="rooms-group">
+                <label class="control-label" for="removeEducator">Remove Educator from Room</label>
+                <input type="text" class="form-control" id="removeEducator" placeholder="Remove educator">
+            </div>
+            <br />
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+    </div>
+
 
     <div id="ListRoom" class="tabcontent">
         <!--Collapsible to display room list-->
-        <h3>List Rooms</h3>        
-          
+        <h3>List Rooms</h3>
+
         <br /><br />
         <div class="container" name="roomList">
             <div class="row">
@@ -188,8 +186,3 @@
         </div>
     </div>
 </body>
-
-
-
-
-
