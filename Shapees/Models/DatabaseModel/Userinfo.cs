@@ -23,6 +23,7 @@ namespace Shapees.Models.DatabaseModel
         public string Email { get; set; }
         public string Pass { get; set; }
         public int Usertype { get; set; }
+        public string Usertypename { get; set; }
         public DateTime? Lastlogin { get; set; }
         public int Isloggedin { get; set; }
         public string Street { get; set; }
@@ -36,6 +37,7 @@ namespace Shapees.Models.DatabaseModel
         public string Mobilephone { get; set; }
         public DateTime? Employedon { get; set; }
         public string Roomassigned { get; set; }
+        public int? Roomid { get; set; }
         public string Shortbio { get; set; }
         public int? Taskscompleted { get; set; }
         public int? Totaltasks { get; set; }
@@ -52,5 +54,6 @@ namespace Shapees.Models.DatabaseModel
         public virtual ICollection<Message> MessageReceiver { get; set; }
         public virtual ICollection<Report> Report { get; set; }
         public virtual ICollection<Task> Task { get; set; }
+        public virtual Room Room { get; set; }
     }
 }

@@ -101,8 +101,6 @@ namespace Shapees.Controllers
             if (file == null || file.Length == 0)
                 return Content("file not selected");
 
-            var filename = userprofile.Userid.ToString() + file.FileName;
-
             var path = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot/uploads/profilepictures",
                         file.FileName);

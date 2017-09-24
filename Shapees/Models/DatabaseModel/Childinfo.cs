@@ -14,6 +14,7 @@ namespace Shapees.Models.DatabaseModel
         }
 
         public int Childid { get; set; }
+        public int? Roomid { get; set; }
         public string Inroom { get; set; }
         public string Educatorfname { get; set; }
         public string Educatorlname { get; set; }
@@ -45,5 +46,6 @@ namespace Shapees.Models.DatabaseModel
         public virtual Userinfo Educator { get; set; }
         public virtual Userinfo Parent1Navigation { get; set; }
         public virtual Userinfo Parent2Navigation { get; set; }
+        public virtual Room Room { get; set; }
     }
 }

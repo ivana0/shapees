@@ -9,6 +9,7 @@ namespace Shapees.Models.DatabaseModel
 {
     public partial class masterContext : DbContext
     {
+        public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<Announcement> Announcement { get; set; }
         public virtual DbSet<Childinfo> Childinfo { get; set; }
         public virtual DbSet<Document> Document { get; set; }
@@ -62,7 +63,7 @@ namespace Shapees.Models.DatabaseModel
             modelBuilder.Entity<Childinfo>(entity =>
             {
                 entity.HasKey(e => e.Childid)
-                    .HasName("PK__childinf__223829E5DB4AEA62");
+                    .HasName("PK__childinf__223829E59681D5F3");
 
                 entity.ToTable("childinfo");
 
@@ -141,6 +142,8 @@ namespace Shapees.Models.DatabaseModel
                     .HasColumnName("profileimage")
                     .HasColumnType("nchar(255)");
 
+                entity.Property(e => e.Roomid).HasColumnName("roomid");
+
                 entity.Property(e => e.Shortinfo)
                     .HasColumnName("shortinfo")
                     .HasColumnType("nchar(250)");
@@ -170,6 +173,10 @@ namespace Shapees.Models.DatabaseModel
                 entity.HasOne(d => d.Parent2Navigation)
                     .WithMany(p => p.ChildinfoParent2Navigation)
                     .HasForeignKey(d => d.Parent2);
+
+                entity.HasOne(d => d.Room)
+                    .WithMany(p => p.Childinfo)
+                    .HasForeignKey(d => d.Roomid);
             });
 
             modelBuilder.Entity<Document>(entity =>
@@ -547,7 +554,7 @@ namespace Shapees.Models.DatabaseModel
             modelBuilder.Entity<Userinfo>(entity =>
             {
                 entity.HasKey(e => e.Userid)
-                    .HasName("PK__userinfo__CBA1B2576570FAA8");
+                    .HasName("PK__userinfo__CBA1B2573E0FC61B");
 
                 entity.ToTable("userinfo");
 
@@ -555,7 +562,7 @@ namespace Shapees.Models.DatabaseModel
 
                 entity.Property(e => e.City)
                     .HasColumnName("city")
-                    .HasColumnType("nchar(20)");
+                    .HasColumnType("nchar(100)");
 
                 entity.Property(e => e.Dob)
                     .HasColumnName("dob")
@@ -564,7 +571,7 @@ namespace Shapees.Models.DatabaseModel
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasColumnName("email")
-                    .HasColumnType("nchar(20)");
+                    .HasColumnType("nchar(100)");
 
                 entity.Property(e => e.Employedon)
                     .HasColumnName("employedon")
@@ -617,6 +624,8 @@ namespace Shapees.Models.DatabaseModel
                     .HasColumnName("roomassigned")
                     .HasColumnType("nchar(250)");
 
+                entity.Property(e => e.Roomid).HasColumnName("roomid");
+
                 entity.Property(e => e.Shortbio)
                     .HasColumnName("shortbio")
                     .HasColumnType("nchar(250)");
@@ -627,7 +636,7 @@ namespace Shapees.Models.DatabaseModel
 
                 entity.Property(e => e.Street)
                     .HasColumnName("street")
-                    .HasColumnType("nchar(50)");
+                    .HasColumnType("nchar(100)");
 
                 entity.Property(e => e.Taskscompleted).HasColumnName("taskscompleted");
 
@@ -636,14 +645,22 @@ namespace Shapees.Models.DatabaseModel
                 entity.Property(e => e.Username)
                     .IsRequired()
                     .HasColumnName("username")
-                    .HasColumnType("nchar(20)");
+                    .HasColumnType("nchar(50)");
 
                 entity.Property(e => e.Usertype).HasColumnName("usertype");
+
+                entity.Property(e => e.Usertypename)
+                    .HasColumnName("usertypename")
+                    .HasColumnType("nchar(20)");
+
+                entity.HasOne(d => d.Room)
+                    .WithMany(p => p.Userinfo)
+                    .HasForeignKey(d => d.Roomid);
             });
 
-           
 
-            
+
+
         }
     }
 }

@@ -54,15 +54,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\DatabaseModelControllers\" />
-    <Folder Include="Controllers\DatabaseModelControllers\" />
-    <Folder Include="Controllers\DatabaseModelControllers\" />
     <Folder Include="Upload\" />
     <Folder Include="wwwroot\uploads\childportfolio\media\" />
     <Folder Include="wwwroot\uploads\childportfolio\documents\" />
     <Folder Include="wwwroot\uploads\childportfolio\reports\" />
     <Folder Include="wwwroot\uploads\documents\" />
     <Folder Include="wwwroot\uploads\photos\" />
+    <Folder Include="wwwroot\uploads\profilepictures\" />
+    <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\reports\attachment\" />
     <Folder Include="wwwroot\uploads\reports\notsubmitted\" />

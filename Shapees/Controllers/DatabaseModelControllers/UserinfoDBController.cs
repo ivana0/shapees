@@ -62,6 +62,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 FileStream fs = new FileStream(imagePath, FileMode.Open);
                 byte[] byteData = new byte[fs.Length];
                 fs.Read(byteData, 0, byteData.Length);
+                //hopefully fixed process issue
+                fs.Dispose();
                 return byteData;
             }
         }
@@ -99,11 +101,11 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 return RedirectToAction("Create");
             }
 
-            var filename = userinfo.Userid.ToString() + file.FileName + userinfo.Userid.ToString(); 
+            var filename = userinfo.Username + file.FileName;
 
             var path = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot/uploads/profilepictures",
-                        file.FileName);
+                        filename);
 
             using (var stream = new FileStream(path, FileMode.Create))
             {
@@ -115,7 +117,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 //initialize islogged in variable (-1 for not logged in, 0 for logged in)
                 userinfo.Isloggedin = -1;
                 //set user's profile image path
-                userinfo.Profileimage = file.FileName;
+                userinfo.Profileimage = filename;
 
                 _context.Add(userinfo);
                 await _context.SaveChangesAsync();

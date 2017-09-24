@@ -1,6 +1,9 @@
 ﻿USE [master]
 GO
 ALTER TABLE [dbo].[childinfo]
+DROP CONSTRAINT [FK_childinfo_room_roomid];
+GO
+ALTER TABLE [dbo].[childinfo]
 DROP CONSTRAINT [FK_childinfo_userinfo_educatorid];
 GO
 ALTER TABLE [dbo].[childinfo]
@@ -8,6 +11,13 @@ DROP CONSTRAINT [FK_childinfo_userinfo_parent1];
 GO
 ALTER TABLE [dbo].[childinfo]
 DROP CONSTRAINT [FK_childinfo_userinfo_parent2];
+GO
+
+
+USE [master]
+GO
+ALTER TABLE [dbo].[userinfo]
+DROP CONSTRAINT [FK_userinfo_room_roomid];
 GO
 
 
@@ -81,22 +91,39 @@ GO
 DROP TABLE [dbo].[userinfo]
 GO
 
+DROP TABLE [dbo].[room]
+GO
+
+
+
+CREATE TABLE [dbo].[room]
+(
+	[roomid] INT IDENTITY(1,1) PRIMARY KEY, 
+
+	[roomname] NCHAR(100) NOT NULL, 
+	[roomagegroup] NCHAR(100) NULL, 
+
+	[info] NCHAR(255) NULL,
+	[description] VARCHAR(MAX) NOT NULL
+
+ 
+)
 
 
 
 CREATE TABLE [dbo].[userinfo]
 (
 	[userid] INT IDENTITY(1,1) PRIMARY KEY, 
-    [username] NCHAR(20) NOT NULL, 
-    [email] NCHAR(20) NOT NULL, 
+    [username] NCHAR(50) NOT NULL, 
+    [email] NCHAR(100) NOT NULL, 
     [pass] NCHAR(20) NOT NULL, 
     [usertype] INT NOT NULL, 
-	[usertypename] NCHAR(20),
+	[usertypename] NCHAR(20) NULL,
     [lastlogin] DATETIME NULL, 
     [isloggedin] INT NOT NULL,
 
-    [street] NCHAR(50) NULL, 
-    [city] NCHAR(20) NULL, 
+    [street] NCHAR(100) NULL, 
+    [city] NCHAR(100) NULL, 
     [postcode] INT NULL, 
     [state] NCHAR(20) NULL,
 
@@ -107,7 +134,9 @@ CREATE TABLE [dbo].[userinfo]
     [mobilephone] NCHAR(20) NULL, 
 
 	[employedon] DATE NULL,
+
 	[roomassigned] NCHAR(250) NULL,
+	[roomid] INT NULL,
 	[shortbio] NCHAR(250) NULL,
 
 	[taskscompleted] INT NULL,
@@ -118,15 +147,16 @@ CREATE TABLE [dbo].[userinfo]
 
     [profileimage] NCHAR(255) NULL,
 
+	CONSTRAINT [FK_userinfo_room_roomid] FOREIGN KEY ([roomid]) REFERENCES [room]([roomid])
+
 	
 )
-
-
 
 CREATE TABLE [dbo].[childinfo]
 (
 	[childid] INT IDENTITY(1,1) PRIMARY KEY, 
 
+	[roomid] INT NULL,
 	[inroom] NCHAR(30) NOT NULL, 
     [educatorfname] NCHAR(100) NOT NULL, 
 	[educatorlname] NCHAR(100) NOT NULL, 
@@ -156,6 +186,8 @@ CREATE TABLE [dbo].[childinfo]
 
 
     [profileimage] NCHAR(255) NULL,
+
+	CONSTRAINT [FK_childinfo_room_roomid] FOREIGN KEY ([roomid]) REFERENCES [room]([roomid]),
 
 	CONSTRAINT [FK_childinfo_userinfo_educatorid] FOREIGN KEY ([educatorid]) REFERENCES [userinfo]([userid]),
 
