@@ -1,0 +1,54 @@
+@model IEnumerable<Shapees.Models.DatabaseModel.Room>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Roomname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Roomagegroup)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Info)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roomname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roomagegroup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Info)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Roomid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Roomid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Roomid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

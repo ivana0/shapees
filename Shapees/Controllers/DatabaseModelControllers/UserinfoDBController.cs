@@ -23,7 +23,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: UserinfoDB
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Userinfo.ToListAsync());
+            var masterContext = _context.Userinfo.Include(u => u.Room);
+            return View(await masterContext.ToListAsync());
         }
 
         // GET: UserinfoDB/Details/5
@@ -35,6 +36,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             }
 
             var userinfo = await _context.Userinfo
+                .Include(u => u.Room)
                 .SingleOrDefaultAsync(m => m.Userid == id);
             if (userinfo == null)
             {
@@ -84,6 +86,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: UserinfoDB/Create
         public IActionResult Create()
         {
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid");
             return View();
         }
 
@@ -123,6 +126,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", userinfo.Roomid);
             return View(userinfo);
         }
 
@@ -139,6 +143,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             {
                 return NotFound();
             }
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", userinfo.Roomid);
             return View(userinfo);
         }
 
@@ -156,7 +161,6 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
-
                 try
                 {
                     _context.Update(userinfo);
@@ -175,6 +179,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 }
                 return RedirectToAction("Index");
             }
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", userinfo.Roomid);
             return View(userinfo);
         }
 
@@ -187,6 +192,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             }
 
             var userinfo = await _context.Userinfo
+                .Include(u => u.Room)
                 .SingleOrDefaultAsync(m => m.Userid == id);
             if (userinfo == null)
             {

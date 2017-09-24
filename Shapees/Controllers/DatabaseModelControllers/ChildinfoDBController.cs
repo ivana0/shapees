@@ -21,7 +21,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: ChildinfoDB
         public async Task<IActionResult> Index()
         {
-            var masterContext = _context.Childinfo.Include(c => c.Educator).Include(c => c.Parent1Navigation).Include(c => c.Parent2Navigation);
+            var masterContext = _context.Childinfo.Include(c => c.Educator).Include(c => c.Parent1Navigation).Include(c => c.Parent2Navigation).Include(c => c.Room);
             return View(await masterContext.ToListAsync());
         }
 
@@ -37,6 +37,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 .Include(c => c.Educator)
                 .Include(c => c.Parent1Navigation)
                 .Include(c => c.Parent2Navigation)
+                .Include(c => c.Room)
                 .SingleOrDefaultAsync(m => m.Childid == id);
             if (childinfo == null)
             {
@@ -52,6 +53,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email");
             ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email");
             ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email");
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid");
             return View();
         }
 
@@ -71,6 +73,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Educatorid);
             ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent1);
             ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent2);
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", childinfo.Roomid);
             return View(childinfo);
         }
 
@@ -90,6 +93,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Educatorid);
             ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent1);
             ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent2);
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", childinfo.Roomid);
             return View(childinfo);
         }
 
@@ -128,6 +132,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Educatorid);
             ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent1);
             ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent2);
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", childinfo.Roomid);
             return View(childinfo);
         }
 
@@ -143,6 +148,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 .Include(c => c.Educator)
                 .Include(c => c.Parent1Navigation)
                 .Include(c => c.Parent2Navigation)
+                .Include(c => c.Room)
                 .SingleOrDefaultAsync(m => m.Childid == id);
             if (childinfo == null)
             {

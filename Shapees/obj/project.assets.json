@@ -11718,10 +11718,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ivana\\documents\\visual studio 2017\\Projects\\Shapees\\Shapees\\Shapees.csproj",
+      "projectUniqueName": "C:\\Users\\ivana\\Documents\\Visual Studio 2017\\Projects\\Shapees\\Shapees\\Shapees.csproj",
       "projectName": "Shapees",
-      "projectPath": "C:\\Users\\ivana\\documents\\visual studio 2017\\Projects\\Shapees\\Shapees\\Shapees.csproj",
-      "outputPath": "C:\\Users\\ivana\\documents\\visual studio 2017\\Projects\\Shapees\\Shapees\\obj\\",
+      "projectPath": "C:\\Users\\ivana\\Documents\\Visual Studio 2017\\Projects\\Shapees\\Shapees\\Shapees.csproj",
+      "outputPath": "C:\\Users\\ivana\\Documents\\Visual Studio 2017\\Projects\\Shapees\\Shapees\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
