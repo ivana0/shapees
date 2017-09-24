@@ -9,13 +9,13 @@ namespace Shapees.Models.DatabaseModel
 {
     public partial class masterContext : DbContext
     {
-        public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<Announcement> Announcement { get; set; }
         public virtual DbSet<Childinfo> Childinfo { get; set; }
         public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<Media> Media { get; set; }
         public virtual DbSet<Message> Message { get; set; }
         public virtual DbSet<Report> Report { get; set; }
+        public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<Task> Task { get; set; }
         public virtual DbSet<Userinfo> Userinfo { get; set; }
 
@@ -467,6 +467,31 @@ namespace Shapees.Models.DatabaseModel
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
+            modelBuilder.Entity<Room>(entity =>
+            {
+                entity.ToTable("room");
+
+                entity.Property(e => e.Roomid).HasColumnName("roomid");
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasColumnName("description")
+                    .HasColumnType("varchar(max)");
+
+                entity.Property(e => e.Info)
+                    .HasColumnName("info")
+                    .HasColumnType("nchar(255)");
+
+                entity.Property(e => e.Roomagegroup)
+                    .HasColumnName("roomagegroup")
+                    .HasColumnType("nchar(100)");
+
+                entity.Property(e => e.Roomname)
+                    .IsRequired()
+                    .HasColumnName("roomname")
+                    .HasColumnType("nchar(100)");
+            });
+
             modelBuilder.Entity<Task>(entity =>
             {
                 entity.ToTable("task");
@@ -657,7 +682,6 @@ namespace Shapees.Models.DatabaseModel
                     .WithMany(p => p.Userinfo)
                     .HasForeignKey(d => d.Roomid);
             });
-
 
 
 
