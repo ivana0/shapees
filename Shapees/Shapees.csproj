@@ -63,6 +63,7 @@
     <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\profilepictures\" />
+    <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\reports\attachment\" />
     <Folder Include="wwwroot\uploads\reports\notsubmitted\" />
     <Folder Include="wwwroot\uploads\reports\submitted\" />

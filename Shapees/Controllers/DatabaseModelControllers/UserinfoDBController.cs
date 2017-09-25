@@ -43,14 +43,18 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 return NotFound();
             }
 
-            //added for image load
-            var filename = userinfo.Profileimage;
+            if (userinfo.Profileimage != null)
+            {
+                //added for image load
+                var filename = userinfo.Profileimage;
 
-            string path = FileStrem.GetFilePath("wwwroot/uploads/profilepictures/" + filename);
-            byte[] imagebyte = LoadImage.GetPictureData(path);
-            var base64 = Convert.ToBase64String(imagebyte);
-            ViewBag.imagesrc = string.Format("data:image/png;base64,{0}", base64);
-            ViewBag.imagelegth = base64.Length;
+                string path = FileStrem.GetFilePath("wwwroot/uploads/profilepictures/" + filename);
+                byte[] imagebyte = LoadImage.GetPictureData(path);
+                var base64 = Convert.ToBase64String(imagebyte);
+                ViewBag.imagesrc = string.Format("data:image/png;base64,{0}", base64);
+                ViewBag.imagelegth = base64.Length;
+            }
+            
 
             return View(userinfo);
         }
@@ -95,32 +99,56 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Userid,Username,Email,Pass,Usertype,Lastlogin,Isloggedin,Street,City,Postcode,State,Firstname,Lastname,Dob,Homephone,Mobilephone,Employedon,Roomassigned,Shortbio,Taskscompleted,Totaltasks,Othercontact,Parentof,Profileimage")] Userinfo userinfo, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Userid,Username,Email,Pass,Usertype,Usertypename,Lastlogin,Isloggedin,Street,City,Postcode,State,Firstname,Lastname,Dob,Homephone,Mobilephone,Employedon,Roomassigned,Roomid,Shortbio,Taskscompleted,Totaltasks,Othercontact,Parentof,Profileimage")] Userinfo userinfo, IFormFile file)
         {
             //file handling
             if (file == null || file.Length == 0)
             {
-                //return Content("file not selected");
-                return RedirectToAction("Create");
+                userinfo.Profileimage = null;
             }
-
-            var filename = userinfo.Username + file.FileName;
-
-            var path = Path.Combine(
+            else
+            {
+                var filename = userinfo.Username.Trim() + file.FileName;
+                //set user's profile image filename
+                userinfo.Profileimage = filename;
+                var path = Path.Combine(
                         Directory.GetCurrentDirectory(), "wwwroot/uploads/profilepictures",
                         filename);
 
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
             }
+
+            //get room info to display
+            var room = await _context.Room.SingleOrDefaultAsync(m => m.Roomid == userinfo.Roomid);
 
             if (ModelState.IsValid)
             {
+                if (userinfo.Roomid == 1 && userinfo.Usertype == 3)
+                {
+                    userinfo.Roomid = null;
+                    userinfo.Roomassigned = null;
+                }
+
+                //set room name
+                if (userinfo.Roomid == 1)
+                    userinfo.Roomassigned = room.Roomname;
+                if (userinfo.Roomid == 2)
+                    userinfo.Roomassigned = room.Roomname;
+                if (userinfo.Roomid == 3)
+                    userinfo.Roomassigned = room.Roomname;
+                //set user type name
+                if (userinfo.Usertype == 1)
+                    userinfo.Usertypename = "Parent";
+                if (userinfo.Usertype == 2)
+                    userinfo.Usertypename = "Educator";
+                if (userinfo.Usertype == 3)
+                    userinfo.Usertypename = "Director";
+
                 //initialize islogged in variable (-1 for not logged in, 0 for logged in)
                 userinfo.Isloggedin = -1;
-                //set user's profile image path
-                userinfo.Profileimage = filename;
 
                 _context.Add(userinfo);
                 await _context.SaveChangesAsync();
@@ -152,15 +180,49 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Userid,Username,Email,Pass,Usertype,Lastlogin,Isloggedin,Street,City,Postcode,State,Firstname,Lastname,Dob,Homephone,Mobilephone,Employedon,Roomassigned,Shortbio,Taskscompleted,Totaltasks,Othercontact,Parentof,Profileimage")] Userinfo userinfo)
+        public async Task<IActionResult> Edit(int id, [Bind("Userid,Username,Email,Pass,Usertype,Usertypename,Lastlogin,Isloggedin,Street,City,Postcode,State,Firstname,Lastname,Dob,Homephone,Mobilephone,Employedon,Roomassigned,Roomid,Shortbio,Taskscompleted,Totaltasks,Othercontact,Parentof,Profileimage")] Userinfo userinfo, IFormFile file)
         {
             if (id != userinfo.Userid)
             {
                 return NotFound();
             }
 
+            //file handling
+            if (file == null || file.Length == 0)
+            {
+                //return Content("file not selected");
+                //return RedirectToAction("Edit");
+                userinfo.Profileimage = userinfo.Profileimage;
+            }
+            else {
+
+                var filename = userinfo.Username.Trim() + file.FileName;
+
+                userinfo.Profileimage = filename;
+                var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot/uploads/profilepictures",
+                        filename);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+
+            //get room info to display
+            var room = await _context.Room.SingleOrDefaultAsync(m => m.Roomid == userinfo.Roomid);
+
             if (ModelState.IsValid)
             {
+                
+
+                if (userinfo.Roomid == 1)
+                    userinfo.Roomassigned = room.Roomname;
+                if (userinfo.Roomid == 2)
+                    userinfo.Roomassigned = room.Roomname;
+                if (userinfo.Roomid == 3)
+                    userinfo.Roomassigned = room.Roomname;
+
                 try
                 {
                     _context.Update(userinfo);
@@ -180,6 +242,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 return RedirectToAction("Index");
             }
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", userinfo.Roomid);
+                
+
             return View(userinfo);
         }
 

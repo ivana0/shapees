@@ -288,179 +288,225 @@
     <!--        END SECOND TAB      -->
     <!--    3RD TAB - Edit User    -->
     <div id="EditUser" class="tabcontent">
-        <form asp-action="Edit">
-            <div class="form-horizontal">
+        <form asp-action="Edit" class="container" method="post" enctype="multipart/form-data" >
                 <br />
                 <h4>Edit user details</h4>
                 <hr />
+                <!--        USER LOGIN INFO           -->
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Userid" />
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label asp-for="Username" class="col-md-2 control-label">Username</label>
                     <div class="col-md-10">
                         <input asp-for="Username" class="form-control" />
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="col-md-2 control-label">E-mail</label>
+                -->
+                <h4>Login information</h4>
+                <hr width="90%" />
+                <div class="row">
+                    <label asp-for="Username" class="col-md-2 control-label" style="font-weight:normal;"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Username" class="form-control" readonly/>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <input type="hidden" asp-for="Usertype" />
+                </div>
+                <br />
+                <div class="row">
+                    <label asp-for="Usertypename" class="col-md-2 control-label" style="font-weight:normal;">User type</label>
+                    <div class="col-md-10">
+                        <input asp-for="Usertypename" class="form-control" readonly />
+                        <span asp-validation-for="Usertypename" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <label asp-for="Email" class="col-md-2 control-label" style="font-weight:normal;">E-mail</label>
                     <div class="col-md-10">
                         <input asp-for="Email" class="form-control" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Pass" class="col-md-2 control-label">Password</label>
+                <br />
+                <div class="row">
+                    <label asp-for="Pass" class="col-md-2 control-label" style="font-weight:normal;">Password</label>
                     <div class="col-md-10">
                         <input asp-for="Pass" class="form-control" />
                         <span asp-validation-for="Pass" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
+               <!-- <div class="form-group">
                     <label asp-for="Usertype" class="col-md-2 control-label">User type</label>
                     <div class="col-md-10">
                         <select asp-for="Usertype" class="form-control" id="usertype" name="usertype">
-                            <option value="0">Choose Type ...</option>
                             <option value="1">Parent</option>
                             <option value="2">Educator</option>
                             <option value="3">Director</option>
                         </select>
-                        <!--<input asp-for="Usertype" class="form-control" />-->
                         <span asp-validation-for="Usertype" class="text-danger"></span>  
-                        <!--<input asp-for="Usertype" class="form-control" />-->
-                        <!--<span asp-validation-for="Usertype" class="text-danger"></span>-->
                     </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Street" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Street" class="form-control" />
-                        <span asp-validation-for="Street" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="City" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="City" class="form-control" />
-                        <span asp-validation-for="City" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Postcode" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Postcode" class="form-control" />
-                        <span asp-validation-for="Postcode" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="State" style="font-weight:normal;">State </label>
-                    <select asp-for="State" class="form-control" id="state" name="state" required>
-                        <option value="nostate">Choose State ...</option>
-                        <option value="nsw">NSW</option>
-                        <option value="qld">QLD</option>
-                        <option value="act">ACT</option>
-                        <option value="vic">VIC</option>
-                        <option value="sa">SA</option>
-                        <option value="vic">VIC</option>
-                        <option value="wa">WA</option>
-                    </select>
-                    <!--<input asp-for="State" class="form-control" />-->
-                    <span asp-validation-for="State" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Firstname" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Firstname" class="form-control" />
+                </div>-->
+                <!--        USER INFO           -->
+                <h4>User information</h4>
+                <hr width="90%" />
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="firstname" style="font-weight:normal;">First Name</label>
+                        <small style="width: 100%; max-width:none; " id="namehelp" class="text-muted">
+                            (Include middle names if any)
+                        </small>
+                        <input asp-for="Firstname" style="width: 100%; max-width:none; " type="text" class="form-control" id="firstname" required>
                         <span asp-validation-for="Firstname" class="text-danger"></span>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Lastname" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Lastname" class="form-control" />
+                    <div class="col-md-6">
+                        <label for="lastname" style="font-weight:normal;">Last Name</label>
+                        <input asp-for="Lastname" style="width: 100%; max-width:none; " type="text" class="form-control" id="lastname" required>
                         <span asp-validation-for="Lastname" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Dob" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Dob" class="form-control" />
+                <br />
+                <div class="row">
+                    <div id="dob" class="col-md-3">
+                        <label for="dob" style="font-weight:normal;">Date of Birth </label>
+                        <input asp-for="Dob" type="date" class="form-control" id="dob" readonly>
                         <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Homephone" class="col-md-2 control-label">Home phone</label>
-                    <div class="col-md-10">
-                        <input asp-for="Homephone" class="form-control" />
-                        <span asp-validation-for="Homephone" class="text-danger"></span>
+                <br />
+                <!--        ADDRESS INFO           -->
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="address" style="font-weight:normal;font-size:larger;">Address</label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Mobilephone" class="col-md-2 control-label"> Mobile phone</label>
-                    <div class="col-md-10">
-                        <input asp-for="Mobilephone" class="form-control" />
+                <div class="row">
+                    <div class="col-md-11">
+                        <label for="street" style="font-weight:normal;">Street </label>
+                        <small style="width: 100%; max-width:none; " id="namehelp" class="text-muted">
+                            (If building, include Unit and Street number)
+                        </small>
+                        <input asp-for="Street" style="width: 100%; max-width:none; " type="text" class="form-control" id="street" placeholder="E.g. 1 Northfields Avenue" required>
+                        <span asp-validation-for="Street" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="city" style="font-weight:normal;">City</label>
+                        <input asp-for="City" style="width: 100%; max-width:none;" type="text" class="form-control" id="city" placeholder="City" required>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-2">
+                        <label asp-for="State" class="col-md-2 control-label" style="font-weight:normal;"></label>
+                        <div class="col-md-10">
+                            <input asp-for="State" class="form-control" />
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="postcode" style="font-weight:normal;">Postcode</label>
+                        <input asp-for="Postcode" type="text" class="form-control" id="postcode" placeholder="Postcode" required>
+                        <span asp-validation-for="Postcode" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                 <!--    CONTACT INFO -->
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="contactinformation" style="font-weight:normal;font-size:larger;">Contact Information</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="homephone" style="font-weight:normal;">Home Phone</label>
+                        <input asp-for="Homephone" style="width: 100%; max-width:none; " type="text" class="form-control" id="homephone" value=@Model.Homephone>
+                        <span asp-validation-for="Homephone" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="mobilephone" style="font-weight:normal;">Mobile Phone</label>
+                        <input asp-for="Mobilephone" style="width: 100%; max-width:none; " type="text" class="form-control" id="mobilephone" value=@Model.Mobilephone>
                         <span asp-validation-for="Mobilephone" class="text-danger"></span>
                     </div>
                 </div>
+                <br />
+                <!--        ADDITIONAL INFO BASED ON USER TYPE      -->
+                <h4>Additional information</h4>
+                <hr width="90%" />
+                <!--    IF EDUCATOR -->
                 @if (Model.Usertype == 2)
                 {
-                    <div class="form-group">
-                        <label asp-for="Roomassigned" class="col-md-2 control-label">Assigned to room</label>
+                    //Room ID
+                    <div class="row">
+                            <label asp-for="Roomid" class="col-md-2 control-label" style="font-weight:normal;">Room ID</label>
+                            <div class="col-md-10">
+                                <select asp-for="Roomid" class="form-control" asp-items="ViewBag.Roomid"></select>
+                            </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <label asp-for="Roomassigned" class="col-md-2 control-label" style="font-weight:normal;"></label>
                         <div class="col-md-10">
                             <input asp-for="Roomassigned" class="form-control" />
                             <span asp-validation-for="Roomassigned" class="text-danger"></span>
                         </div>
                     </div>
+                    <br />
                 }
+                <!--    IF EDUCATOR OR DIRECTOR -->
                 @if (Model.Usertype == 2 || Model.Usertype == 3)
                 {
-                    <div class="form-group">
-                        <label asp-for="Employedon" class="col-md-2 control-label">Date of employment</label>
+                    <div class="row">
+                        <label asp-for="Employedon" class="col-md-2 control-label" style="font-weight:normal;">Date of employment</label>
                         <div class="col-md-10">
-                            <input asp-for="Employedon" class="form-control" />
+                            <input asp-for="Employedon" class="form-control"  readonly/>
                             <span asp-validation-for="Employedon" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Shortbio" class="col-md-2 control-label">Short biography</label>
+                    <br />
+                    <div class="row">
+                        <label asp-for="Shortbio" class="col-md-2 control-label" style="font-weight:normal;">Short biography</label>
                         <div class="col-md-10">
                             <input asp-for="Shortbio" class="form-control" />
                             <span asp-validation-for="Shortbio" class="text-danger"></span>
                         </div>
                     </div>
+                    <br />
 
                 }
+                <!--    IF PARENT -->
                 @if (Model.Usertype == 1)
                 {
-                    <div class="form-group">
-                        <label asp-for="Othercontact" class="col-md-2 control-label">Other contact</label>
+                    <div class="row">
+                        <label asp-for="Othercontact" class="col-md-2 control-label" style="font-weight:normal;">Other contact</label>
                         <div class="col-md-10">
                             <input asp-for="Othercontact" class="form-control" />
                             <span asp-validation-for="Othercontact" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Parentof" class="col-md-2 control-label">Children names</label>
-                        <div class="col-md-10">
-                            <input asp-for="Parentof" class="form-control" />
-                            <span asp-validation-for="Parentof" class="text-danger"></span>
-                        </div>
-                    </div>
-
+                    <br />
                 }
-                <div class="form-group">
-                    <label asp-for="Profileimage" class="col-md-2 control-label">Profile image</label>
+                <!--        UPLOAD/CHANGE PROFILE PICTURE       -->
+                <div class="row">
+                    <input type="hidden" asp-for="Profileimage" />
+                    <div class="col-md-2">
+                        Upload profile picture:
+                    </div>
                     <div class="col-md-10">
-                        <input asp-for="Profileimage" class="form-control" />
-                        <span asp-validation-for="Profileimage" class="text-danger"></span>
+                        <input type="file" name="file" />
                     </div>
                 </div>
+                <br />
+
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Save" class="btn btn-default" />
                     </div>
                 </div>
-            </div>
         </form>
 
         <div>

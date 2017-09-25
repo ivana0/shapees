@@ -104,11 +104,8 @@ CREATE TABLE [dbo].[room]
 	[roomagegroup] NCHAR(100) NULL, 
 
 	[info] NCHAR(255) NULL,
-	[description] VARCHAR(MAX) NOT NULL
-
- 
+	[description] VARCHAR(MAX) NULL
 )
-
 
 
 CREATE TABLE [dbo].[userinfo]
@@ -148,7 +145,6 @@ CREATE TABLE [dbo].[userinfo]
     [profileimage] NCHAR(255) NULL,
 
 	CONSTRAINT [FK_userinfo_room_roomid] FOREIGN KEY ([roomid]) REFERENCES [room]([roomid])
-
 	
 )
 
@@ -371,3 +367,15 @@ CREATE TABLE [dbo].[message]
 
 	 
 )
+
+
+INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
+    VALUES ('Room 1', '6 weeeks - 2 years', 'Any short info.', 'Any longer description needed.') 
+GO
+INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
+    VALUES ('Room 2', '2 years - 6 years', 'Any short info.', 'Any longer description needed.') 
+GO
+INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
+    VALUES ('Room 3', '6 years - 12 years', 'Any short info.', 'Any longer description needed.') 
+GO
+

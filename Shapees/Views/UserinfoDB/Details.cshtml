@@ -349,25 +349,10 @@
                 <!--        END LOGIN INFO      -->
                 <!--        USER TYPE       -->
                 <dt>
-                    @Html.DisplayNameFor(model => model.Usertype)
+                    @Html.DisplayNameFor(model => model.Usertypename)
                 </dt>
                 <dd>
-                    @if (Model.Usertype == -1)
-                    {
-                        @Html.Label("none")
-                    }
-                    @if (Model.Usertype == 1)
-                    {
-                        @Html.Label("Parent")
-                    }
-                    @if (Model.Usertype == 2)
-                    {
-                        @Html.Label("Educator")
-                    }
-                    @if (Model.Usertype == 3)
-                    {
-                        @Html.Label("Director")
-                    }
+                    @Html.DisplayFor(model => model.Usertypename)
                 </dd>
                 <!--        END USER TYPE       -->
                 <!--        USER ADDRESSS       -->
@@ -467,7 +452,7 @@
                     }  
                 </dt>
                 <dd>
-                    @if (Model.Roomassigned != null)
+                    @if (Model.Roomassigned != null && Model.Roomid != null)
                     {
                         @Html.DisplayFor(model => model.Roomassigned);
                     }
@@ -498,7 +483,6 @@
                         @Html.DisplayFor(modelItem => Model.Parentof);
                     }
                 </dd>
-                
             </dl>
         </div>
         <div>

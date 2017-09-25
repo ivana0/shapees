@@ -21,9 +21,10 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: RoomsDB
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Room.ToListAsync());
         }
-
+        
         // GET: RoomsDB/Details/5
         public async Task<IActionResult> Details(int? id)
         {

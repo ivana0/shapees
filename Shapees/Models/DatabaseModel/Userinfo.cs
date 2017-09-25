@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shapees.Models.DatabaseModel
 {
@@ -32,9 +33,13 @@ namespace Shapees.Models.DatabaseModel
         public string State { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? Dob { get; set; }
         public string Homephone { get; set; }
         public string Mobilephone { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? Employedon { get; set; }
         public string Roomassigned { get; set; }
         public int? Roomid { get; set; }
