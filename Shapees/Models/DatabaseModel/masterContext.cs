@@ -19,6 +19,7 @@ namespace Shapees.Models.DatabaseModel
         public virtual DbSet<Task> Task { get; set; }
         public virtual DbSet<Userinfo> Userinfo { get; set; }
 
+
         public masterContext(DbContextOptions<masterContext> dbcontextoption)  
             :base(dbcontextoption)  
         { }

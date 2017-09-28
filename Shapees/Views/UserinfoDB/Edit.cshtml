@@ -128,7 +128,8 @@
 
     </style>
     <!--        END CSS        -->
-    <!--        START SCRIPT        -->
+
+    <!----------------      START SCRIPTs        -->
     <script>
         //open tab function
         function openOption(evt, optionName) {
@@ -157,50 +158,52 @@
         //redirect to action pages
         function openIndex() {
             document.location = '@Url.Action("Index", "UserinfoDB")';
-
         }
+
         function openCreate() {
             document.location = '@Url.Action("Create", "UserinfoDB")';
-
         }
 
         function openEdit() {
-
             document.getElementById("edit_users").onclick = function () {
                 //disable
                 this.disabled = true;
             }
-
         }
+
         function openDelete() {
             document.getElementById("delete_users").onclick = function () {
                 //disable
                 this.disabled = true;
             }
-
         }
+
         function openDetails() {
             document.getElementById("user_details").onclick = function () {
                 //disable
                 this.disabled = true;
             }
-
         }
 
         function blockHover() {
             document.getElementById("delete_users").style.backgroundColor = inherit;
             document.getElementById("user_details").style.backgroundColor = inherit;
         }
-       
+
+
+
         //open users home page on body load
         function loadUsersEdit() {
             // Show the users home tab
             document.getElementById('EditUser').style.display = "block";
             // Set button to active
             document.getElementById("edit_users").className += " active";
+            //set dropdown select to user's previously chosen option
+            //setUserCurrentState();
+
+            loadStateDropdown();
+
         }
-
-
 
     </script>
 
@@ -257,6 +260,7 @@
                     break;
             }
         }
+
 
     </script>
     <!--        END SCRIPT        -->
@@ -390,27 +394,35 @@
                         <small style="width: 100%; max-width:none; " id="namehelp" class="text-muted">
                             (If building, include Unit and Street number)
                         </small>
-                        <input asp-for="Street" style="width: 100%; max-width:none; " type="text" class="form-control" id="street" placeholder="E.g. 1 Northfields Avenue" required>
+                        <input asp-for="Street" style="width: 100%; max-width:none; " type="text" class="form-control" id="street" placeholder="E.g. 1 Northfields Avenue">
                         <span asp-validation-for="Street" class="text-danger"></span>
                     </div>
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="city" style="font-weight:normal;">City</label>
-                        <input asp-for="City" style="width: 100%; max-width:none;" type="text" class="form-control" id="city" placeholder="City" required>
+                        <input asp-for="City" style="width: 100%; max-width:none;" type="text" class="form-control" id="city" placeholder="City">
                         <span asp-validation-for="City" class="text-danger"></span>
                     </div>
-                    <div class="col-md-2">
-                        <label asp-for="State" class="col-md-2 control-label" style="font-weight:normal;"></label>
-                        <div class="col-md-10">
-                            <input asp-for="State" class="form-control" />
-                            <span asp-validation-for="State" class="text-danger"></span>
-                        </div>
+                    <div class="col-md-3">
+                            <label asp-for="State" style="font-weight:normal;">State </label>
+                            <select asp-for="State" class="form-control" id="state" name="state">
+                                <option value="@Model.State" hidden>@Model.State</option>
+                                <option value="">N/A</option>
+                                <option value="NSW">NSW</option>
+                                <option value="ACT">ACT</option>
+                                <option value="QLD">QLD</option>
+                                <option value="VIC">VIC</option>
+                                <option value="SA">SA</option>
+                                <option value="NT">NT</option>
+                                <option value="WA">WA</option>
+                                <option value="TAS">TAS</option>
+                            </select>
                     </div>
                     <div class="col-md-3">
                         <label for="postcode" style="font-weight:normal;">Postcode</label>
-                        <input asp-for="Postcode" type="text" class="form-control" id="postcode" placeholder="Postcode" required>
+                        <input asp-for="Postcode" type="text" class="form-control" id="postcode" placeholder="Postcode">
                         <span asp-validation-for="Postcode" class="text-danger"></span>
                     </div>
                 </div>

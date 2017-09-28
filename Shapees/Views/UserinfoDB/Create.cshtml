@@ -329,7 +329,7 @@
                 <div class="col-md-1 mb-2"> User Type </div>
                 <div class="col-md-3 mb-3">
                     <select asp-for="Usertype" class="form-control" id="usertype" name="usertype" onchange="loadFormType()" required>
-                        <option value="0">Choose Type ...</option>
+                        <option value="0" disabled hidden>Choose Type ...</option>
                         <option value="1">Parent</option>
                         <option value="2">Educator</option>
                         <option value="3">Director</option>
@@ -387,7 +387,7 @@
                     <small style="width: 100%; max-width:none; " id="namehelp" class="text-muted">
                         (If building, include Unit and Street number)
                     </small>
-                    <input asp-for="Street" style="width: 100%; max-width:none; " type="text" class="form-control" id="street" placeholder="E.g. 1 Northfields Avenue" required>
+                    <input asp-for="Street" style="width: 100%; max-width:none; " type="text" class="form-control" id="street" placeholder="E.g. 1 Northfields Avenue">
                     <span asp-validation-for="Street" class="text-danger"></span>
                 </div>
             </div>
@@ -395,27 +395,28 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="city" style="font-weight:normal;">City</label>
-                    <input asp-for="City" style="width: 100%; max-width:none;" type="text" class="form-control" id="city" placeholder="City" required>
+                    <input asp-for="City" style="width: 100%; max-width:none;" type="text" class="form-control" id="city" placeholder="City">
                     <span asp-validation-for="City" class="text-danger"></span>
                 </div>
                 <div class="col-md-2">
                     <label asp-for="State" style="font-weight:normal;">State </label>
-                    <select asp-for="State" class="form-control" id="state" name="state" required>
-                        <option value="" selected disabled>Choose state ...</option>
+                    <select asp-for="State" class="form-control" id="state" name="state">
+                        <option value="">Choose state ...</option>
                         <option value="NSW">NSW</option>
-                        <option value="QLD">QLD</option>
                         <option value="ACT">ACT</option>
+                        <option value="QLD">QLD</option>
                         <option value="VIC">VIC</option>
                         <option value="SA">SA</option>
-                        <option value="VIC">VIC</option>
+                        <option value="NT">NT</option>
                         <option value="WA">WA</option>
+                        <option value="TAS">TAS</option>
                     </select>
                     <!--<input asp-for="State" class="form-control" />-->
                     <span asp-validation-for="State" class="text-danger"></span>
                 </div>
                 <div class="col-md-3">
                     <label for="postcode" style="font-weight:normal;">Postcode</label>
-                    <input asp-for="Postcode" type="text" class="form-control" id="postcode" placeholder="Postcode" required>
+                    <input asp-for="Postcode" type="text" class="form-control" id="postcode" placeholder="Postcode">
                     <span asp-validation-for="Postcode" class="text-danger"></span>
                 </div>
             </div>

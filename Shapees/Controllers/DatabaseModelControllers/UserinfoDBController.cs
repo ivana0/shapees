@@ -36,6 +36,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             }
 
             var userinfo = await _context.Userinfo
+                //.AsNoTracking()
                 .Include(u => u.Room)
                 .SingleOrDefaultAsync(m => m.Userid == id);
             if (userinfo == null)
@@ -154,6 +155,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", userinfo.Roomid);
             return View(userinfo);
         }
@@ -215,7 +217,6 @@ namespace Shapees.Controllers.DatabaseModelControllers
             if (ModelState.IsValid)
             {
                 
-
                 if (userinfo.Roomid == 1)
                     userinfo.Roomassigned = room.Roomname;
                 if (userinfo.Roomid == 2)
@@ -241,8 +242,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 }
                 return RedirectToAction("Index");
             }
+
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", userinfo.Roomid);
-                
 
             return View(userinfo);
         }
