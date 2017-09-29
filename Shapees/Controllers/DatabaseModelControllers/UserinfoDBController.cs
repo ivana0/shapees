@@ -127,19 +127,34 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
-                if (userinfo.Roomid == 1 && userinfo.Usertype == 3)
+                //do not assign rooms to parent and director users
+                if (userinfo.Roomid == 1 && (userinfo.Usertype == 3 || userinfo.Usertype == 1))
                 {
                     userinfo.Roomid = null;
                     userinfo.Roomassigned = null;
                 }
 
-                //set room name
-                if (userinfo.Roomid == 1)
-                    userinfo.Roomassigned = room.Roomname;
-                if (userinfo.Roomid == 2)
-                    userinfo.Roomassigned = room.Roomname;
-                if (userinfo.Roomid == 3)
-                    userinfo.Roomassigned = room.Roomname;
+                //make sure to remove unecessary info for parent
+                if (userinfo.Usertype == 1)
+                {
+                    userinfo.Shortbio = null;
+                    userinfo.Employedon = null;
+                }
+
+                //make sure to remove unecessary parent info for educators and director
+                if (userinfo.Usertype == 2 || userinfo.Usertype == 3)
+                {
+                    userinfo.Othercontact = null;
+                }
+
+                //set room name for educators
+                if (userinfo.Roomid == 1 && userinfo.Usertype == 2)
+                    userinfo.Roomassigned = room.Roomname.Trim() + " (" + room.Roomagegroup.Trim() +")";  
+                if (userinfo.Roomid == 2 && userinfo.Usertype == 2)
+                    userinfo.Roomassigned = room.Roomname.Trim() + " (" + room.Roomagegroup.Trim() + ")";
+                if (userinfo.Roomid == 3 && userinfo.Usertype == 2)
+                    userinfo.Roomassigned = room.Roomname.Trim() + " (" + room.Roomagegroup.Trim() + ")";
+
                 //set user type name
                 if (userinfo.Usertype == 1)
                     userinfo.Usertypename = "Parent";
@@ -216,13 +231,14 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
-                
-                if (userinfo.Roomid == 1)
-                    userinfo.Roomassigned = room.Roomname;
-                if (userinfo.Roomid == 2)
-                    userinfo.Roomassigned = room.Roomname;
-                if (userinfo.Roomid == 3)
-                    userinfo.Roomassigned = room.Roomname;
+
+                //set room name for educators
+                if (userinfo.Roomid == 1 && userinfo.Usertype == 2)
+                    userinfo.Roomassigned = room.Roomname.Trim() + " (" + room.Roomagegroup.Trim() + ")";
+                if (userinfo.Roomid == 2 && userinfo.Usertype == 2)
+                    userinfo.Roomassigned = room.Roomname.Trim() + " (" + room.Roomagegroup.Trim() + ")";
+                if (userinfo.Roomid == 3 && userinfo.Usertype == 2)
+                    userinfo.Roomassigned = room.Roomname.Trim() + " (" + room.Roomagegroup.Trim() + ")";
 
                 try
                 {

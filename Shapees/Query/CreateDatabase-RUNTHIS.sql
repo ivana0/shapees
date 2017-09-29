@@ -370,7 +370,7 @@ CREATE TABLE [dbo].[message]
 
 
 INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
-    VALUES ('Room 1', '6 weeeks - 2 years', 'Any short info.', 'Any longer description needed.') 
+    VALUES ('Room 1', '6 weeks - 2 years', 'Any short info.', 'Any longer description needed.') 
 GO
 INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
     VALUES ('Room 2', '2 years - 6 years', 'Any short info.', 'Any longer description needed.') 

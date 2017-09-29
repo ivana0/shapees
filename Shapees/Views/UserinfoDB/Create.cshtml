@@ -236,6 +236,8 @@
             document.getElementById('parent1').style.display = "block";
             //document.getElementById('parent2').style.display = "block";
             document.getElementById('educator1').style.display = "none";
+
+           // document.getElementById('employedon').valueAsDate = new Date();
         }
 
         function loadFormType() {
@@ -272,11 +274,11 @@
 <body onload="loadUsersCreate()">
     <h2>Create User</h2>
     <div class="tab">
-        <button id="home_users" class="tablinks" onclick="openIndex()">Search Users</button>
-        <button id="create_users" class="tablinks" onclick="openOption(event, 'CreateUser')">Create User</button>
-        <button id="edit_users" class="tablinks" onclick="openEdit()">Edit User</button>
-        <button id="delete_users" class="tablinks" onclick="openDelete()">Delete User</button>
-        <button id="user_details" class="tablinks" onclick="openDetails()">User Details</button>
+        <button id="home_users" class="tablinks" onclick="openIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Search Users</button>
+        <button id="create_users" class="tablinks" onclick="openOption(event, 'CreateUser')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create User</button>
+        <button id="edit_users" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit User</button>
+        <button id="delete_users" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete User</button>
+        <button id="user_details" class="tablinks" onclick="openDetails()"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;User Details</button>
     </div>
     <!--       START TABS        -->
     <!--    FIRST TAB - List Users    -->
@@ -285,8 +287,9 @@
     <!--    END FIRST TAB - List Users    -->
     <!--    SECOND TAB - Create User    -->
     <div id="CreateUser" class="tabcontent">
+        <br/>
         <div>
-            <a asp-action="Index">Back to List</a>
+            <a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to User List</a>&emsp;|&emsp;
         </div>
         <!-- Second Form to Create User -->
         <form asp-action="Create" method="post" enctype="multipart/form-data" class="container">
@@ -329,7 +332,7 @@
                 <div class="col-md-1 mb-2"> User Type </div>
                 <div class="col-md-3 mb-3">
                     <select asp-for="Usertype" class="form-control" id="usertype" name="usertype" onchange="loadFormType()" required>
-                        <option value="0" disabled hidden>Choose Type ...</option>
+                        <option value="" hidden>Choose Type ...</option>
                         <option value="1">Parent</option>
                         <option value="2">Educator</option>
                         <option value="3">Director</option>
@@ -371,7 +374,7 @@
             <div class="row">
                 <div id="dob" class="col-md-3">
                     <label for="dob" style="font-weight:normal;">Date of Birth </label>
-                    <input asp-for="Dob" type="date" class="form-control" id="dob">
+                    <input asp-for="Dob" type="date" class="form-control" id="dob" required>
                     <span asp-validation-for="Dob" class="text-danger"></span>
                 </div>
             </div>
@@ -498,7 +501,7 @@
                     <button style="width: 100%; max-width:none; " class="btn btn-gray" type="reset" onclick="hideAdditionalForm()">Reset form</button>
                 </div>
                 <div class="col-md-2">
-                    <input type="submit" style="width: 100%; max-width:none; " class="btn btn-primary" value="Create">
+                    <input type="submit" style="width: 100%; max-width:none; " class="btn btn-success" value="Create">
                 </div>
                 <div class="col-md-4">
                 </div>
@@ -506,6 +509,7 @@
             <br />
             <br />
         </form>
+        <br />
     </div>
     <!--        END SECOND TAB      -->
     <!--    3RD TAB - Edit User    -->

@@ -266,11 +266,11 @@
 <body onload="loadUsersDetails()">
     <h2>User Details</h2>
     <div class="tab">
-        <button  id="home_users" class="tablinks" onclick="openIndex()">Search Users</button>
-        <button id="create_users" class="tablinks" onclick="openCreate()">Create User</button>
-        <button id="edit_users" class="tablinks" onclick="openEdit()">Edit User</button>
-        <button id="delete_users" class="tablinks" onclick="openDelete()">Delete User</button>
-        <button id="user_details" class="tablinks" onclick="openOption(event, 'UserDetails')">User Details</button>
+        <button  id="home_users" class="tablinks" onclick="openIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Search Users</button>
+        <button id="create_users" class="tablinks" onclick="openCreate()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create User</button>
+        <button id="edit_users" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit User</button>
+        <button id="delete_users" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete User</button>
+        <button id="user_details" class="tablinks" onclick="openOption(event, 'UserDetails')"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;User Details</button>
     </div>
     <!--       START TABS        -->
     <!--    FIRST TAB - List Users    -->
@@ -298,25 +298,31 @@
 
         <div>
             <br />
-            <h4>User details</h4>
+            <h4>&emsp;User details</h4>
             <hr />
-            <div class="row">
-                <div class="col-md-1">
+            @if (Model.Profileimage != null)
+            {
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-10">
+                        <img height="150" width="150" src="@ViewBag.imagesrc" /><br />
+                    </div>
                 </div>
-                <div class="col-md-10">
-                    <img height="150" width="150" src="@ViewBag.imagesrc" /><br />
-                </div>
-            </div>
-            <br />
+                <br />
+            }
+            <h5>&emsp;Personal information</h5>
+            <hr width="90%" />
             <dl class="dl-horizontal">
+                <!--        USER INFO      -->
                 <dt>
-                    @Html.DisplayNameFor(model => model.Firstname)
+                    First name
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Firstname)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Lastname)
+                    Last name
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Lastname)
@@ -324,7 +330,7 @@
                 <dt>
                     @if (Model.Dob != null)
                     {
-                        @Html.DisplayNameFor(model => model.Dob)
+                        @Html.Label("Date of birth")
                     } 
                 </dt>
                 <dd>
@@ -333,6 +339,11 @@
                        @Html.DisplayFor(model => model.Dob)
                     }
                 </dd>
+            </dl>
+            <br/>
+            <h5>&emsp;Login information</h5>
+            <hr width="90%" />
+            <dl class="dl-horizontal">
                 <!--        LOGIN INFO      -->
                 <dt>
                     @Html.DisplayNameFor(model => model.Username)
@@ -341,28 +352,41 @@
                     @Html.DisplayFor(model => model.Username)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Email)
+                    E-mail
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Email)
                 </dd>
-                <!--        END LOGIN INFO      -->
                 <!--        USER TYPE       -->
                 <dt>
-                    @Html.DisplayNameFor(model => model.Usertypename)
+                    User type
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Usertypename)
                 </dd>
                 <!--        END USER TYPE       -->
-                <!--        USER ADDRESSS       -->
+                <!--        END LOGIN INFO      -->
+             </dl>
+            <!--        USER ADDRESSS       -->
+            <h5>&emsp;Address</h5>
+            <hr width="90%" />
+            @if (String.IsNullOrEmpty(Model.Street) && String.IsNullOrEmpty(Model.City) && Model.Postcode == null && String.IsNullOrEmpty(Model.State))
+            {
+                @:<span style="color:red;">&emsp;Address not entered.</span><br />
+            }
+            else if (String.IsNullOrEmpty(Model.Street) || String.IsNullOrEmpty(Model.City) || Model.Postcode == null || String.IsNullOrEmpty(Model.State))
+            {
+                @:<span style="color:red;">&emsp;Address not complete - please enter missing information.</span><br />
+            }
+             <dl class="dl-horizontal">
                 <dt>
                     @if (Model.Street != null)
                     {
                         @Html.DisplayNameFor(model => model.Street)
-                    } 
+                    }
                 </dt>
-                <dd>@if (Model.Street != null)
+                <dd>
+                    @if (Model.Street != null)
                     {
                         @Html.DisplayFor(model => model.Street)
                     }
@@ -403,24 +427,32 @@
                         @Html.DisplayFor(model => model.State)
                     }
                 </dd>
+            </dl>
                 <!--       END USER ADDRESSS       -->
                 <!--       USER CONTACT INFO       -->
+            <h5>&emsp;Contact information</h5>
+            <hr width="90%" />
+            @if (String.IsNullOrEmpty(Model.Homephone) && String.IsNullOrEmpty(Model.Mobilephone))
+            {
+                @:<span style="color:red;">&emsp;Contact information not entered.</span><br />
+            }
+            <dl class="dl-horizontal">
                 <dt>
                     @if (Model.Homephone != null)
                     {
-                        @Html.DisplayNameFor(model => model.Homephone)
-                    }   
+                        @Html.Label("Home phone")
+                    }
                 </dt>
                 <dd>
                     @if (Model.Homephone != null)
                     {
                         @Html.DisplayFor(model => model.Homephone)
-                    }               
+                    }
                 </dd>
                 <dt>
                     @if (Model.Mobilephone != null)
                     {
-                        @Html.DisplayNameFor(model => model.Mobilephone)
+                        @Html.Label("Mobile phone")
                     }
 
                 </dt>
@@ -428,14 +460,30 @@
                     @if (Model.Mobilephone != null)
                     {
                         @Html.DisplayFor(model => model.Mobilephone)
-                    } 
+                    }
                 </dd>
-                <!--       USER CONTACT INFO       -->
+                </dl>
+                <!--       USER CONTACT INFO END       -->
                 <!--     FIELDS ONLY DISPLAYED FOR EMPLOYEE INFO    -->
+                <h5>&emsp;Additional information</h5>
+                <hr width="90%" />
+                @if (String.IsNullOrEmpty(Model.Roomassigned) && Model.Employedon == null && String.IsNullOrEmpty(Model.Shortbio) && Model.Usertype == 2)
+                {
+                    @:<span style="color:red;">&emsp;Additional information not entered for educator.</span><br />
+                }
+                else if (Model.Employedon == null && String.IsNullOrEmpty(Model.Shortbio) && Model.Usertype == 3)
+                {
+                    @:<span style="color:red;">&emsp;Additional information not entered for director.</span><br />
+                }
+                else if (String.IsNullOrEmpty(Model.Othercontact) && String.IsNullOrEmpty(Model.Parentof) && Model.Usertype == 1)
+                {
+                    @:<span style="color:red;">&emsp;Additional information not entered for parent.</span><br />
+                }
+                <dl class="dl-horizontal">
                 <dt>
                     @if (Model.Employedon != null)
                     {
-                        @Html.DisplayNameFor(model => model.Employedon);
+                        @Html.Label("Employeed on")
                     }
                 </dt>
                 <dd>
@@ -444,50 +492,52 @@
                         @Html.DisplayFor(model => model.Employedon)
                     }
                 </dd>
-                
+
                 <dt>
                     @if (Model.Roomassigned != null)
                     {
-                        @Html.DisplayNameFor(model => model.Roomassigned);
-                    }  
+                        @Html.Label("Room assigned")
+                    }
                 </dt>
                 <dd>
                     @if (Model.Roomassigned != null && Model.Roomid != null)
                     {
-                        @Html.DisplayFor(model => model.Roomassigned);
+                        @Html.DisplayFor(model => model.Roomassigned)
                     }
                 </dd>
                 <!--     FIELDS ONLY DISPLAYED FOR PARENT INFO    -->
                 <dt>
-                   @if (Model.Othercontact != null)
-                   {
-                        @Html.DisplayNameFor(model => model.Othercontact);
-                   }
+                    @if (Model.Othercontact != null)
+                    {
+                        @Html.Label("Other contact")
+                    }
                 </dt>
                 <dd>
                     @if (Model.Othercontact != null)
                     {
-                        @Html.DisplayFor(model => model.Othercontact);
-                    } 
+                        @Html.DisplayFor(model => model.Othercontact)
+                    }
                 </dd>
                 <dt>
-                   
-                   @if (Model.Parentof != null)
-                   {
-                       @Html.DisplayFor(modelItem => Model.Parentof);
-                   } 
+                    @if (Model.Parentof != null)
+                    {
+                        @Html.Label("Parent of")
+                    }
                 </dt>
                 <dd>
                     @if (Model.Parentof != null)
                     {
-                        @Html.DisplayFor(modelItem => Model.Parentof);
+                        @Html.DisplayFor(modelItem => Model.Parentof)
                     }
                 </dd>
             </dl>
+
         </div>
+        <br />
+        <br />
         <div>
-            <a asp-action="Edit" asp-route-id="@Model.Userid">Edit</a> |
-            <a asp-action="Index">Back to List</a>
+            &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to User List</a> &emsp;|&emsp;
+            <a asp-action="Edit" asp-route-id="@Model.Userid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a> 
         </div>
 
         <br /><br />
