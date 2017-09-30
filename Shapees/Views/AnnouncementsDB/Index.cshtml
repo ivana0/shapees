@@ -4,63 +4,327 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<title>@ViewData["Title"] - Shapees</title>
 
-<h2>Index</h2>
+<head>
+    <style>
+        /*CSS for blog posts*/
+        #start {
+            font-size: 1em;
+        }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Announcementtype)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Datecreated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Isdisplayed)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Announcementfor)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Announcementtype)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Datecreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Isdisplayed)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Announcementfor)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Announcementid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Announcementid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Announcementid">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        #started {
+            font-size: 1em;
+        }
+
+        #startedby {
+            font-size: 1em;
+        }
+
+
+        .post-title {
+            font-size: 1.2em;
+            text-decoration: none;
+            color: blue;
+        }
+
+            .post-title:hover {
+                text-decoration: none;
+                color: #990099;
+            }
+        /* Other */
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        label {
+            font-size: 1em;
+        }
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_announcement {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_announcement {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #announcement_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open children home page on body load
+        function loadAnnouncementHome() {
+            // Show the children home tab
+            document.getElementById('ListAnnouncement').style.display = "block";
+            // Set button to active
+            document.getElementById("home_announcement").className += " active";
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("Index", "AnnouncementsDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("Create", "AnnouncementsDB")';
+
+        }
+
+
+        function openEdit() {
+
+            document.getElementById("edit_announcement").onclick = function () {
+                //disable
+                this.disabled = true;
+
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_announcement").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("announcement_details").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+
+        function blockHover() {
+            document.getElementById("delete_announcement").style.backgroundColor = inherit;
+            document.getElementById("edit_announcement").style.backgroundColor = inherit;
+            document.getElementById("announcement_details").style.backgroundColor = inherit;
+
+        }
+
+
+
+    </script>
+</head>
+<body onload="loadAnnouncementHome()">
+
+    <h2>Announcement Index</h2>
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_announcement" class="tablinks" active onclick="openOption(event, 'ListAnnouncement')">Announcements</button>
+        <button id="create_announcement" class="tablinks" onclick="openCreate()">Create Announcement</button>
+        <button id="edit_announcement" class="tablinks" onclick="openEdit()">Edit Announcement</button>
+        <button id="delete_announcement" class="tablinks" onclick="openDelete()">Delete Announcement</button>
+
+    </div>
+
+    <!--    FIRST TAB - Home (list of children)    -->
+    <div id="ListAnnouncement" class="tabcontent">
+
+        @foreach (var item in Model)
+        {
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong><span class="post-title"> @Html.DisplayFor(modelItem => item.Announcementtype): @Html.DisplayFor(modelItem => item.Title)</span></strong></div>
+                            <div class="panel-body">
+                                <div class="">
+                                </div>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </p>
+
+                            </div>
+                            <div class="panel-footer">
+                                <label class="glyphicon glyphicon-user" id="start"> Director </label> |
+                                <label id="started">For @Html.DisplayFor(modelItem => item.Announcementfor)</label> |
+                                <label> Posted: @Html.DisplayFor(modelItem => item.Datecreated)</label>
+                                <div align="right">
+                                    <a asp-action="Edit" asp-route-id="@item.Announcementid">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Announcementid">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Announcementid">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <!--
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Announcementtype)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Datecreated)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Isdisplayed)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Announcementfor)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                    {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Announcementtype)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Datecreated)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Isdisplayed)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Announcementfor)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Announcementid">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Announcementid">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Announcementid">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+        -->
+
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    </div>
+
+    <div id="CreateAnnouncement" asp-action="Create" class="tabcontent">
+
+    </div>
+    <!-- END Add Announcement Form and tab -->
+    <!--    3RD TAB - Edit User    -->
+    <div id="EditAnnouncement" asp-action="Edit" class="tabcontent">
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    4TH TAB - Delete Announcement    -->
+    <div id="DeleteAnnouncement" asp-action="Delete" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+</body>

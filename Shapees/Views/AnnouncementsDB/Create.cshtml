@@ -4,65 +4,304 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<head>
+    <style>
+        /*CSS for blog posts*/
+        #start {
+            font-size: 1em;
+        }
 
-<h2>Create</h2>
+        #started {
+            font-size: 1em;
+        }
 
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <h4>Announcement</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Announcementtype" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Announcementtype" class="form-control" />
-                <span asp-validation-for="Announcementtype" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Datecreated" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Datecreated" class="form-control" />
-                <span asp-validation-for="Datecreated" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Title" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Description" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Isdisplayed" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Isdisplayed" class="form-control" />
-                <span asp-validation-for="Isdisplayed" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Announcementfor" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Announcementfor" class="form-control" />
-                <span asp-validation-for="Announcementfor" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        #startedby {
+            font-size: 1em;
+        }
+
+
+        .post-title {
+            font-size: 1.2em;
+            text-decoration: none;
+            color: blue;
+        }
+
+            .post-title:hover {
+                text-decoration: none;
+                color: #990099;
+            }
+        /* Other */
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        label {
+            font-size: 1em;
+        }
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_announcement {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_announcement {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #announcement_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open children home page on body load
+        function loadAnnouncementCreate() {
+            // Show the children home tab
+            document.getElementById('CreateAnnouncement').style.display = "block";
+            // Set button to active
+            document.getElementById("create_announcement").className += " active";
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("Index", "AnnouncementsDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("Create", "AnnouncementsDB")';
+
+        }
+
+
+        function openEdit() {
+
+            document.getElementById("edit_announcement").onclick = function () {
+                //disable
+                this.disabled = true;
+
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_announcement").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("announcement_details").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+
+        function blockHover() {
+            document.getElementById("delete_announcement").style.backgroundColor = inherit;
+            document.getElementById("edit_announcement").style.backgroundColor = inherit;
+            document.getElementById("announcement_details").style.backgroundColor = inherit;
+
+        }
+
+
+    </script>
+</head>
+<body onload="loadAnnouncementCreate()">
+
+    <h2>Create Announcement</h2>
+    <div class="tab">
+        <button id="home_announcement" class="tablinks" active onclick="openIndex()">Announcements</button>
+        <button id="create_announcement" class="tablinks" onclick="openOption(event, 'CreateAnnouncement')">Create Announcement</button>
+        <button id="edit_announcement" class="tablinks" onclick="openEdit()">Edit Announcement</button>
+        <button id="delete_announcement" class="tablinks" onclick="openDelete()">Delete Announcement</button>
     </div>
-</form>
+    <!--       START TABS        -->
+    <!--    FIRST TAB - List Users    -->
+    <div id="ListAnnouncement" class="tabcontent">
+    </div>
+    <!--    END FIRST TAB - List Users    -->
+    <!--    SECOND TAB - Create User    -->
+    <div id="CreateAnnouncement" class="tabcontent">
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        <!-- Second Form to Create User -->
+        <form asp-action="Create" method="post" enctype="multipart/form-data" class="container">
+            <br />
+            <div class="form-horizontal">
+                <h4>Announcement Form</h4>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Announcementtype" class="col-md-2 control-label">Announcement Type</label>
+                    <div class="col-md-10">
+                        <!--<input asp-for="Announcementtype" class="form-control" /> -->
+                        <select asp-for="Announcementtype" class="form-control" id="announcementtype" name="announcementtype" required>
+                            <option value="No Type Selected">Choose Type ...</option>
+                            <option value="Event">Event</option>
+                            <option value="Issue">Issue</option>
+                            <option value="Review">Review</option>
+                            <option value="Update">Update</option>
 
+                            <option value="Other">Other</option>
+                        </select>
+                        <span asp-validation-for="Announcementtype" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Datecreated" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Datecreated" type="datetime-local" class="form-control" />
+                        <span asp-validation-for="Datecreated" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Title" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Title" type="text" class="form-control" required />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <textarea asp-for="Description" class="form-control" required placeholder="Enter description of announcement here..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Isdisplayed" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Isdisplayed" class="form-control" />
+                        <span asp-validation-for="Isdisplayed" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Announcementfor" class="col-md-2 control-label">Announcement for...</label>
+                    <div class="col-md-10">
+                        <select asp-for="Announcementfor" class="form-control" id="Announcementfor" name="Announcementfor" required>
+                            <option value="None Selected">Choose User ...</option>
+                            <option value="ALL">All</option>
+                            <option value="PARENTS">Parents</option>
+                            <option value="EDUCATORS">Educators</option>
+                        </select>
+                        <!-- <input asp-for="Announcementfor" class="form-control" /> -->
+                        <span asp-validation-for="Announcementfor" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </div>
+    <div id="EditAnnouncement" asp-action="Edit" class="tabcontent">
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    4TH TAB - Delete Announcement    -->
+    <div id="DeleteAnnouncement" asp-action="Delete" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+
+</body>

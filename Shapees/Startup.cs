@@ -47,7 +47,7 @@ namespace Shapees
 
             services.AddSession();
 
-            var sqlconnection = @"Server=DESKTOP-5S4GO2O;Database=master;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var sqlconnection = @"Server=WSLF3FVXF2;Database=master;Trusted_Connection=True;MultipleActiveResultSets=true";
             services.AddDbContext<ShapeesDB>(dbcontextoption => dbcontextoption.UseSqlServer(sqlconnection));
             services.AddDbContext<testMasterContext>(dbcontextoption => dbcontextoption.UseSqlServer(sqlconnection));
             services.AddDbContext<masterContext>(dbcontextoption => dbcontextoption.UseSqlServer(sqlconnection));
