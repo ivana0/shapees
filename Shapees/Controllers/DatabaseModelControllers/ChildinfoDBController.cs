@@ -21,6 +21,9 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: ChildinfoDB
         public async Task<IActionResult> Index(string searchString, string searchchild, string sortOrder)
         {
+            //sorting filters
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_asc" : "";
+            ViewData["SurnameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "surname_asc" : "";
             ViewData["CurrentFilter"] = searchString;
 
             //var masterContext = _context.Childinfo.Include(c => c.Educator).Include(c => c.Parent1Navigation).Include(c => c.Parent2Navigation).Include(c => c.Room);
