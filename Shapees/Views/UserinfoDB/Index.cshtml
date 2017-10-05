@@ -319,10 +319,9 @@
         <!--    END FIRST TAB   -->
         <br />
         <div class="container">
-
             <a asp-action="Index"><span class="glyphicon glyphicon-user"></span>&ensp;Show all users</a>
             <p>
-                Order by:
+                Order by:&ensp;
                 <a asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">First Name</a>&ensp; |
                 <a asp-route-sortOrder="@ViewData["LastnameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Last Name</a>&ensp; |
                 <a asp-route-sortOrder="@ViewData["TypeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">User Type</a>

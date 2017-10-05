@@ -19,10 +19,44 @@ namespace Shapees.Controllers.DatabaseModelControllers
         }
 
         // GET: ChildinfoDB
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string searchchild, string sortOrder)
         {
-            var masterContext = _context.Childinfo.Include(c => c.Educator).Include(c => c.Parent1Navigation).Include(c => c.Parent2Navigation).Include(c => c.Room);
-            return View(await masterContext.ToListAsync());
+            ViewData["CurrentFilter"] = searchString;
+
+            //var masterContext = _context.Childinfo.Include(c => c.Educator).Include(c => c.Parent1Navigation).Include(c => c.Parent2Navigation).Include(c => c.Room);
+
+            var searchchildren = from c in _context.Childinfo.Include(c => c.Educator).Include(c => c.Parent1Navigation).Include(c => c.Parent2Navigation).Include(c => c.Room)
+                                 select c;
+
+            //search users
+            if (!String.IsNullOrEmpty(searchString) && searchchild == "byfirstlast")
+            {
+                string[] words = searchString.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string str in words)
+                {
+                    searchchildren = searchchildren.Where(s => s.Childfirstname.Contains(str) || s.Childlastname.Contains(str));
+                }
+            }
+            else if (!String.IsNullOrEmpty(searchString) && searchchild == "byroom")
+            {
+                searchchildren = searchchildren.Where(s => s.Inroom.Contains(searchString));
+
+            }
+
+            switch (sortOrder)
+            {
+                case "name_asc":
+                    searchchildren = searchchildren.OrderBy(s => s.Childfirstname);
+                    break;
+                case "surname_asc":
+                    searchchildren = searchchildren.OrderBy(s => s.Childlastname);
+                    break;
+                default:
+                    searchchildren = searchchildren.OrderBy(s => s.Childfirstname);
+                    break;
+            }
+
+            return View(await searchchildren.ToListAsync());
         }
 
         // GET: ChildinfoDB/Details/5
