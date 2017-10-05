@@ -11,5 +11,5 @@
 #ignore the debug files in /obj
 /Shapees/obj/Debug/
 
-#ignore the .vs folder
-.vs/
+#ignore the .vs config folder
+.vs/config
