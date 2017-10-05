@@ -12,4 +12,4 @@
 /Shapees/obj/Debug/
 
 #ignore the .vs config folder
-.vs/config
+.vs/config/
