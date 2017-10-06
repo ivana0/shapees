@@ -13,107 +13,123 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Taskforeducator" class="col-md-2 control-label"></label>
+            <label asp-for="Taskforeducator" class="col-md-2 control-label"> Assign task/event to educator:</label>
             <div class="col-md-10">
-                <input asp-for="Taskforeducator" class="form-control" />
+                 
+
+            <select asp-for="Taskforeducator" class="form-control" id="Taskforeducator" name="Taskforeducator" required>
+                <option value="" hidden>Choose Educator ...</option>
+                <option value="1">Parent</option>
+                <option value="2">Educator</option>
+                <option value="3">Director</option>
+            </select>
+
+        
+
+               <!-- <input asp-for="Taskforeducator" class="form-control" />-->
                 <span asp-validation-for="Taskforeducator" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Taskforchild" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Taskforchild" class="form-control" />
-                <span asp-validation-for="Taskforchild" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
+        
+        <!--<div class="form-group">
             <label asp-for="Assignedforid" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <select asp-for="Assignedforid" class ="form-control" asp-items="ViewBag.Assignedforid"></select>
             </div>
         </div>
+        -->
         <div class="form-group">
-            <label asp-for="Taskforfirst" class="col-md-2 control-label"></label>
+            <label asp-for="Taskforfirst" class="col-md-2 control-label">Educator's First Name</label>
             <div class="col-md-10">
                 <input asp-for="Taskforfirst" class="form-control" />
                 <span asp-validation-for="Taskforfirst" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Taskforlast" class="col-md-2 control-label"></label>
+            <label asp-for="Taskforlast" class="col-md-2 control-label">Educator's Last Name</label>
             <div class="col-md-10">
                 <input asp-for="Taskforlast" class="form-control" />
                 <span asp-validation-for="Taskforlast" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Authorfirst" class="col-md-2 control-label"></label>
+            <label asp-for="Authorfirst" class="col-md-2 control-label">Your First Name</label>
             <div class="col-md-10">
                 <input asp-for="Authorfirst" class="form-control" />
                 <span asp-validation-for="Authorfirst" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Authorlast" class="col-md-2 control-label"></label>
+            <label asp-for="Authorlast" class="col-md-2 control-label">Your Last Name</label>
             <div class="col-md-10">
                 <input asp-for="Authorlast" class="form-control" />
                 <span asp-validation-for="Authorlast" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
+       <!--<div class="form-group">
             <label asp-for="Authorid" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="Authorid" class="form-control" />
                 <span asp-validation-for="Authorid" class="text-danger"></span>
             </div>
         </div>
+
         <div class="form-group">
             <label asp-for="Childid" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <select asp-for="Childid" class ="form-control" asp-items="ViewBag.Childid"></select>
             </div>
         </div>
+           --> 
         <div class="form-group">
-            <label asp-for="Childfirst" class="col-md-2 control-label"></label>
+            <label asp-for="Taskforchild" class="col-md-2 control-label">Assign task/event to child: </label>
+            <div class="col-md-10">
+                <input asp-for="Taskforchild" class="form-control" />
+                <span asp-validation-for="Taskforchild" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childfirst" class="col-md-2 control-label">Child's First Name</label>
             <div class="col-md-10">
                 <input asp-for="Childfirst" class="form-control" />
                 <span asp-validation-for="Childfirst" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Childlast" class="col-md-2 control-label"></label>
+            <label asp-for="Childlast" class="col-md-2 control-label">Child's Last Name</label>
             <div class="col-md-10">
                 <input asp-for="Childlast" class="form-control" />
                 <span asp-validation-for="Childlast" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Dateassigned" class="col-md-2 control-label"></label>
+            <label asp-for="Dateassigned" class="col-md-2 control-label">Date Assigned</label>
             <div class="col-md-10">
-                <input asp-for="Dateassigned" class="form-control" />
+                <input asp-for="Dateassigned" type="datetime-local" class="form-control" />
                 <span asp-validation-for="Dateassigned" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
+      <!--  <div class="form-group">
             <label asp-for="Datecompleted" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="Datecompleted" class="form-control" />
                 <span asp-validation-for="Datecompleted" class="text-danger"></span>
             </div>
-        </div>
+        </div> -->
         <div class="form-group">
-            <label asp-for="Duedate" class="col-md-2 control-label"></label>
+            <label asp-for="Duedate" class="col-md-2 control-label">Due Date</label>
             <div class="col-md-10">
-                <input asp-for="Duedate" class="form-control" />
+                <input asp-for="Duedate" type="datetime-local" class="form-control" />
                 <span asp-validation-for="Duedate" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
+      <!--  <div class="form-group">
             <label asp-for="Reportid" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <select asp-for="Reportid" class ="form-control" asp-items="ViewBag.Reportid"></select>
             </div>
         </div>
+          
         <div class="form-group">
             <label asp-for="Reportpath" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -121,6 +137,7 @@
                 <span asp-validation-for="Reportpath" class="text-danger"></span>
             </div>
         </div>
+
         <div class="form-group">
             <label asp-for="Issubmitted" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -135,6 +152,7 @@
                 <span asp-validation-for="Iscompleted" class="text-danger"></span>
             </div>
         </div>
+          -->
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

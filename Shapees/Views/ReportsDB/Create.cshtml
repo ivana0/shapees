@@ -4,168 +4,406 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<head>
+    <style>
+        /* Other */
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
 
-<h2>Create</h2>
 
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <h4>Report</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Reporttype" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Reporttype" class="form-control" />
-                <span asp-validation-for="Reporttype" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Authorfirst" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Authorfirst" class="form-control" />
-                <span asp-validation-for="Authorfirst" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Authorlast" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Authorlast" class="form-control" />
-                <span asp-validation-for="Authorlast" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Authorid" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Authorid" class ="form-control" asp-items="ViewBag.Authorid"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Childid" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Childid" class ="form-control" asp-items="ViewBag.Childid"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Childfirst" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Childfirst" class="form-control" />
-                <span asp-validation-for="Childfirst" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Childlast" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Childlast" class="form-control" />
-                <span asp-validation-for="Childlast" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Datecreated" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Datecreated" class="form-control" />
-                <span asp-validation-for="Datecreated" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Lastmodified" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Lastmodified" class="form-control" />
-                <span asp-validation-for="Lastmodified" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Title" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Subject" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Subject" class="form-control" />
-                <span asp-validation-for="Subject" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Bodytext" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Bodytext" class="form-control" />
-                <span asp-validation-for="Bodytext" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Filepath" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Filepath" class="form-control" />
-                <span asp-validation-for="Filepath" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Datesubmitted" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Datesubmitted" class="form-control" />
-                <span asp-validation-for="Datesubmitted" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Datecompleted" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Datecompleted" class="form-control" />
-                <span asp-validation-for="Datecompleted" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Issubmitted" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Issubmitted" class="form-control" />
-                <span asp-validation-for="Issubmitted" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Iscompleted" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Iscompleted" class="form-control" />
-                <span asp-validation-for="Iscompleted" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Taskid" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Taskid" class="form-control" />
-                <span asp-validation-for="Taskid" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Duedate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Duedate" class="form-control" />
-                <span asp-validation-for="Duedate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Attachmentpaths" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Attachmentpaths" class="form-control" />
-                <span asp-validation-for="Attachmentpaths" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Attachmentcount" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Attachmentcount" class="form-control" />
-                <span asp-validation-for="Attachmentcount" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        label {
+            font-size: 1em;
+        }
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_report {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_report {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #report_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open children home page on body load
+        function loadReportsCreate() {
+            // Show the children home tab
+            document.getElementById('CreateReports').style.display = "block";
+            // Set button to active
+            document.getElementById("create_report").className += " active";
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("Create", "ReportsDB")';
+
+        }
+
+
+        function openEdit() {
+
+            document.getElementById("edit_report").onclick = function () {
+                //disable
+                this.disabled = true;
+
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_report").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("document_report").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+
+        function blockHover() {
+            document.getElementById("delete_report").style.backgroundColor = inherit;
+            document.getElementById("edit_report").style.backgroundColor = inherit;
+            document.getElementById("report_details").style.backgroundColor = inherit;
+
+        }
+
+
+
+    </script>
+</head>
+<body onload="loadReportsCreate()">
+
+    <h2>Report Index</h2>
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_report" class="tablinks" active onclick="openIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports</button>
+        <button id="create_report" class="tablinks" onclick="openOption(event, 'CreateReports')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="edit_report" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Report</button>
+        <button id="delete_report" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete Report</button>
+
     </div>
-</form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <!--    FIRST TAB - Home (list of children)    -->
+    <div id="ListReports" class="tabcontent">
+
+        </div>
+    </body>
+<div id="CreateReports" class="tabcontent">
+    <div class="container">
+        <div class="row col-lg-11">
+            <form asp-action="Create">
+                <fieldset style="font-size: 18px">
+                    <legend style="text-align:center; font-size: 25px;">Kid's Uni: General Report Form</legend>
+                    <div class="col-lg-12">
+
+                        </div>
+                    </fieldset>
+</form>
 </div>
+    </div>
+
+</div>
+    <h2>Create</h2>
+
+    <form asp-action="Create">
+        <div class="form-horizontal">
+            <h4>Report</h4>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Reporttype" class="col-md-2 control-label">Report Type</label>
+                <div class="col-md-10">
+                    <input asp-for="Reporttype" class="form-control" />
+                    <span asp-validation-for="Reporttype" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Authorfirst" class="col-md-2 control-label">Author First Name</label>
+                <div class="col-md-10">
+                    <input asp-for="Authorfirst" class="form-control" />
+                    <span asp-validation-for="Authorfirst" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Authorlast" class="col-md-2 control-label">Author Last Name</label>
+                <div class="col-md-10">
+                    <input asp-for="Authorlast" class="form-control" />
+                    <span asp-validation-for="Authorlast" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Authorid" class="col-md-2 control-label">Author ID</label>
+                <div class="col-md-10">
+                    <select asp-for="Authorid" class="form-control" asp-items="ViewBag.Authorid"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Childid" class="col-md-2 control-label">Child ID</label>
+                <div class="col-md-10">
+                    <select asp-for="Childid" class="form-control" asp-items="ViewBag.Childid"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Childfirst" class="col-md-2 control-label">Child's First Name</label>
+                <div class="col-md-10">
+                    <input asp-for="Childfirst" class="form-control" />
+                    <span asp-validation-for="Childfirst" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Childlast" class="col-md-2 control-label">Child's Last Name</label>
+                <div class="col-md-10">
+                    <input asp-for="Childlast" class="form-control" />
+                    <span asp-validation-for="Childlast" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Datecreated" class="col-md-2 control-label">Date Created</label>
+                <div class="col-md-10">
+                    <input asp-for="Datecreated" class="form-control" type="date" id="today" />
+                    <span asp-validation-for="Datecreated" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lastmodified" class="col-md-2 control-label">Last Modified</label>
+                <div class="col-md-10">
+                    <input asp-for="Lastmodified" class="form-control" type="date" />
+                    <span asp-validation-for="Lastmodified" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject" class="col-md-2 control-label">Subject of Report</label>
+                <div class="col-md-10">
+                    <input asp-for="Subject" class="form-control" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bodytext" class="col-md-2 control-label">Content of Report</label>
+                <div class="col-md-10">
+                    <textarea asp-for="Bodytext" class="form-control"> </textarea>
+                    <span asp-validation-for="Bodytext" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Filepath" class="col-md-2 control-label">File</label>
+                <div class="col-md-10">
+                    <input asp-for="Filepath" class="form-control" type="file" />
+                    <span asp-validation-for="Filepath" class="text-danger"></span>
+                </div>
+            </div>
+            <!--
+            <div class="form-group">
+                <label asp-for="Datesubmitted" class="col-md-2 control-label">Date Submitted</label>
+                <div class="col-md-10">
+                    <input asp-for="Datesubmitted" class="form-control" type="date" id="theDate" />
+                    <span asp-validation-for="Datesubmitted" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Datecompleted" class="col-md-2 control-label">Date Completed</label>
+                <div class="col-md-10">
+                    <input asp-for="Datecompleted" class="form-control" />
+                    <span asp-validation-for="Datecompleted" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Issubmitted" class="col-md-2 control-label">Is Submitted</label>
+                <div class="col-md-10">
+                    <input asp-for="Issubmitted" class="form-control" />
+                    <span asp-validation-for="Issubmitted" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Iscompleted" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Iscompleted" class="form-control" />
+                    <span asp-validation-for="Iscompleted" class="text-danger"></span>
+                </div>
+            </div>
+                -->
+            <div class="form-group">
+                <label asp-for="Taskid" class="col-md-2 control-label">Task ID</label>
+                <div class="col-md-10">
+                    <input asp-for="Taskid" class="form-control" />
+                    <span asp-validation-for="Taskid" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duedate" class="col-md-2 control-label">Due Date</label>
+                <div class="col-md-10">
+                    <input asp-for="Duedate" class="form-control" type="date" />
+                    <span asp-validation-for="Duedate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Attachmentpaths" class="col-md-2 control-label">Attachment Paths</label>
+                <div class="col-md-10">
+                    <input asp-for="Attachmentpaths" class="form-control" />
+                    <span asp-validation-for="Attachmentpaths" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Attachmentcount" class="col-md-2 control-label">Attachment Count</label>
+                <div class="col-md-10">
+                    <input asp-for="Attachmentcount" class="form-control" />
+                    <span asp-validation-for="Attachmentcount" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    <script>
+        Date.prototype.toDateInputValue = (function () {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0, 10);
+        });
+
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+        document.getElementById("theDate").value = today;
+
+
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+        document.getElementById("today").value = today;
+    </script>
 

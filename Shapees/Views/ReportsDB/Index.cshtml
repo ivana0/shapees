@@ -4,153 +4,416 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<head>
+    <style>
+        /* Other */
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Reporttype)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Authorfirst)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Authorlast)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Childfirst)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Childlast)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Datecreated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Lastmodified)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Subject)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Bodytext)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Filepath)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Datesubmitted)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Datecompleted)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Issubmitted)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Iscompleted)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Taskid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Duedate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Attachmentpaths)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Attachmentcount)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Child)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reporttype)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Authorfirst)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Authorlast)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Childfirst)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Childlast)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Datecreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lastmodified)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subject)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bodytext)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Filepath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Datesubmitted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Datecompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Issubmitted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Iscompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Taskid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duedate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Attachmentpaths)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Attachmentcount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Child.Childfirstname)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Reportid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Reportid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Reportid">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        label {
+            font-size: 1em;
+        }
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_report {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_report {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #report_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open children home page on body load
+        function loadReportsHome() {
+            // Show the children home tab
+            document.getElementById('ListReports').style.display = "block";
+            // Set button to active
+            document.getElementById("home_report").className += " active";
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("Create", "ReportsDB")';
+
+        }
+
+
+        function openEdit() {
+
+            document.getElementById("edit_report").onclick = function () {
+                //disable
+                this.disabled = true;
+
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_report").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("document_report").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+
+        function blockHover() {
+            document.getElementById("delete_report").style.backgroundColor = inherit;
+            document.getElementById("edit_report").style.backgroundColor = inherit;
+            document.getElementById("report_details").style.backgroundColor = inherit;
+
+        }
+
+
+
+    </script>
+</head>
+<body onload="loadReportsHome()">
+
+    <h2>Report Index</h2>
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_report" class="tablinks" active onclick="openOption(event, 'ListReports')"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports</button>
+        <button id="create_report" class="tablinks" onclick="openCreate()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="edit_report" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Report</button>
+        <button id="delete_report" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete Report</button>
+
+    </div>
+
+    <!--    FIRST TAB - Home (list of children)    -->
+    <div id="ListReports" class="tabcontent">
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Report Type
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subject)
+                    </th>        
+                   
+                    <th>
+                        Author's First &amp; Last Names
+                    </th>
+                   
+                    <th>
+                        Child's First &amp; Last Names
+                    </th>                   
+                    <th>
+                       Date Created
+                    </th>                                      
+                    <th>
+                        File
+                    </th>
+                    <th>
+                        Date Submitted
+                    </th>                                   
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Reporttype)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                      
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                       
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Authorfirst) @Html.DisplayFor(modelItem => item.Authorlast)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Childfirst)  @Html.DisplayFor(modelItem => item.Childlast)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datecreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Filepath)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datesubmitted)
+                        </td>
+                        
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Reportid">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Reportid">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Reportid">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    </body>
+
+
+
+
+<!--
+    
+ <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Reporttype)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Authorfirst)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Authorlast)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Childfirst)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Childlast)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datecreated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Lastmodified)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subject)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Bodytext)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Filepath)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datesubmitted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datecompleted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Issubmitted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Iscompleted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taskid)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Duedate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Attachmentpaths)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Attachmentcount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Author)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Child)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Reporttype)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Authorfirst)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Authorlast)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Childfirst)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Childlast)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datecreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lastmodified)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Bodytext)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Filepath)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datesubmitted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datecompleted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Issubmitted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Iscompleted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Taskid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Duedate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Attachmentpaths)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Attachmentcount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Child.Childfirstname)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Reportid">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Reportid">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Reportid">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>-->

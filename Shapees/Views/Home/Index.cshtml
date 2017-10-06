@@ -17,6 +17,8 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@model IEnumerable<Shapees.Models.DatabaseModel.Announcement>
+
 <head>
 
     <style>
@@ -119,27 +121,27 @@
             <h2>Quick Links</h2>
             <ul class="ds-btn">
                 <li>
-                    <a class="btn btn-lg btn-primary" href="http://dotstrap.com/">
+                    <a class="btn btn-lg btn-primary" href="/UserinfoDB/Create">
                         <i class="glyphicon glyphicon-user pull-left"></i><span>Users<br><small>Create a new User</small></span>
                     </a>
                 </li>
                 <li>
-                    <a class="btn btn-lg btn-success " href="http://dotstrap.com/">
+                    <a class="btn btn-lg btn-success " href="/MediaDB/Create">
                         <i class="glyphicon glyphicon-picture pull-left"></i><span>Media<br><small>Upload Media</small></span>
                     </a>
                 </li>
                 <li>
-                    <a class="btn btn-lg btn-danger" href="http://dotstrap.com/">
+                    <a class="btn btn-lg btn-danger" href="/TasksDb/Create">
                         <i class="glyphicon glyphicon-calendar pull-left"></i><span>Tasks<br><small>Set a New Task</small></span>
                     </a>
                 </li>
                 <li>
-                    <a class="btn btn-lg btn-warning" href="http://dotstrap.com/">
+                    <a class="btn btn-lg btn-warning" href="/UserinfoDB/Index">
                         <i class="glyphicon glyphicon-search pull-left"></i><span>Search<br><small>Search for a User</small></span>
                     </a>
                 </li>
                 <li>
-                    <a class="btn btn-lg btn-info" href="http://dotstrap.com/">
+                    <a class="btn btn-lg btn-info" href="/ReportsDB/Create">
                         <i class="glyphicon glyphicon-edit pull-left"></i><span>Documents<br><small>Create New Document</small></span>
                     </a>
                 </li>
@@ -207,10 +209,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                
                                 <tr>
                                     <td>Director</td>
-                                    <td>Remember to begin yearly reports!</td>
+                                    <td></td>
                                 </tr>
+                                
                             </tbody>
                         </table>
                     </div>

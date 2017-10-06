@@ -1,0 +1,122 @@
+@model Shapees.Models.DatabaseModel.Document
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Document</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Documenttype" class="col-md-2 control-label">Document Type</label>
+            <div class="col-md-10">
+                <input asp-for="Documenttype" class="form-control" />
+                <span asp-validation-for="Documenttype" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" type="text" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorfirst" class="col-md-2 control-label">Author First Name</label>
+            <div class="col-md-10">
+                <input asp-for="Authorfirst" class="form-control" />
+                <span asp-validation-for="Authorfirst" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorlast" class="col-md-2 control-label">Author Last Name</label>
+            <div class="col-md-10">
+                <input asp-for="Authorlast" class="form-control" />
+                <span asp-validation-for="Authorlast" class="text-danger"></span>
+            </div>
+        </div>
+       <div class="form-group">
+            <label asp-for="Authorid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Authorid" class ="form-control" asp-items="ViewBag.Authorid"></select>
+            </div>
+        </div>
+           
+        <div class="form-group">
+            <label asp-for="Childid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Childid" class ="form-control" asp-items="ViewBag.Childid"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childfirst" class="col-md-2 control-label">Child's First Name </label>
+            <div class="col-md-10">
+                <input asp-for="Childfirst" class="form-control" type="text"/>
+                <span asp-validation-for="Childfirst" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childlast" class="col-md-2 control-label">Child's Last Name</label>
+            <div class="col-md-10">
+                <input asp-for="Childlast" class="form-control" type="text" />
+                <span asp-validation-for="Childlast" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Dateuploaded" class="col-md-2 control-label">Date Uploaded</label>
+            <div class="col-md-10">
+                <input asp-for="Dateuploaded" class="form-control" type="date" id="todaysDate" />
+                <span asp-validation-for="Dateuploaded" class="text-danger"></span>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label asp-for="Filepath" class="col-md-2 control-label">File</label>
+            <div class="col-md-10">
+                <input asp-for="Filepath" class="form-control" type="file" />
+                <span asp-validation-for="Filepath" class="text-danger"></span>
+            </div>
+        </div>
+           
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script>
+    Date.prototype.toDateInputValue = (function () {
+        var local = new Date(this);
+        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0, 10);
+    });
+
+    var date = new Date();
+
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    var today = year + "-" + month + "-" + day;
+    document.getElementById("todaysDate").value = today;
+</script>

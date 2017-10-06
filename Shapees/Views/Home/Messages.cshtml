@@ -483,6 +483,43 @@
     }
 </style>
 
-<script>
+ <script type="text/javascript">
 
-</script>
+        function hideAdditionalForm() {
+            document.getElementById('employee1').style.display = "none";
+            document.getElementById('employee2').style.display = "none";
+            document.getElementById('educator1').style.display = "none";
+            document.getElementById('educator2').style.display = "none";
+        }
+     
+        function openEducatorAdditionalInfo() {
+            document.getElementById('educator2').style.display = "block";
+            document.getElementById('employee1').style.display = "block";
+            document.getElementById('employee2').style.display = "block";
+            
+
+        }
+       
+
+        function loadFormType() {
+            var userType = document.getElementById("educator");
+
+            switch (userType.options.selectedIndex) {
+                case 0:
+                    hideAdditionalForm();
+                    break;
+                case 1:
+                    openParentAdditionalInfo();
+                    break;
+                case 2:
+                    openEducatorAdditionalInfo();
+                    break;
+                case 3:
+                    openDirectorAdditionalInfo();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    </script>

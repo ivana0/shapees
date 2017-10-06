@@ -12,5 +12,8 @@ namespace Shapees.Models.DatabaseModel
         public string Description { get; set; }
         public int Isdisplayed { get; set; }
         public string Announcementfor { get; set; }
+
+        
+
     }
 }

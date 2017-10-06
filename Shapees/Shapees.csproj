@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\DocumentsDB\Create - Copy.cshtml" />
     <Content Remove="wwwroot/js\documents.js" />
   </ItemGroup>
 

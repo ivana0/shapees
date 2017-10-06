@@ -13,89 +13,89 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Authorfirst" class="col-md-2 control-label"></label>
+            <label asp-for="Authorfirst" class="col-md-2 control-label">Your First Name</label>
             <div class="col-md-10">
                 <input asp-for="Authorfirst" class="form-control" />
                 <span asp-validation-for="Authorfirst" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Authorlast" class="col-md-2 control-label"></label>
+            <label asp-for="Authorlast" class="col-md-2 control-label">Your Last Name</label>
             <div class="col-md-10">
                 <input asp-for="Authorlast" class="form-control" />
                 <span asp-validation-for="Authorlast" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Authorid" class="col-md-2 control-label"></label>
+            <label asp-for="Authorid" class="col-md-2 control-label">Author ID</label>
             <div class="col-md-10">
                 <select asp-for="Authorid" class ="form-control" asp-items="ViewBag.Authorid"></select>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Receiverfirst" class="col-md-2 control-label"></label>
+            <label asp-for="Receiverfirst" class="col-md-2 control-label">Receiver First Name</label>
             <div class="col-md-10">
                 <input asp-for="Receiverfirst" class="form-control" />
                 <span asp-validation-for="Receiverfirst" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Receiverlast" class="col-md-2 control-label"></label>
+            <label asp-for="Receiverlast" class="col-md-2 control-label">Receiver Last Name</label>
             <div class="col-md-10">
                 <input asp-for="Receiverlast" class="form-control" />
                 <span asp-validation-for="Receiverlast" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Receiverid" class="col-md-2 control-label"></label>
+            <label asp-for="Receiverid" class="col-md-2 control-label">Receiver ID</label>
             <div class="col-md-10">
                 <select asp-for="Receiverid" class ="form-control" asp-items="ViewBag.Receiverid"></select>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Datesent" class="col-md-2 control-label"></label>
+            <label asp-for="Datesent" class="col-md-2 control-label">Date Sent</label>
             <div class="col-md-10">
-                <input asp-for="Datesent" class="form-control" />
+                <input asp-for="Datesent" class="form-control" type="date" id="theDate" />
                 <span asp-validation-for="Datesent" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Datereceived" class="col-md-2 control-label"></label>
+            <label asp-for="Datereceived" class="col-md-2 control-label">Date received</label>
             <div class="col-md-10">
-                <input asp-for="Datereceived" class="form-control" />
+                <input asp-for="Datereceived" class="form-control" type="date" id="theDate" />
                 <span asp-validation-for="Datereceived" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Dateopened" class="col-md-2 control-label"></label>
+            <label asp-for="Dateopened" class="col-md-2 control-label">Date opened</label>
             <div class="col-md-10">
                 <input asp-for="Dateopened" class="form-control" />
                 <span asp-validation-for="Dateopened" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Isopened" class="col-md-2 control-label"></label>
+            <label asp-for="Isopened" class="col-md-2 control-label">Is Opened</label>
             <div class="col-md-10">
                 <input asp-for="Isopened" class="form-control" />
                 <span asp-validation-for="Isopened" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Isrepliedto" class="col-md-2 control-label"></label>
+            <label asp-for="Isrepliedto" class="col-md-2 control-label">Is Replied to</label>
             <div class="col-md-10">
                 <input asp-for="Isrepliedto" class="form-control" />
                 <span asp-validation-for="Isrepliedto" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Subject" class="col-md-2 control-label"></label>
+            <label asp-for="Subject" class="col-md-2 control-label">Subject of Message</label>
             <div class="col-md-10">
                 <input asp-for="Subject" class="form-control" />
                 <span asp-validation-for="Subject" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <label asp-for="Description" class="col-md-2 control-label">Description/Content</label>
             <div class="col-md-10">
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
@@ -112,4 +112,24 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<script>
+    Date.prototype.toDateInputValue = (function () {
+        var local = new Date(this);
+        local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+        return local.toJSON().slice(0, 10);
+    });
+
+    var date = new Date();
+
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    var today = year + "-" + month + "-" + day;
+    document.getElementById("theDate").value = today;
+</script>
+
 
