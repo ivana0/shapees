@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "targets": {
     ".NETCoreApp,Version=v1.1": {
       "bootstrap/3.3.7": {
@@ -11675,19 +11675,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\m8837112\\.nuget\\packages\\": {}
+    "C:\\Users\\Sandra\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "D:\\ProjectPres\\New\\shapees\\Shapees\\Shapees.csproj",
+      "projectUniqueName": "D:\\Github\\shapees\\Shapees\\Shapees.csproj",
       "projectName": "Shapees",
-      "projectPath": "D:\\ProjectPres\\New\\shapees\\Shapees\\Shapees.csproj",
-      "outputPath": "D:\\ProjectPres\\New\\shapees\\Shapees\\obj\\",
+      "projectPath": "D:\\Github\\shapees\\Shapees\\Shapees.csproj",
+      "packagesPath": "C:\\Users\\Sandra\\.nuget\\packages\\",
+      "outputPath": "D:\\Github\\shapees\\Shapees\\obj\\",
       "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Sandra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
       "originalTargetFrameworks": [
         "netcoreapp1.1"
       ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {}

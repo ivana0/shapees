@@ -19,10 +19,28 @@ namespace Shapees.Controllers.DatabaseModelControllers
         }
 
         // GET: RoomsDB
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string searchroom, string sortOrder)
         {
+            //sorting filters
+            ViewData["CurrentFilter"] = searchString;
 
-            return View(await _context.Room.ToListAsync());
+
+            var searchrooms = from c in _context.Room
+                                 select c;
+
+            //search users
+            if (!String.IsNullOrEmpty(searchString) && searchroom == "byroomname")
+            {
+                searchrooms = searchrooms.Where(s => s.Roomname.Contains(searchString));
+            }
+            else if (!String.IsNullOrEmpty(searchString) && searchroom == "byagegroup")
+            {
+                searchrooms = searchrooms.Where(s => s.Roomagegroup.Contains(searchString));
+
+            }
+
+
+            return View(await searchrooms.ToListAsync());
         }
         
         // GET: RoomsDB/Details/5

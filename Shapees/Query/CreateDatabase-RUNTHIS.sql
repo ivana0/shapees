@@ -113,7 +113,7 @@ CREATE TABLE [dbo].[userinfo]
 	[userid] INT IDENTITY(1,1) PRIMARY KEY, 
     [username] NCHAR(50) NOT NULL, 
     [email] NCHAR(100) NOT NULL, 
-    [pass] NCHAR(20) NOT NULL, 
+    [pass] NCHAR(64) NOT NULL,
     [usertype] INT NOT NULL, 
 	[usertypename] NCHAR(20) NULL,
     [lastlogin] DATETIME NULL, 
