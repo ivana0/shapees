@@ -7,6 +7,7 @@ D:\ProjectPres\New\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csprojResolve
 D:\ProjectPres\New\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
 D:\ProjectPres\New\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
 D:\ProjectPres\New\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb
+<<<<<<< HEAD
 C:\Users\Phil\Desktop\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.deps.json
 C:\Users\Phil\Desktop\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.json
 C:\Users\Phil\Desktop\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.dev.json
@@ -17,3 +18,15 @@ C:\Users\Phil\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.cs
 C:\Users\Phil\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
 C:\Users\Phil\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
 C:\Users\Phil\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb
+=======
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.deps.json
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.json
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.dev.json
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.dll
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.pdb
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\bin\Debug\netcoreapp1.1\MySql.Data.Entity.dll
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csprojResolveAssemblyReference.cache
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
+C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb
+>>>>>>> 686d1062ac526b2c9509cea21cca143348a9b9a8

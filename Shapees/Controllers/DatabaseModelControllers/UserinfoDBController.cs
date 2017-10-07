@@ -21,10 +21,50 @@ namespace Shapees.Controllers.DatabaseModelControllers
         }
 
         // GET: UserinfoDB
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string searchuser, string sortOrder)
         {
-            var masterContext = _context.Userinfo.Include(u => u.Room);
-            return View(await masterContext.ToListAsync());
+            //sorting filters
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_asc" : "";
+            ViewData["SurnameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "surname_asc" : "";
+            ViewData["TypeSortParm"] = String.IsNullOrEmpty(sortOrder) ? "type_asc" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            var searchusers = from u in _context.Userinfo.Include(u => u.Room)
+                              select u;
+
+            //search users
+            if (!String.IsNullOrEmpty(searchString) && searchuser == "byfirstlast")
+            {
+                string[] words = searchString.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string str in words)
+                {
+                    searchusers = searchusers.Where(s => s.Firstname.Contains(str) || s.Lastname.Contains(str));
+                }
+            }
+            else if (!String.IsNullOrEmpty(searchString) && searchuser == "bytype")
+            {
+                searchusers = searchusers.Where(s => s.Usertypename.Contains(searchString));
+
+            }
+
+            switch (sortOrder)
+            {
+                case "name_asc":
+                    searchusers = searchusers.OrderBy(s => s.Firstname);
+                    break;
+                case "surname_asc":
+                    searchusers = searchusers.OrderBy(s => s.Lastname);
+                    break;
+                case "type_asc":
+                    searchusers = searchusers.OrderBy(s => s.Usertypename);
+                    break;
+                default:
+                    searchusers = searchusers.OrderBy(s => s.Firstname);
+                    break;
+            }
+
+            //var masterContext = _context.Userinfo.Include(u => u.Room);
+            return View(await searchusers.ToListAsync());
         }
 
         // GET: UserinfoDB/Details/5

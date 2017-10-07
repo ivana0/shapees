@@ -1,54 +1,340 @@
-@model IEnumerable<Shapees.Models.DatabaseModel.Room>
+﻿@model IEnumerable<Shapees.Models.DatabaseModel.Room>
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/RoomsLayout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Roomname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Roomagegroup)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Info)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Roomname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Roomagegroup)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Info)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Roomid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Roomid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Roomid">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/ChildrensViewStyle.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--        START CSS        -->
+    <style>
+        /***********    TABS CSS       ***********/
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+
+        /***********    HR (LINE) CSS       ***********/
+        .hr.styleSeparator {
+            height: 10px;
+            border: 0;
+            box-shadow: 0 10px 10px -10px #8c8b8b inset;
+        }
+
+
+        /***********    SEARCH BAR CSS       ***********/
+        #searchbar {
+            width: 200px;
+            height: 48px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            float: right;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+            background-image: url(search.png);
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        #searchbar {
+            width: 100%;
+        }
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_room {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_room {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #room_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <!--        END CSS        -->
+    <!--        START SCRIPT        -->
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open children home page on body load
+        function loadRoomsHome() {
+            // Show the children home tab
+            document.getElementById('ListRooms').style.display = "block";
+            // Set button to active
+            document.getElementById("home_rooms").className += " active";
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("Index", "RoomsDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("Create", "RoomsDB")';
+
+        }
+
+        function openEdit() {
+
+            document.getElementById("edit_room").onclick = function () {
+                //disable
+                this.disabled = true;
+
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_room").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("room_details").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+
+        function blockHover() {
+            document.getElementById("delete_room").style.backgroundColor = inherit;
+            document.getElementById("edit_room").style.backgroundColor = inherit;
+            document.getElementById("room_details").style.backgroundColor = inherit;
+        }
+
+
+
+    </script>
+    <!--        END SCRIPT        -->
+</head>
+
+<body onload="loadRoomsHome()">
+    <h2>Rooms</h2>
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_rooms" class="tablinks" onclick="openOption(event, 'ListRooms')"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Search Rooms</button>
+        <button id="create_room" class="tablinks" onclick="openCreate()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Add Room</button>
+        <button id="edit_room" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Room</button>
+        <button id="delete_room" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete Room</button>
+        <button id="room_details" class="tablinks" onclick="openDetails()"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;Room Details</button>
+    </div>
+
+    <!--    FIRST TAB - Home (list of rooms)    -->
+    <div id="ListRooms" class="tabcontent">
+        <br />
+        <!--   START ROOM SEARCH BAR   -->
+        <div class="container" style="height: 50px; ">
+            <form asp-action="Index" method="get">
+                <div class="row" style="height: 50px; ">
+                    <div class="navbar" style="padding-top:15px;float:left;margin:0 auto; ">&emsp;Search rooms &emsp;</div>
+                    <div class="navbar" style="padding-top:10px;float:left;margin:0 auto; ">
+                        <div class="input-group" style="float:left;margin:0 auto;">
+                            <select id="searchroom" name="searchroom" class="form-control">
+                                <option value="byroomname">By room name</option>
+                                <option value="byagegroup">By room age group</option>
+                            </select><!-- /select-group -->
+                        </div>
+                    </div>
+                    <div class="col-lg-3" style="padding-top:10px; ">
+                        <div class="input-group">
+                            <input type="text" name="SearchString" value="@ViewData["currentFilter"]" class="form-control" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </div>
+                        </div><!--/input-group -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--   END ROOM SEARCH BAR   -->
+        <br />
+        <div class="container">
+            <a asp-action="Index"><span class="glyphicon glyphicon-user"></span>&ensp;Show all rooms</a>
+            <br />
+        </div>
+        <br />
+        <h4>Rooms List</h4>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Roomname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Roomagegroup)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Info)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Roomname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Roomagegroup)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Info)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Roomid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Roomid"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Roomid"><span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>&ensp;Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <nav aria-label="..."><ul class="pagination"></ul></nav>
+    </div>
+
+    <!--   END ROOM SEARCH BAR   -->
+    <!--    END FIRST TAB   -->
+    <!--    SECOND TAB - Create Room    -->
+    <div id="CreateRoom" class="tabcontent">
+
+    </div>
+    <!-- END Add Room Form and tab -->
+    <!--    3RD TAB - Edit Room    -->
+    <div id="EditRoom" class="tabcontent">
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    4TH TAB - Delete Room    -->
+    <div id="DeleteRoom" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    5TH TAB -  Room  Details  -->
+    <div id="RoomDetails" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+
+</body>
+

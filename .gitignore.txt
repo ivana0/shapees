@@ -1,0 +1,15 @@
+#.gitignore file
+#this file is to keep untracked files from committing
+#keep file in master
+
+#ignore the startup.cs file
+/Shapees/Startup.cs
+
+#ignore the debug files in /bin
+/Shapees/bin/Debug/
+
+#ignore the debug files in /obj
+/Shapees/obj/Debug/
+
+#ignore the .vs config folder
+.vs/config/

@@ -1,7 +1,11 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
+<<<<<<< HEAD
       "C:\\Users\\Phil\\.nuget\\packages"
+=======
+      "C:\\Users\\ivana\\.nuget\\packages"
+>>>>>>> 686d1062ac526b2c9509cea21cca143348a9b9a8
     ]
   }
 }
