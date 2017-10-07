@@ -13,21 +13,21 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Reporttype" class="col-md-2 control-label"></label>
+            <label asp-for="Reporttype" class="col-md-2 control-label">Report Type</label>
             <div class="col-md-10">
-                <input asp-for="Reporttype" class="form-control" />
+                <input asp-for="Reporttype" class="form-control" type="text" />
                 <span asp-validation-for="Reporttype" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Authorfirst" class="col-md-2 control-label"></label>
+            <label asp-for="Authorfirst" class="col-md-2 control-label">Your First Name</label>
             <div class="col-md-10">
                 <input asp-for="Authorfirst" class="form-control" />
                 <span asp-validation-for="Authorfirst" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Authorlast" class="col-md-2 control-label"></label>
+            <label asp-for="Authorlast" class="col-md-2 control-label">Your Last Name</label>
             <div class="col-md-10">
                 <input asp-for="Authorlast" class="form-control" />
                 <span asp-validation-for="Authorlast" class="text-danger"></span>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="Childfirst" class="col-md-2 control-label"></label>
+            <label asp-for="Childfirst" class="col-md-2 control-label">Child's First Name</label>
             <div class="col-md-10">
                 <input asp-for="Childfirst" class="form-control" />
                 <span asp-validation-for="Childfirst" class="text-danger"></span>
