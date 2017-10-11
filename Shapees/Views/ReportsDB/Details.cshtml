@@ -10,6 +10,17 @@
 <div>
     <h4>Report</h4>
     <hr />
+    @if (Model.Filepath != null)
+            {
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <img height="150" width="150" src="@ViewBag." /><br />
+            </div>
+        </div>
+                <br />
+    }
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Reporttype)

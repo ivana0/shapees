@@ -4,98 +4,301 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<head>
+    <style>
+        /* Other */
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
 
-<h2>Create</h2>
 
-<form asp-action="Create">
-    <div class="form-horizontal">
-        <h4>Media</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-            <label asp-for="Mediatype" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Mediatype" class="form-control" />
-                <span asp-validation-for="Mediatype" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Authorfirst" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Authorfirst" class="form-control" />
-                <span asp-validation-for="Authorfirst" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Authorlast" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Authorlast" class="form-control" />
-                <span asp-validation-for="Authorlast" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Authorid" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Authorid" class ="form-control" asp-items="ViewBag.Authorid"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Childid" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Childid" class ="form-control" asp-items="ViewBag.Childid"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Childfirst" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Childfirst" class="form-control" />
-                <span asp-validation-for="Childfirst" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Childlast" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Childlast" class="form-control" />
-                <span asp-validation-for="Childlast" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Dateuploaded" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Dateuploaded" class="form-control" />
-                <span asp-validation-for="Dateuploaded" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Title" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Description" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Filepath" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Filepath" class="form-control" />
-                <span asp-validation-for="Filepath" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        label {
+            font-size: 1em;
+        }
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_document {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_document {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #document_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <script>
+        function Visibility(upload_form) {
+            var x = document.getElementById("upload_form");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+
+
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open children home page on body load
+        function loadDocumentCreate() {
+            // Show the children home tab
+            document.getElementById('CreateDocument').style.display = "block";
+            // Set button to active
+            document.getElementById("create_document").className += " active";
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("Index", "DocumentsDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("Create", "DocumentsDB")';
+
+        }
+
+        function openReport() {
+            document.location = '@Url.Action("Create", "ReportsDB")';
+
+        }
+
+        function openEdit() {
+
+            document.getElementById("edit_document").onclick = function () {
+                //disable
+                this.disabled = true;
+
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_document").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("document_details").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+        @*
+        function blockHover() {
+            document.getElementById("delete_document").style.backgroundColor = inherit;
+            document.getElementById("edit_document").style.backgroundColor = inherit;
+            document.getElementById("document_details").style.backgroundColor = inherit;
+
+        }
+*@
+
+
+    </script>
+</head>
+<body onload="loadDocumentCreate(), Visibility()">
+    <h2>Upload Documents, Media and Reports</h2>
+
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_document" class="tablinks" active onclick="openIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Documents and Media</button>
+        <button id="create_document" class="tablinks" onclick="openOption(event, 'CreateDocument')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Upload Documents/Media</button>
+        <button id="create_report" class="tablinks" onclick="openReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="edit_document" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Documents</button>
+        <button id="delete_document" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete Documents</button>
+
     </div>
-</form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <!--    FIRST TAB - Home (list of children)    -->
+    <div id="ListDocuments" class="tabcontent">
 
+    </div>
+    <div id="CreateDocument" asp-action="Create" class="tabcontent">
+
+        <h2>Create</h2>
+
+        <form asp-action="Create">
+            <div class="form-horizontal">
+                <h4>Media</h4>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Mediatype" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Mediatype" class="form-control" />
+                        <span asp-validation-for="Mediatype" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Authorfirst" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Authorfirst" class="form-control" />
+                        <span asp-validation-for="Authorfirst" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Authorlast" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Authorlast" class="form-control" />
+                        <span asp-validation-for="Authorlast" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Authorid" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="Authorid" class="form-control" asp-items="ViewBag.Authorid"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Childid" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="Childid" class="form-control" asp-items="ViewBag.Childid"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Childfirst" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Childfirst" class="form-control" />
+                        <span asp-validation-for="Childfirst" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Childlast" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Childlast" class="form-control" />
+                        <span asp-validation-for="Childlast" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Dateuploaded" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Dateuploaded" class="form-control" />
+                        <span asp-validation-for="Dateuploaded" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Title" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Filepath" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Filepath" class="form-control" />
+                        <span asp-validation-for="Filepath" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+        </div>
