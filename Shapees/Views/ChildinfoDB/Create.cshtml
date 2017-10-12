@@ -32,10 +32,10 @@
             background: inherit;
         }
 
-            .btn.borderless.dropdown-toggle {
-                -webkit-box-shadow: none;
-                box-shadow: none;
-            }
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+             box-shadow: none;
+        }
 
         .rb {
             border-right: 1px solid #ccc;
@@ -89,27 +89,26 @@
             background-color: #f1f1f1;
         }
 
-            /* Style the buttons inside the tab */
-            div.tab button {
-                background-color: inherit;
-                float: left;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                padding: 14px 16px;
-                transition: 0.3s;
-            }
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
 
-                /* Change background color of buttons on hover */
-                div.tab button:hover {
-                    background-color: #ddd;
-                }
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
 
-
-                /* Create an active/current tablink class */
-                div.tab button.active {
-                    background-color: #ccc;
-                }
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
 
         /* Style the tab content */
         .tabcontent {
@@ -272,14 +271,14 @@
 
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <label asp-for="Inroom" class="control-label" style="font-weight:normal;">Assign room</label>
-                        <select asp-for="Inroom" class="form-control" id="roomin" name="roomin" style="width: 100%; max-width:none; "  required>
+                        <label asp-for="Roomid" class="control-label" style="font-weight:normal;">Assign room</label>
+                        <select asp-for="Roomid" class="form-control" id="roomid" name="roomid" style="width: 100%; max-width:none; "  required>
                             <option value="" hidden>Choose Room ...</option>
                             <option value="1">Room 1</option>
                             <option value="2">Room 2</option>
                             <option value="3">Room 3</option>
                         </select>
-                            <span asp-validation-for="Inroom" class="text-danger"></span>
+                            <span asp-validation-for="Roomid" class="text-danger"></span>
                         </div>
                     </div>
                 <br /><br />
