@@ -1,4 +1,4 @@
-@model Shapees.Models.DatabaseModel.Room
+﻿@model Shapees.Models.DatabaseModel.Room
 
 @{
     ViewData["Title"] = "Create";
@@ -234,49 +234,63 @@
     <div id="CreateRoom" class="tabcontent">
 
 
-        <h2>Create</h2>
+        <h2>Create Room</h2>
 
-        <form asp-action="Create">
-            <div class="form-horizontal">
-                <h4>Room</h4>
+        <form asp-action="Create" method="post" enctype="multipart/form-data" class="container">
+               
+            <br />
+            <h4>Room Information</h4>
+            <hr width="90%" />
                 <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Roomname" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Roomname" class="form-control" />
+                <div class="row">
+                    <div class="col-md-5">
+
+                        <label asp-for="Roomname" class="control-label" style="font-weight:normal;">Room Name</label>
+                        <input asp-for="Roomname" class="form-control" style="width: 100%; max-width:none; " placeholder="Room name"/>
                         <span asp-validation-for="Roomname" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Roomagegroup" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Roomagegroup" class="form-control" />
+            <br />
+                <div class="row">
+                    <div class="col-md-5">
+
+                        <label asp-for="Roomagegroup" class="control-label" style="font-weight:normal;">Room Age Group</label>
+                        <input asp-for="Roomagegroup" class="form-control" style="width: 100%; max-width:none; " placeholder="Room age group"/>
                         <span asp-validation-for="Roomagegroup" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Info" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Info" class="form-control" />
+            <br />
+                <div class="row">
+                    <div class="col-md-5">
+
+                        <label asp-for="Info" class="ccontrol-label" style="font-weight:normal;">Information About Room</label>
+                        <input asp-for="Info" class="form-control" style="width: 100%; max-width:none; " placeholder="Enter info about room..."/>
                         <span asp-validation-for="Info" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Description" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Description" class="form-control" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>
-        </form>
+            <br />
+                <div class="row">
 
+                    <div class="col-md-5">
+
+                        <label asp-for="Description" class="control-label" style="font-weight:normal;"></label>
+                            <input asp-for="Description" class="form-control" style="width: 100%; max-width:none; " placeholder="Description" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+            <br />
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <button style="width: 100%; max-width:none; " class="btn btn-gray" type="reset">Reset form</button>
+                       </div>
+                        <div class="col-md-2">
+
+                            <input type="submit" value="Create" class="btn btn-success" style="width: 100%; max-width:none; "  />
+                        </div>
+                    <br />
+                    </div>
+        </form>
+        <br />
         <div>
             <a asp-action="Index">Back to List</a>
         </div>
