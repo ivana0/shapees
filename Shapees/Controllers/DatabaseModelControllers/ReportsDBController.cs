@@ -50,7 +50,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: ReportsDB/Create
         public IActionResult Create()
         {
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Username");
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
             ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName");
             return View();
         }

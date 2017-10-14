@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shapees.Models.DatabaseModel;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Shapees.Controllers.DatabaseModelControllers
 {
@@ -48,8 +50,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: DocumentsDB/Create
         public IActionResult Create()
         {
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Email");
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname");
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName");
             return View();
         }
 
@@ -58,16 +60,53 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Documentid,Documenttype,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Dateuploaded,Title,Description,Filepath")] Document document)
+        public async Task<IActionResult> Create([Bind("Documentid,Documenttype,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Dateuploaded,Title,Description,Filepath")] Document document, IFormFile file)
         {
+            //get child info
+            var childdetails = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == document.Childid);
+            //get autorinfo
+            var authorinfo = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == document.Authorid);
+
+            //file handling
+            if (file == null || file.Length == 0)
+            {
+                document.Filepath = null;
+            }
+            else
+            {
+                //set filename based on child information
+                var filename = childdetails.Childfirstname.Trim() + childdetails.Childlastname.Trim() + childdetails.Childid.ToString() + file.FileName;
+                //save file path
+                document.Filepath = filename;
+                var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot/uploads/childportfolio/documents",
+                        filename);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+
             if (ModelState.IsValid)
             {
+                //set author info
+                document.Authorfirst = authorinfo.Firstname;
+                document.Authorlast = authorinfo.Lastname;
+
+                //set child info
+                document.Childfirst = childdetails.Childfirstname;
+                document.Childlast = childdetails.Childlastname;
+
+                //set upload date
+                document.Dateuploaded = DateTime.Today;
+
                 _context.Add(document);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Email", document.Authorid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname", document.Childid);
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Userid", document.Authorid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childid", document.Childid);
             return View(document);
         }
 

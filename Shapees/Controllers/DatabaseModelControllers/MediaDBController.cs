@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shapees.Models.DatabaseModel;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Shapees.Controllers.DatabaseModelControllers
 {
@@ -37,9 +39,34 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 .Include(m => m.Author)
                 .Include(m => m.Child)
                 .SingleOrDefaultAsync(m => m.Mediaid == id);
+
+
             if (media == null)
             {
                 return NotFound();
+            }
+
+
+            if (media.Filepath != null)
+            {
+                var filename = media.Filepath;
+                string path = FileStrem.GetFilePath("wwwroot/uploads/childportfolio/media/" + filename);
+                byte[] imagebyte = LoadImage.GetPictureData(path);
+                var base64 = Convert.ToBase64String(imagebyte);
+
+                if (media.Mediatype == "image")
+                {
+                    //set viewbag image source
+                    ViewBag.imagesrc = string.Format("data:image/png;base64,{0}", base64);
+                    //ViewBag.imagelegth = base64.Length;
+                }
+
+                if (media.Mediatype == "video")
+                {
+                    //set viewbag image source
+                    ViewBag.videosrc = string.Format("data:image/png;base64,{0}", base64);
+                }
+
             }
 
             return View(media);
@@ -48,8 +75,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: MediaDB/Create
         public IActionResult Create()
         {
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Email");
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname");
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName");
             return View();
         }
 
@@ -58,16 +85,53 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Mediaid,Mediatype,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Dateuploaded,Title,Description,Filepath")] Media media)
+        public async Task<IActionResult> Create([Bind("Mediaid,Mediatype,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Dateuploaded,Title,Description,Filepath")] Media media, IFormFile file)
         {
+            //get child info
+            var childdetails = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == media.Childid);
+            //get autorinfo
+            var authorinfo = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == media.Authorid);
+
+            //file handling
+            if (file == null || file.Length == 0)
+            {
+                media.Filepath = null;
+            }
+            else
+            {
+                //set filename based on child information
+                var filename = childdetails.Childfirstname.Trim() + childdetails.Childlastname.Trim() + childdetails.Childid.ToString() + file.FileName;
+                //save file path
+                media.Filepath = filename;
+                var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot/uploads/childportfolio/media",
+                        filename);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+
             if (ModelState.IsValid)
             {
+                //set author info
+                media.Authorfirst = authorinfo.Firstname;
+                media.Authorlast = authorinfo.Lastname;
+
+                //set child info
+                media.Childfirst = childdetails.Childfirstname;
+                media.Childlast = childdetails.Childlastname;
+
+                //set upload date
+                media.Dateuploaded = DateTime.Today;
+
                 _context.Add(media);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Email", media.Authorid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname", media.Childid);
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Userid", media.Authorid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childid", media.Childid);
             return View(media);
         }
 
@@ -161,5 +225,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
         {
             return _context.Media.Any(e => e.Mediaid == id);
         }
+
+        
     }
 }

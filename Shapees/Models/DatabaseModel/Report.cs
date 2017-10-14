@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shapees.Models.DatabaseModel
 {
@@ -18,7 +19,19 @@ namespace Shapees.Models.DatabaseModel
         public int Childid { get; set; }
         public string Childfirst { get; set; }
         public string Childlast { get; set; }
+        //created child's full name variable - not stored in DB
+        public string ChildFullName
+        {
+            get
+            {
+                return Childfirst + " " + Childlast;
+            }
+        }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Datecreated { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Lastmodified { get; set; }
         public string Title { get; set; }
         public string Subject { get; set; }

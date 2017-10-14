@@ -58,6 +58,7 @@
     <Folder Include="Upload\" />
     <Folder Include="wwwroot\uploads\childportfolio\media\" />
     <Folder Include="wwwroot\uploads\childportfolio\documents\" />
+    <Folder Include="wwwroot\uploads\childportfolio\media\" />
     <Folder Include="wwwroot\uploads\childportfolio\reports\" />
     <Folder Include="wwwroot\uploads\documents\" />
     <Folder Include="wwwroot\uploads\photos\" />

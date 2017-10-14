@@ -94,6 +94,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 var base64 = Convert.ToBase64String(imagebyte);
                 ViewBag.imagesrc = string.Format("data:image/png;base64,{0}", base64);
                 ViewBag.imagelegth = base64.Length;
+       
             }
             
 
