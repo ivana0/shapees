@@ -33,6 +33,14 @@ namespace Shapees.Models.DatabaseModel
         public string State { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
+        //created users's full name variable - not stored in DB
+        public string FullName
+        {
+            get
+            {
+                return Firstname + " " + Lastname;
+            }
+        }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? Dob { get; set; }

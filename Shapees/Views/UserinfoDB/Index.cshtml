@@ -334,12 +334,8 @@
                 <thead>
                     <tr>
                         <th>
-                            First Name
-                            <!-- @Html.DisplayNameFor(model => model.Firstname)-->
-                        </th>
-                        <th>
-                            Last Name
-                            <!-- @Html.DisplayNameFor(model => model.Lastname)-->
+                            Full Name
+                            <!-- @Html.DisplayNameFor(model => model.FullName)-->
                         </th>
                         <th>
                             Username
@@ -361,10 +357,7 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Firstname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Lastname)
+                                @Html.DisplayFor(modelItem => item.FullName)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Username)

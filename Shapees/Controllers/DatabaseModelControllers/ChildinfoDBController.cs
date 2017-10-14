@@ -87,9 +87,9 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: ChildinfoDB/Create
         public IActionResult Create()
         {
-            ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email");
-            ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email");
-            ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email");
+            ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
+            ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "FullName");
+            ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "FullName");
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid");
             return View();
         }
@@ -101,8 +101,15 @@ namespace Shapees.Controllers.DatabaseModelControllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Childid,Roomid,Inroom,Educatorfname,Educatorlname,Educatorid,Street,City,Postcode,State,Childfirstname,Childlastname,Dob,Currentage,Contacnumber1,Contacnumber2,Parent1,Parent1fname,Parent1lname,Parent2,Parent2fname,Parent2lname,Shortinfo,Specialneeds,Profileimage")] Childinfo childinfo)
         {
+            //get educator info to set first and last name
+            var educatorassigned = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == childinfo.Educatorid);
+
             if (ModelState.IsValid)
             {
+                //set educator's first and last name
+                childinfo.Educatorfname = educatorassigned.Firstname;
+                childinfo.Educatorlname = educatorassigned.Lastname;
+
                 //set room name for child
                 if (childinfo.Roomid == 1)
                     childinfo.Inroom = "Room 1";
@@ -119,9 +126,9 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             
 
-            ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Educatorid);
-            ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent1);
-            ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent2);
+            ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Userid", childinfo.Educatorid);
+            ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Userid", childinfo.Parent1);
+            ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Userid", childinfo.Parent2);
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", childinfo.Roomid);
             return View(childinfo);
         }

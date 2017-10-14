@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shapees.Models.DatabaseModel;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Shapees.Controllers.DatabaseModelControllers
 {
@@ -48,8 +50,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: ReportsDB/Create
         public IActionResult Create()
         {
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Email");
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname");
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Username");
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName");
             return View();
         }
 
@@ -58,16 +60,39 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Reportid,Reporttype,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Datecreated,Lastmodified,Title,Subject,Bodytext,Filepath,Datesubmitted,Datecompleted,Issubmitted,Iscompleted,Taskid,Duedate,Attachmentpaths,Attachmentcount")] Report report)
+        public async Task<IActionResult> Create([Bind("Reportid,Reporttype,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Datecreated,Lastmodified,Title,Subject,Bodytext,Filepath,Datesubmitted,Datecompleted,Issubmitted,Iscompleted,Taskid,Duedate,Attachmentpaths,Attachmentcount")] Report report, IFormFile file)
         {
+
+            //file handling
+            if (file == null || file.Length == 0)
+            {
+                report.Attachmentpaths = null;
+            }
+            else
+            {
+                //set filename
+                var filename = file.FileName;
+                //save file path
+                report.Attachmentpaths = filename;
+                var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot/uploads/reports/attachment",
+                        filename);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            }
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(report);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Email", report.Authorid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname", report.Childid);
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Userid", report.Authorid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childid", report.Childid);
             return View(report);
         }
 

@@ -20,11 +20,11 @@
             background: inherit;
         }
 
-            .btn.borderless.dropdown-toggle {
-                -webkit-box-shadow: none;
-                box-shadow: none;
-            }
-
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+           
         .rb {
             border-right: 1px solid #ccc;
         }
@@ -50,8 +50,8 @@
             background-color: #f1f1f1;
         }
 
-            /* Style the buttons inside the tab */
-            div.tab button {
+        /* Style the buttons inside the tab */
+        div.tab button {
                 background-color: inherit;
                 float: left;
                 border: none;
@@ -59,18 +59,18 @@
                 cursor: pointer;
                 padding: 14px 16px;
                 transition: 0.3s;
-            }
+        }
 
-                /* Change background color of buttons on hover */
-                div.tab button:hover {
-                    background-color: #ddd;
-                }
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
 
 
-                /* Create an active/current tablink class */
-                div.tab button.active {
-                    background-color: #ccc;
-                }
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
 
         /* Style the tab content */
         .tabcontent {
@@ -200,8 +200,6 @@
                         <div class="col-lg-12">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-
-
                             <!--Content of Report-->
 
                             <div class="form-group">
@@ -221,32 +219,6 @@
                             </div>
                             <br /><br /> <br />
 
-                            <div class="form-group">
-                                <label asp-for="Datecreated" class="col-md-2 control-label">Date Created</label>
-                                <div class="col-md-10">
-                                    <input asp-for="Datecreated" class="form-control" type="date" id="theDate" />
-                                    <span asp-validation-for="Datecreated" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <br /><br />
-
-                            <div class="form-group">
-                                <label asp-for="Datesubmitted" class="col-md-2 control-label">Date Submitted</label>
-                                <div class="col-md-10">
-                                    <input asp-for="Datesubmitted" class="form-control" type="date" id="theDate" />
-                                    <span asp-validation-for="Datesubmitted" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <br /><br />
-                            <div class="form-group">
-                                <label asp-for="Lastmodified" class="col-md-2 control-label">Last Modified</label>
-                                <div class="col-md-10">
-                                    <input asp-for="Lastmodified" class="form-control" type="date" />
-                                    <span asp-validation-for="Lastmodified" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <br /><br />
                             <div class="form-group">
                                 <label asp-for="Authorid" class="col-md-2 control-label">Author ID</label>
                                 <div class="col-md-10">
@@ -314,66 +286,19 @@
                                     <span asp-validation-for="Reporttype" class="text-danger"></span>
                                     <br />  <br />
                                 </div>
-                                <!--  <div class="col-md-10">
-                                <input asp-for="Reporttype" class="form-control" />
-                                <span asp-validation-for="Reporttype" class="text-danger"></span>
-                            </div>
-                              -->
 
                             </div>
                             <br />  <br /><br />  <br />
                             <div class="form-group">
-                                <label asp-for="Filepath" class="col-md-2 control-label">Upload Other Files/Media to your Report</label>
+                                <label class="col-md-2 control-label">Add image file(s) to your report</label>
                                 <div class="col-md-10">
-                                    <input asp-for="Filepath" class="form-control" type="file" />
-                                    <span asp-validation-for="Filepath" class="text-danger"></span>
+                                    <input accept="image/x-png,image/gif,image/jpeg" class="form-control" type="file" />
+                                    <span class="text-danger"></span>
                                 </div>
                             </div>
                             <br /><br /><br />
                             <br /><br /><br /> <br />
 
-                            <div class="form-group">
-                                <label asp-for="Attachmentpaths" class="col-md-2 control-label">Attachment Paths</label>
-                                <div class="col-md-10">
-                                    <input asp-for="Attachmentpaths" class="form-control" />
-                                    <span asp-validation-for="Attachmentpaths" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <br /><br />
-
-                            <div class="form-group">
-                                <label asp-for="Attachmentcount" class="col-md-2 control-label">Attachment Count</label>
-                                <div class="col-md-10">
-                                    <input asp-for="Attachmentcount" class="form-control" />
-                                    <span asp-validation-for="Attachmentcount" class="text-danger"></span>
-                                </div>
-                            </div>
-
-                            <br /> <br />
-                            <div class="form-group">
-                                <label asp-for="Datecompleted" class="col-md-2 control-label">Date Completed</label>
-                                <div class="col-md-10">
-                                    <input asp-for="Datecompleted" class="form-control" type="date" />
-                                    <span asp-validation-for="Datecompleted" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <br /> <br />
-                            <div class="form-group">
-                                <label asp-for="Issubmitted" class="col-md-2 control-label">Is Submitted</label>
-                                <div class="col-md-10">
-                                    <input asp-for="Issubmitted" class="form-control" />
-                                    <span asp-validation-for="Issubmitted" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <br /> <br />
-                            <div class="form-group">
-                                <label asp-for="Iscompleted" class="col-md-2 control-label"></label>
-                                <div class="col-md-10">
-                                    <input asp-for="Iscompleted" class="form-control" />
-                                    <span asp-validation-for="Iscompleted" class="text-danger"></span>
-                                </div>
-                            </div>
                             <br /> <br />
                             <div class="form-group">
                                 <label asp-for="Taskid" class="col-md-2 control-label">Task ID</label>

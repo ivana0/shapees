@@ -272,26 +272,17 @@
             <thead>
                 <tr>
                     <th>
-                        First Name
-                        <!-- @Html.DisplayNameFor(model => model.Childfirstname)-->
-                    </th>
-                    <th>
-                        Last Name
-                        <!-- @Html.DisplayNameFor(model => model.Childlastname)-->
+                        Full name
+                        <!-- @Html.DisplayNameFor(model => model.FullName)-->
                     </th>
                     <th>
                         In Room
                         <!-- @Html.DisplayNameFor(model => model.Inroom)-->
                     </th>
                     <th>
-                        Assigned Educator First Name
-                        <!-- @Html.DisplayNameFor(model => model.Educatorfname)-->
+                        Assigned Educator
+                        <!-- @Html.DisplayNameFor(model => model.EducatorFullName)-->
                     </th>
-                    <th>
-                        Assigned Educator Last Name
-                        <!-- @Html.DisplayNameFor(model => model.Educatorlname)-->
-                    </th>
-
                     <th></th>
                 </tr>
             </thead>
@@ -300,19 +291,13 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Childfirstname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Childlastname)
+                            @Html.DisplayFor(modelItem => item.FullName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Inroom)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Educatorfname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Educatorlname)
+                            @Html.DisplayFor(modelItem => item.EducatorFullName)
                         </td>
 
                         <td>
