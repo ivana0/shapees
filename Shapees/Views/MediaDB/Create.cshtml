@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
 }
 <head>
     <style>
@@ -81,32 +81,22 @@
         }
 
         /* Remove hover for disabled tab links */
-        #edit_document {
+        #edit_report {
             background-color: #f1f1f1;
             color: #D3D3D3;
         }
 
-        #delete_document {
+        #delete_report {
             background-color: #f1f1f1;
             color: #D3D3D3;
         }
 
-        #document_details {
+        #report_details {
             background-color: #f1f1f1;
             color: #D3D3D3;
         }
     </style>
     <script>
-        function Visibility(upload_form) {
-            var x = document.getElementById("upload_form");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-
-
 
         //open tab function
         function openOption(evt, optionName) {
@@ -130,89 +120,93 @@
             evt.currentTarget.className += " active";
 
         }
-        //open children home page on body load
-        function loadDocumentCreate() {
-            // Show the children home tab
-            document.getElementById('CreateDocument').style.display = "block";
+
+        //open documents&media home page on body load
+        function loadHome() {
+            // Show the list reports home tab
+            document.getElementById('CreateMedia').style.display = "block";
             // Set button to active
-            document.getElementById("create_document").className += " active";
+            document.getElementById("create_media").className += " active";
         }
 
         //redirect to action pages
-        function openIndex() {
-            document.location = '@Url.Action("Index", "DocumentsDB")';
-
-        }
-        function openCreate() {
-            document.location = '@Url.Action("Create", "DocumentsDB")';
-
-        }
-
-        function openReport() {
+        //open Create Report
+        function openCreateReport() {
             document.location = '@Url.Action("Create", "ReportsDB")';
 
         }
-
-        function openEdit() {
-
-            document.getElementById("edit_document").onclick = function () {
-                //disable
-                this.disabled = true;
-
-            }
+        //open Create Document
+        function openCreateDocument() {
+            document.location = '@Url.Action("Create", "DocumentsDB")';
 
         }
-        function openDelete() {
-            document.getElementById("delete_document").onclick = function () {
-                //disable
-                this.disabled = true;
-            }
+        //open Create Media
+        function openCreateMedia() {
+            document.location = '@Url.Action("Create", "MediaDB")';
 
         }
-        function openDetails() {
-            document.getElementById("document_details").onclick = function () {
-                //disable
-                this.disabled = true;
-            }
+        //open Reports Index - search reports
+        function openReportsIndex() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
 
         }
 
-        @*
-        function blockHover() {
-            document.getElementById("delete_document").style.backgroundColor = inherit;
-            document.getElementById("edit_document").style.backgroundColor = inherit;
-            document.getElementById("document_details").style.backgroundColor = inherit;
-
+        //function opens search Reports
+        function searchReports() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
         }
-*@
-
+        //function opens search Documents
+        function searchDocuments() {
+            document.location = '@Url.Action("Index", "DocumentsDB")';
+        }
+        //function opens search Media
+        function searchMedia() {
+            document.location = '@Url.Action("Index", "MediaDB")';
+        }
 
     </script>
 </head>
-<body onload="loadDocumentCreate(), Visibility()">
-    <h2>Upload Documents, Media and Reports</h2>
+<body onload="loadHome()">
 
+    <h2>Reports, Documents and Media</h2>
     <!--       START TABS        -->
     <div class="tab">
-        <button id="home_document" class="tablinks" active onclick="openIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Documents and Media</button>
-        <button id="create_document" class="tablinks" onclick="openOption(event, 'CreateDocument')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Upload Documents/Media</button>
-        <button id="create_report" class="tablinks" onclick="openReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
-        <button id="edit_document" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Documents</button>
-        <button id="delete_document" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete Documents</button>
-
+        <button id="home_page" class="tablinks" onclick="openReportsIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports, Documents and Media</button>
+        <button id="create_report" class="tablinks" onclick="openCreateReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="create_document" class="tablinks" onclick="openCreateDocument()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            &ensp;Upload Documents
+        </button>
+        <button id="create_media" class="tablinks" onclick="openCreateMedia()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+            &ensp;Upload Media
+        </button>
     </div>
 
-    <!--    FIRST TAB - Home (list of children)    -->
-    <div id="ListDocuments" class="tabcontent">
-
+    <!--    FIRST TAB - Home (list of reports)    -->
+    <div id="ListReports" class="tabcontent">
     </div>
-    <div id="CreateDocument" asp-action="Create" class="tabcontent">
+    <!--    END FIRST TAB   -->
+    <!--    2ND TAB - Create Reports    -->
+    <div id="CreateReport" class="tabcontent">
 
-        <h2>Create</h2>
+        <br /><br />
+    </div>
+    <!-- END Create Reports -->
+    <!--    3RD TAB - Create Document    -->
+    <div id="CreateDocument" class="tabcontent">
 
+        <br /><br />
+    </div>
+    <!-- END Create Documents -->
+    <!--    4TH TAB - Create Media    -->
+    <div id="CreateMedia" class="tabcontent">
+        <h3>Upload Media</h3>
         <form asp-action="Create">
             <div class="form-horizontal">
-                <h4>Media</h4>
+                <h4>Media Information</h4>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -301,4 +295,9 @@
         <div>
             <a asp-action="Index">Back to List</a>
         </div>
-        </div>
+
+
+        <br /><br />
+    </div>
+    <!-- END Create Media -->
+</body>

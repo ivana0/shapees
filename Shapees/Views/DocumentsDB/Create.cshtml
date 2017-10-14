@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
 }
 <head>
     <style>
@@ -81,32 +81,40 @@
         }
 
         /* Remove hover for disabled tab links */
-        #edit_document {
+        #edit_report {
             background-color: #f1f1f1;
             color: #D3D3D3;
         }
 
-        #delete_document {
+        #delete_report {
             background-color: #f1f1f1;
             color: #D3D3D3;
         }
 
-        #document_details {
+        #report_details {
             background-color: #f1f1f1;
             color: #D3D3D3;
         }
     </style>
     <script>
-        function Visibility(upload_form) {
-            var x = document.getElementById("upload_form");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
 
-        
+        Date.prototype.toDateInputValue = (function () {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0, 10);
+        });
+
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+        document.getElementById("todaysDate").value = today;
 
         //open tab function
         function openOption(evt, optionName) {
@@ -130,120 +138,113 @@
             evt.currentTarget.className += " active";
 
         }
-        //open children home page on body load
-        function loadDocumentCreate() {
-            // Show the children home tab
+
+        //open documents&media home page on body load
+        function loadHome() {
+            // Show the list reports home tab
             document.getElementById('CreateDocument').style.display = "block";
             // Set button to active
             document.getElementById("create_document").className += " active";
         }
 
         //redirect to action pages
-        function openIndex() {
-            document.location = '@Url.Action("Index", "DocumentsDB")';
-
-        }
-        function openCreate() {
-            document.location = '@Url.Action("Create", "DocumentsDB")';
-
-        }
-
-        function openReport() {
+        //open Create Report
+        function openCreateReport() {
             document.location = '@Url.Action("Create", "ReportsDB")';
 
         }
-
-        function openEdit() {
-
-            document.getElementById("edit_document").onclick = function () {
-                //disable
-                this.disabled = true;
-
-            }
+        //open Create Document
+        function openCreateDocument() {
+            document.location = '@Url.Action("Create", "DocumentsDB")';
 
         }
-        function openDelete() {
-            document.getElementById("delete_document").onclick = function () {
-                //disable
-                this.disabled = true;
-            }
+        //open Create Media
+        function openCreateMedia() {
+            document.location = '@Url.Action("Create", "MediaDB")';
 
         }
-        function openDetails() {
-            document.getElementById("document_details").onclick = function () {
-                //disable
-                this.disabled = true;
-            }
+        //open Reports Index - search reports
+        function openReportsIndex() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
 
         }
 
-        @*
-        function blockHover() {
-            document.getElementById("delete_document").style.backgroundColor = inherit;
-            document.getElementById("edit_document").style.backgroundColor = inherit;
-            document.getElementById("document_details").style.backgroundColor = inherit;
-
+        //function opens search Reports
+        function searchReports() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
         }
-*@
-
+        //function opens search Documents
+        function searchDocuments() {
+            document.location = '@Url.Action("Index", "DocumentsDB")';
+        }
+        //function opens search Media
+        function searchMedia() {
+            document.location = '@Url.Action("Index", "MediaDB")';
+        }
 
     </script>
 </head>
-<body onload="loadDocumentCreate(), Visibility()">
-    <h2>Upload Documents, Media and Reports</h2>
+<body onload="loadHome()">
 
+    <h2>Reports, Documents and Media</h2>
     <!--       START TABS        -->
     <div class="tab">
-        <button id="home_document" class="tablinks" active onclick="openIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Documents and Media</button>
-        <button id="create_document" class="tablinks" onclick="openOption(event, 'CreateDocument')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Upload Documents/Media</button>
-        <button id="create_report" class="tablinks" onclick="openReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
-        <button id="edit_document" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Documents</button>
-        <button id="delete_document" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete Documents</button>
-
+        <button id="home_page" class="tablinks" onclick="openReportsIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports, Documents and Media</button>
+        <button id="create_report" class="tablinks" onclick="openCreateReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="create_document" class="tablinks" onclick="openCreateDocument()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            &ensp;Upload Documents
+        </button>
+        <button id="create_media" class="tablinks" onclick="openCreateMedia()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+            &ensp;Upload Media
+        </button>
     </div>
 
-    <!--    FIRST TAB - Home (list of children)    -->
-    <div id="ListDocuments" class="tabcontent">
-
+    <!--    FIRST TAB - Home (list of reports)    -->
+    <div id="ListReports" class="tabcontent">
     </div>
-    <div id="CreateDocument" asp-action="Create" class="tabcontent">
-        <br />
-        <button onclick="Visibility()" class="btn btn-danger"> Upload Document</button>
-       <!-- <button onclick="Visibility()" class="btn btn-success">Upload Media</button>-->
-        <a href="/MediaDB/Create" class="btn btn-success">Upload Media</a>
-        <br />
-        <br />
+    <!--    END FIRST TAB   -->
+    <!--    2ND TAB - Create Reports    -->
+    <div id="CreateReport" class="tabcontent">
 
+        <br /><br />
+    </div>
+    <!-- END Create Reports -->
+    <!--    3RD TAB - Create Document    -->
+    <div id="CreateDocument" class="tabcontent">
         <div id="upload_form">
-            <h3>Upload Form</h3>
+            <h3>Upload Document</h3>
             <form asp-action="Create" method="post" enctype="multipart/form-data" class="container">
-                    <br />
-                    <h4>Document Information</h4>
-                    <hr width="90%" />
-                    <div class="row">
+                <br />
+                <h4>Document Information</h4>
+                <hr width="90%" />
+                <div class="row">
                     <div class="col-md-3 mb-3">
                         <label asp-for="Documenttype" class=" control-label">Document Type</label>
-                        <input asp-for="Documenttype" class="form-control" required/>
+                        <input asp-for="Documenttype" class="form-control" required />
                         <span asp-validation-for="Documenttype" class="text-danger"></span>
                     </div>
-                    </div>
-                    <br />
+                </div>
+                <br />
 
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label asp-for="Title" class=" control-label"></label>
-                            <input asp-for="Title" class="form-control" type="text" />
-                            <span asp-validation-for="Title" class="text-danger"></span>
-                            </div>
-                        </div>
-                    <br />
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label asp-for="Description" class="control-label"></label>
-                            <input asp-for="Description" class="form-control" />
-                            <span asp-validation-for="Description" class="text-danger"></span>
-                        </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Title" class=" control-label"></label>
+                        <input asp-for="Title" class="form-control" type="text" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
                 <br />
                 <div class="row">
                     <div class="col-md-3 mb-3">
@@ -253,106 +254,77 @@
 
                 </div>
                 <br />
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
 
-                            <label asp-for="Authorfirst" class="control-label">Author First Name</label>                            <input asp-for="Authorfirst" class="form-control" />
-                            <span asp-validation-for="Authorfirst" class="text-danger"></span>
-                    
-                        </div>
-                        <div class="col-md-3 mb-3">
+                        <label asp-for="Authorfirst" class="control-label">Author First Name</label>
+                        <input asp-for="Authorfirst" class="form-control" />
+                        <span asp-validation-for="Authorfirst" class="text-danger"></span>
 
-                            <label asp-for="Authorlast" class="control-label">Author Last Name</label>
-                            <input asp-for="Authorlast" class="form-control" />
-                            <span asp-validation-for="Authorlast" class="text-danger"></span>
-                        </div>
                     </div>
-                <br />              
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label asp-for="Childid" class="control-label">Child ID</label>
-                            <select asp-for="Childid" class="form-control" asp-items="ViewBag.Childid"></select>
-                        </div>
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Authorlast" class="control-label">Author Last Name</label>
+                        <input asp-for="Authorlast" class="form-control" />
+                        <span asp-validation-for="Authorlast" class="text-danger"></span>
                     </div>
+                </div>
                 <br />
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label asp-for="Childfirst" class="control-label">Child's First Name </label>
-                                <input asp-for="Childfirst" class="form-control" type="text" />
-                                <span asp-validation-for="Childfirst" class="text-danger"></span>
-                            </div>
-                        <div class="col-md-3 mb-3">
-                            <label asp-for="Childlast" class="control-label">Child's Last Name</label>
-                            <input asp-for="Childlast" class="form-control" type="text" />
-                            <span asp-validation-for="Childlast" class="text-danger"></span>
-
-                        </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Childid" class="control-label">Child ID</label>
+                        <select asp-for="Childid" class="form-control" asp-items="ViewBag.Childid"></select>
                     </div>
+                </div>
                 <br />
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-
-                            <label asp-for="Dateuploaded" class="control-label">Date Uploaded</label>
-                            <input asp-for="Dateuploaded" class="form-control" type="date" id="todaysDate" />
-                            <span asp-validation-for="Dateuploaded" class="text-danger"></span>
-                        </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Childfirst" class="control-label">Child's First Name </label>
+                        <input asp-for="Childfirst" class="form-control" type="text" />
+                        <span asp-validation-for="Childfirst" class="text-danger"></span>
                     </div>
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Childlast" class="control-label">Child's Last Name</label>
+                        <input asp-for="Childlast" class="form-control" type="text" />
+                        <span asp-validation-for="Childlast" class="text-danger"></span>
+
+                    </div>
+                </div>
                 <br />
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label asp-for="Filepath" class="control-label">File</label>
-                            <input asp-for="Filepath" class="form-control" type="file" />
-                            <span asp-validation-for="Filepath" class="text-danger"></span>
-                        </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+
+                        <label asp-for="Dateuploaded" class="control-label">Date Uploaded</label>
+                        <input asp-for="Dateuploaded" class="form-control" type="date" id="todaysDate" />
+                        <span asp-validation-for="Dateuploaded" class="text-danger"></span>
                     </div>
+                </div>
                 <br />
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-
-                            <input type="submit" value="Create" class="btn btn-success" />
-                            <button type="reset" value="reset" class="btn btn-danger">Reset Form </button>
-
-                        </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Filepath" class="control-label">File</label>
+                        <input asp-for="Filepath" class="form-control" type="file" />
+                        <span asp-validation-for="Filepath" class="text-danger"></span>
                     </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+
+                        <input type="submit" value="Create" class="btn btn-success" />
+                        <button type="reset" value="reset" class="btn btn-danger">Reset Form </button>
+
+                    </div>
+                </div>
             </form>
         </div>
-   <br />
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
-    </div>
-   
-    <!-- END Add document Form and tab -->
-    <!--    3RD TAB - Edit User    -->
-    <div id="EditDocument" asp-action="Edit" class="tabcontent">
 
         <br /><br />
     </div>
-    <!---->
-    <!--    4TH TAB - Delete document    -->
-    <div id="DeleteDocument" asp-action="Delete" class="tabcontent">
-
-
-        <br /><br />
+    <!-- END Create Documents -->
+    <!--    4TH TAB - Create Media    -->
+    <div id="CreateMedia" class="tabcontent">
     </div>
-    </>
+    <!-- END Create Media -->
 </body>
-        <script>
-            Date.prototype.toDateInputValue = (function () {
-                var local = new Date(this);
-                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-                return local.toJSON().slice(0, 10);
-            });
 
-            var date = new Date();
-
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-
-            if (month < 10) month = "0" + month;
-            if (day < 10) day = "0" + day;
-
-            var today = year + "-" + month + "-" + day;
-            document.getElementById("todaysDate").value = today;
-        </script>

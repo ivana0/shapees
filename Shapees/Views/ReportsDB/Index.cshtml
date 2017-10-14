@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
 }
 <head>
     <style>
@@ -20,10 +20,10 @@
             background: inherit;
         }
 
-            .btn.borderless.dropdown-toggle {
-                -webkit-box-shadow: none;
-                box-shadow: none;
-            }
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
 
         .rb {
             border-right: 1px solid #ccc;
@@ -50,27 +50,27 @@
             background-color: #f1f1f1;
         }
 
-            /* Style the buttons inside the tab */
-            div.tab button {
-                background-color: inherit;
-                float: left;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                padding: 14px 16px;
-                transition: 0.3s;
-            }
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
 
-                /* Change background color of buttons on hover */
-                div.tab button:hover {
-                    background-color: #ddd;
-                }
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
 
 
-                /* Create an active/current tablink class */
-                div.tab button.active {
-                    background-color: #ccc;
-                }
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
 
         /* Style the tab content */
         .tabcontent {
@@ -97,6 +97,7 @@
         }
     </style>
     <script>
+
         //open tab function
         function openOption(evt, optionName) {
             // Declare all variables
@@ -119,190 +120,220 @@
             evt.currentTarget.className += " active";
 
         }
-        //open children home page on body load
-        function loadReportsHome() {
-            // Show the children home tab
+
+        //open documents&media home page on body load
+        function loadHome() {
+            // Show the list reports home tab
             document.getElementById('ListReports').style.display = "block";
             // Set button to active
-            document.getElementById("home_report").className += " active";
+            document.getElementById("home_page").className += " active";
         }
 
         //redirect to action pages
-        function openIndex() {
-            document.location = '@Url.Action("Index", "ReportsDB")';
-
-        }
-        function openCreate() {
+        //open Create Report
+        function openCreateReport() {
             document.location = '@Url.Action("Create", "ReportsDB")';
 
         }
-        function openDocuments() {
+        //open Create Document
+        function openCreateDocument() {
+            document.location = '@Url.Action("Create", "DocumentsDB")';
+
+        }
+        //open Create Media
+        function openCreateMedia() {
+            document.location = '@Url.Action("Create", "MediaDB")';
+
+        }
+        //open Reports Index - search reports
+        function openReportsIndex() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
+
+        }
+
+        //function opens search Reports
+        function searchReports() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
+        }
+        //function opens search Documents
+        function searchDocuments() {
             document.location = '@Url.Action("Index", "DocumentsDB")';
-
         }
-
-        function openEdit() {
-
-            document.getElementById("edit_report").onclick = function () {
-                //disable
-                this.disabled = true;
-
-            }
-
+        //function opens search Media
+        function searchMedia() {
+            document.location = '@Url.Action("Index", "MediaDB")';
         }
-        function openDelete() {
-            document.getElementById("delete_report").onclick = function () {
-                //disable
-                this.disabled = true;
-            }
-
-        }
-        function openDetails() {
-            document.getElementById("document_report").onclick = function () {
-                //disable
-                this.disabled = true;
-            }
-
-        }
-
-
-        function blockHover() {
-            document.getElementById("delete_report").style.backgroundColor = inherit;
-            document.getElementById("edit_report").style.backgroundColor = inherit;
-            document.getElementById("report_details").style.backgroundColor = inherit;
-
-        }
-
-
 
     </script>
 </head>
-<body onload="loadReportsHome()">
+<body onload="loadHome()">
 
-    <h2>Report Index</h2>
+    <h2>Reports, Documents and Media</h2>
     <!--       START TABS        -->
     <div class="tab">
-        <button id="home_report" class="tablinks" active onclick="openDocuments()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Documents and Media</button>
-        <button id="home_report" class="tablinks" active onclick="openOption(event, 'ListReports')"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports</button>
-        <button id="create_report" class="tablinks" onclick="openCreate()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
-        <button id="edit_report" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Report</button>
-        <button id="delete_report" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete Report</button>
-
+        <button id="home_page" class="tablinks" onclick="openReportsIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports, Documents and Media</button>
+        <button id="create_report" class="tablinks" onclick="openCreateReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="create_document" class="tablinks" onclick="openCreateDocument()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            &ensp;Upload Documents
+        </button>
+        <button id="create_media" class="tablinks" onclick="openCreateMedia()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+            &ensp;Upload Media
+        </button>
     </div>
 
-    <!--    FIRST TAB - Home (list of children)    -->
+    <!--    FIRST TAB - Home (list of reports)    -->
     <div id="ListReports" class="tabcontent">
-        <div class="container" style="height: 50px; ">
-            <form asp-action="Index" method="get">
-                <div class="row" style="height: 50px; ">
-                    <div class="navbar" style="padding-top:15px;float:left;margin:0 auto; ">&emsp;Search reports&emsp;</div>
-                    <div class="navbar" style="padding-top:10px;float:left;margin:0 auto; ">
-                        <div class="input-group" style="float:left;margin:0 auto;">
-                            <select id="searchuser" name="searchuser" class="form-control">
-                                <option value="byfirstlast">By first and/or last name</option>
-                                <option value="bytype">By type (Parent/Educator/Director)</option>
-                            </select><!-- /select-group -->
-                        </div>
-                    </div>
-                    <div class="col-lg-3" style="padding-top:10px; ">
-                        <div class="input-group">
-                            <input type="text" name="SearchString" value="@ViewData["currentFilter"]" class="form-control" placeholder="Search">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </div>
-                        </div><!--/input-group -->
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!--   END USER SEARCH BAR   -->
-        <!--    END FIRST TAB   -->
-        <br />
         <div class="container">
-            <a asp-action="Index"><span class="glyphicon glyphicon-user"></span>&ensp;Show all users</a>
-            <p>
-                Order by:&ensp;
-                <a asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">First Name</a>&ensp; |
-                <a asp-route-sortOrder="@ViewData["LastnameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Last Name</a>&ensp; |
-                <a asp-route-sortOrder="@ViewData["TypeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">User Type</a>
-            </p>
+            <br />
+            <span class="h4">Search:</span>
+            <div class="btn-group" role="group" aria-label="...">
+                <button onclick="searchReports()" type="button" class="btn btn-default active">Reports</button>
+                <button onclick="searchDocuments()" type="button" class="btn btn-default">Documents</button>
+                <button onclick="searchMedia()" type="button" class="btn btn-default">Media</button>
+            </div>
+            <br />
             <br />
         </div>
-        <p>
-            <a asp-action="Create">Create New</a>
-        </p>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        Report Type
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Title)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Subject)
-                    </th>        
-                   
-                    <th>
-                        Author's First &amp; Last Names
-                    </th>
-                   
-                    <th>
-                        Child's First &amp; Last Names
-                    </th>                   
-                                                        
-                    <th>
-                        File
-                    </th>
-                    <th>
-                        Date Submitted
-                    </th>                                   
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Reporttype)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                      
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Subject)
-                        </td>
-                       
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Authorfirst) @Html.DisplayFor(modelItem => item.Authorlast)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Childfirst)  @Html.DisplayFor(modelItem => item.Childlast)
+        <div id="list_reports">
+            <div class="container" style="height: 50px; ">
+                <form asp-action="Index" method="get">
+                    <div class="row" style="height: 50px; ">
+                        <div class="navbar" style="padding-top:15px;float:left;margin:0 auto; ">&emsp;Search reports&emsp;</div>
+                        <div class="navbar" style="padding-top:10px;float:left;margin:0 auto; ">
+                            <div class="input-group" style="float:left;margin:0 auto;">
+                                <select id="searchuser" name="searchuser" class="form-control">
+                                    <option value="byfirstlast">By first and/or last name</option>
+                                    <option value="bytype">By type (Parent/Educator/Director)</option>
+                                </select><!-- /select-group -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3" style="padding-top:10px; ">
+                            <div class="input-group">
+                                <input type="text" name="SearchString" value="@ViewData["currentFilter"]" class="form-control" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div><!--/input-group -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--   END REPORTS SEARCH BAR   -->
 
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Filepath)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Datesubmitted)
-                        </td>
-                        
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Reportid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Reportid"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Reportid"><span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>&ensp;Delete</a>
-                        </td>
+            <br />
+            <div class="container">
+                <a asp-action="Index"><span class="glyphicon glyphicon-user"></span>&ensp;Show all users</a>
+                <p>
+                    Order by:&ensp;
+                    <a asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">First Name</a>&ensp; |
+                    <a asp-route-sortOrder="@ViewData["LastnameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Last Name</a>&ensp; |
+                    <a asp-route-sortOrder="@ViewData["TypeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">User Type</a>
+                </p>
+                <br />
+            </div>
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Report Type
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject)
+                        </th>
+
+                        <th>
+                            Author's First &amp; Last Names
+                        </th>
+
+                        <th>
+                            Child's First &amp; Last Names
+                        </th>
+
+                        <th>
+                            File
+                        </th>
+                        <th>
+                            Date Submitted
+                        </th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Reporttype)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Authorfirst) @Html.DisplayFor(modelItem => item.Authorlast)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Childfirst)  @Html.DisplayFor(modelItem => item.Childlast)
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Filepath)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Datesubmitted)
+                            </td>
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Reportid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Reportid"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Reportid"><span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>&ensp;Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-    </body>
+        <div id="list_documents"></div>
+        <div id="list_media"></div>
+    </div>
+    <!--    END FIRST TAB   -->
+    <!--    2ND TAB - Create Reports    -->
+    <div id="CreateReport" class="tabcontent">
+
+    <br /><br />
+    </div>
+    <!-- END Create Reports -->
+    <!--    3RD TAB - Create Document    -->
+    <div id="CreateDocument" class="tabcontent">
+
+    <br /><br />
+    </div>
+    <!-- END Create Documents -->
+    <!--    4TH TAB - Create Media    -->
+    <div id="CreateMedia" class="tabcontent">
+
+
+    <br /><br />
+    </div>
+    <!-- END Create Media -->
+</body>
+
 
 
 

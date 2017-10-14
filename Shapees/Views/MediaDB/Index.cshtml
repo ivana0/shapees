@@ -2,95 +2,316 @@
 
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
 }
+<head>
+    <style>
+        /* Other */
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Mediatype)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Authorfirst)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Authorlast)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Childfirst)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Childlast)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Dateuploaded)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Filepath)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Child)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mediatype)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Authorfirst)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Authorlast)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Childfirst)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Childlast)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dateuploaded)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Filepath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Child.Childfirstname)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Mediaid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Mediaid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Mediaid">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        label {
+            font-size: 1em;
+        }
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_report {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_report {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #report_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <script>
+
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+
+        //open documents&media home page on body load
+        function loadHome() {
+            // Show the list reports home tab
+            document.getElementById('ListReports').style.display = "block";
+            // Set button to active
+            document.getElementById("home_page").className += " active";
+        }
+
+        //redirect to action pages
+        //open Create Report
+        function openCreateReport() {
+            document.location = '@Url.Action("Create", "ReportsDB")';
+
+        }
+        //open Create Document
+        function openCreateDocument() {
+            document.location = '@Url.Action("Create", "DocumentsDB")';
+
+        }
+        //open Create Media
+        function openCreateMedia() {
+            document.location = '@Url.Action("Create", "MediaDB")';
+
+        }
+        //open Reports Index - search reports
+        function openReportsIndex() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
+
+        }
+
+        //function opens search Reports
+        function searchReports() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
+        }
+        //function opens search Documents
+        function searchDocuments() {
+            document.location = '@Url.Action("Index", "DocumentsDB")';
+        }
+        //function opens search Media
+        function searchMedia() {
+            document.location = '@Url.Action("Index", "MediaDB")';
+        }
+
+    </script>
+</head>
+<body onload="loadHome()">
+
+    <h2>Reports, Documents and Media</h2>
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_page" class="tablinks" onclick="openReportsIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports, Documents and Media</button>
+        <button id="create_report" class="tablinks" onclick="openCreateReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="create_document" class="tablinks" onclick="openCreateDocument()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            &ensp;Upload Documents
+        </button>
+        <button id="create_media" class="tablinks" onclick="openCreateMedia()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+            &ensp;Upload Media
+        </button>
+    </div>
+
+    <!--    FIRST TAB - Home (list of reports)    -->
+    <div id="ListReports" class="tabcontent">
+        <div class="container">
+            <br />
+            <span class="h4">Search:</span>
+            <div class="btn-group" role="group" aria-label="...">
+                <button onclick="searchReports()" type="button" class="btn btn-default">Reports</button>
+                <button onclick="searchDocuments()" type="button" class="btn btn-default">Documents</button>
+                <button onclick="searchMedia()" type="button" class="btn btn-default active">Media</button>
+            </div>
+            <br />
+            <br />
+        </div>
+        <div id="list_reports"></div>
+        <div id="list_documents"></div>
+        <div id="list_media">
+
+            <h2>Index</h2>
+
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Mediatype)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Authorfirst)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Authorlast)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Childfirst)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Childlast)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Dateuploaded)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Filepath)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Author)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Child)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mediatype)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Authorfirst)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Authorlast)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Childfirst)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Childlast)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Dateuploaded)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Filepath)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Author.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Child.Childfirstname)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Mediaid">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Mediaid">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Mediaid">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--    END FIRST TAB   -->
+    <!--    2ND TAB - Create Reports    -->
+    <div id="CreateReport" class="tabcontent">
+
+        <br /><br />
+    </div>
+    <!-- END Create Reports -->
+    <!--    3RD TAB - Create Document    -->
+    <div id="CreateDocument" class="tabcontent">
+
+        <br /><br />
+    </div>
+    <!-- END Create Documents -->
+    <!--    4TH TAB - Create Media    -->
+    <div id="CreateMedia" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+    <!-- END Create Media -->
+</body>
