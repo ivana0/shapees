@@ -172,11 +172,15 @@
     <!--       START TABS        -->
     <div class="tab">
         <button id="home_page" class="tablinks" onclick="openReportsIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports, Documents and Media</button>
-        <button id="create_report" class="tablinks" onclick="openCreateReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="create_report" class="tablinks" onclick="openCreateReport()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-list-alt"></span>
+            &ensp;Create Report
+        </button>
         <button id="create_document" class="tablinks" onclick="openCreateDocument()">
             <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-            &ensp;Upload Documents
+            &ensp;Upload Document
         </button>
         <button id="create_media" class="tablinks" onclick="openCreateMedia()">
             <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
@@ -279,9 +283,10 @@
                                 <div class="col-lg-10">
                                     <br />
                                     <input asp-for="Reporttype" type="radio" name="reportType" value="Half Yearly Report"> Half Yearly Report <br />
-                                    <input asp-for="Reporttype" type="radio" name="reportType" value="Yearly Report"> Yearly Report  <br />
-                                    <input asp-for="Reporttype" type="radio" name="reportType" value="Other Report"> Other Report <br />
-                                    <input asp-for="Reporttype" type="radio" name="reportType" value="Portfolio"> Portfolio <br />
+                                    <input asp-for="Reporttype" type="radio" name="reportType" value="Annual Report"> Annual Report  <br />
+                                    <input asp-for="Reporttype" type="radio" name="reportType" value="Observation Report"> Observation Report <br />
+                                    <input asp-for="Reporttype" type="radio" name="reportType" value="Follow-up Observation Report"> Follow-up observation Report<br />
+                                    <input asp-for="Reporttype" type="radio" name="reportType" value="Interest Web Report"> Interest Web Report<br />
                                     <input asp-for="Reporttype" type="radio" name="reportType" value="Other"> Other <br />
                                     <span asp-validation-for="Reporttype" class="text-danger"></span>
                                     <br />  <br />
@@ -327,7 +332,7 @@
                 </form>
 
                 <div>
-                    <a asp-action="Index">Back to List</a>
+                    &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to List</a>
                 </div>
             </div>
         </div>

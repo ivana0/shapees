@@ -46,9 +46,10 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 return NotFound();
             }
 
-
+            //if uploaded file path exists
             if (media.Filepath != null)
             {
+                //load file and save it in viewbag
                 var filename = media.Filepath;
                 string path = FileStrem.GetFilePath("wwwroot/uploads/childportfolio/media/" + filename);
                 byte[] imagebyte = LoadImage.GetPictureData(path);
@@ -217,8 +218,73 @@ namespace Shapees.Controllers.DatabaseModelControllers
         {
             var media = await _context.Media.SingleOrDefaultAsync(m => m.Mediaid == id);
             _context.Media.Remove(media);
+
+            var filename = media.Filepath;
+
+            //check if filepath exists
+            if (filename == string.Empty)
+                return Content("File does not exist.");
+
+            //get full file path
+            var path = Path.Combine(
+                           Directory.GetCurrentDirectory(),
+                           "wwwroot/uploads/childportfolio/media/", filename);
+
+            //if path exists, delete file
+            if (path != null || path != string.Empty)
+            {
+                if ((System.IO.File.Exists(path)))
+                {
+                    System.IO.File.Delete(path);
+                }
+
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        //Reference: https://www.codeproject.com/Articles/1203408/Upload-Download-Files-in-ASP-NET-Core
+        //Function downloads file based on filename
+        public async Task<IActionResult> Download(string filename)
+        {
+            //check if filename exists
+            if (filename == null)
+                return Content("File does not exist.");
+
+            //get full file path
+            var path = Path.Combine(
+                           Directory.GetCurrentDirectory(),
+                           "wwwroot/uploads/childportfolio/media/", filename);
+
+            //open file in new memory stream
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+
+            //get file extension
+            var extIndex = filename.LastIndexOf('.');
+            string ext = filename.Substring(extIndex, filename.Length - extIndex);
+            ext = ext.Trim();
+
+            //return file
+            return File(memory, GetMimeType(filename, ext), filename + ext);
+        }
+
+
+        //Function returns mime type of the file
+        private string GetMimeType(string fileName, string ext)
+        {
+            string mimeType = "application/unknown";
+
+            Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
+            if (regKey != null && regKey.GetValue("Content Type") != null)
+                mimeType = regKey.GetValue("Content Type").ToString();
+
+            return mimeType;
         }
 
         private bool MediaExists(int id)

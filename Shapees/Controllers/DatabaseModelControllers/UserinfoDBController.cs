@@ -47,6 +47,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             }
 
+            //order by switch
             switch (sortOrder)
             {
                 case "name_asc":

@@ -50,7 +50,11 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: DocumentsDB/Create
         public IActionResult Create()
         {
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
+            //get educators and directors list only for selection
+            var authors = _context.Userinfo.Where(e => e.Usertype != 1);
+
+
+            ViewData["Authorid"] = new SelectList(authors, "Userid", "FullName");
             ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName");
             return View();
         }
@@ -165,7 +169,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             return View(document);
         }
 
-        // GET: DocumentsDB/Delete/5
+        // GET: DocumentsDB/Delete/
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -185,16 +189,82 @@ namespace Shapees.Controllers.DatabaseModelControllers
             return View(document);
         }
 
-        // POST: DocumentsDB/Delete/5
+        // POST: DocumentsDB/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var document = await _context.Document.SingleOrDefaultAsync(m => m.Documentid == id);
             _context.Document.Remove(document);
+
+
+            var filename = document.Filepath;
+
+            //check if filepath exists
+            if (filename == string.Empty)
+                return Content("File does not exist.");
+
+            //get full file path
+            var path = Path.Combine(
+                           Directory.GetCurrentDirectory(),
+                           "wwwroot/uploads/childportfolio/documents/", filename);
+
+            //if path exists, delete file
+            if (path != null || path != string.Empty)
+            {
+                if ((System.IO.File.Exists(path)))
+                {
+                    System.IO.File.Delete(path);
+                }
+
+            }
+
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        //Reference: https://www.codeproject.com/Articles/1203408/Upload-Download-Files-in-ASP-NET-Core
+        //Function downloads file based on filename
+        public async Task<IActionResult> Download(string filename)
+        {
+            //check if filename exists
+            if (filename == null)
+                return Content("File does not exist.");
+
+            //get full file path
+            var path = Path.Combine(
+                           Directory.GetCurrentDirectory(),
+                           "wwwroot/uploads/childportfolio/documents/", filename);
+
+            //open file in new memory stream
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+
+            //get file extension
+            var extIndex = filename.LastIndexOf('.');
+            string ext = filename.Substring(extIndex, filename.Length - extIndex);
+            ext = ext.Trim();
+
+            //return file
+            return File(memory, GetMimeType(filename, ext), filename + ext);
+        }
+
+        //Function returns mime type of the file
+        private string GetMimeType(string fileName, string ext)
+        {
+            string mimeType = "application/unknown";
+
+            Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
+            if (regKey != null && regKey.GetValue("Content Type") != null)
+                mimeType = regKey.GetValue("Content Type").ToString();
+
+            return mimeType;
+        }
+
 
         private bool DocumentExists(int id)
         {

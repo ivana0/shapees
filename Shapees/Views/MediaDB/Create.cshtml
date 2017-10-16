@@ -172,11 +172,15 @@
     <!--       START TABS        -->
     <div class="tab">
         <button id="home_page" class="tablinks" onclick="openReportsIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports, Documents and Media</button>
-        <button id="create_report" class="tablinks" onclick="openCreateReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="create_report" class="tablinks" onclick="openCreateReport()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-list-alt"></span>
+            &ensp;Create Report
+        </button>
         <button id="create_document" class="tablinks" onclick="openCreateDocument()">
             <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-            &ensp;Upload Documents
+            &ensp;Upload Document
         </button>
         <button id="create_media" class="tablinks" onclick="openCreateMedia()">
             <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
@@ -204,68 +208,78 @@
     <!--    4TH TAB - Create Media    -->
     <div id="CreateMedia" class="tabcontent">
         <h3>Upload Media</h3>
+        <br />
         <form asp-action="Create"  method="post" enctype="multipart/form-data">
             <div class="form-horizontal">
                 <h4>Media Information</h4>
                 <hr />
+                <!-- Select image or video file -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label"> Upload media file: </label>
+                    <label class="col-md-2 control-label" style="font-weight:normal;"> Upload media file: </label>
                     <div class="col-md-10">
                         <input type="file" accept="image/*,video/*" name="file" />
                     </div>
                 </div>
                 <br />
-                
+                <!-- Media Type -->
                 <div class="form-group">
-                    <label asp-for="Mediatype" class="col-md-2 control-label">Media type</label>
+                    <label asp-for="Mediatype" class="col-md-2 control-label" style="font-weight:normal;">Media type</label>
                     <div class="col-md-2">
                         <select asp-for="Mediatype" class="form-control" id="mediatype" name="mediatype" style="width: 100%; max-width:none; " required>
                             <option value="" hidden>Choose type ...</option>
-                            <option value="image">Image</option>
-                            <option value="video">Video</option>
+                            <option value="Image">Image</option>
+                            <option value="Video">Video</option>
                         </select>
                     </div>
                 </div>
+                <!-- Media Title -->
                 <div class="form-group">
-                    <label asp-for="Authorid" class="col-md-2 control-label"></label>
+                    <label asp-for="Title" class="col-md-2 control-label" style="font-weight:normal;"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- Media Short Description -->
+                <div class="form-group">
+                    <label asp-for="Description" class="col-md-2 control-label" style="font-weight:normal;"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- Author of uploaded document or person that uploaded media - select list from database(educator or director users) -->
+                <div class="form-group">
+                    <label asp-for="Authorid" class="col-md-2 control-label" style="font-weight:normal;">Author</label>
                     <div class="col-md-10">
                         <select asp-for="Authorid" class="form-control" asp-items="ViewBag.Authorid" required>
                             <option value="" hidden>Select Author ...</option>
                         </select>
                     </div>
                 </div>
+                <!-- Child that media file is related to (goes to child's portfolio) -->
                 <div class="form-group">
-                    <label asp-for="Childid" class="col-md-2 control-label"></label>
+                    <label asp-for="Childid" class="col-md-2 control-label" style="font-weight:normal;">Child</label>
                     <div class="col-md-10">
                         <select asp-for="Childid" class="form-control" asp-items="ViewBag.Childid" required>
                             <option value="" hidden>Select Child ...</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Title" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Title" class="form-control" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Description" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Description" class="form-control" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                </div>
+                <br />
+                <br />
+                <!-- Form buttons: Reset & Submit -->
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
+                        <button type="reset" value="Reset" class="btn btn-danger">Reset Form </button>
+                        <input type="submit" value="Upload Media" class="btn btn-success" />
                     </div>
                 </div>
             </div>
         </form>
 
         <div>
-            <a asp-action="Index">Back to List</a>
+            &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Media List</a>
         </div>
 
 

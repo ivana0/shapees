@@ -20,10 +20,10 @@
             background: inherit;
         }
 
-            .btn.borderless.dropdown-toggle {
-                -webkit-box-shadow: none;
-                box-shadow: none;
-            }
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
 
         .rb {
             border-right: 1px solid #ccc;
@@ -50,8 +50,8 @@
             background-color: #f1f1f1;
         }
 
-            /* Style the buttons inside the tab */
-            div.tab button {
+        /* Style the buttons inside the tab */
+        div.tab button {
                 background-color: inherit;
                 float: left;
                 border: none;
@@ -59,18 +59,18 @@
                 cursor: pointer;
                 padding: 14px 16px;
                 transition: 0.3s;
-            }
+        }
 
-                /* Change background color of buttons on hover */
-                div.tab button:hover {
-                    background-color: #ddd;
-                }
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
 
 
-                /* Create an active/current tablink class */
-                div.tab button.active {
-                    background-color: #ccc;
-                }
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
 
         /* Style the tab content */
         .tabcontent {
@@ -172,11 +172,15 @@
     <!--       START TABS        -->
     <div class="tab">
         <button id="home_page" class="tablinks" onclick="openReportsIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports, Documents and Media</button>
-        <button id="create_report" class="tablinks" onclick="openCreateReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="create_report" class="tablinks" onclick="openCreateReport()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-list-alt"></span>
+            &ensp;Create Report
+        </button>
         <button id="create_document" class="tablinks" onclick="openCreateDocument()">
             <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-            &ensp;Upload Documents
+            &ensp;Upload Document
         </button>
         <button id="create_media" class="tablinks" onclick="openCreateMedia()">
             <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
@@ -200,7 +204,7 @@
         </div>
         <div id="list_reports"></div>
         <div id="list_documents">
-            <!--   START USER SEARCH BAR   -->
+            <!--   START DOCUMENT SEARCH BAR   -->
             <div class="container" style="height: 50px; ">
                 <form asp-action="Index" method="get">
                     <div class="row" style="height: 50px; ">
@@ -226,10 +230,10 @@
                     </div>
                 </form>
             </div>
-            <!--   END USER SEARCH BAR   -->
+            <!--   END DOCUMENTS SEARCH BAR   -->
             <br />
             <div class="container">
-                <a asp-action="Index"><span class="glyphicon glyphicon-user"></span>&ensp;Show all users</a>
+                <a asp-action="Index"><span class="glyphicon glyphicon-file"></span>&ensp;Show all Document files</a>
                 <p>
                     Order by:&ensp;
                     <a asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">First Name</a>&ensp; |
@@ -242,28 +246,23 @@
                 <thead>
                     <tr>
                         <th>
-                            Document Type
+                            @Html.Label("Document type")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Title)
+                            @Html.Label("Title")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Description)
+                            @Html.Label("Description")
                         </th>
                         <th>
-                            Author First &amp; Last Name
-                        </th>
-
-                        <th>
-                            Child's First &amp; Last Name
+                            @Html.Label("Child")
                         </th>
                         <th>
-                            Date Uploaded
+                            @Html.Label("Date uploaded")
                         </th>
-
-
-                        <th>File</th>
-                        <th>Email/ID</th>
+                        <th>
+                            @Html.Label("Author")
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -275,49 +274,30 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Title)
-
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Description)
-
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Authorfirst) @Html.DisplayFor(modelItem => item.Authorlast)
-
-
+                                @Html.DisplayFor(modelItem => item.ChildFullName)
                             </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Childfirst) @Html.DisplayFor(modelItem => item.Childlast)
-
-
-                            </td>
-
                             <td>
                                 @Html.DisplayFor(modelItem => item.Dateuploaded)
                             </td>
-
                             <td>
-                                @Html.DisplayFor(modelItem => item.Filepath)
+                                @Html.DisplayFor(modelItem => item.AuthorFullName)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Author.Email)
-                            </td>
-
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Documentid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a> |
                                 <a asp-action="Details" asp-route-id="@item.Documentid"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Documentid"><span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>&ensp;Delete</a>
+                                <a asp-action="Delete" asp-route-id="@item.Documentid"><span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>&ensp;Delete</a> |
+                                <a asp-action="Download" asp-route-filename="@item.Filepath"><span style="color:limegreen;" class="glyphicon glyphicon-download" aria-hidden="true"></span>&ensp;Download </a>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
             <nav aria-label="..."><ul class="pagination"></ul></nav>
-
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
         </div>
         <div id="list_media"></div>
     </div>

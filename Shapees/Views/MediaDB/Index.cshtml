@@ -20,10 +20,10 @@
             background: inherit;
         }
 
-            .btn.borderless.dropdown-toggle {
-                -webkit-box-shadow: none;
-                box-shadow: none;
-            }
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
 
         .rb {
             border-right: 1px solid #ccc;
@@ -50,27 +50,27 @@
             background-color: #f1f1f1;
         }
 
-            /* Style the buttons inside the tab */
-            div.tab button {
-                background-color: inherit;
-                float: left;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                padding: 14px 16px;
-                transition: 0.3s;
-            }
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
 
-                /* Change background color of buttons on hover */
-                div.tab button:hover {
-                    background-color: #ddd;
-                }
 
-
-                /* Create an active/current tablink class */
-                div.tab button.active {
-                    background-color: #ccc;
-                }
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
 
         /* Style the tab content */
         .tabcontent {
@@ -172,11 +172,15 @@
     <!--       START TABS        -->
     <div class="tab">
         <button id="home_page" class="tablinks" onclick="openReportsIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports, Documents and Media</button>
-        <button id="create_report" class="tablinks" onclick="openCreateReport()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Report</button>
+        <button id="create_report" class="tablinks" onclick="openCreateReport()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-list-alt"></span>
+            &ensp;Create Report
+        </button>
         <button id="create_document" class="tablinks" onclick="openCreateDocument()">
             <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
             <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-            &ensp;Upload Documents
+            &ensp;Upload Document
         </button>
         <button id="create_media" class="tablinks" onclick="openCreateMedia()">
             <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
@@ -201,29 +205,64 @@
         <div id="list_reports"></div>
         <div id="list_documents"></div>
         <div id="list_media">
-
-            <h2>Index</h2>
-
-            <p>
-                <a asp-action="Create">Create New</a>
-            </p>
+            <!--   START MEDIA SEARCH BAR   -->
+            <div class="container" style="height: 50px; ">
+                <form asp-action="Index" method="get">
+                    <div class="row" style="height: 50px; ">
+                        <div class="navbar" style="padding-top:15px;float:left;margin:0 auto; ">&emsp;Search Media&emsp;</div>
+                        <div class="navbar" style="padding-top:10px;float:left;margin:0 auto; ">
+                            <div class="input-group" style="float:left;margin:0 auto;">
+                                <select id="searchdocuments" name="searchdocuments" class="form-control">
+                                    <option value="byfirstlast">By first and/or last name</option>
+                                    <option value="bytype">By type (Parent/Educator/Director)</option>
+                                </select><!-- /select-group -->
+                            </div>
+                        </div>
+                        <div class="col-lg-3" style="padding-top:10px; ">
+                            <div class="input-group">
+                                <input type="text" name="SearchString" value="@ViewData[" "]" class="form-control" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </div>
+                            </div><!--/input-group -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--   END MEDIA SEARCH BAR   -->
+            <br />
+            <div class="container">
+                <a asp-action="Index"><span class="glyphicon glyphicon-picture"></span>&ensp;Show all Media files</a>
+                <p>
+                    Order by:&ensp;
+                    <a asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Child</a>&ensp; |
+                    <a asp-route-sortOrder="@ViewData["LastnameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Author</a>&ensp; |
+                    <a asp-route-sortOrder="@ViewData["TypeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Media Type</a>
+                </p>
+                <br />
+            </div>
             <table class="table">
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.Mediatype)
+                            @Html.Label("Media type")
                         </th>
                         <th>
-                            @Html.Label("Child's full name")
+                            @Html.Label("Title")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Dateuploaded)
+                            @Html.Label("Description")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Title)
+                            @Html.Label("Child")
+                        </th> 
+                        <th>
+                            @Html.Label("Date uploaded")
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Description)
+                            @Html.Label("Author")
                         </th>
                         <th></th>
                     </tr>
@@ -236,21 +275,25 @@
                                 @Html.DisplayFor(modelItem => item.Mediatype)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.ChildFullName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Dateuploaded)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.Title)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Description)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Mediaid">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.Mediaid">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Mediaid">Delete</a>
+                                @Html.DisplayFor(modelItem => item.ChildFullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Dateuploaded)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AuthorFullName)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Mediaid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Mediaid"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Mediaid"><span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span>&ensp;Delete</a> |
+                                <a asp-action="Download" asp-route-filename="@item.Filepath"><span style="color:limegreen;" class="glyphicon glyphicon-download" aria-hidden="true"></span>&ensp;Download </a>
                             </td>
                         </tr>
                     }

@@ -87,10 +87,17 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: ChildinfoDB/Create
         public IActionResult Create()
         {
-            ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
-            ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "FullName");
-            ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "FullName");
+            //get educators list for assign educator select list
+            var assignededucators = _context.Userinfo.Where(e => e.Usertype == 2);
+
+            //get only parent users for parent1 and parent2 select lists
+            var parentlist = _context.Userinfo.Where(p => p.Usertype == 1);
+
+            ViewData["Educatorid"] = new SelectList(assignededucators, "Userid", "FullName");
+            ViewData["Parent1"] = new SelectList(parentlist, "Userid", "FullName");
+            ViewData["Parent2"] = new SelectList(parentlist, "Userid", "FullName");
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid");
+
             return View();
         }
 
@@ -123,8 +130,6 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
-            
 
             ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Userid", childinfo.Educatorid);
             ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Userid", childinfo.Parent1);
@@ -185,6 +190,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 }
                 return RedirectToAction("Index");
             }
+
             ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Educatorid);
             ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent1);
             ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent2);
