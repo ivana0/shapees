@@ -23,6 +23,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: UserinfoDB
         public async Task<IActionResult> Index(string searchString, string searchuser, string sortOrder)
         {
+
             //sorting filters
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_asc" : "";
             ViewData["SurnameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "surname_asc" : "";

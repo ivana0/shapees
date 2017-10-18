@@ -211,7 +211,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             return View(media);
         }
 
-        // POST: MediaDB/Delete/5
+        // POST: MediaDB/Delete/
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

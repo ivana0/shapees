@@ -52,6 +52,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
         {
             ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
             ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName");
+            ViewData["Taskid"] = new SelectList(_context.Task, "Taskid", "Taskid");
             return View();
         }
 

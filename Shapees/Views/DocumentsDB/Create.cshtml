@@ -220,7 +220,12 @@
     <!--    3RD TAB - Create Document    -->
     <div id="CreateDocument" class="tabcontent">
         <div id="upload_form">
+            <br/>
+            <div>
+                &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Document List</a>
+            </div>
             <h3>Upload Document</h3>
+            <br />
             <form asp-action="Create" method="post" enctype="multipart/form-data">
                 <div class="form-horizontal">
                     <br />
@@ -296,9 +301,6 @@
                     </div>
             </div>
         </form>
-        <div>
-            &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Document List</a>
-        </div>
         </div>
         <br /><br />
     </div>

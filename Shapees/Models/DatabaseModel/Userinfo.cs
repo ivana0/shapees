@@ -58,6 +58,8 @@ namespace Shapees.Models.DatabaseModel
         public string Parentof { get; set; }
         public string Profileimage { get; set; }
 
+
+        //User's collections
         public virtual ICollection<Childinfo> ChildinfoEducator { get; set; }
         public virtual ICollection<Childinfo> ChildinfoParent1Navigation { get; set; }
         public virtual ICollection<Childinfo> ChildinfoParent2Navigation { get; set; }

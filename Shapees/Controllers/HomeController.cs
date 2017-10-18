@@ -16,14 +16,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Shapees.Models.DatabaseModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Shapees.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly masterContext _context;
+
+        public HomeController(masterContext context)
+        {
+            _context = context;
+        }
+
         //  Dashboard/Home page    
         public IActionResult Index()
         {
+            //var searchusers = from u in _context.Userinfo.Select(u => u.Room)
+                              //select u;
+            //additional sets
+            //ViewBag.Task = ViewData["User"] = new Userinfo();
+            //var task = from t in _context.Userinfo.Select(t => t.Task)
+                          // select t;
+
+            //var announcement = from a in _context.Announcement.Select(a => a.Announcementid)
+                      // select a;
+
+            //ViewData["Task"] = new SelectList(task, "Taskid", "Taskid");
+            //ViewData["Announcement"] = new SelectList(task, "Announcementid", "Announcementid");
+            //ViewData["Taskfor"] = new SelectList(task, "Assignedfor", "Assignedfor");
+
             return View();
         }
 
@@ -88,9 +111,6 @@ namespace Shapees.Controllers
         {
             return View();
         }
-
-
-
 
 
     }
