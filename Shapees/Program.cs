@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Hosting.Internal;
 
 namespace Shapees
 {
@@ -21,5 +24,6 @@ namespace Shapees
 
             host.Run();
         }
+
     } 
 }

@@ -1,4 +1,6 @@
-﻿USE [master]
+﻿/*	DROPPING CONSTRAINTS - required before dropping tables	*/
+
+USE [master]
 GO
 ALTER TABLE [dbo].[childinfo]
 DROP CONSTRAINT [FK_childinfo_room_roomid];
@@ -66,7 +68,7 @@ GO
 
 
 
-
+/*	DROPPING TABLES	*/
 DROP TABLE [dbo].[announcement]
 GO
 
@@ -95,7 +97,7 @@ DROP TABLE [dbo].[room]
 GO
 
 
-
+/*	CREATING TABLES	*/
 CREATE TABLE [dbo].[room]
 (
 	[roomid] INT IDENTITY(1,1) PRIMARY KEY, 
@@ -107,7 +109,11 @@ CREATE TABLE [dbo].[room]
 	[description] VARCHAR(MAX) NULL
 )
 
-
+/*	usertype: 1 (parent user), 2 (educator user), 3 (director user)
+	usertypename: Parent, Educator, Director (set automatically after adding user)
+	isloggedin: 0 (logged in), -1 (not logged in - inital setup)
+	taskscompleted, totaltasks fields - initialized to 0 (Educators only)
+*/
 CREATE TABLE [dbo].[userinfo]
 (
 	[userid] INT IDENTITY(1,1) PRIMARY KEY, 
@@ -128,21 +134,19 @@ CREATE TABLE [dbo].[userinfo]
     [lastname] NCHAR(100) NOT NULL, 
     [dob] DATE NULL, 
     [homephone] NCHAR(20) NULL, 
-    [mobilephone] NCHAR(20) NULL, 
-
+    [mobilephone] NCHAR(20) NULL,
+	[profileimage] NCHAR(255) NULL,
+	/*	EDUCATORS AND DIRECTORS	ONLY	*/
 	[employedon] DATE NULL,
-
+	[shortbio] NCHAR(250) NULL,
+	/*	EDUCATORS ONLY	*/
 	[roomassigned] NCHAR(250) NULL,
 	[roomid] INT NULL,
-	[shortbio] NCHAR(250) NULL,
-
 	[taskscompleted] INT NULL,
 	[totaltasks] INT NULL,
-
+	/*	PARENTS ONLY	*/
 	[othercontact] NCHAR(100) NULL,
 	[parentof] NCHAR(255) NULL,
-
-    [profileimage] NCHAR(255) NULL,
 
 	CONSTRAINT [FK_userinfo_room_roomid] FOREIGN KEY ([roomid]) REFERENCES [room]([roomid])
 	
@@ -190,7 +194,6 @@ CREATE TABLE [dbo].[childinfo]
 	CONSTRAINT [FK_childinfo_userinfo_parent1] FOREIGN KEY ([parent1]) REFERENCES [userinfo]([userid]),
 	CONSTRAINT [FK_childinfo_userinfo_parent2] FOREIGN KEY ([parent2]) REFERENCES [userinfo]([userid])
 
-	
 )
 
 CREATE TABLE [dbo].[report]
@@ -266,7 +269,6 @@ CREATE TABLE [dbo].[task]
 	CONSTRAINT [FK_task_childinfo_childid] FOREIGN KEY ([childid]) REFERENCES [childinfo]([childid]),
 	CONSTRAINT [FK_task_report_reportid] FOREIGN KEY ([reportid]) REFERENCES [report]([reportid])
 
-	
 )
 
 
@@ -319,8 +321,6 @@ CREATE TABLE [dbo].[media]
 	CONSTRAINT [FK_media_userinfo_userid] FOREIGN KEY ([authorid]) REFERENCES [userinfo]([userid]),
 	CONSTRAINT [FK_media_childinfo_childid] FOREIGN KEY ([childid]) REFERENCES [childinfo]([childid])
 	
-
-	
 )
 
 
@@ -368,14 +368,27 @@ CREATE TABLE [dbo].[message]
 	 
 )
 
+/*	INSERT ROOMS	*/
+INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
+    VALUES ('Room 1', '6 weeks - 2 years', 'Room 1 (6 weeks - 2 years age)', 'Youngest children in this group.') 
+GO
+INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
+    VALUES ('Room 2', '2 years - 6 years', 'Room 2 (2 years - 6 years age)', 'Children in between in this group.') 
+GO
+INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
+    VALUES ('Room 3', '6 years - 12 years', 'Room 3 (6 years - 12 years age)', 'Eldest children in this group.') 
+GO
 
-INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
-    VALUES ('Room 1', '6 weeks - 2 years', 'Any short info.', 'Any longer description needed.') 
-GO
-INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
-    VALUES ('Room 2', '2 years - 6 years', 'Any short info.', 'Any longer description needed.') 
-GO
-INSERT [dbo].[room] (roomname, roomagegroup, info, description)  
-    VALUES ('Room 3', '6 years - 12 years', 'Any short info.', 'Any longer description needed.') 
+/*	INSERT ADMIN USER - profile image can be uploaded later on*/
+INSERT [dbo].[userinfo] (username, email, pass, usertype, usertypename, isloggedin, 
+							street, city, postcode, state, 
+							firstname, lastname, dob, 
+							homephone, mobilephone, 
+							employedon, shortbio)  
+    VALUES ('admin', 'admin@admin.com', 'admin', 3, 'Director', -1, 
+							'1 Street', 'City', 2000, 'NSW', 
+							'Admin', 'Admin', GETDATE(), 
+							'02123456', '0451123456', 
+							GETDATE(), 'Admin of the system.' ) 
 GO
 

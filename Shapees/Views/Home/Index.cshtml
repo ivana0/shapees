@@ -12,12 +12,13 @@
 @*  File description: Dashboard/Home page file.                                       *@
 @* ---------------------------------------------------------------------------------- *@
 
+
+@model IEnumerable<Shapees.Models.DatabaseModel.Userinfo>
 @{
     ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@model IEnumerable<Shapees.Models.DatabaseModel.Announcement>
 
 <head>
 
@@ -29,19 +30,19 @@
         }
 
 
-            .ds-btn li a span {
-                padding-left: 15px;
-                padding-right: 5px;
-                width: 100%;
-                display: inline-block;
-                text-align: left;
-            }
+        .ds-btn li a span {
+            padding-left: 15px;
+            padding-right: 5px;
+            width: 100%;
+            display: inline-block;
+            text-align: left;
+        }
 
-                .ds-btn li a span small {
-                    width: 100%;
-                    display: inline-block;
-                    text-align: left;
-                }
+        .ds-btn li a span small {
+            width: 100%;
+            display: inline-block;
+            text-align: left;
+        }
 
         .ds-btn li a span {
             padding-left: 15px;

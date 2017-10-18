@@ -15,6 +15,14 @@ namespace Shapees.Models.DatabaseModel
         public string Reporttype { get; set; }
         public string Authorfirst { get; set; }
         public string Authorlast { get; set; }
+        //created author's full name variable - not stored in DB
+        public string AuthorFullName
+        {
+            get
+            {
+                return Authorfirst + " " + Authorlast;
+            }
+        }
         public int Authorid { get; set; }
         public int Childid { get; set; }
         public string Childfirst { get; set; }
