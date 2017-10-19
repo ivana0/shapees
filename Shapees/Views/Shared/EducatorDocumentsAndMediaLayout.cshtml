@@ -1,0 +1,286 @@
+﻿@* ---------------------------------- SHAPEES 2017 ---------------------------------- *@
+@*                                                                                    *@
+@*  Created and Edited by Four Corner Solutions team:                                 *@
+@*      Ivana Ozakovic, Nicole Lardner, Damon Walker,                                 *@
+@*      Cassandra Kalabric, Matthew Mauri, Sima Narain                                *@
+@*                                                                                    *@
+@*  Created for Kid's Uni, University of Wollongong, Wollongong                       *@
+@*                                                                                    *@
+@*  Filename: DocumentsAndMediaLayout.cshtml                                          *@
+@*  File description: Documents and Media page layout file.                           *@
+@* ---------------------------------------------------------------------------------- *@
+
+
+
+@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shapees</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    @Html.Raw(JavaScriptSnippet.FullScript)
+
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open users home page on body load
+        function loadDocumentsHome() {
+            // Show the users home tab
+            document.getElementById('Home').style.display = "block";
+            // Set button to active
+            document.getElementById("openTab").className += " active";
+        }
+    </script>
+
+    <style>
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+         }
+
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+             box-shadow: none;
+        }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        /*Other field*/
+        #field1 {
+            border-radius: 0 !important;
+        }
+
+        #field {
+            margin-bottom: 20px;
+        }
+        /*Text area*/
+        .textarea {
+            width: 800px;
+        }
+        /* Styling for file upload */
+        .files input {
+            outline: 2px dashed #92b0b3;
+            outline-offset: -10px;
+            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            transition: outline-offset .15s ease-in-out, background-color .15s linear;
+            padding: 120px 0px 85px 35%;
+            text-align: center !important;
+            margin: 0;
+            width: 100% !important;
+        }
+
+            .files input:focus {
+                outline: 2px dashed #92b0b3;
+                outline-offset: -10px;
+                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                transition: outline-offset .15s ease-in-out, background-color .15s linear;
+                border: 1px solid #92b0b3;
+            }
+
+        .files {
+            position: relative
+        }
+
+        .files:after {
+            pointer-events: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 50px;
+            right: 0;
+            height: 56px;
+            content: "";
+            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+            display: block;
+            margin: 0 auto;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .color input {
+            background-color: #f1f1f1;
+        }
+
+        .files:before {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            right: 0;
+            height: 57px;
+            content: " or drag it here. ";
+            display: block;
+            margin: 0 auto;
+            color: #2ea591;
+            font-weight: 500;
+            text-transform: capitalize;
+            text-align: center;
+        }
+        /* When the input field gets focus, change its width to 100% */
+        input[type=text]:focus {
+            width: 100%;
+        }
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+             background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+        background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 14px 26px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+    </head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><span class="glyphicon glyphicon-home"></span>  Shapees</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="DocumentsAndMedia">Documents &amp; Media</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Scheduler">Scheduler</a></li>
+                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index">Children</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a a asp-area="" asp-controller="Home" asp-action="Messages"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="glyphicon glyphicon-user"></span> Welcome @HttpContextAccessor.HttpContext.Session.GetString("shortName")! <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a a asp-area="" asp-controller="Home" asp-action="AccountSettings"><span class="glyphicon glyphicon-cog"></span> Account Settings</a></li>
+                            <li><a a asp-area="" asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <center>
+            <footer>
+                <p>&copy; 2017 - Shapees</p>
+            </footer>
+        </center>
+    </div>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -13,6 +13,9 @@
 
 
 @inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +61,7 @@
                     <li><a a asp-area="" asp-controller="Home" asp-action="Messages"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-user"></span> Welcome User! <span class="caret"></span></a>
+                        <span class="glyphicon glyphicon-user"></span> Welcome @HttpContextAccessor.HttpContext.Session.GetString("shortName")! <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a a asp-area="" asp-controller="Home" asp-action="AccountSettings"><span class="glyphicon glyphicon-cog"></span> Account Settings</a></li>
                             <li><a a asp-area="" asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> 

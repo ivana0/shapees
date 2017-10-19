@@ -15,10 +15,30 @@
 
 @{
     ViewData["Title"] = "Children";
-    Layout = "~/Views/Shared/ChildrenLayout.cshtml";
+    int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
+    switch (type)
+    {
+        case 3:
+            Layout = "~/Views/Shared/AdminChildrenLayout.cshtml";
+            break;
+
+        case 2:
+            Layout = "~/Views/Shared/EducatorChildrenLayout.cshtml";
+            break;
+
+        case 1:
+            Layout = "~/Views/Shared/ParentChildrenLayout.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/AdminChildrenLayout.cshtml";
+            break;
+    }
 }
-
-
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
+   
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">

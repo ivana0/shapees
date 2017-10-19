@@ -11675,7 +11675,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sandra\\.nuget\\packages\\": {}
+    "C:\\Users\\Owner\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -11683,14 +11683,14 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "D:\\Github\\shapees\\Shapees\\Shapees.csproj",
+      "projectUniqueName": "C:\\Users\\Owner\\Documents\\GitHub\\shapees\\Shapees\\Shapees.csproj",
       "projectName": "Shapees",
-      "projectPath": "D:\\Github\\shapees\\Shapees\\Shapees.csproj",
-      "packagesPath": "C:\\Users\\Sandra\\.nuget\\packages\\",
-      "outputPath": "D:\\Github\\shapees\\Shapees\\obj\\",
+      "projectPath": "C:\\Users\\Owner\\Documents\\GitHub\\shapees\\Shapees\\Shapees.csproj",
+      "packagesPath": "C:\\Users\\Owner\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Owner\\Documents\\GitHub\\shapees\\Shapees\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Sandra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Owner\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11698,12 +11698,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp1.1": {
           "projectReferences": {}
         }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
       }
     },
     "frameworks": {

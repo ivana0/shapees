@@ -14,9 +14,29 @@
 
 @{
     ViewData["Title"] = "Dashboard";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
+    int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
+    switch(type)
+    {
+        case 3:
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            break;
 
+        case 2:
+            Layout = "~/Views/Shared/_EducatorLayout.cshtml";
+            break;
+        
+        case 1:
+            Layout = "~/Views/Shared/_ParentLayout.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            break;
+    }
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 <head>
 
     <style>
@@ -153,7 +173,7 @@
             <div class="col-md-5">
 
                 <p></p>
-                <h2>Sample User</h2>
+                <h2>@HttpContextAccessor.HttpContext.Session.GetString("fullName")</h2>
                 <p> </p><p> </p>
 
                 <div class="panel panel-info">

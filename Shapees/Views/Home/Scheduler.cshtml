@@ -15,8 +15,25 @@
 
 @{
     ViewData["Title"] = "Scheduler";
-    Layout = "~/Views/Shared/SchedulerLayout.cshtml";
+    int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
+    switch (type)
+    {
+        case 3:
+            Layout = "~/Views/Shared/AdminSchedulerLayout.cshtml";
+            break;
+
+        case 2:
+            Layout = "~/Views/Shared/EducatorSchedulerLayout.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/AdminSchedulerLayout.cshtml";
+            break;
+    }
 }
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 
 
 <head>

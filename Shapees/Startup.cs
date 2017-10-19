@@ -47,7 +47,7 @@ namespace Shapees
 
             services.AddSession();
 
-            var sqlconnection = @"Server=SANDRA-NOTEBOOK\SQLEXPRESS;Database=master;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var sqlconnection = @"Server=(localdb)\mssqllocaldb;Database=master;Trusted_Connection=True;MultipleActiveResultSets=true";
             services.AddDbContext<ShapeesDB>(dbcontextoption => dbcontextoption.UseSqlServer(sqlconnection));
             services.AddDbContext<testMasterContext>(dbcontextoption => dbcontextoption.UseSqlServer(sqlconnection));
             services.AddDbContext<masterContext>(dbcontextoption => dbcontextoption.UseSqlServer(sqlconnection));
@@ -75,6 +75,8 @@ namespace Shapees
 
             app.UseStaticFiles();
 
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -84,7 +86,6 @@ namespace Shapees
 
             AppHttpContext.Services = app.ApplicationServices;
 
-            app.UseSession();
             //Use in Controllers:
             //var data = new byte[] { 1, 2, 3, 4 };
             //HttpContext.Session.Set("key", data); // store byte array

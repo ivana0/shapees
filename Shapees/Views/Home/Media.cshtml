@@ -1,7 +1,28 @@
 @{
     ViewData["Title"] = "Media";
-    Layout = "~/Views/Shared/MediaLayout.cshtml";
+    int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
+    switch (type)
+    {
+        case 3:
+            Layout = "~/Views/Shared/AdminMediaLayout.cshtml";
+            break;
+
+        case 2:
+            Layout = "~/Views/Shared/EducatorMediaLayout.cshtml";
+            break;
+
+        case 1:
+            Layout = "~/Views/Shared/ParentMediaLayout.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/AdminMediaLayout.cshtml";
+            break;
+    }
 }
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 
 <h2>Media</h2>
 <div class="tab">

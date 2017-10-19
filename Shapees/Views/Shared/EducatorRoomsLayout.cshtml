@@ -6,12 +6,15 @@
 @*                                                                                    *@
 @*  Created for Kid's Uni, University of Wollongong, Wollongong                       *@
 @*                                                                                    *@
-@*  Filename: DocumentsAndMediaLayout.cshtml                                          *@
-@*  File description: Documents and Media page layout file.                           *@
+@*  Filename: RoomsLayout.cshtml                                                      *@
+@*  File description: Rooms page layout file.                                         *@
 @* ---------------------------------------------------------------------------------- *@
 
 
 @inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,21 +59,20 @@
 
         }
         //open users home page on body load
-        function loadDocumentsHome() {
+        function loadRoomsHome() {
             // Show the users home tab
-            document.getElementById('Home').style.display = "block";
+            document.getElementById('ListRoom').style.display = "block";
             // Set button to active
             document.getElementById("openTab").className += " active";
         }
     </script>
-
     <style>
         .btn-gray {
             color: #fff;
             background-color: #eee;
             border-color: #ccc;
             color: #000;
-         }
+        }
 
 
         .btn.borderless {
@@ -78,10 +80,10 @@
             background: inherit;
         }
 
-        .btn.borderless.dropdown-toggle {
-            -webkit-box-shadow: none;
-             box-shadow: none;
-        }
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
 
         .rb {
             border-right: 1px solid #ccc;
@@ -96,84 +98,29 @@
             padding-top: 5px;
             padding-bottom: 5px;
         }
-
-        /*Other field*/
-        #field1 {
-            border-radius: 0 !important;
-        }
-
-        #field {
-            margin-bottom: 20px;
-        }
-        /*Text area*/
-        .textarea {
-            width: 800px;
-        }
-        /* Styling for file upload */
-        .files input {
-            outline: 2px dashed #92b0b3;
-            outline-offset: -10px;
-            -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-            transition: outline-offset .15s ease-in-out, background-color .15s linear;
-            padding: 120px 0px 85px 35%;
-            text-align: center !important;
-            margin: 0;
-            width: 100% !important;
-        }
-
-            .files input:focus {
-                outline: 2px dashed #92b0b3;
-                outline-offset: -10px;
-                -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-                transition: outline-offset .15s ease-in-out, background-color .15s linear;
-                border: 1px solid #92b0b3;
-            }
-
-        .files {
-            position: relative
-        }
-
-        .files:after {
-            pointer-events: none;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            width: 50px;
-            right: 0;
-            height: 56px;
-            content: "";
-            background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
-            display: block;
-            margin: 0 auto;
-            background-size: 100%;
+  
+        /* search bar styling*/
+        #searchbar {
+            width: 200px;
+            height: 48px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            float: right;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+            background-image: url(search.png);
+            background-position: 10px 12px;
             background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
         }
 
-        .color input {
-            background-color: #f1f1f1;
-        }
-
-        .files:before {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            pointer-events: none;
-            width: 100%;
-            right: 0;
-            height: 57px;
-            content: " or drag it here. ";
-            display: block;
-            margin: 0 auto;
-            color: #2ea591;
-            font-weight: 500;
-            text-transform: capitalize;
-            text-align: center;
-        }
         /* When the input field gets focus, change its width to 100% */
-        input[type=text]:focus {
+        #searchbar {
             width: 100%;
         }
-
         /* Style the tab */
         div.tab {
             overflow: hidden;
@@ -181,7 +128,7 @@
             background-color: #f1f1f1;
         }
 
-        /* Style the buttons inside the tab */
+            /* Style the buttons inside the tab */
         div.tab button {
             background-color: inherit;
             float: left;
@@ -194,23 +141,26 @@
 
         /* Change background color of buttons on hover */
         div.tab button:hover {
-             background-color: #ddd;
+            background-color: #ddd;
         }
 
         /* Create an active/current tablink class */
         div.tab button.active {
-        background-color: #ccc;
+            background-color: #ccc;
         }
 
         /* Style the tab content */
         .tabcontent {
             display: none;
-            padding: 14px 26px;
+            padding: 6px 12px;
             border: 1px solid #ccc;
             border-top: none;
         }
     </style>
-    </head>
+
+
+
+</head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -226,18 +176,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="DocumentsAndMedia"><span class="glyphicon glyphicon-file"></span>&nbsp;Documents &amp; Media</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Scheduler"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Scheduler</a></li>
-                    <li><a asp-area="" asp-controller="AnnouncementsDB" asp-action="Index"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;Announcements</a></li>
-                    <li><a asp-area="" asp-controller="RoomsDB" asp-action="Index"><span class="glyphicon glyphicon-th-large"></span>&nbsp;Rooms</a></li>
-                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Children</a></li>
-                    <li><a asp-area="" asp-controller="UserinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Users</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="DocumentsAndMedia">Documents &amp; Media</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Scheduler">Scheduler</a></li>
+                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index">Children</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a a asp-area="" asp-controller="Home" asp-action="Messages"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <span class="glyphicon glyphicon-user"></span> Welcome User! <span class="caret"></span>
+                            <span class="glyphicon glyphicon-user"></span> Welcome @HttpContextAccessor.HttpContext.Session.GetString("shortName")! <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a a asp-area="" asp-controller="Home" asp-action="AccountSettings"><span class="glyphicon glyphicon-cog"></span> Account Settings</a></li>

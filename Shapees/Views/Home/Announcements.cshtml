@@ -12,12 +12,27 @@
 @*  File description: Announcements page file.                                        *@
 @* ---------------------------------------------------------------------------------- *@
 
-
 @{
     ViewData["Title"] = "Announcements";
-    Layout = "~/Views/Shared/AnnouncementsLayout.cshtml";
-}
+    int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
+    switch (type)
+    {
+        case 3:
+            Layout = "~/Views/Shared/AdminAnnouncementsLayout.cshtml";
+            break;
 
+        case 2:
+            Layout = "~/Views/Shared/EducatorAnnouncementsLayout.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/AdminAnnouncementsLayout.cshtml"
+            break;
+    }
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 <head>
 
 </head>

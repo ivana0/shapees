@@ -6,13 +6,15 @@
 @*                                                                                    *@
 @*  Created for Kid's Uni, University of Wollongong, Wollongong                       *@
 @*                                                                                    *@
-@*  Filename: SchedulerLayout.cshtml                                                  *@
-@*  File description: Scheduler page layout file.                                     *@
+@*  Filename: Children.cshtml                                                         *@
+@*  File description: Children page layout file.                                      *@
 @* ---------------------------------------------------------------------------------- *@
 
 
-
 @inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +34,6 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
-
 
     <script>
         //open tab function
@@ -58,100 +59,52 @@
 
         }
         //open users home page on body load
-        function loadSchedulerHome() {
+        function loadChildrenHome() {
             // Show the users home tab
-            document.getElementById('Home').style.display = "block";
+            document.getElementById('ManageChildren').style.display = "block";
             // Set button to active
             document.getElementById("openTab").className += " active";
         }
-
-       //<!-- AddEvent Settings -->
-    
-        window.addeventasync = function () {
-            addeventatc.settings({
-                license: "azNigbJmQzwcSaGrfmYP30912",
-                mouse: false,
-                css: true,
-                google: { show: true, text: "Google <em>(online)</em>" },
-            });
-        };
-
-        // Capture click on button
-        window.addeventasync = function () {
-            addeventatc.register('button-click', function (obj) {
-
-                // Console log example
-                console.log('button-click -> ' + obj.id);
-
-            });
-        };
-
-        // Capture mouseover on button
-        window.addeventasync = function () {
-            addeventatc.register('button-mouseover', function (obj) {
-
-                // Console log example
-                console.log('button-mouseover -> ' + obj.id);
-
-            });
-        };
-
-        // Capture mouseout on button
-        window.addeventasync = function () {
-            addeventatc.register('button-mouseout', function (obj) {
-
-                // Console log example
-                console.log('button-mouseout -> ' + obj.id);
-
-            });
-        };
-
-        // Capture when drop down is being displayed
-        window.addeventasync = function () {
-            addeventatc.register('button-dropdown-show', function (obj) {
-
-                // Console log example
-                console.log('button-dropdown-show -> ' + obj.id);
-
-            });
-        };
-
-        // Capture when drop down is being hidden
-        window.addeventasync = function () {
-            addeventatc.register('button-dropdown-hide', function (obj) {
-
-                // Console log example
-                console.log('button-dropdown-hide -> ' + obj.id);
-
-            });
-        };
-
-        // Capture when an option in the drop down is clicked
-        window.addeventasync = function () {
-            addeventatc.register('button-dropdown-click', function (obj) {
-
-                // Console log example
-                console.log('button-dropdown-click -> ' + obj.id + ', service -> ' + obj.service);
-
-                // Track event click with e.g. Google Analytics (using analytics.js)
-                // https://developers.google.com/analytics/devguides/collection/analyticsjs/events
-                ga('send', 'event', 'AddToCalendar', 'play', 'Fall Campaign');
-
-            });
-        };
-
-    //<!-- AddEvent Settings -->
-        addeventatc.settings({
-            license: "replace-with-your-licensekey",
-            css: false
-        });
     </script>
 
+
     <style>
-        /* When the input field gets focus, change its width to 100% */
-        input[type=text]:focus {
-            width: 100%;
+        body {
+            font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            font-size: 14px;
         }
+
+        main {
+            text-align: center;
+        }
+
+
+
+        .table {
+            border: none;
+            text-align: center;
+        }
+
+        .table-definition thead th:first-child {
+            pointer-events: none;
+            background: white;
+            border: none;
+        }
+
+        .table td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .table th {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .page-item > * {
+            border: none;
+        }
+
         /* Style the tab */
         div.tab {
             overflow: hidden;
@@ -159,26 +112,26 @@
             background-color: #f1f1f1;
         }
 
-            /* Style the buttons inside the tab */
-            div.tab button {
-                background-color: inherit;
-                float: left;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                padding: 14px 16px;
-                transition: 0.3s;
-            }
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
 
-                /* Change background color of buttons on hover */
-                div.tab button:hover {
-                    background-color: #ddd;
-                }
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
 
-                /* Create an active/current tablink class */
-                div.tab button.active {
-                    background-color: #ccc;
-                }
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
 
         /* Style the tab content */
         .tabcontent {
@@ -187,10 +140,39 @@
             border: 1px solid #ccc;
             border-top: none;
         }
+        
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+             box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
     </style>
-
-
-
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -208,17 +190,17 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="DocumentsAndMedia"><span class="glyphicon glyphicon-file"></span>&nbsp;Documents &amp; Media</a></li>
-                    <li class="active"><a asp-area="" asp-controller="Home" asp-action="Scheduler"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Scheduler</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Scheduler"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Scheduler</a></li>
                     <li><a asp-area="" asp-controller="AnnouncementsDB" asp-action="Index"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;Announcements</a></li>
                     <li><a asp-area="" asp-controller="RoomsDB" asp-action="Index"><span class="glyphicon glyphicon-th-large"></span>&nbsp;Rooms</a></li>
-                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Children</a></li>
+                    <li class="active"><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Children</a></li>
                     <li><a asp-area="" asp-controller="UserinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Users</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a a asp-area="" asp-controller="Home" asp-action="Messages"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <span class="glyphicon glyphicon-user"></span> Welcome User! <span class="caret"></span>
+                            <span class="glyphicon glyphicon-user"></span> Welcome @HttpContextAccessor.HttpContext.Session.GetString("shortName")! <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a a asp-area="" asp-controller="Home" asp-action="AccountSettings"><span class="glyphicon glyphicon-cog"></span> Account Settings</a></li>
@@ -229,7 +211,7 @@
             </div>
         </div>
     </nav>
- 
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -262,5 +244,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>

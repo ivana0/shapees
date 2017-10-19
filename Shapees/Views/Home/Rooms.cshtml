@@ -15,8 +15,25 @@
 
 @{
     ViewData["Title"] = "Rooms";
-    Layout = "~/Views/Shared/RoomsLayout.cshtml";
+    int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
+    switch (type)
+    {
+        case 3:
+            Layout = "~/Views/Shared/AdminRoomsLayout.cshtml";
+            break;
+
+        case 2:
+            Layout = "~/Views/Shared/EducatorRoomsLayout.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/AdminRoomsLayout.cshtml";
+            break;
+    }
 }
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 
 <head>
     <meta charset="utf-8" />

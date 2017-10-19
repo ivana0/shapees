@@ -16,8 +16,29 @@
 
 @{
     ViewData["Title"] = "DocumentsAndMedia";
-    Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
+    int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
+    switch (type)
+    {
+        case 3:
+            Layout = "~/Views/Shared/AdminDocumentsAndMediaLayout.cshtml";
+            break;
+
+        case 2:
+            Layout = "~/Views/Shared/EducatorDocumentsAndMediaLayout.cshtml";
+            break;
+
+        case 1:
+            Layout = "~/Views/Shared/ParentDocumentsAndMediaLayout.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/AdminDocumentsAndMediaLayout.cshtml";
+            break;
+    }
 }
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 

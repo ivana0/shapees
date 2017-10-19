@@ -2,8 +2,25 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
+    switch (type)
+    {
+        case 3:
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            break;
+
+        case 2:
+            Layout = "~/Views/Shared/_EducatorLayout.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            break;
+    }
 }
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 
 <h2>Create</h2>
 

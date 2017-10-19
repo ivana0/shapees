@@ -6,12 +6,15 @@
 @*                                                                                    *@
 @*  Created for Kid's Uni, University of Wollongong, Wollongong                       *@
 @*                                                                                    *@
-@*  Filename: UsersLayout.cshtml                                                      *@
-@*  File description: Users page layout file.                                         *@
+@*  Filename: Children.cshtml                                                         *@
+@*  File description: Children page layout file.                                      *@
 @* ---------------------------------------------------------------------------------- *@
 
 
 @inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +35,144 @@
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
 
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open users home page on body load
+        function loadChildrenHome() {
+            // Show the users home tab
+            document.getElementById('ManageChildren').style.display = "block";
+            // Set button to active
+            document.getElementById("openTab").className += " active";
+        }
+    </script>
+
+
+    <style>
+        body {
+            font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        main {
+            text-align: center;
+        }
+
+
+
+        .table {
+            border: none;
+            text-align: center;
+        }
+
+        .table-definition thead th:first-child {
+            pointer-events: none;
+            background: white;
+            border: none;
+        }
+
+        .table td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .table th {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .page-item > * {
+            border: none;
+        }
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+             box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -48,18 +189,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="DocumentsAndMedia"><span class="glyphicon glyphicon-file"></span>&nbsp;Documents &amp; Media</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Scheduler"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Scheduler</a></li>
-                    <li><a asp-area="" asp-controller="AnnouncementsDB" asp-action="Index"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;Announcements</a></li>
-                    <li><a asp-area="" asp-controller="RoomsDB" asp-action="Index"><span class="glyphicon glyphicon-th-large"></span>&nbsp;Rooms</a></li>
-                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Children</a></li>
-                    <li class="active"><a asp-area="" asp-controller="UserinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Users</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="DocumentsAndMedia">Documents &amp; Media</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Scheduler">Scheduler</a></li>
+                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index">Children</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a a asp-area="" asp-controller="Home" asp-action="Messages"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <span class="glyphicon glyphicon-user"></span> Welcome User! <span class="caret"></span>
+                            <span class="glyphicon glyphicon-user"></span> Welcome @HttpContextAccessor.HttpContext.Session.GetString("shortName")! <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a a asp-area="" asp-controller="Home" asp-action="AccountSettings"><span class="glyphicon glyphicon-cog"></span> Account Settings</a></li>
@@ -68,10 +206,9 @@
                     </li>
                 </ul>
             </div>
-
         </div>
     </nav>
-  
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -104,5 +241,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>
