@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
 }
 <head>
-    <style>
+    <style> 
         /* Other */
         .btn-gray {
             color: #fff;
@@ -222,13 +222,12 @@
         <div id="upload_form">
             <br/>
             <div>
-                &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Document List</a>
+                <a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Document List</a>&emsp;|&emsp;
             </div>
             <h3>Upload Document</h3>
             <br />
             <form asp-action="Create" method="post" enctype="multipart/form-data">
                 <div class="form-horizontal">
-                    <br />
                     <h4>Document Information</h4>
                     <hr width="90%" />
                     <!-- Select document file -->

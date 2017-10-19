@@ -202,96 +202,84 @@
         <!-- Second Form to Create User -->
         <form asp-action="Create" method="post" enctype="multipart/form-data" class="container">
             <br />
-            <h4>Kid's Uni: General Report Form</h4>
-            <hr width="90%" />
-            <!--Content of Report-->
-            <div class="form-group">
-                <label asp-for="Title" class="col-md-2 control-label" style="font-weight:normal;"></label>
-                <div class="col-md-10">
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
+            <div class="form-horizontal">
+                <h4>Kid's Uni: General Report Form</h4>
+                <hr width="90%" />
+                <!--Content of Report-->
+                <div class="form-group">
+                    <label asp-for="Title" class="col-md-2 control-label" style="font-weight:normal;"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
                 </div>
+                <div class="form-group">
+                    <label asp-for="Subject" class="col-md-2 control-label" style="font-weight:normal;">Subject of Report</label>
+                    <div class="col-md-10">
+                        <input asp-for="Subject" class="form-control" />
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Authorid" class="col-md-2 control-label" style="font-weight:normal;">Author</label>
+                    <div class="col-md-10">
+                        <select asp-for="Authorid" class="form-control" asp-items="ViewBag.FullName"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Childid" class="col-md-2 control-label" style="font-weight:normal;">Child</label>
+                    <div class="col-md-10">
+                        <select asp-for="Childid" class="form-control" asp-items="ViewBag.FullName"></select>
+                    </div>
+                </div>
+  
+                <div class="form-group">
+                    <label asp-for="Bodytext" class="col-md-2 control-label" style="font-weight:normal;">Content of Report</label>
+                    <div class="col-md-9">
+                        <textarea asp-for="Bodytext" style="width: 100%; max-width:none; " class="form-control" id="shortbio" rows="15"></textarea>
+                        <span asp-validation-for="Bodytext" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Reporttype" class="col-md-2 control-label" style="font-weight:normal;">Report Type</label>
+                    <div class="col-md-10">
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Half Yearly Report"> Half Yearly Report <br />
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Annual Report"> Annual Report  <br />
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Observation Report"> Observation Report <br />
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Follow-up Observation Report"> Follow-up observation Report<br />
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Interest Web Report"> Interest Web Report<br />
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Other"> Other <br />
+                        <span asp-validation-for="Reporttype" class="text-danger"></span>
+                    </div>
+                </div>
+                <!--        UPLAD PROFILE PICTURE       -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" style="font-weight:normal;"> Attach image file: </label>
+                    <div class="col-md-10">
+                        <input type="file" accept="image/x-png,image/gif,image/jpeg" name="file" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Taskid" class="col-md-2 control-label" style="font-weight:normal;">Task</label>
+                    <div class="col-md-9">
+                        <select asp-for="Taskid" class="form-control" asp-items="ViewBag.Taskid"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Duedate" class="col-md-2 control-label" style="font-weight:normal;">Due Date</label>
+                    <div id="duedate" class="col-md-9">
+                        <input asp-for="Duedate" type="date" class="form-control" id="taskid" required>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="reset" value="Reset" class="btn btn-danger">Reset Form</button>
+                        <input type="submit" value="Create Report" class="btn btn-success" />
+                    </div>
+                </div>
+                <br /><br />
             </div>
-            <br /><br />
-            <div class="form-group">
-                <label asp-for="Subject" class="col-md-2 control-label" style="font-weight:normal;">Subject of Report</label>
-                <div class="col-md-10">
-                    <input asp-for="Subject" class="form-control" />
-                    <span asp-validation-for="Subject" class="text-danger"></span>
-                </div>
-            </div>
-            <br /><br /> <br />
-
-            <div class="form-group">
-                <label asp-for="Authorid" class="col-md-2 control-label" style="font-weight:normal;">Author</label>
-                <div class="col-md-10">
-                    <select asp-for="Authorid" class="form-control" asp-items="ViewBag.FullName"></select>
-                </div>
-            </div>
-            <br /><br />
-            <div class="form-group">
-                <label asp-for="Childid" class="col-md-2 control-label" style="font-weight:normal;">Child</label>
-                <div class="col-md-10">
-                    <select asp-for="Childid" class="form-control" asp-items="ViewBag.FullName"></select>
-                </div>
-            </div>
-            <br /><br /><br />
-            <div class="form-group">
-                <label asp-for="Bodytext" class="col-md-2 control-label" style="font-weight:normal;">Content of Report</label>
-                <div class="col-md-9">
-                    <textarea asp-for="Bodytext" style="width: 100%; max-width:none; " class="form-control" id="shortbio" rows="7"></textarea>
-                    <span asp-validation-for="Bodytext" class="text-danger"></span>
-                </div>
-            </div>
-            <br /> <br /> <br /><br />
-            <div class="form-group">
-                <label asp-for="Reporttype" class="col-md-2 control-label" style="font-weight:normal;">Report Type</label>
-                <div class="col-lg-10">
-                    <br />
-                    <input asp-for="Reporttype" type="radio" name="reportType" value="Half Yearly Report"> Half Yearly Report <br />
-                    <input asp-for="Reporttype" type="radio" name="reportType" value="Annual Report"> Annual Report  <br />
-                    <input asp-for="Reporttype" type="radio" name="reportType" value="Observation Report"> Observation Report <br />
-                    <input asp-for="Reporttype" type="radio" name="reportType" value="Follow-up Observation Report"> Follow-up observation Report<br />
-                    <input asp-for="Reporttype" type="radio" name="reportType" value="Interest Web Report"> Interest Web Report<br />
-                    <input asp-for="Reporttype" type="radio" name="reportType" value="Other"> Other <br />
-                    <span asp-validation-for="Reporttype" class="text-danger"></span>
-                    <br />  <br />
-                </div>
-
-            </div>
-            <br />  <br /><br />  <br />
-            <!--        UPLAD PROFILE PICTURE       -->
-            <div class="row">
-                <div class="col-md-2">
-                    Attach image file:
-                </div>
-                <div class="col-md-10">
-                    <input type="file" accept="image/x-png,image/gif,image/jpeg" name="file" />
-                </div>
-            </div>
-            <br /> <br />
-            <div class="row">
-                <div id="taskid" class="col-md-9">
-                    <label asp-for="Taskid"  class="col-md-3 control-label" style="font-weight:normal;">Task</label>
-                    <select asp-for="Taskid" class="form-control" asp-items="ViewBag.Taskid"></select>
-                </div>
-            </div>
-            <br /> <br />
-            <div class="row">
-                <div id="duedate" class="col-md-9">
-                    <label asp-for="Duedate" class="col-md-3 control-label" style="font-weight:normal;">Due Date</label>
-                    <input asp-for="Duedate" type="date" class="form-control" id="taskid" required>
-                    <span asp-validation-for="Duedate" class="text-danger"></span>
-                </div>
-            </div>
-            <br /> <br /><br /> <br />
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button type="reset" value="Reset" class="btn btn-danger">Reset Form</button>
-                    <input type="submit" value="Create Report" class="btn btn-success" />
-                </div>
-            </div>
-            <br /><br />
         </form>
         <br /><br />
     </div>

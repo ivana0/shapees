@@ -26,7 +26,7 @@ namespace Shapees.Models.DatabaseModel
         public int Iscompleted { get; set; }
 
         public virtual Userinfo Assignedfor { get; set; }
-        public virtual Childinfo Child { get; set; }
+        public virtual Childinfo Child { get; set; } 
         public virtual Report Report { get; set; }
     }
 }
