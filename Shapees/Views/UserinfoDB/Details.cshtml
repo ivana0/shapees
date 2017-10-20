@@ -311,6 +311,32 @@
                 </div>
                 <br />
             }
+            @if (Model.Usertype == 2)
+            {
+                @:<br /><br />
+                    @:<div class="container">
+                        @:<span>Progress bar of educator's performance: </span><br /><br />
+                    @:</div>
+                    @:<div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow=@Model.PerformancePercentage aria-valuemin="0" aria-valuemax="100" style="width:@(Model.PerformancePercentageStr);min-width: 2em;">
+                                @Model.PerformancePercentageStr
+                            </div>
+                    @:</div>
+                    @:<dl class="dl-horizontal">
+                        <dt>
+                        @Html.Label("Tasks given: ")
+                        </dt>
+                        <dd>
+                        @Html.DisplayFor(model => model.Totaltasks)
+                        </dd>
+                        <dt>
+                            @Html.Label("Tasks completed: ")
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Taskscompleted)
+                        </dd>
+                    @:</dl>
+            }
             <h5>&emsp;Personal information</h5>
             <hr width="90%" />
             <dl class="dl-horizontal">
@@ -340,7 +366,6 @@
                     }
                 </dd>
             </dl>
-            <br/>
             <h5>&emsp;Login information</h5>
             <hr width="90%" />
             <dl class="dl-horizontal">
@@ -480,59 +505,59 @@
                     @:<span style="color:red;">&emsp;Additional information not entered for parent.</span><br />
                 }
                 <dl class="dl-horizontal">
-                <dt>
-                    @if (Model.Employedon != null)
-                    {
-                        @Html.Label("Employeed on")
-                    }
-                </dt>
-                <dd>
-                    @if (Model.Employedon != null)
-                    {
-                        @Html.DisplayFor(model => model.Employedon)
-                    }
-                </dd>
+                    <dt>
+                        @if (Model.Employedon != null)
+                        {
+                            @Html.Label("Employeed on")
+                        }
+                    </dt>
+                    <dd>
+                        @if (Model.Employedon != null)
+                        {
+                            @Html.DisplayFor(model => model.Employedon)
+                        }
+                    </dd>
 
-                <dt>
-                    @if (Model.Roomassigned != null)
-                    {
-                        @Html.Label("Room assigned")
-                    }
-                </dt>
-                <dd>
-                    @if (Model.Roomassigned != null && Model.Roomid != null)
-                    {
-                        @Html.DisplayFor(model => model.Roomassigned)
-                    }
-                </dd>
-                <!--     FIELDS ONLY DISPLAYED FOR PARENT INFO    -->
-                <dt>
-                    @if (Model.Othercontact != null)
-                    {
-                        @Html.Label("Other contact")
-                    }
-                </dt>
-                <dd>
-                    @if (Model.Othercontact != null)
-                    {
-                        @Html.DisplayFor(model => model.Othercontact)
-                    }
-                </dd>
-                <dt>
-                    @if (Model.Parentof != null)
-                    {
-                        @Html.Label("Parent of")
-                    }
-                </dt>
-                <dd>
-                    @if (Model.Parentof != null)
-                    {
-                        @Html.DisplayFor(modelItem => Model.Parentof)
-                    }
-                </dd>
-            </dl>
+                    <dt>
+                        @if (Model.Roomassigned != null)
+                        {
+                            @Html.Label("Room assigned")
+                        }
+                    </dt>
+                    <dd>
+                        @if (Model.Roomassigned != null && Model.Roomid != null)
+                        {
+                            @Html.DisplayFor(model => model.Roomassigned)
+                        }
+                    </dd>
+                    <!--     FIELDS ONLY DISPLAYED FOR PARENT INFO    -->
+                    <dt>
+                        @if (Model.Othercontact != null)
+                        {
+                            @Html.Label("Other contact")
+                        }
+                    </dt>
+                    <dd>
+                        @if (Model.Othercontact != null)
+                        {
+                            @Html.DisplayFor(model => model.Othercontact)
+                        }
+                    </dd>
+                    <dt>
+                        @if (Model.Parentof != null)
+                        {
+                            @Html.Label("Parent of")
+                        }
+                    </dt>
+                    <dd>
+                        @if (Model.Parentof != null)
+                        {
+                            @Html.DisplayFor(modelItem => Model.Parentof)
+                        }
+                    </dd>
+                </dl>
 
-        </div>
+            </div>
         <br />
         <br />
         <div>

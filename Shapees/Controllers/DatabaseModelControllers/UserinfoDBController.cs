@@ -170,6 +170,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
+
                 //do not assign rooms to parent and director users
                 if (userinfo.Roomid == 1 && (userinfo.Usertype == 3 || userinfo.Usertype == 1))
                 {
@@ -182,6 +183,12 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 {
                     userinfo.Shortbio = null;
                     userinfo.Employedon = null;
+                }
+                //initialize tasks completed by educators
+                if (userinfo.Usertype == 2)
+                {
+                    userinfo.Taskscompleted = 0;
+                    userinfo.Totaltasks = 0;
                 }
 
                 //make sure to remove unecessary parent info for educators and director
@@ -231,6 +238,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             {
                 return NotFound();
             }
+
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", userinfo.Roomid);
             return View(userinfo);
         }

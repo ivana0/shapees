@@ -54,6 +54,25 @@ namespace Shapees.Models.DatabaseModel
         public string Shortbio { get; set; }
         public int? Taskscompleted { get; set; }
         public int? Totaltasks { get; set; }
+        //created percentage of work done by educator - not stored in DB
+        public int PerformancePercentage
+        {
+            get
+            {
+                if (Taskscompleted.GetValueOrDefault() == 0 && Totaltasks.GetValueOrDefault() == 0)
+                    return 0;
+                else
+                    return (Taskscompleted.GetValueOrDefault() / Totaltasks.GetValueOrDefault()) *100;
+            }
+        }
+        //created percentage of work done by educator - not stored in DB
+        public string PerformancePercentageStr
+        {
+            get
+            {
+                return (PerformancePercentage.ToString() + "%");
+            }
+        }
         public string Othercontact { get; set; }
         public string Parentof { get; set; }
         public string Profileimage { get; set; }
