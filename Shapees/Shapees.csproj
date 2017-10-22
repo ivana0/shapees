@@ -24,7 +24,10 @@
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="3.3.7" />
     <PackageReference Include="Dapper" Version="1.50.2" />
+    <PackageReference Include="FluentEmail.Mailgun" Version="2.1.0" />
+    <PackageReference Include="FluentEmail.Razor" Version="2.1.0" />
     <PackageReference Include="jspdf.TypeScript.DefinitelyTyped" Version="0.0.4" />
+    <PackageReference Include="MailKit" Version="1.18.1.1" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
@@ -41,10 +44,13 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.1" />
+    <PackageReference Include="MimeKit" Version="1.18.1" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.8-dmr" />
     <PackageReference Include="MySqlConnector" Version="0.24.0" />
+    <PackageReference Include="NETCore.MailKit" Version="1.1.1" />
     <PackageReference Include="Pomelo.Data.MySql" Version="1.0.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="1.1.2" />
+    <PackageReference Include="ReturnTrue.AspNetCore.Net.SmtpClient" Version="1.2.0" />
     <PackageReference Include="SapientGuardian.EntityFrameworkCore.MySql" Version="7.1.23" />
     <PackageReference Include="System.Data.SqlClient" Version="4.4.0-preview2-25405-01" />
   </ItemGroup>
@@ -73,6 +79,8 @@
     <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\profilepictures\" />
+    <Folder Include="wwwroot\uploads\reports\attachment\" />
+    <Folder Include="wwwroot\uploads\reports\attachment\" />
     <Folder Include="wwwroot\uploads\reports\attachment\" />
     <Folder Include="wwwroot\uploads\reports\notsubmitted\" />
     <Folder Include="wwwroot\uploads\reports\submitted\" />

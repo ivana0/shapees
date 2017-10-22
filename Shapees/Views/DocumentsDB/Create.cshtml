@@ -183,6 +183,7 @@
         }
 
     </script>
+
 </head>
 <body onload="loadHome()">
 
@@ -252,6 +253,11 @@
                                 <option value="Financial document">Financial document</option>
                                 <option value="Other">Other</option>
                             </select>
+                            <div id="NewDocumentType" class="col-md-2" style="display:none;">
+                                <label asp-for="Documenttype" class="col-md-2 control-label" style="font-weight:normal;"></label>
+                                <input asp-for="Documenttype" class="form-control" type="text" />
+                            </div>
+                            
                             <span asp-validation-for="Documenttype" class="text-danger"></span>
                         </div>
                     </div>

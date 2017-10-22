@@ -50,7 +50,12 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: ReportsDB/Create
         public IActionResult Create()
         {
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
+            //get educators list for assign educator select list
+            var assignededucators = _context.Userinfo.Where(e => e.Usertype == 2);
+
+            ViewData["Authorid"] = new SelectList(assignededucators, "Userid", "FullName");
+             
+            //ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
             ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName");
             ViewData["Taskid"] = new SelectList(_context.Task, "Taskid", "Taskid");
             return View();
@@ -64,6 +69,11 @@ namespace Shapees.Controllers.DatabaseModelControllers
         public async Task<IActionResult> Create([Bind("Reportid,Reporttype,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Datecreated,Lastmodified,Title,Subject,Bodytext,Filepath,Datesubmitted,Datecompleted,Issubmitted,Iscompleted,Taskid,Duedate,Attachmentpaths,Attachmentcount")] Report report, IFormFile file)
         {
 
+            //get child info
+            var childdetails = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == report.Childid);
+            //get autorinfo
+            var authorinfo = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == report.Authorid);
+
             //file handling
             if (file == null || file.Length == 0)
             {
@@ -71,8 +81,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
             }
             else
             {
-                //set filename
-                var filename = file.FileName;
+                //set filename based on child information
+                var filename = childdetails.Childfirstname.Trim() + childdetails.Childlastname.Trim() + childdetails.Childid.ToString() + file.FileName;
                 //save file path
                 report.Attachmentpaths = filename;
                 var path = Path.Combine(
@@ -83,17 +93,45 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 {
                     await file.CopyToAsync(stream);
                 }
-            }
 
+                report.Attachmentpaths = path;
+            }
 
             if (ModelState.IsValid)
             {
+                /*      TRIM STRINGS    */
+                //set author info
+                report.Authorfirst = authorinfo.Firstname.Trim();
+                report.Authorlast = authorinfo.Lastname.Trim();
+
+                //set child info
+                report.Childfirst = childdetails.Childfirstname.Trim();
+                report.Childlast = childdetails.Childlastname.Trim();
+
+                //set child info
+                report.Childfirst = report.Childfirst.Trim();
+                report.Childlast = report.Childlast.Trim();
+
+                //set child info
+                report.Authorfirst = report.Authorfirst.Trim();
+                report.Authorfirst = report.Authorfirst.Trim();
+
+                //set created and modified date
+                report.Datecreated = DateTime.Today;
+                report.Lastmodified = DateTime.Today;
+
+                //is submitted or is completed: -1 for false, 1 for true
+                report.Iscompleted = -1;
+                report.Issubmitted = -1;
+
                 _context.Add(report);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Userid", report.Authorid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childid", report.Childid);
+
+            
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "AuthorFullName", report.Authorid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "ChildFullName", report.Childid);
             return View(report);
         }
 
@@ -110,8 +148,42 @@ namespace Shapees.Controllers.DatabaseModelControllers
             {
                 return NotFound();
             }
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Email", report.Authorid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname", report.Childid);
+
+            //Trim strings for author
+            report.Authorfirst = report.Authorfirst.Trim();
+            report.Authorlast = report.Authorlast.Trim();
+            //Trim strings for child
+            report.Childfirst = report.Childfirst.Trim();
+            report.Childlast = report.Childlast.Trim();
+
+            //get child info
+            var childdetails = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == report.Childid);
+            //get autorinfo
+            var authorinfo = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == report.Authorid);
+
+            //change last modified if edited
+            report.Lastmodified = DateTime.Today;
+
+            //change is submitted date
+            if(report.Issubmitted == 1)
+                report.Datesubmitted = DateTime.Today;
+
+            //change is completed date
+            if (report.Issubmitted == 1)
+                report.Datecompleted = DateTime.Today;
+
+
+            ViewData["room"] = authorinfo.Roomassigned.ToString();
+            ViewData["shortbio"] = authorinfo.Shortbio.ToString();
+            ViewData["childdob"] = childdetails.Dob.ToString("dd/MM/yyyy");
+            //ViewBag.roomassgined = authorinfo.Roomassigned.ToString();
+
+            //get tasks
+            var tasksinfo = await _context.Task.SingleOrDefaultAsync(m => m.Taskid == report.Taskid);
+
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName", report.Authorid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName", report.Childid);
+            ViewData["Taskid"] = new SelectList(_context.Task, "Taskid", "Taskid");
             return View(report);
         }
 
@@ -120,7 +192,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Reportid,Reporttype,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Datecreated,Lastmodified,Title,Subject,Bodytext,Filepath,Datesubmitted,Datecompleted,Issubmitted,Iscompleted,Taskid,Duedate,Attachmentpaths,Attachmentcount")] Report report)
+        public async Task<IActionResult> Edit(int id, [Bind("Reportid,Reporttype,Authorid,Childid,Title,Subject,Bodytext,Issubmitted,Iscompleted,Taskid")] Report report)
         {
             if (id != report.Reportid)
             {
@@ -129,6 +201,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
+               
                 try
                 {
                     _context.Update(report);
@@ -147,8 +220,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Email", report.Authorid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname", report.Childid);
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName", report.Authorid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName", report.Childid);
             return View(report);
         }
 

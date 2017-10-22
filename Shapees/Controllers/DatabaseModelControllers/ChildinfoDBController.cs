@@ -96,7 +96,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             ViewData["Educatorid"] = new SelectList(assignededucators, "Userid", "FullName");
             ViewData["Parent1"] = new SelectList(parentlist, "Userid", "FullName");
             ViewData["Parent2"] = new SelectList(parentlist, "Userid", "FullName");
-            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid");
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomname");
 
             return View();
         }
@@ -117,14 +117,18 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 childinfo.Educatorfname = educatorassigned.Firstname;
                 childinfo.Educatorlname = educatorassigned.Lastname;
 
+                //Assign child's room by educator assigned or 
+                childinfo.Roomid = educatorassigned.Roomid;
+                childinfo.Inroom = educatorassigned.Roomassigned;
+
                 //set room name for child
-                if (childinfo.Roomid == 1)
+                /*if (childinfo.Roomid == 1)
                     childinfo.Inroom = "Room 1";
                 if (childinfo.Roomid == 2)
                     childinfo.Inroom = "Room 2";
                 if (childinfo.Roomid == 3)
                     childinfo.Inroom = "Room 3";
-
+                */
 
                 _context.Add(childinfo);
                 await _context.SaveChangesAsync();

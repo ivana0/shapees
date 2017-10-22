@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting.Internal;
+using FluentEmail.Mailgun;
+using FluentEmail.Core;
 
 namespace Shapees
 {
@@ -23,6 +25,7 @@ namespace Shapees
                 .Build();
 
             host.Run();
+
         }
 
     } 

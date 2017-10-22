@@ -8,6 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Shapees.Models.DatabaseModel;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using MimeKit;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using ReturnTrue.AspNetCore.Net.SmtpClient;
+using System.Net;
+using FluentEmail.Core;
+
 
 namespace Shapees.Controllers.DatabaseModelControllers
 {
@@ -15,9 +22,11 @@ namespace Shapees.Controllers.DatabaseModelControllers
     {
         private readonly masterContext _context;
 
+
         public UserinfoDBController(masterContext context)
         {
-            _context = context;    
+            _context = context;
+     
         }
 
         // GET: UserinfoDB
@@ -131,6 +140,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             }
         }
 
+
         // GET: UserinfoDB/Create
         public IActionResult Create()
         {
@@ -224,6 +234,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", userinfo.Roomid);
             return View(userinfo);
         }
+
+
 
         // GET: UserinfoDB/Edit/5
         public async Task<IActionResult> Edit(int? id)

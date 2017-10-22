@@ -165,6 +165,28 @@
         }
 
     </script>
+
+    <!--    SCRIPT FUNCTIONS FOR HIDE/SHOW ADDITIONAL INFO BASED ON USER TYPE   -->
+    <script type="text/javascript">
+
+        function getTextfield() {
+
+           // var off_payment_method = document.getElementsByName('offline_payment_method');
+            //var ischecked_method = false;
+           // for (var i = 0; i < off_payment_method.length; i++) {
+            //    if (off_payment_method[i].checked) {
+           //         ischecked_method = true;
+           //         break;
+            //     }
+            var textNewValue = document.getElementById('reportTypeNew').value;
+            if (document.getElementById('reportTypeNewRadio').checked == true)
+
+                document.getElementById('reportTypeNewRadio').value = document.getElementById('reportTypeNew').value;
+        }
+
+    </script>
+
+
 </head>
 <body onload="loadHome()">
 
@@ -207,68 +229,110 @@
                 <hr width="90%" />
                 <!--Content of Report-->
                 <div class="form-group">
-                    <label asp-for="Title" class="col-md-2 control-label" style="font-weight:normal;"></label>
+                    <label asp-for="Title" class="col-md-2 control-label" style="font-weight:normal;">Title of the Report</label>
                     <div class="col-md-10">
                         <input asp-for="Title" class="form-control" />
                         <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label asp-for="Subject" class="col-md-2 control-label" style="font-weight:normal;">Subject of Report</label>
                     <div class="col-md-10">
                         <input asp-for="Subject" class="form-control" />
                         <span asp-validation-for="Subject" class="text-danger"></span>
                     </div>
-                </div>
+                </div>-->
+                <!--Educator author-->
                 <div class="form-group">
-                    <label asp-for="Authorid" class="col-md-2 control-label" style="font-weight:normal;">Author</label>
-                    <div class="col-md-10">
-                        <select asp-for="Authorid" class="form-control" asp-items="ViewBag.FullName"></select>
+                        <label asp-for="Authorid" class="col-md-2 control-label" style="font-weight:normal;">Author </label>
+                    <div class="col-md-3">
+                        <select asp-for="Authorid" class="form-control" asp-items="ViewBag.Authorid" style="width: 100%; max-width:none;" required>
+                            <option value="" hidden>Choose Author ...</option>
+                        </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Childid" class="col-md-2 control-label" style="font-weight:normal;">Child</label>
-                    <div class="col-md-10">
-                        <select asp-for="Childid" class="form-control" asp-items="ViewBag.FullName"></select>
+                <!-- Report for Child -->
+               <div class="form-group">
+                    <label asp-for="Childid" class="col-md-2 control-label" style="font-weight:normal;">Child </label>
+                    <div class="col-md-4">
+                        <select asp-for="Childid" class="form-control" asp-items="ViewBag.Childid" style="width: 100%; max-width:none;" required>
+                            <option value="" hidden>Choose Child ...</option>
+                        </select>
                     </div>
                 </div>
-  
+                <!-- Report introduction text -->
+                <div class="form-group">
+                    <label asp-for="Subject" class="col-md-2 control-label" style="font-weight:normal;">Introduction of the report</label><br/>
+                    <div class="col-md-9">
+                        <textarea asp-for="Subject" style="width: 100%; max-width:none;" class="form-control" id="shortbio" rows="6"></textarea>
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- Report content/body text -->
                 <div class="form-group">
                     <label asp-for="Bodytext" class="col-md-2 control-label" style="font-weight:normal;">Content of Report</label>
                     <div class="col-md-9">
-                        <textarea asp-for="Bodytext" style="width: 100%; max-width:none; " class="form-control" id="shortbio" rows="15"></textarea>
+                        <textarea asp-for="Bodytext" style="width:100%; max-width:none;" class="form-control" id="shortbio" rows="15"></textarea>
                         <span asp-validation-for="Bodytext" class="text-danger"></span>
                     </div>
                 </div>
+                <!-- Report type -->
                 <div class="form-group">
                     <label asp-for="Reporttype" class="col-md-2 control-label" style="font-weight:normal;">Report Type</label>
                     <div class="col-md-10">
-                        <input asp-for="Reporttype" type="radio" name="reportType" value="Half Yearly Report"> Half Yearly Report <br />
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Half Yearly Report" > Half Yearly Report <br />
                         <input asp-for="Reporttype" type="radio" name="reportType" value="Annual Report"> Annual Report  <br />
-                        <input asp-for="Reporttype" type="radio" name="reportType" value="Observation Report"> Observation Report <br />
+                        <input  asp-for="Reporttype" type="radio" name="reportType" value="Observation Report"> Observation Report <br />
                         <input asp-for="Reporttype" type="radio" name="reportType" value="Follow-up Observation Report"> Follow-up observation Report<br />
                         <input asp-for="Reporttype" type="radio" name="reportType" value="Interest Web Report"> Interest Web Report<br />
-                        <input asp-for="Reporttype" type="radio" name="reportType" value="Other"> Other <br />
+                        <!--<input onchange="showTextField" asp-for="Reporttype" type="radio" name="reportType" value="Other"> Other <br />-->
+                        <input id="reportTypeNewRadio"  onchange="getTextfield()" asp-for="Reporttype" type="radio" name="reportType" value="Kid's Uni Report"> New category: <input  class="form-control"  onchange="getTextfield()"  type="text" id="reportTypeNew" value="" /><br />
                         <span asp-validation-for="Reporttype" class="text-danger"></span>
                     </div>
                 </div>
-                <!--        UPLAD PROFILE PICTURE       -->
+                <!--        UPLAD IMAGE FILE        -->
                 <div class="form-group">
                     <label class="col-md-2 control-label" style="font-weight:normal;"> Attach image file: </label>
                     <div class="col-md-10">
                         <input type="file" accept="image/x-png,image/gif,image/jpeg" name="file" />
                     </div>
                 </div>
+                
+                <!-- Set for Assigned Task -->
                 <div class="form-group">
                     <label asp-for="Taskid" class="col-md-2 control-label" style="font-weight:normal;">Task</label>
                     <div class="col-md-9">
                         <select asp-for="Taskid" class="form-control" asp-items="ViewBag.Taskid"></select>
                     </div>
                 </div>
+                <!-- Report due date for submission -->
                 <div class="form-group">
-                    <label asp-for="Duedate" class="col-md-2 control-label" style="font-weight:normal;">Due Date</label>
-                    <div id="duedate" class="col-md-9">
-                        <input asp-for="Duedate" type="date" class="form-control" id="taskid" required>
+                    <label asp-for="Duedate" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Duedate" type="date" class="form-control" />
+                        <span asp-validation-for="Duedate" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- Report Is Completed -->
+                <div class="form-group">
+                    <label asp-for="Iscompleted" class="col-md-2 control-label" style="font-weight:normal;">Is this report completed: </label>
+                    <div class="col-md-4">
+                        <select asp-for="Iscompleted" class="form-control" style="width: 100%; max-width:none;" required>
+                            <option value="" hidden>Choose ...</option>
+                            <option value="-1">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Report Is Submitted -->
+                <div class="form-group">
+                    <label asp-for="Issubmitted" class="col-md-2 control-label" style="font-weight:normal;">Ready for submission: </label>
+                    <div class="col-md-4">
+                        <select asp-for="Issubmitted" class="form-control" style="width: 100%; max-width:none;" required>
+                            <option value="" hidden>Choose ...</option>
+                            <option value="-1">No</option>
+                            <option value="1">Yes</option>
+                        </select>
                     </div>
                 </div>
                 <br /><br />

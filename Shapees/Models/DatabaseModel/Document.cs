@@ -16,7 +16,7 @@ namespace Shapees.Models.DatabaseModel
         {
             get
             {
-                return Authorfirst + " " + Authorlast;
+                return Authorfirst.Trim() + " " + Authorlast.Trim();
             }
         }
         public int Childid { get; set; }
@@ -27,7 +27,7 @@ namespace Shapees.Models.DatabaseModel
         {
             get
             {
-                return Childfirst + " " + Childlast;
+                return Childfirst.Trim() + " " + Childlast.Trim();
             }
         }
         [DataType(DataType.Date)]

@@ -49,9 +49,9 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // GET: TasksDB/Create
         public IActionResult Create()
         {
-            ViewData["Assignedforid"] = new SelectList(_context.Userinfo, "Userid", "Email");
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname");
-            ViewData["Reportid"] = new SelectList(_context.Report, "Reportid", "Authorfirst");
+            ViewData["Assignedforid"] = new SelectList(_context.Userinfo, "Userid", "FullName");
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName");
+            ViewData["Reportid"] = new SelectList(_context.Report, "Reportid", "AuthorFullName");
             return View();
         }
 
@@ -62,15 +62,19 @@ namespace Shapees.Controllers.DatabaseModelControllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Taskid,Taskforeducator,Taskforchild,Assignedforid,Taskforfirst,Taskforlast,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Dateassigned,Datecompleted,Duedate,Reportid,Reportpath,Issubmitted,Iscompleted")] Models.DatabaseModel.Task task)
         {
+            //get child info
+            var childdetails = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == task.Childid);
+
             if (ModelState.IsValid)
             {
-                _context.Add(task);
+                task.Dateassigned = DateTime.Today;
+                   
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["Assignedforid"] = new SelectList(_context.Userinfo, "Userid", "Email", task.Assignedforid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname", task.Childid);
-            ViewData["Reportid"] = new SelectList(_context.Report, "Reportid", "Authorfirst", task.Reportid);
+            ViewData["Assignedforid"] = new SelectList(_context.Userinfo, "Userid", "FullName", task.Assignedforid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName", task.Childid);
+            ViewData["Reportid"] = new SelectList(_context.Report, "Reportid", "AuthorFullName", task.Reportid);
             return View(task);
         }
 
@@ -87,9 +91,9 @@ namespace Shapees.Controllers.DatabaseModelControllers
             {
                 return NotFound();
             }
-            ViewData["Assignedforid"] = new SelectList(_context.Userinfo, "Userid", "Email", task.Assignedforid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname", task.Childid);
-            ViewData["Reportid"] = new SelectList(_context.Report, "Reportid", "Authorfirst", task.Reportid);
+            ViewData["Assignedforid"] = new SelectList(_context.Userinfo, "Userid", "Fullname", task.Assignedforid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName", task.Childid);
+            ViewData["Reportid"] = new SelectList(_context.Report, "Reportid", "AuthorFullName", task.Reportid);
             return View(task);
         }
 
@@ -125,9 +129,9 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["Assignedforid"] = new SelectList(_context.Userinfo, "Userid", "Email", task.Assignedforid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Childfirstname", task.Childid);
-            ViewData["Reportid"] = new SelectList(_context.Report, "Reportid", "Authorfirst", task.Reportid);
+            ViewData["Assignedforid"] = new SelectList(_context.Userinfo, "Userid", "FullName", task.Assignedforid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName", task.Childid);
+            ViewData["Reportid"] = new SelectList(_context.Report, "Reportid", "AuthorFullName", task.Reportid);
             return View(task);
         }
 

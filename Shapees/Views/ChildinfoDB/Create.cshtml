@@ -209,9 +209,8 @@
             document.getElementById("child_details").style.backgroundColor = inherit;
         }
 
-
-
     </script>
+  
     <!--        END SCRIPT        -->
 </head>
 
@@ -262,15 +261,14 @@
                 <!--Child DOB-->
                 <div class="row">
                     <div class="col-md-5">
-
                         <label asp-for="Dob" class=" control-label" style="font-weight:normal;">Date of birth</label>
                         <input asp-for="Dob" class="form-control" style="width: 100%; max-width:none; "  type="date"/>
                         <span asp-validation-for="Dob" class="text-danger"></span>
                     </div>
                 </div>
                 <br />
-                <!--Assign Room-->
-                <div class="row">
+                <!--Assign Room _ Room will be assigned automatically based on the educator assigned -->
+                <!--<div class="row">
                     <div class="col-md-5 mb-3">
                         <label asp-for="Roomid" class="control-label" style="font-weight:normal;">Assign room</label>
                         <select asp-for="Roomid" class="form-control" id="roomid" name="roomid" style="width: 100%; max-width:none; "  required>
@@ -282,11 +280,14 @@
                             <span asp-validation-for="Roomid" class="text-danger"></span>
                         </div>
                 </div>
-                <br />
+                <br />-->
                 <!--Educator assigned-->
                 <div class="row">
                     <div class="col-md-5">
-                        <label asp-for="Educatorid" class="control-label" style="font-weight:normal;">Assigned Educator</label>
+                        <label asp-for="Educatorid" class="control-label" style="font-weight:normal;">Assigned Educator</label><br/>
+                        <small style="width: 100%; max-width:none; " id="assignhelp" class="text-muted">
+                            (Room will be automatically assigned based on the assigned Educator for the child)
+                        </small><br />
                         <select asp-for="Educatorid" class="form-control" asp-items="ViewBag.Educatorid" style="width: 100%; max-width:none;" required>
                             <option value="" hidden>Choose Educator ...</option>
                         </select>

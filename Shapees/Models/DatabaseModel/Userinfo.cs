@@ -38,7 +38,7 @@ namespace Shapees.Models.DatabaseModel
         {
             get
             {
-                return Firstname + " " + Lastname;
+                return Firstname.Trim() + " " + Lastname.Trim();
             }
         }
         [DataType(DataType.Date)]

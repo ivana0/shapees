@@ -19,9 +19,11 @@ namespace Shapees.Models.DatabaseModel
         public string AuthorFullName
         {
             get
-            {
+            { 
+
                 return Authorfirst + " " + Authorlast;
             }
+   
         }
         public int Authorid { get; set; }
         public int Childid { get; set; }
@@ -31,25 +33,31 @@ namespace Shapees.Models.DatabaseModel
         public string ChildFullName
         {
             get
-            {
+            { 
                 return Childfirst + " " + Childlast;
             }
         }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Datecreated { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Lastmodified { get; set; }
         public string Title { get; set; }
         public string Subject { get; set; }
         public string Bodytext { get; set; }
         public string Filepath { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? Datesubmitted { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? Datecompleted { get; set; }
         public int Issubmitted { get; set; }
         public int Iscompleted { get; set; }
         public int? Taskid { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? Duedate { get; set; }
         public string Attachmentpaths { get; set; }
         public int? Attachmentcount { get; set; }

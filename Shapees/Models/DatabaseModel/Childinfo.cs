@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shapees.Models.DatabaseModel
 {
@@ -41,6 +42,8 @@ namespace Shapees.Models.DatabaseModel
                 return Childfirstname + " " + Childlastname;
             }
         }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Dob { get; set; }
         //set automatically - caluclate based on DOB
         public string Currentage { get; set; }
