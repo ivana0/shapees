@@ -166,18 +166,10 @@
 
     </script>
 
-    <!--    SCRIPT FUNCTIONS FOR HIDE/SHOW ADDITIONAL INFO BASED ON USER TYPE   -->
+    <!--    SCRIPT FUNCTIONS FOR CUSTOM REPORT NAME  -->
     <script type="text/javascript">
 
         function getTextfield() {
-
-           // var off_payment_method = document.getElementsByName('offline_payment_method');
-            //var ischecked_method = false;
-           // for (var i = 0; i < off_payment_method.length; i++) {
-            //    if (off_payment_method[i].checked) {
-           //         ischecked_method = true;
-           //         break;
-            //     }
             var textNewValue = document.getElementById('reportTypeNew').value;
             if (document.getElementById('reportTypeNewRadio').checked == true)
 
@@ -310,7 +302,7 @@
                 <div class="form-group">
                     <label asp-for="Duedate" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="Duedate" class="form-control"/>
+                        <input asp-for="Duedate" type="date" class="form-control"/>
                         <span asp-validation-for="Duedate" class="text-danger"></span>
                     </div>
                 </div>

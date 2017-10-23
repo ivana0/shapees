@@ -144,6 +144,20 @@
     element.addEventListener("clickbind", onClick);
 </script>
 
+<!--    SCRIPT FUNCTIONS FOR CUSTOM REPORT NAME  -->
+<script type="text/javascript">
+
+    function getTextfield() {
+        var textNewValue = document.getElementById('reportTypeNew').value;
+        if (document.getElementById('reportTypeNewRadio').checked == true)
+
+            document.getElementById('reportTypeNewRadio').value = document.getElementById('reportTypeNew').value;
+    }
+
+</script>
+
+
+
 <h2>Edit</h2>
 
 <a id="clickbind" onclick="onClick()" href="#">Click to Download the Report as PDF</a>
@@ -165,7 +179,7 @@
                 <input asp-for="Reporttype" type="radio" name="reportType" value="Follow-up Observation Report"> Follow-up observation Report<br />
                 <input asp-for="Reporttype" type="radio" name="reportType" value="Interest Web Report"> Interest Web Report<br />
                 <!--<input onchange="showTextField" asp-for="Reporttype" type="radio" name="reportType" value="Other"> Other <br />-->
-                <input id="reportTypeNewRadio" onchange="getTextfield()" asp-for="Reporttype" type="radio" name="reportType" value="Kid's Uni Report"> New category: <input asp-for="Reporttype" class="form-control" onchange="getTextfield()" type="text" id="reportTypeNew" /><br />
+                <input id="reportTypeNewRadio" onchange="getTextfield()" asp-for="Reporttype" type="radio" name="reportType" value=""> Current category (edit if needed): <input asp-for="Reporttype" class="form-control" onchange="getTextfield()" type="text" id="reportTypeNew" /><br />
                 <span asp-validation-for="Reporttype" class="text-danger"></span>
             </div>
         </div>

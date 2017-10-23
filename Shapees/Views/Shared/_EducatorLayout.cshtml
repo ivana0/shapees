@@ -50,12 +50,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="ReportsDB" asp-action="Index">Reports, Documents &amp; Media</a></li>
-                    <li><a asp-area="" asp-controller="TasksDB" asp-action="index">Scheduler</a></li>
-                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index">Children</a></li>
+                    <li><a asp-area="" asp-controller="ReportsDB" asp-action="Index"><span class="glyphicon glyphicon-file"></span>&nbsp;Reports, Documents &amp; Media</a></li>
+                    <li><a asp-area="" asp-controller="TasksDB" asp-action="Index"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Scheduler</a></li>
+                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Children</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a a asp-area="" asp-controller="Home" asp-action="Messages"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="glyphicon glyphicon-user"></span> Welcome @HttpContextAccessor.HttpContext.Session.GetString("shortName")! <span class="caret"></span>

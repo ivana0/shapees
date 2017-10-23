@@ -166,6 +166,13 @@ namespace Shapees.Controllers.DatabaseModelControllers
             //get autorinfo
             var authorinfo = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == report.Authorid);
 
+            //trim childinfo
+            report.Childfirst = childdetails.Childfirstname.Trim();
+            report.Childlast = childdetails.Childlastname.Trim();
+            //trim authorinfo
+            report.Authorfirst = authorinfo.Firstname.Trim();
+            report.Authorlast = authorinfo.Lastname.Trim();
+
             ViewData["room"] = authorinfo.Roomassigned.ToString();
             ViewData["shortbio"] = authorinfo.Shortbio.ToString();
             ViewData["childdob"] = childdetails.Dob.ToString("dd/MM/yyyy");
@@ -173,8 +180,10 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             //get tasks
             var tasksinfo = await _context.Task.SingleOrDefaultAsync(m => m.Taskid == report.Taskid);
+            //get educators list for assign educator select list
+            var educatorlist = _context.Userinfo.Where(e => e.Usertype == 2);
 
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName", report.Authorid);
+            ViewData["Authorid"] = new SelectList(educatorlist, "Userid", "FullName", report.Authorid);
             ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName", report.Childid);
             ViewData["Taskid"] = new SelectList(_context.Task, "Taskid", "Taskid");
             return View(report);
@@ -257,7 +266,10 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "FullName", report.Authorid);
+
+            //get educators list for assign educator select list
+            var assignededucators = _context.Userinfo.Where(e => e.Usertype == 2);
+            ViewData["Authorid"] = new SelectList(assignededucators, "Userid", "FullName", report.Authorid);
             ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "FullName", report.Childid);
             return View(report);
         }

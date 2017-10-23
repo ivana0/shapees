@@ -57,7 +57,6 @@
                     <li><a asp-area="" asp-controller="UserinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Users</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a a asp-area="" asp-controller="Home" asp-action="Messages"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="glyphicon glyphicon-user"></span> Welcome @HttpContextAccessor.HttpContext.Session.GetString("shortName")! <span class="caret"></span>
