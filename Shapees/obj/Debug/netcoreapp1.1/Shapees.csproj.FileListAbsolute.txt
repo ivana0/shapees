@@ -8,3 +8,14 @@ C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\obj\Debug\n
 C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
 C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
 C:\Users\ivana\Documents\Visual Studio 2017\Projects\Shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.deps.json
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.json
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.dev.json
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.dll
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.pdb
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csprojResolveAssemblyReference.cache
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csproj.CoreCompileInputs.cache
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfoInputs.cache
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
+C:\Users\Owner\Documents\GitHub\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb

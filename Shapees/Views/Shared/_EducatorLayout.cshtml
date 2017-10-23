@@ -10,17 +10,17 @@
 @*  File description: Layout file for Educator's dashboard.                           *@
 @* ---------------------------------------------------------------------------------- *@
 
-
-
 @inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
 <!DOCTYPE html>
 <html>
 <head>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Shapees</title>
-    
+
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -32,15 +32,15 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
-    
+
 </head>
 <body>
     <!-- Main Navigation Bar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -50,26 +50,25 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="ReportsDB" asp-action="Index"><span class="glyphicon glyphicon-file"></span>&nbsp;Reports, Documents &amp; Media</a></li>
-                    <li><a asp-area="" asp-controller="TasksDB" asp-action="Index"><span class="glyphicon glyphicon-calendar"></span>&nbsp;Scheduler</a></li>
-                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index"><span class="glyphicon glyphicon-user"></span>&nbsp;Children</a></li>
+                    <li><a asp-area="" asp-controller="ReportsDB" asp-action="Index">Reports, Documents &amp; Media</a></li>
+                    <li><a asp-area="" asp-controller="TasksDB" asp-action="index">Scheduler</a></li>
+                    <li><a asp-area="" asp-controller="ChildinfoDB" asp-action="Index">Children</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a a asp-area="" asp-controller="Home" asp-action="Messages"><span class="glyphicon glyphicon-envelope"></span> Messages</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-user"></span> Welcome User! <span class="caret"></span></a>
+                            <span class="glyphicon glyphicon-user"></span> Welcome @HttpContextAccessor.HttpContext.Session.GetString("shortName")! <span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a a asp-area="" asp-controller="Home" asp-action="AccountSettings"><span class="glyphicon glyphicon-cog"></span> Account Settings</a></li>
-                            <li><a a asp-area="" asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> 
+                            <li><a a asp-area="" asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
-
         </div>
     </nav>
-
 
     <div class="container body-content">
         @RenderBody()
@@ -80,7 +79,6 @@
             </footer>
         </center>
     </div>
-
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -101,8 +99,6 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>
-

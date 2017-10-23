@@ -43,9 +43,8 @@ namespace Shapees
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
             // Add framework services.  
             services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddMvc();
-
             services.AddSession();
+            services.AddMvc();
 
             var sqlconnection = @"Server=(localdb)\mssqllocaldb;Database=master;Trusted_Connection=True;MultipleActiveResultSets=true";
             services.AddDbContext<testMasterContext>(dbcontextoption => dbcontextoption.UseSqlServer(sqlconnection));
@@ -73,6 +72,7 @@ namespace Shapees
             }
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
@@ -83,7 +83,6 @@ namespace Shapees
 
             AppHttpContext.Services = app.ApplicationServices;
 
-            app.UseSession();
             //Use in Controllers:
             //var data = new byte[] { 1, 2, 3, 4 };
             //HttpContext.Session.Set("key", data); // store byte array

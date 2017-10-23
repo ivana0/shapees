@@ -15,52 +15,43 @@
 
 
 @model IEnumerable<Shapees.Models.DatabaseModel.Userinfo>
-@{
+    @{
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/LoginLayout.cshtml";
-}
-<head>
-    <style>
-        body {
-            background-color: #ccfef0;
-        }
-    </style>
-
-</head>
-
-<body>
-
-    <!-- you can substitue the span of reauth email for a input with the email and include the remember me checkbox -->
-    <div class="container">
-    <center>
-        <img id="logo" src="~/images/logo.png" style="padding:20px; width:45%;height:45%;" />
-            
-            <div class="row ">
-            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-            <div class="col-md-4" style="background-color:ivory;padding-top:10px;padding-bottom:20px;border-radius:10px;margin:0 auto;float:none;"><!-- /little-container -->
-                    <h2>Login</h2>
-                    
-                    <form class="form-signin">
-                    <i class="glyphicon glyphicon-user"></i>
-                    <label for="inputUsername">Username</label>
-                    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus><br />
-                    <i class="glyphicon glyphicon-lock"></i>
-                    <label for="inputPassword">Password</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-                    <div id="remember" class="checkbox">
-
-                    <label><input type="checkbox" value="remember-me">Remember me!</label>
-
-                    </div> <!--Checkbox-->
-
-                        <button class="btn btn-lg btn-primary btn-signin" type="submit">Sign in</button>
-                    </form>       <!-- /form -->
-                    <br/>
-                    <a href="#" class="forgot-password">Forgot the password?</a>
-                </div>     <!-- /little-container -->
-            </div>     <!-- /card-container -->
-
-    </center>
-    </div>
-</body>
+    }
+    <head>
+        <style>
+            body {
+                background-color: #ccfef0;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- you can substitue the span of reauth email for a input with the email and include the remember me checkbox -->
+        <div class="container">
+            <center>
+                <img id="logo" src="~/images/logo.png" style="padding:20px; width:45%;height:45%;" />
+                <div class="row ">
+                    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+                    <div class="col-md-4" style="background-color:ivory;padding-top:10px;padding-bottom:20px;border-radius:10px;margin:0 auto;float:none;">
+                        <!-- /little-container -->
+                        <h2>Login</h2>
+                        <form class="form-signin" asp-action="Login" method="post">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <label for="inputUsername">Username</label>
+                            <input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="Username" required autofocus><br />
+                            <i class="glyphicon glyphicon-lock"></i>
+                            <label for="inputPassword">Password</label>
+                            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+                            <div id="remember" class="checkbox">
+                                <label><input type="checkbox" value="remember-me">Remember me!</label>
+                            </div> <!--Checkbox-->
+                            <button class="btn btn-lg btn-primary btn-signin" type="submit">Sign in</button>
+                        </form>       <!-- /form -->
+                        <br />
+                        <a href="#" class="forgot-password">Forgot the password?</a>
+                    </div>     <!-- /little-container -->
+                </div>     <!-- /card-container -->
+            </center>
+        </div>
+    </body>
