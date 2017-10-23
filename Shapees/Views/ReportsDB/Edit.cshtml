@@ -101,7 +101,7 @@
         pdf.setFontType("normal");
         var room = '@ViewData["room"]';
         pdf.text(55, 165, room)
-        
+
         pdf.setTextColor(128, 128, 128);
         pdf.setFontType("bold");
         pdf.setFontSize(14)
@@ -144,18 +144,17 @@
     element.addEventListener("clickbind", onClick);
 </script>
 
-
-
 <h2>Edit</h2>
+
 <a id="clickbind" onclick="onClick()" href="#">Click to Download the Report as PDF</a>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
 
-<form asp-action="Edit" method="post" enctype="multipart/form-data" class="container">
+<form asp-action="Edit">
     <div class="form-horizontal">
         <h4>Report</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Reportid" />
+        <input type="hidden" asp-for="Reportid" />
         <!-- Report type -->
         <div class="form-group">
             <label asp-for="Reporttype" class="col-md-2 control-label" style="font-weight:normal;">Report Type</label>
@@ -166,17 +165,11 @@
                 <input asp-for="Reporttype" type="radio" name="reportType" value="Follow-up Observation Report"> Follow-up observation Report<br />
                 <input asp-for="Reporttype" type="radio" name="reportType" value="Interest Web Report"> Interest Web Report<br />
                 <!--<input onchange="showTextField" asp-for="Reporttype" type="radio" name="reportType" value="Other"> Other <br />-->
-                <input id="reportTypeNewRadio" onchange="getTextfield()" asp-for="Reporttype" type="radio" name="reportType" value="Kid's Uni Report"> New category: <input asp-for="Reporttype" class="form-control" onchange="getTextfield()" type="text" id="reportTypeNew"  /><br />
+                <input id="reportTypeNewRadio" onchange="getTextfield()" asp-for="Reporttype" type="radio" name="reportType" value="Kid's Uni Report"> New category: <input asp-for="Reporttype" class="form-control" onchange="getTextfield()" type="text" id="reportTypeNew" /><br />
                 <span asp-validation-for="Reporttype" class="text-danger"></span>
             </div>
         </div>
-        <!--<div class="form-group">
-            <label asp-for="Reporttype" class="col-md-2 control-label" style="font-weight:normal;">Report Type</label>
-            <div class="col-md-10">
-                <input asp-for="Reporttype" class="form-control" />
-                <span asp-validation-for="Reporttype" class="text-danger"></span>
-            </div>
-        </div>-->
+        <!-- Report Author(Educator) -->
         <div class="form-group">
             <label asp-for="Authorid" class="control-label col-md-2" style="font-weight:normal;">Author</label>
             <div class="col-md-10">
@@ -184,6 +177,7 @@
                 <span asp-validation-for="Authorid" class="text-danger"></span>
             </div>
         </div>
+        <!-- Report for Child -->
         <div class="form-group">
             <label asp-for="Childid" class="control-label col-md-2" style="font-weight:normal;">Child</label>
             <div class="col-md-10">
@@ -191,6 +185,15 @@
                 <span asp-validation-for="Childid" class="text-danger"></span>
             </div>
         </div>
+        <!-- Report's date created-->
+        <div class="form-group">
+            <label asp-for="Datecreated" class="col-md-2 control-label" style="font-weight:normal;"></label>
+            <div class="col-md-10">
+                <input asp-for="Datecreated" class="form-control" readonly/>
+                <span asp-validation-for="Datecreated" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Report Title -->
         <div class="form-group">
             <label asp-for="Title" class="col-md-2 control-label" style="font-weight:normal;">Title of the Report</label>
             <div class="col-md-10">
@@ -202,17 +205,10 @@
         <div class="form-group">
             <label asp-for="Subject" class="col-md-2 control-label" style="font-weight:normal;">Introduction</label>
             <div class="col-md-9">
-                <textarea asp-for="Subject" style="width: 100%; max-width:none; " class="form-control" id="subjectid" rows="6"></textarea>
+                <textarea asp-for="Subject" style="width: 100%; max-width:none;" class="form-control" id="subjectid" rows="6"></textarea>
                 <span asp-validation-for="Subject" class="text-danger"></span>
             </div>
         </div>
-        <!--<div class="form-group">
-            <label asp-for="Subject" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Subject" class="form-control" />
-                <span asp-validation-for="Subject" class="text-danger"></span>
-            </div>
-        </div>-->
         <!-- Report content/body text -->
         <div class="form-group">
             <label asp-for="Bodytext" class="col-md-2 control-label" style="font-weight:normal;">Content of Report</label>
@@ -221,89 +217,51 @@
                 <span asp-validation-for="Bodytext" class="text-danger"></span>
             </div>
         </div>
-        <!--<div class="form-group">
-            <label asp-for="Bodytext" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Bodytext" class="form-control" />
-                <span asp-validation-for="Bodytext" class="text-danger"></span>
-            </div>
-        </div>-->
+        <!-- Report Is submitted -->
         <div class="form-group">
             <label asp-for="Issubmitted" class="col-md-2 control-label" style="font-weight:normal;">Ready for submission: </label>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <select asp-for="Issubmitted" class="form-control" style="width: 100%; max-width:none;" required>
                     <option value="" hidden>Choose ...</option>
                     <option value="-1">No</option>
                     <option value="1">Yes</option>
                 </select>
             </div>
-            <!--<label asp-for="Issubmitted" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Issubmitted" class="form-control" />
-                <span asp-validation-for="Issubmitted" class="text-danger"></span>
-            </div>-->
+            <!-- Report Is Completed -->
         </div>
         <div class="form-group">
             <label asp-for="Iscompleted" class="col-md-2 control-label" style="font-weight:normal;">Is this report completed: </label>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <select asp-for="Iscompleted" class="form-control" style="width: 100%; max-width:none;" required>
                     <option value="" hidden>Choose ...</option>
                     <option value="-1">No</option>
                     <option value="1">Yes</option>
                 </select>
             </div>
-            <!--<label asp-for="Iscompleted" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Iscompleted" class="form-control" />
-                <span asp-validation-for="Iscompleted" class="text-danger"></span>
-            </div>-->
         </div>
+        <!-- Set Report Task -->
         <div class="form-group">
             <label asp-for="Taskid" class="col-md-2 control-label" style="font-weight:normal;">Assign for Task:  </label>
             <div class="col-md-4">
                 <select asp-for="Taskid" asp-items="ViewBag.Taskid" class="form-control" style="width: 100%; max-width:none;">
-                    <option value=-1 >Choose Task ...</option>
+                    <option value=-1>Choose Task ...</option>
                 </select>
             </div>
-            <!--<label asp-for="Taskid" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Taskid" class="form-control" />
-                <span asp-validation-for="Taskid" class="text-danger"></span>
-            </div>-->
         </div>
-        <!-- Report due date for submission -->
-        <!--<div class="form-group">
-            <label asp-for="Duedate" class="col-md-2 control-label"></label>
+        <!-- Set Report Due Date -->
+        <div class="form-group">
+            <label asp-for="Duedate" class="col-md-2 control-label" style="font-weight:normal;"></label>
             <div class="col-md-10">
-                <input asp-for="Duedate" class="form-control" readonly/>
-            </div>
-        </div>
-        <!--<<div class="form-group">
-            <div id="duedate" class="col-md-3">
-                <label for="Duedate" style="font-weight:normal;">Due Date for submision</label>
-                <input asp-for="Duedate" type="date" class="form-control" id="duedate">
+                <input asp-for="Duedate" class="form-control" />
                 <span asp-validation-for="Duedate" class="text-danger"></span>
             </div>
         </div>
-        <br />-->
+       <!--     TRY UPLOADING IMAGE    -->
         <!--<div class="form-group">
-            <label for="Duedate" class="col-md-2 control-label" style="font-weight:normal;">Due Date for submision </label>
-            <div id="duedatediv" class="col-md-9">
-                <input asp-for="Duedate" type="date" class="form-control" id="duedate" readonly>
-            </div>
-        </div>-->
-        <!--<div class="form-group">
-            <label asp-for="Attachmentpaths" class="col-md-2 control-label"></label>
+            <label asp-for="Filepath" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Attachmentpaths" class="form-control" />
-                <span asp-validation-for="Attachmentpaths" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Attachmentcount" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Attachmentcount" class="form-control" />
-                <span asp-validation-for="Attachmentcount" class="text-danger"></span>
+                <input asp-for="Filepath" class="form-control" />
+                <span asp-validation-for="Filepath" class="text-danger"></span>
             </div>
         </div>-->
         <div class="form-group">

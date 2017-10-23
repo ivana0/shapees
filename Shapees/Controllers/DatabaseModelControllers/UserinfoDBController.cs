@@ -180,6 +180,9 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
+                //trim username and pass strings
+                userinfo.Username = userinfo.Username.Trim();
+                userinfo.Pass = userinfo.Pass.Trim();
 
                 //do not assign rooms to parent and director users
                 if (userinfo.Roomid == 1 && (userinfo.Usertype == 3 || userinfo.Usertype == 1))

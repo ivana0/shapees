@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Shapees.Models.DatabaseModel;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using System.Data.SqlTypes;
 
 namespace Shapees.Controllers.DatabaseModelControllers
 {
@@ -24,6 +25,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
         public async Task<IActionResult> Index()
         {
             var masterContext = _context.Report.Include(r => r.Author).Include(r => r.Child);
+
             return View(await masterContext.ToListAsync());
         }
 
@@ -121,8 +123,18 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 report.Lastmodified = DateTime.Today;
 
                 //is submitted or is completed: -1 for false, 1 for true
-                report.Iscompleted = -1;
-                report.Issubmitted = -1;
+                //change is submitted date
+                if (report.Issubmitted == 1)
+                    report.Datesubmitted = DateTime.Today;
+                else
+                    report.Datesubmitted = null;
+
+                //change is completed date
+                if (report.Iscompleted == 1)
+                    report.Datecompleted = DateTime.Today;
+                else
+                    report.Datecompleted = null;
+
 
                 _context.Add(report);
                 await _context.SaveChangesAsync();
@@ -130,8 +142,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
             }
 
             
-            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "AuthorFullName", report.Authorid);
-            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "ChildFullName", report.Childid);
+            ViewData["Authorid"] = new SelectList(_context.Userinfo, "Userid", "Userid", report.Authorid);
+            ViewData["Childid"] = new SelectList(_context.Childinfo, "Childid", "Userid", report.Childid);
             return View(report);
         }
 
@@ -149,29 +161,10 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 return NotFound();
             }
 
-            //Trim strings for author
-            report.Authorfirst = report.Authorfirst.Trim();
-            report.Authorlast = report.Authorlast.Trim();
-            //Trim strings for child
-            report.Childfirst = report.Childfirst.Trim();
-            report.Childlast = report.Childlast.Trim();
-
             //get child info
             var childdetails = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == report.Childid);
             //get autorinfo
             var authorinfo = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == report.Authorid);
-
-            //change last modified if edited
-            report.Lastmodified = DateTime.Today;
-
-            //change is submitted date
-            if(report.Issubmitted == 1)
-                report.Datesubmitted = DateTime.Today;
-
-            //change is completed date
-            if (report.Issubmitted == 1)
-                report.Datecompleted = DateTime.Today;
-
 
             ViewData["room"] = authorinfo.Roomassigned.ToString();
             ViewData["shortbio"] = authorinfo.Shortbio.ToString();
@@ -192,7 +185,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Reportid,Reporttype,Authorid,Childid,Title,Subject,Bodytext,Issubmitted,Iscompleted,Taskid")] Report report)
+        public async Task<IActionResult> Edit(int id, [Bind("Reportid,Reporttype,Authorfirst,Authorlast,Authorid,Childid,Childfirst,Childlast,Datecreated,Lastmodified,Title,Subject,Bodytext,Filepath,Datesubmitted,Datecompleted,Issubmitted,Iscompleted,Taskid,Duedate,Attachmentpaths,Attachmentcount")] Report report)
         {
             if (id != report.Reportid)
             {
@@ -201,7 +194,51 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
-               
+
+                //get child info
+                var childdetails = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == report.Childid);
+                //get autorinfo
+                var authorinfo = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == report.Authorid);
+
+                /*      TRIM STRINGS    */
+                //set author info
+                report.Authorfirst = authorinfo.Firstname.Trim();
+                report.Authorlast = authorinfo.Lastname.Trim();
+
+                //set child info
+                report.Childfirst = childdetails.Childfirstname.Trim();
+                report.Childlast = childdetails.Childlastname.Trim();
+
+                //set child info
+                report.Childfirst = report.Childfirst.Trim();
+                report.Childlast = report.Childlast.Trim();
+
+                //set child info
+                report.Authorfirst = report.Authorfirst.Trim();
+                report.Authorfirst = report.Authorfirst.Trim();
+
+                ViewData["room"] = authorinfo.Roomassigned.ToString();
+                ViewData["shortbio"] = authorinfo.Shortbio.ToString();
+                ViewData["childdob"] = childdetails.Dob.ToString("dd/MM/yyyy");
+
+                //change last modified if edited
+                report.Lastmodified = DateTime.Today;
+
+                //change is submitted date
+                if (report.Issubmitted == 1)
+                    report.Datesubmitted = DateTime.Today;
+                else
+                    report.Datesubmitted = null;
+
+                //change is completed date
+                if (report.Iscompleted == 1)
+                    report.Datecompleted = DateTime.Today;
+                else
+                    report.Datecompleted = null;
+
+                //report.Duedate = DateTime.Today;
+                //Convert.ToDateTime(report.Duedate.ToString());
+
                 try
                 {
                     _context.Update(report);
