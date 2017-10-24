@@ -1,0 +1,89 @@
+@model Shapees.Models.DatabaseModel.Media
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_ParentLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Media</h4>
+    <hr />
+    @if (Model.Filepath != null && Model.Mediatype == "Image")
+    {
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <img height="500" src="@ViewBag.imagesrc" /><br />
+            </div>
+        </div>
+            <br />
+    }
+    @if (Model.Filepath != null && Model.Mediatype == "Video")
+    {
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+                <video controls>
+                    <source src="@ViewBag.videosrc" type=video/webm>
+                    <source src="@ViewBag.videosrc" type=video/ogg>
+                    <source src="@ViewBag.videosrc" type=video/mp4>
+                    <source src="@ViewBag.videosrc" type=video/3gp>
+                </video>
+            </div>
+        </div>
+        <br />
+    }
+
+    <div>
+        <br />
+        <a asp-action="Download" asp-route-filename="@Model.Filepath"><span style="color:limegreen;" class="glyphicon glyphicon-download" aria-hidden="true"></span>&ensp;Download This Media file</a>
+        <br /><br />
+    </div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            Media type
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mediatype)
+        </dd>
+        <dt>
+            Author
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AuthorFullName)
+        </dd>
+        <dt>
+            Child
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChildFullName)
+        </dd>
+        <dt>
+            Date uploaded
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dateuploaded)
+        </dd>
+        <dt>
+            Title
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            Description
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    &emsp;<a asp-action="IndexParent"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Media List</a> &emsp;
+    <br /><br />
+</div>

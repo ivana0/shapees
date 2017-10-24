@@ -1,0 +1,441 @@
+﻿@model Shapees.Models.DatabaseModel.Childinfo
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_EducatorLayout.cshtml";
+}
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/css/ChildrensViewStyle.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--        START CSS        -->
+    <style>
+        /***********    TABS CSS       ***********/
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+
+        /***********    HR (LINE) CSS       ***********/
+        .hr.styleSeparator {
+            height: 10px;
+            border: 0;
+            box-shadow: 0 10px 10px -10px #8c8b8b inset;
+        }
+
+
+        /***********    SEARCH BAR CSS       ***********/
+        #searchbar {
+            width: 200px;
+            height: 48px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            float: right;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+            background-image: url(search.png);
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        #searchbar {
+            width: 100%;
+        }
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #delete_child {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #child_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <!--        END CSS        -->
+    <!--        START SCRIPT        -->
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open children home page on body load
+        function loadChildrenEdit() {
+            // Show the children home tab
+            document.getElementById('EditChild').style.display = "block";
+            // Set button to active
+            document.getElementById("edit_child").className += " active";
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("IndexEducator", "ChildinfoDB")';
+
+        }
+
+        function openEdit() {
+
+            document.getElementById("edit_child").onclick = function () {
+                //disable
+                this.disabled = true;
+
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_child").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("child_details").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+
+        function blockHover() {
+            document.getElementById("delete_child").style.backgroundColor = inherit;
+            document.getElementById("edit_child").style.backgroundColor = inherit;
+            document.getElementById("child_details").style.backgroundColor = inherit;
+        }
+
+
+
+    </script>
+    <!--        END SCRIPT        -->
+</head>
+
+<body onload="loadChildrenEdit()">
+    <h2>Children</h2>
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_child" class="tablinks" onclick="openIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Search Child</button>
+        <button id="edit_child" class="tablinks" onclick="openOption(event, 'EditChild')"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Child</button>
+        <button id="child_details" class="tablinks" onclick="openDetails()"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;Child Details</button>
+    </div>
+
+    <!--    FIRST TAB - Home (list of children)    -->
+    <div id="ListChildren" class="tabcontent">
+
+    </div>
+    <!--    SECOND TAB - Create User    -->
+    <!-- END Add Child Form and tab -->
+    <!--    3RD TAB - Edit User    -->
+    <div id="EditChild" class="tabcontent">
+
+        <h2>Edit</h2>
+
+        <form asp-action="Edit">
+            <div class="form-horizontal">
+                <h4>Childinfo</h4>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Childid" />
+                <div class="form-group">
+                    <label asp-for="Inroom" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Inroom" class="form-control" />
+                        <span asp-validation-for="Inroom" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Educatorfname" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Educatorfname" class="form-control" />
+                        <span asp-validation-for="Educatorfname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Educatorlname" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Educatorlname" class="form-control" />
+                        <span asp-validation-for="Educatorlname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Educatorid" class="control-label col-md-2"></label>
+                    <div class="col-md-10">
+                        <select asp-for="Educatorid" class="form-control" asp-items="ViewBag.Educatorid"></select>
+                        <span asp-validation-for="Educatorid" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Street" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Street" class="form-control" />
+                        <span asp-validation-for="Street" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="City" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="City" class="form-control" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Postcode" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Postcode" class="form-control" />
+                        <span asp-validation-for="Postcode" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="State" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="State" class="form-control" />
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Childfirstname" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Childfirstname" class="form-control" />
+                        <span asp-validation-for="Childfirstname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Childlastname" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Childlastname" class="form-control" />
+                        <span asp-validation-for="Childlastname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Dob" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Dob" class="form-control" />
+                        <span asp-validation-for="Dob" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Currentage" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Currentage" class="form-control" />
+                        <span asp-validation-for="Currentage" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Contacnumber1" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Contacnumber1" class="form-control" />
+                        <span asp-validation-for="Contacnumber1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Contacnumber2" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Contacnumber2" class="form-control" />
+                        <span asp-validation-for="Contacnumber2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Parent1" class="control-label col-md-2"></label>
+                    <div class="col-md-10">
+                        @if (Model.Parent1 == null)
+                        {
+                            <select asp-for="Parent1" class="form-control" asp-items="ViewBag.Parent1">
+                                <option value="">Choose Parent 1 ...</option>
+                            </select>
+
+                        }
+                        else
+                        {
+                            <select asp-for="Parent1" class="form-control" asp-items="ViewBag.Parent1"></select>
+                            <span asp-validation-for="Parent1" class="text-danger"></span>
+
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Parent1fname" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Parent1fname" class="form-control" />
+                        <span asp-validation-for="Parent1fname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Parent1lname" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Parent1lname" class="form-control" />
+                        <span asp-validation-for="Parent1lname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Parent2" class="control-label col-md-2"></label>
+                    <div class="col-md-10">
+                        @if (Model.Parent2 == null)
+                        {
+                            <select asp-for="Parent2" class="form-control" asp-items="ViewBag.Parent2">
+                                <option value="">Choose Parent 2 ...</option>
+                            </select>
+                        }
+                        else
+                        {
+                            <select asp-for="Parent2" class="form-control" asp-items="ViewBag.Parent2"></select>
+                            <span asp-validation-for="Parent2" class="text-danger"></span>
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Parent2fname" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Parent2fname" class="form-control" />
+                        <span asp-validation-for="Parent2fname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Parent2lname" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Parent2lname" class="form-control" />
+                        <span asp-validation-for="Parent2lname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Shortinfo" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Shortinfo" class="form-control" />
+                        <span asp-validation-for="Shortinfo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Specialneeds" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Specialneeds" class="form-control" />
+                        <span asp-validation-for="Specialneeds" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Profileimage" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Profileimage" class="form-control" />
+                        <span asp-validation-for="Profileimage" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            &emsp;<a asp-action="IndexEducator"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Children List</a> &emsp;
+        </div>
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    4TH TAB - Delete Child    -->
+    <!---->
+    <!--    5TH TAB -  Child  Details  -->
+    <div id="ChildDetails" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+
+</body>
+
+

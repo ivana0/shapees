@@ -50,6 +50,18 @@ namespace Shapees.Controllers
             return View();
         }
 
+        //  Dashboard/Home page for Educator
+        public IActionResult IndexEducator()
+        {
+            return View();
+        }
+        //  Dashboard/Home page for Parent
+        public IActionResult IndexParent()
+        {
+            return View();
+        }
+
+
         //  Documents and Media page  
         public IActionResult DocumentsAndMedia()
         {

@@ -2,8 +2,9 @@
 
 @{
     ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <head>
     <style>
         /* Other */
@@ -239,7 +240,6 @@
                         <label asp-for="Authorid" class="col-md-2 control-label" style="font-weight:normal;">Author </label>
                     <div class="col-md-3">
                         <select asp-for="Authorid" class="form-control" asp-items="ViewBag.Authorid" style="width: 100%; max-width:none;" required>
-                            <option value="" hidden>Choose Author ...</option>
                         </select>
                     </div>
                 </div>
@@ -295,12 +295,14 @@
                 <div class="form-group">
                     <label asp-for="Taskid" class="col-md-2 control-label" style="font-weight:normal;">Task</label>
                     <div class="col-md-9">
-                        <select asp-for="Taskid" class="form-control" asp-items="ViewBag.Taskid"></select>
+                        <select asp-for="Taskid" class="form-control" asp-items="ViewBag.Taskid">
+                            <option value=-1 hidden>Choose Task ...</option>
+                        </select>
                     </div>
                 </div>
                 <!-- Report due date for submission -->
                 <div class="form-group">
-                    <label asp-for="Duedate" class="col-md-2 control-label"></label>
+                    <label asp-for="Duedate" class="col-md-2 control-label" style="font-weight:normal;"></label>
                     <div class="col-md-10">
                         <input asp-for="Duedate" type="date" class="form-control"/>
                         <span asp-validation-for="Duedate" class="text-danger"></span>

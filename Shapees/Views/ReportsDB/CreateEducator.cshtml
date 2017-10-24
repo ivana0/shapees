@@ -1,0 +1,374 @@
+@model Shapees.Models.DatabaseModel.Report
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_EducatorLayout.cshtml";
+}
+
+<head>
+    <style>
+        /* Other */
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+        .btn.borderless.dropdown-toggle {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+           
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        label {
+            font-size: 1em;
+        }
+
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
+
+
+        /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_report {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_report {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #report_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <script>
+
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+
+        //open documents&media home page on body load
+        function loadHome() {
+            // Show the list reports home tab
+            document.getElementById('CreateReport').style.display = "block";
+            // Set button to active
+            document.getElementById("create_report").className += " active";
+        }
+
+        //redirect to action pages
+        //open Create Report
+        function openCreateReport() {
+            document.location = '@Url.Action("CreateEducator", "ReportsDB")';
+
+        }
+        //open Create Document
+        function openCreateDocument() {
+            document.location = '@Url.Action("CreateEducator", "DocumentsDB")';
+
+        }
+        //open Create Media
+        function openCreateMedia() {
+            document.location = '@Url.Action("CreateEducator", "MediaDB")';
+
+        }
+        //open Reports Index - search reports
+        function openReportsIndex() {
+            document.location = '@Url.Action("IndexEducator", "ReportsDB")';
+
+        }
+
+        //function opens search Reports
+        function searchReports() {
+            document.location = '@Url.Action("IndexEducator", "ReportsDB")';
+        }
+        //function opens search Documents
+        function searchDocuments() {
+            document.location = '@Url.Action("IndexEducator", "DocumentsDB")';
+        }
+        //function opens search Media
+        function searchMedia() {
+            document.location = '@Url.Action("IndexEducator", "MediaDB")';
+        }
+
+    </script>
+
+    <!--    SCRIPT FUNCTIONS FOR CUSTOM REPORT NAME  -->
+    <script type="text/javascript">
+
+        function getTextfield() {
+            var textNewValue = document.getElementById('reportTypeNew').value;
+            if (document.getElementById('reportTypeNewRadio').checked == true)
+
+                document.getElementById('reportTypeNewRadio').value = document.getElementById('reportTypeNew').value;
+        }
+
+    </script>
+
+
+</head>
+<body onload="loadHome()">
+
+    <h2>Reports, Documents and Media</h2>
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_page" class="tablinks" onclick="openReportsIndex()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Reports, Documents and Media</button>
+        <button id="create_report" class="tablinks" onclick="openCreateReport()">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-list-alt"></span>
+            &ensp;Create Report
+        </button>
+        <button id="create_document" class="tablinks" onclick="openCreateDocument()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            &ensp;Upload Document
+        </button>
+        <button id="create_media" class="tablinks" onclick="openCreateMedia()">
+            <span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+            &ensp;Upload Media
+        </button>
+    </div>
+
+    <!--    FIRST TAB - Home (list of reports)    -->
+    <div id="ListReports" class="tabcontent">
+    </div>
+    <!--    END FIRST TAB   -->
+    <!--    2ND TAB - Create Reports    -->
+    <div id="CreateReport" class="tabcontent">
+        <br />
+        <div>
+            <a asp-action="IndexEducator"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Report List</a>&emsp;|&emsp;
+        </div>
+        <!-- Second Form to Create User -->
+        <form asp-action="CreateEducator" method="post" enctype="multipart/form-data" class="container">
+            <br />
+            <div class="form-horizontal">
+                <h4>Kid's Uni: General Report Form</h4>
+                <hr width="90%" />
+                <!--Title of Report-->
+                <div class="form-group">
+                    <label asp-for="Title" class="col-md-2 control-label" style="font-weight:normal;">Title of the Report</label>
+                    <div class="col-md-10">
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <!--Educator author-->
+                <div class="form-group">
+                        <label asp-for="Authorid" class="col-md-2 control-label" style="font-weight:normal;">Author </label>
+                    <div class="col-md-3">
+                        <select asp-for="Authorid" class="form-control" asp-items="ViewBag.Authorid" style="width: 100%; max-width:none;" required>
+                        </select>
+                    </div>
+                </div>
+                <!-- Report for Child -->
+               <div class="form-group">
+                    <label asp-for="Childid" class="col-md-2 control-label" style="font-weight:normal;">Child </label>
+                    <div class="col-md-4">
+                        <select asp-for="Childid" class="form-control" asp-items="ViewBag.Childid" style="width: 100%; max-width:none;" required>
+                            <option value="" hidden>Choose Child ...</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Report introduction text -->
+                <div class="form-group">
+                    <label asp-for="Subject" class="col-md-2 control-label" style="font-weight:normal;">Introduction of the report</label><br/>
+                    <div class="col-md-9">
+                        <textarea asp-for="Subject" style="width: 100%; max-width:none;" class="form-control" id="shortbio" rows="6"></textarea>
+                        <span asp-validation-for="Subject" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- Report content/body text -->
+                <div class="form-group">
+                    <label asp-for="Bodytext" class="col-md-2 control-label" style="font-weight:normal;">Content of Report</label>
+                    <div class="col-md-9">
+                        <textarea asp-for="Bodytext" style="width:100%; max-width:none;" class="form-control" id="shortbio" rows="15"></textarea>
+                        <span asp-validation-for="Bodytext" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- Report type -->
+                <div class="form-group">
+                    <label asp-for="Reporttype" class="col-md-2 control-label" style="font-weight:normal;">Report Type</label>
+                    <div class="col-md-10">
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Half Yearly Report" > Half Yearly Report <br />
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Annual Report"> Annual Report  <br />
+                        <input  asp-for="Reporttype" type="radio" name="reportType" value="Observation Report"> Observation Report <br />
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Follow-up Observation Report"> Follow-up observation Report<br />
+                        <input asp-for="Reporttype" type="radio" name="reportType" value="Interest Web Report"> Interest Web Report<br />
+                        <!--<input onchange="showTextField" asp-for="Reporttype" type="radio" name="reportType" value="Other"> Other <br />-->
+                        <input id="reportTypeNewRadio"  onchange="getTextfield()" asp-for="Reporttype" type="radio" name="reportType" value="Kid's Uni Report"> New category: <input  class="form-control"  onchange="getTextfield()"  type="text" id="reportTypeNew" value="" /><br />
+                        <span asp-validation-for="Reporttype" class="text-danger"></span>
+                    </div>
+                </div>
+                <!--        TRY IF TIME        -->
+                <!--        UPLOAD IMAGE FILE        -->
+                <!--<div class="form-group">
+                    <label class="col-md-2 control-label" style="font-weight:normal;"> Attach image file: </label>
+                    <div class="col-md-10">
+                        <input type="file" accept="image/x-png,image/gif,image/jpeg" name="file" />
+                    </div>
+                </div>-->
+                
+                <!-- Set for Assigned Task -->
+                <div class="form-group">
+                    <label asp-for="Taskid" class="col-md-2 control-label" style="font-weight:normal;">Task</label>
+                    <div class="col-md-9">
+                        <select asp-for="Taskid" class="form-control" asp-items="ViewBag.Taskid">
+                            <option value=-1 hidden>Choose Task ...</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Report due date for submission -->
+                <div class="form-group">
+                    <label asp-for="Duedate" class="col-md-2 control-label" style="font-weight:normal;"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Duedate" type="date" class="form-control"/>
+                        <span asp-validation-for="Duedate" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- Report Is Completed -->
+                <div class="form-group">
+                    <label asp-for="Iscompleted" class="col-md-2 control-label" style="font-weight:normal;">Is this report completed: </label>
+                    <div class="col-md-4">
+                        <select asp-for="Iscompleted" class="form-control" style="width: 100%; max-width:none;" required>
+                            <option value="" hidden>Choose ...</option>
+                            <option value="-1">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Report Is Submitted -->
+                <div class="form-group">
+                    <label asp-for="Issubmitted" class="col-md-2 control-label" style="font-weight:normal;">Ready for submission: </label>
+                    <div class="col-md-4">
+                        <select asp-for="Issubmitted" class="form-control" style="width: 100%; max-width:none;" required>
+                            <option value="" hidden>Choose ...</option>
+                            <option value="-1">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                </div>
+                <br /><br />
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="reset" value="Reset" class="btn btn-danger">Reset Form</button>
+                        <input type="submit" value="Create Report" class="btn btn-success" />
+                    </div>
+                </div>
+                <br /><br />
+            </div>
+        </form>
+        <br /><br />
+    </div>
+    
+    <!-- END Create Reports -->
+    <!--    3RD TAB - Create Document    -->
+    <div id="CreateDocument" class="tabcontent">
+
+        <br /><br />
+    </div>
+    <!-- END Create Documents -->
+    <!--    4TH TAB - Create Media    -->
+    <div id="CreateMedia" class="tabcontent">
+        <br /><br />
+    </div>
+    <!-- END Create Media -->
+</body>
+
+    <script>
+        Date.prototype.toDateInputValue = (function () {
+            var local = new Date(this);
+            local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+            return local.toJSON().slice(0, 10);
+        });
+
+            var date = new Date();
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+
+            var today = year + "-" + day + "-" + month;
+            document.getElementById("#theDate").value = today;
+
+      
+    </script>
+

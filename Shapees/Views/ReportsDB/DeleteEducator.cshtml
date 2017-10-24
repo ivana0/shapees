@@ -1,0 +1,73 @@
+@model Shapees.Models.DatabaseModel.Report
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_EducatorLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this report?</h3>
+<div>
+    <h4>Report</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Reportid" />
+        <dt>
+            Report type
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reporttype)
+        </dd>
+        <dt>
+            Author
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AuthorFullName)
+        </dd>
+        <dt>
+            Child
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChildFullName)
+        </dd>
+        <dt>
+            Date created
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datecreated)
+        </dd>
+        <dt>
+            Title
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            Introduction
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+        <dt>
+            Report Content
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bodytext)
+        </dd>
+    </dl>
+    <form asp-action="DeleteEducator">
+        <div class="form-actions no-color">
+            &emsp;<a asp-action="IndexEducator"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Report List</a> &emsp;|&emsp;
+            <button type="submit" class="btn btn-default">
+                <span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+            </button>
+        </div>
+    </form>
+    <!--<form asp-action="DeleteEducator">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>-->
+</div>

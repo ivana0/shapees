@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Details</h2>
@@ -10,7 +10,8 @@
 <div>
     <h4>Media</h4>
     <hr />
-    @if (Model.Filepath != null && Model.Mediatype == "image")
+
+    @if (Model.Filepath != null && Model.Mediatype == "Image")
     {
         <div class="row">
             <div class="col-md-1">
@@ -21,7 +22,7 @@
         </div>
             <br />
     }
-    @if (Model.Filepath != null && Model.Mediatype == "video")
+    @if (Model.Filepath != null && Model.Mediatype == "Video")
     {
         <div class="row">
             <div class="col-md-1">
@@ -38,76 +39,53 @@
         <br />
     }
     
+    <div>
+        <br />
+        <a asp-action="Download" asp-route-filename="@Model.Filepath"><span style="color:limegreen;" class="glyphicon glyphicon-download" aria-hidden="true"></span>&ensp;Download This Media file</a>
+        <br /><br />
+    </div>
+
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Mediatype)
+            Media type
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Mediatype)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Authorfirst)
+            Author
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Authorfirst)
+            @Html.DisplayFor(model => model.AuthorFullName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Authorlast)
+            Child
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Authorlast)
+            @Html.DisplayFor(model => model.ChildFullName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Childfirst)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Childfirst)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Childlast)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Childlast)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Dateuploaded)
+            Date uploaded
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Dateuploaded)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            Title
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Filepath)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Filepath)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Author.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Child)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Child.Childfirstname)
-        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Mediaid">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Media List</a> &emsp;|&emsp;
+    <a asp-action="Edit" asp-route-id="@Model.Mediaid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a>
+    <br /><br />
 </div>

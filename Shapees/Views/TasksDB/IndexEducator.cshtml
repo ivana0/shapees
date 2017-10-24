@@ -1,0 +1,381 @@
+﻿@model IEnumerable<Shapees.Models.DatabaseModel.Task>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_EducatorLayout.cshtml";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--        START CSS        -->
+    <style>
+        /***********    TABS CSS       ***********/
+        .btn-gray {
+            color: #fff;
+            background-color: #eee;
+            border-color: #ccc;
+            color: #000;
+        }
+
+        .btn.borderless {
+            border: none;
+            background: inherit;
+        }
+
+            .btn.borderless.dropdown-toggle {
+                -webkit-box-shadow: none;
+                box-shadow: none;
+            }
+
+        .rb {
+            border-right: 1px solid #ccc;
+        }
+
+        .topcis-header {
+            margin-top: 20px;
+            margin-bottom: -1px;
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            border-radius: 3px 3px 0 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+
+        /***********    HR (LINE) CSS       ***********/
+        .hr.styleSeparator {
+            height: 10px;
+            border: 0;
+            box-shadow: 0 10px 10px -10px #8c8b8b inset;
+        }
+
+
+        /***********    SEARCH BAR CSS       ***********/
+        #searchbar {
+            width: 200px;
+            height: 48px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            float: right;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+            background-image: url(search.png);
+            background-position: 10px 12px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+        }
+
+        /* When the input field gets focus, change its width to 100% */
+        #searchbar {
+            width: 100%;
+        }
+        /* Style the tab */
+        div.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            div.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                /* Change background color of buttons on hover */
+                div.tab button:hover {
+                    background-color: #ddd;
+                }
+
+
+                /* Create an active/current tablink class */
+                div.tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Remove hover for disabled tab links */
+        #edit_task {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #delete_task {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+
+        #task_details {
+            background-color: #f1f1f1;
+            color: #D3D3D3;
+        }
+    </style>
+    <!--        END CSS        -->
+    <!--        START SCRIPT        -->
+    <script>
+        //open tab function
+        function openOption(evt, optionName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+        }
+        //open scheduler home page on body load
+        function loadSchedulerHome() {
+            // Show the scheduler home tab
+            document.getElementById('ListTasks').style.display = "block";
+            // Set button to active
+            document.getElementById("home_scheduler").className += " active";
+        }
+
+        //redirect to action pages
+        function openIndex() {
+            document.location = '@Url.Action("IndexEducator", "TasksDB")';
+
+        }
+        function openCreate() {
+            document.location = '@Url.Action("CreateEducator", "TasksDB")';
+
+        }
+
+
+        function openEdit() {
+
+            document.getElementById("edit_task").onclick = function () {
+                //disable
+                this.disabled = true;
+
+            }
+
+        }
+        function openDelete() {
+            document.getElementById("delete_task").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+        function openDetails() {
+            document.getElementById("task_details").onclick = function () {
+                //disable
+                this.disabled = true;
+            }
+
+        }
+
+
+        function blockHover() {
+            document.getElementById("delete_task").style.backgroundColor = inherit;
+            document.getElementById("edit_task").style.backgroundColor = inherit;
+            document.getElementById("task_details").style.backgroundColor = inherit;
+
+        }
+
+
+
+    </script>
+</head>
+<body onload="loadSchedulerHome()">
+    <h2>Tasks</h2>
+    <!--       START TABS        -->
+    <div class="tab">
+        <button id="home_scheduler" class="tablinks" onclick="openOption(event, 'ListTasks')"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&ensp;Search Tasks</button>
+        <button id="create_task" class="tablinks" onclick="openCreate()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Task</button>
+        <button id="edit_task" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Task</button>
+        <button id="delete_task" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete Task</button>
+        <button id="task_details" class="tablinks" onclick="openDetails()"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;Task Details</button>
+
+    </div>
+    <!--    FIRST TAB - Home (list of tasks)    -->
+    <div id="ListTasks" class="tabcontent">
+        <h4>Scheduler Index</h4>
+
+
+        </div>
+
+        <p>
+            <a asp-action="CreateEducator">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taskforeducator)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taskforchild)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taskforfirst)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taskforlast)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Authorfirst)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Authorlast)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Authorid)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Childfirst)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Childlast)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Dateassigned)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Datecompleted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Duedate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Reportpath)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Issubmitted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Iscompleted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Assignedfor)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Child)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Report)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Taskforeducator)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Taskforchild)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Taskforfirst)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Taskforlast)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Authorfirst)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Authorlast)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Authorid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Childfirst)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Childlast)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Dateassigned)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Datecompleted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Duedate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Reportpath)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Issubmitted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Iscompleted)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Assignedfor.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Child.Childfirstname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Report.Authorfirst)
+                        </td>
+                        <td>
+                            <a asp-action="EditEducator" asp-route-id="@item.Taskid">Edit</a> |
+                            <a asp-action="DetailsEducator" asp-route-id="@item.Taskid">Details</a> |
+                            <a asp-action="DeleteEducator" asp-route-id="@item.Taskid">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    <!--    SECOND TAB - Create User    -->
+    <div id="CreateTask" class="tabcontent">
+
+    </div>
+    <!--        END SECOND TAB      -->
+    <!--    3RD TAB - Edit User    -->
+    <div id="EditTask" class="tabcontent">
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    4TH TAB - Delete User    -->
+    <div id="DeleteTask" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+    <!---->
+    <!--    5TH TAB -  User  Details  -->
+    <div id="TaskDetails" class="tabcontent">
+
+
+        <br /><br />
+    </div>
+</body>

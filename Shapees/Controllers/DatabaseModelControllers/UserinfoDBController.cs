@@ -162,7 +162,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             }
             else
             {
-                var filename = userinfo.Username.Trim() + file.FileName;
+                var filename = userinfo.Username.Trim() + file.FileName.Trim();
                 //set user's profile image filename
                 userinfo.Profileimage = filename;
                 var path = Path.Combine(
@@ -279,7 +279,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             }
             else {
 
-                var filename = userinfo.Username.Trim() + file.FileName;
+                var filename = userinfo.Username.Trim() + file.FileName.Trim();
 
                 userinfo.Profileimage = filename;
                 var path = Path.Combine(

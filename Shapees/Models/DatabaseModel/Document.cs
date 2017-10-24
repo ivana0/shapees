@@ -16,7 +16,7 @@ namespace Shapees.Models.DatabaseModel
         {
             get
             {
-                return Authorfirst.Trim() + " " + Authorlast.Trim();
+                return Authorfirst + " " + Authorlast;
             }
         }
         public int Childid { get; set; }
@@ -27,11 +27,10 @@ namespace Shapees.Models.DatabaseModel
         {
             get
             {
-                return Childfirst.Trim() + " " + Childlast.Trim();
+                return Childfirst + " " + Childlast;
             }
         }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Dateuploaded { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

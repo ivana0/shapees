@@ -1,0 +1,105 @@
+@model Shapees.Models.DatabaseModel.Document
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_EducatorLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="EditEducator">
+    <div class="form-horizontal">
+        <h4>Document</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Documentid" />
+        <div class="form-group">
+            <label asp-for="Documenttype" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Documenttype" class="form-control" />
+                <span asp-validation-for="Documenttype" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorfirst" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Authorfirst" class="form-control" />
+                <span asp-validation-for="Authorfirst" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorlast" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Authorlast" class="form-control" />
+                <span asp-validation-for="Authorlast" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Authorid" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Authorid" class="form-control" asp-items="ViewBag.Authorid"></select>
+                <span asp-validation-for="Authorid" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childid" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="Childid" class="form-control" asp-items="ViewBag.Childid"></select>
+                <span asp-validation-for="Childid" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childfirst" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Childfirst" class="form-control" />
+                <span asp-validation-for="Childfirst" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Childlast" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Childlast" class="form-control" />
+                <span asp-validation-for="Childlast" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Dateuploaded" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Dateuploaded" class="form-control" />
+                <span asp-validation-for="Dateuploaded" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Filepath" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Filepath" class="form-control" />
+                <span asp-validation-for="Filepath" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    &emsp;<a asp-action="IndexEducator"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Document List</a>
+    <br /><br />
+</div>
+

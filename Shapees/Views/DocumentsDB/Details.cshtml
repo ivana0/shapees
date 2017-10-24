@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Details</h2>
@@ -10,76 +10,51 @@
 <div>
     <h4>Document</h4>
     <hr />
+    <div>
+        <a asp-action="Download" asp-route-filename="@Model.Filepath"><span style="color:limegreen;" class="glyphicon glyphicon-download" aria-hidden="true"></span>&ensp;Download This Document</a>
+        <br /><br />
+    </div>
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Documenttype)
+            Document type
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Documenttype)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Authorfirst)
+            Author
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Authorfirst)
+            @Html.DisplayFor(model => model.AuthorFullName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Authorlast)
+            Child
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Authorlast)
+            @Html.DisplayFor(model => model.ChildFullName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Childfirst)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Childfirst)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Childlast)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Childlast)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Dateuploaded)
+            Date uploaded
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Dateuploaded)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            Title
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Description
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Filepath)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Filepath)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Author)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Author.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Child)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Child.Childfirstname)
-        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Documentid">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Document List</a> &emsp;|&emsp;
+    <a asp-action="Edit" asp-route-id="@Model.Documentid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a>
+    <br /><br />
 </div>

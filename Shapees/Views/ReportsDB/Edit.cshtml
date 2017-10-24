@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/DocumentsAndMediaLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 
@@ -159,14 +159,15 @@
 
 
 <h2>Edit</h2>
-
-<a id="clickbind" onclick="onClick()" href="#">Click to Download the Report as PDF</a>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
-
 <form asp-action="Edit">
     <div class="form-horizontal">
         <h4>Report</h4>
         <hr />
+        <div>
+            <a id="clickbind" onclick="onClick()" href="#"><span style="color:limegreen;" class="glyphicon glyphicon-download" aria-hidden="true"></span>&ensp;Click to Download the Report as PDF</a>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+            <br /><br />
+        </div>
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Reportid" />
         <!-- Report type -->
@@ -287,6 +288,7 @@
 </form>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Report List</a>
+    <br /><br />
 </div>
 

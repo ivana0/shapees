@@ -84,7 +84,7 @@ namespace Shapees.Controllers
                     }
                 }
 
-                Console.WriteLine("username or email = '" + testUsers.Username.Trim() + "' and password = '" + testUsers.Pass.Trim() + "'");
+                //Console.WriteLine("username or email = '" + testUsers.Username.Trim() + "' and password = '" + testUsers.Pass.Trim() + "'");
 
                 // check password
                 if (testUsers.Pass.Trim() == inputPassword)
@@ -118,7 +118,16 @@ namespace Shapees.Controllers
                     HttpContext.Session.SetString("test", "data as string"); // store string
                     HttpContext.Session.SetInt32("number", 4711); // store int*/
 
-                    return Redirect("~/Home/Index");
+                    //redirect to page based on user
+                    if (testUsers.Usertype == 1)
+                        return Redirect("~/Home/IndexParent");
+                    else if(testUsers.Usertype == 2)
+                        return Redirect("~/Home/IndexEducator");
+                    else if(testUsers.Usertype == 3)
+                        return Redirect("~/Home/Index");
+                    else
+                        return Redirect("Index");
+
                 }
                 else
                 {

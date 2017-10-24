@@ -1,0 +1,291 @@
+﻿@* ---------------------------------- SHAPEES 2017 ---------------------------------- *@
+@*                                                                                    *@
+@*  Created and Edited by Four Corner Solutions team:                                 *@
+@*      Ivana Ozakovic, Nicole Lardner, Damon Walker,                                 *@
+@*      Cassandra Kalabric, Matthew Mauri, Sima Narain                                *@
+@*                                                                                    *@
+@*  Created for Kid's Uni, University of Wollongong, Wollongong                       *@
+@*                                                                                    *@
+@*  Filename: Home/Index.cshtml                                                       *@
+@*  Controller Filename: Controllers/HomeController.cs                                *@
+@*                                                                                    *@
+@*  File description: Dashboard/Home page file.                                       *@
+@* ---------------------------------------------------------------------------------- *@
+
+
+@model IEnumerable<Shapees.Models.DatabaseModel.Userinfo>
+@{
+    ViewData["Title"] = "Dashboard";
+    int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
+    switch (type)
+    {
+        case 3:
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            break;
+
+        case 2:
+            Layout = "~/Views/Shared/_EducatorLayout.cshtml";
+            break;
+
+        case 1:
+            Layout = "~/Views/Shared/_ParentLayout.cshtml";
+            break;
+
+        default:
+            Layout = "~/Views/Shared/_AdminLayout.cshtml";
+            break;
+    }
+}
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Session
+
+
+<head>
+
+    <style>
+        .ds-btn li {
+            list-style: none;
+            float: left;
+            padding: 10px;
+        }
+
+
+        .ds-btn li a span {
+            padding-left: 15px;
+            padding-right: 5px;
+            width: 100%;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .ds-btn li a span small {
+            width: 100%;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .ds-btn li a span {
+            padding-left: 15px;
+            padding-right: 5px;
+            width: 100%;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .ds-btn li a span small {
+             width: 100%;
+             display: inline-block;
+             text-align: left;
+         }
+
+        .user-row {
+            margin-bottom: 14px;
+        }
+
+            .user-row:last-child {
+                margin-bottom: 0;
+            }
+
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+
+            .dropdown-user:hover {
+                cursor: pointer;
+            }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(211, 211, 211);
+        }
+
+            .table-user-information > tbody > tr:first-child {
+                border-top: 0;
+            }
+
+            .table-user-information > tbody > tr > td {
+                border-top: 0;
+            }
+    </style>
+
+</head>
+
+<body>
+
+    @*
+        <div class="container">
+            <div class="row">
+                <div class="col-*-*"></div>
+            </div>
+            <div class="row">
+                <div class="col-*-*"></div>
+                <div class="col-*-*"></div>
+                <div class="col-*-*"></div>
+            </div>
+            <div class="row">
+                ...
+            </div>
+        </div>
+
+        col-md-12 (needs to add up to 12)
+        col-md-12 (needs to add up to 12)
+
+        xs (for phones)
+        sm (for tablets)
+        md (for desktops)
+        lg (for larger desktops)
+    *@
+
+    <div class="container">
+        <div class="row">
+            <h2>Quick Links</h2>
+            <ul class="ds-btn">
+                <li>
+                    <a class="btn btn-lg btn-primary" href="/UserinfoDB/Create">
+                        <i class="glyphicon glyphicon-user pull-left"></i><span>Users<br><small>Create a new User</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn btn-lg btn-success " href="/MediaDB/Create">
+                        <i class="glyphicon glyphicon-picture pull-left"></i><span>Media<br><small>Upload Media</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn btn-lg btn-danger" href="/TasksDb/Create">
+                        <i class="glyphicon glyphicon-calendar pull-left"></i><span>Tasks<br><small>Set a New Task</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn btn-lg btn-warning" href="/UserinfoDB/Index">
+                        <i class="glyphicon glyphicon-search pull-left"></i><span>Search<br><small>Search for a User</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn btn-lg btn-info" href="/ReportsDB/Create">
+                        <i class="glyphicon glyphicon-edit pull-left"></i><span>Reports<br><small>Create New Report</small></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-5">
+
+                <p></p>
+                <h2>Sample User</h2>
+                <p> </p><p> </p>
+
+                <div class="panel panel-info">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3" align="center"> <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg" class="img-circle img-responsive"></div>
+                            <div class=" col-md-2">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>Department</td>
+                                            <td>Programming</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hire date</td>
+                                            <td>25/02/2013</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Room</td>
+                                            <td>3</td>
+                                        </tr>
+                                        <tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>Female</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td><a href="mailto:info@support.com">sampleemail@email.com</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p></p>
+            <h2>Annoucements</h2>
+            <p> </p><p> </p>
+
+            <div class="col-md-7">
+                <div class="panel panel-default panel-table">
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered table-list">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Announcement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>Director</td>
+                                    <td></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <p></p>
+            <h2>Upcoming Events</h2>
+            <p> </p><p> </p>
+
+            <div class="col-md-12">
+                <div class="panel panel-default panel-table">
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered table-list">
+                            <thead>
+                                <tr>
+                                    <th>Given By</th>
+                                    <th>Event</th>
+                                    <th>Due Date</th>
+                                    <th>Completed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Director</td>
+                                    <td>Half Yearly Report</td>
+                                    <td>24/11/17</td>
+                                    <td>No</td>
+                                </tr>
+                                <tr>
+                                    <td>Sarah Test</td>
+                                    <td>Upload Media from Tuesday</td>
+                                    <td>20/9/17</td>
+                                    <td>Yes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+         
+        </div>   
+    </div>
+
+
+</body>

@@ -16,10 +16,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\uploads\photos\**" />
+    <Content Remove="wwwroot\uploads\photos\**" />
+    <EmbeddedResource Remove="wwwroot\uploads\photos\**" />
+    <None Remove="wwwroot\uploads\photos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\DocumentsDB\Create - Copy.cshtml" />
     <Content Remove="wwwroot/js\documents.js" />
     <Content Remove="wwwroot/uploads\childportfolio\documents\LittleShit110.jpg" />
     <Content Remove="wwwroot/uploads\childportfolio\documents\LittleShit11helperdoc.txt" />
+    <Content Remove="wwwroot/uploads\childportfolio\media\Amber Willow JeanDavies3002circle3.png" />
+    <Content Remove="wwwroot/uploads\childportfolio\media\SomeKid2circle1.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="3.3.7" />
@@ -65,22 +74,14 @@
   <ItemGroup>
     <Folder Include="Upload\" />
     <Folder Include="wwwroot\uploads\childportfolio\documents\" />
-    <Folder Include="wwwroot\uploads\childportfolio\documents\" />
-    <Folder Include="wwwroot\uploads\childportfolio\documents\" />
-    <Folder Include="wwwroot\uploads\childportfolio\documents\" />
-    <Folder Include="wwwroot\uploads\childportfolio\media\" />
-    <Folder Include="wwwroot\uploads\childportfolio\documents\" />
     <Folder Include="wwwroot\uploads\childportfolio\media\" />
     <Folder Include="wwwroot\uploads\childportfolio\media\" />
     <Folder Include="wwwroot\uploads\childportfolio\reports\" />
     <Folder Include="wwwroot\uploads\documents\" />
-    <Folder Include="wwwroot\uploads\photos\" />
     <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\profilepictures\" />
     <Folder Include="wwwroot\uploads\profilepictures\" />
-    <Folder Include="wwwroot\uploads\reports\attachment\" />
-    <Folder Include="wwwroot\uploads\reports\attachment\" />
     <Folder Include="wwwroot\uploads\reports\attachment\" />
     <Folder Include="wwwroot\uploads\reports\notsubmitted\" />
     <Folder Include="wwwroot\uploads\reports\submitted\" />

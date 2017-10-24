@@ -1,0 +1,132 @@
+@model Shapees.Models.DatabaseModel.Task
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_EducatorLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Task</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Taskid" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskforeducator)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Taskforeducator)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskforchild)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Taskforchild)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskforfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Taskforfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Taskforlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Taskforlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Authorid)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Authorid)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childfirst)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childfirst)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Childlast)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Childlast)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dateassigned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dateassigned)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Datecompleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Datecompleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Duedate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Duedate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Reportpath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Reportpath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Issubmitted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Issubmitted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Iscompleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Iscompleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Assignedfor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Assignedfor.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Child)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Child.Childfirstname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Report)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Report.Authorfirst)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteEducator">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="IndexEducator">Back to List</a>
+        </div>
+    </form>
+</div>
