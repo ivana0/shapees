@@ -248,19 +248,19 @@
             <input type="hidden" asp-for="Roomid" />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Roomname)
+                    Room Name
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Roomname)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Roomagegroup)
+                    Room Age Group
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Roomagegroup)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Info)
+                    Information
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Info)
@@ -275,8 +275,10 @@
 
             <form asp-action="Delete">
                 <div class="form-actions no-color">
-                    <input type="submit" value="Delete" class="btn btn-default" /> |
-                    <a asp-action="Index">Back to List</a>
+                    &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Room List</a> &emsp;|&emsp;
+                    <button type="submit" class="btn btn-default">
+                        <span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+                    </button> 
                 </div>
             </form>
         </div>

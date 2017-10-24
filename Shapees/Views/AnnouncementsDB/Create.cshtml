@@ -85,16 +85,16 @@
                 transition: 0.3s;
             }
 
-                /* Change background color of buttons on hover */
-                div.tab button:hover {
-                    background-color: #ddd;
-                }
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+            background-color: #ddd;
+        }
 
 
-                /* Create an active/current tablink class */
-                div.tab button.active {
-                    background-color: #ccc;
-                }
+         /* Create an active/current tablink class */
+        div.tab button.active {
+            background-color: #ccc;
+        }
 
         /* Style the tab content */
         .tabcontent {
@@ -197,7 +197,7 @@
 
     </script>
 </head>
-<body onload="loadAnnouncementCreate()">
+<body onload="loadAnnouncementCreate(), SetDate()">
 
     <h2>Create Announcement</h2>
     <div class="tab">
@@ -205,6 +205,8 @@
         <button id="create_announcement" class="tablinks" onclick="openOption(event, 'CreateAnnouncement')"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&ensp;Create Announcement</button>
         <button id="edit_announcement" class="tablinks" onclick="openEdit()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit Announcement</button>
         <button id="delete_announcement" class="tablinks" onclick="openDelete()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&ensp;Delete Announcement</button>
+        <button id="announcement_details" class="tablinks" onclick="openDetails()"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&ensp;Announcement Details</button>
+
     </div>
     <!--       START TABS        -->
     <!--    FIRST TAB - List Users    -->
@@ -240,7 +242,7 @@
                 <div class="form-group">
                     <label asp-for="Datecreated" class="col-md-2 control-label"> Date Created</label>
                     <div class="col-md-10">
-                        <input asp-for="Datecreated" type="date" class="form-control" id="date" />
+                        <input asp-for="Datecreated" type="date" class="form-control" id="datetoday" />
                         <span asp-validation-for="Datecreated" class="text-danger"></span>
                     </div>
                 </div>
@@ -262,12 +264,12 @@
                     <label asp-for="Isdisplayed" class="col-md-2 control-label">Is Displayed on Dashboard</label>
                     <div class="col-md-10">
                         <!-- <input asp-for="Isdisplayed" class="form-control" />-->
-                       <select asp-for="Isdisplayed" class="form-control" id="Isdisplayed" name="Isdisplayed" >
+                        <select asp-for="Isdisplayed" class="form-control" id="Isdisplayed" name="Isdisplayed">
                             <option value="None Selected">Choose Option ...</option>
                             <option value="0">No</option>
                             <option value="1">Yes</option>
-                       </select>
-                      <span asp-validation-for="Isdisplayed" class="text-danger"></span>
+                        </select>
+                        <span asp-validation-for="Isdisplayed" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -276,28 +278,26 @@
                     <div class="col-md-10">
                         <select asp-for="Announcementfor" class="form-control" id="Announcementfor" name="Announcementfor" required>
                             <option value="None Selected">Choose User ...</option>
-                            <option value="ALL">All</option>
-                            <option value="PARENTS">Parents</option>
-                            <option value="EDUCATORS">Educators</option>
+                            <option value="All">All</option>
+                            <option value="Parents">Parents</option>
+                            <option value="Educators">Educators</option>
                         </select>
                         <!-- <input asp-for="Announcementfor" class="form-control" /> -->
                         <span asp-validation-for="Announcementfor" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" justify-content-center">
                     <div class="col-md-2">
                         <button style="width: 100%; max-width:none; " class="btn btn-gray" type="reset" onclick="hideAdditionalForm()">Reset form</button>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" value="Create" style="width: 100%; max-width:none; "class="btn btn-success" />
+                        <input type="submit" value="Create" style="width: 100%; max-width:none; " class="btn btn-success" />
                     </div>
                 </div>
             </div>
         </form>
 
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>
+
 
     </div>
     <div id="EditAnnouncement" asp-action="Edit" class="tabcontent">
@@ -314,9 +314,19 @@
 
 </body>
 <script>
-    n = new Date();
-    y = n.getFullYear();
-    m = n.getMonth() + 1;
-    d = n.getDate();
-    document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
+    function SetDate() {
+        var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+
+
+        document.getElementById('datetoday').value = today;
+    }
 </script>

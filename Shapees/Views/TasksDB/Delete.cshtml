@@ -125,8 +125,10 @@
     
     <form asp-action="Delete">
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+            &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Tasks List</a> &emsp;|&emsp;
+            <button type="submit" class="btn btn-default">
+                <span style="color:red;" class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+            </button>
         </div>
     </form>
 </div>

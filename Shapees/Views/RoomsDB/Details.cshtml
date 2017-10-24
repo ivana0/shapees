@@ -249,7 +249,8 @@
     <!--    5TH TAB -  Room  Details  -->
     <div id="RoomDetails" class="tabcontent">
         <div>
-            <h4>Room Details</h4>
+            <br/>
+            <h4>&emsp;Room Details</h4>
             <hr />
             <dl class="dl-horizontal">
                 <dt>
@@ -279,10 +280,9 @@
             </dl>
         </div>
         <div>
-            <a asp-action="Edit" asp-route-id="@Model.Roomid">Edit</a> |
-            <a asp-action="Index">Back to List</a>
+            &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Room List</a> &emsp;|&emsp;
+            <a asp-action="Edit" asp-route-id="@Model.Roomid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a>
         </div>
-
 
         <br /><br />
     </div>

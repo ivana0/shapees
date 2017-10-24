@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Shapees.Models.DatabaseModel
 {
@@ -20,6 +21,7 @@ namespace Shapees.Models.DatabaseModel
     {
         public int Announcementid { get; set; }
         public string Announcementtype { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Datecreated { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

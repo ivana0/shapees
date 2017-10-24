@@ -247,30 +247,86 @@
     <!--    5TH TAB -  User  Details  -->
     <div id="ChildDetails" class="tabcontent">
 
-        <h2>Details</h2>
+        <h2>Child Details</h2>
 
         <div>
-            <h4>Childinfo</h4>
+            <h4>&emsp;Child Information</h4>
             <hr />
             <dl class="dl-horizontal">
+
+
                 <dt>
-                    @Html.DisplayNameFor(model => model.Inroom)
+                    Child's Name
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Childfirstname)     @Html.DisplayFor(model => model.Childlastname)
+
+
+                </dd>
+
+                <dd>
+                </dd>
+                <dt>
+                    Date Of Birth
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Dob)
+                </dd>
+                <dt>
+                    Current Age
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Currentage)
+                </dd>
+
+                <dt>
+                    Short Information
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Shortinfo)
+                </dd>
+                <dt>
+                    Special Needs
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Specialneeds)
+                </dd>
+                <dt>
+                    Profile Image
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Profileimage)
+                </dd>
+                <br />
+                <br />
+                <h4>&emsp;Educator Information</h4>
+                <hr />
+                <dt>
+                    Educator Name
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Educatorfname)
+                    @Html.DisplayFor(model => model.Educatorlname)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Educator)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Educator.Email)
+                </dd>
+
+                <dt>
+                    In Room
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Inroom)
                 </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Educatorfname)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Educatorfname)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Educatorlname)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Educatorlname)
-                </dd>
+                <br />
+                <br />
+
+                <h4>&emsp;Contact Information</h4>
+                <hr />
+                <h5>&emsp;&emsp;<b>Address</b></h5>
                 <dt>
                     @Html.DisplayNameFor(model => model.Street)
                 </dt>
@@ -295,108 +351,43 @@
                 <dd>
                     @Html.DisplayFor(model => model.State)
                 </dd>
+                <br />
+                <h5>&emsp;&emsp;<b>Caregivers</b></h5>
+
                 <dt>
-                    @Html.DisplayNameFor(model => model.Childfirstname)
+                    Parent 1
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Childfirstname)
+                    @Html.DisplayFor(model => model.Parent1Navigation.FullName)<br />
+                    @Html.DisplayFor(model => model.Parent1Navigation.Email)
                 </dd>
                 <dt>
-                    @Html.DisplayNameFor(model => model.Childlastname)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Childlastname)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Dob)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Dob)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Currentage)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Currentage)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Contacnumber1)
+                    Contact Number 1
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Contacnumber1)
                 </dd>
+
+                <br />
                 <dt>
-                    @Html.DisplayNameFor(model => model.Contacnumber2)
+                    Parent 2
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Parent2Navigation.FullName)<br />
+                    @Html.DisplayFor(model => model.Parent1Navigation.Email)
+                </dd>
+
+                <dt>
+                    Contact Number 2
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Contacnumber2)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Parent1fname)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Parent1fname)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Parent1lname)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Parent1lname)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Parent2fname)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Parent2fname)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Parent2lname)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Parent2lname)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Shortinfo)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Shortinfo)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Specialneeds)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Specialneeds)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Profileimage)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Profileimage)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Educator)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Educator.Email)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Parent1Navigation)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Parent1Navigation.Email)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Parent2Navigation)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Parent2Navigation.Email)
                 </dd>
             </dl>
         </div>
         <div>
             &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Children List</a> &emsp;|&emsp;
             <a asp-action="Edit" asp-route-id="@Model.Childid"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&ensp;Edit</a>
-            <br /><br />
         </div>
 
 
