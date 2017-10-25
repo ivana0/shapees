@@ -6,9 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shapees.Models.DatabaseModel;
-using Microsoft.AspNetCore.Http;
-using System.IO;
-using System.Data.SqlTypes;
 
 namespace Shapees.Controllers.DatabaseModelControllers
 {
@@ -20,10 +17,6 @@ namespace Shapees.Controllers.DatabaseModelControllers
         {
             _context = context;
         }
-
-        //--------------------------------------------------------------------------------------------------------------------------------------//
-        //----------------------------------------------------      INDEX PAGES     ------------------------------------------------------------//
-        //--------------------------------------------------------------------------------------------------------------------------------------//
 
         // GET: ChildinfoDB
         public async Task<IActionResult> Index(string searchString, string searchchild, string sortOrder)
@@ -78,8 +71,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
             ViewData["CurrentFilter"] = searchString;
 
             //var masterContext = _context.Childinfo.Include(c => c.Educator).Include(c => c.Parent1Navigation).Include(c => c.Parent2Navigation).Include(c => c.Room);
-            int? educatorID = HttpContext.Session.GetInt32("uID");
-            var searchchildren = from c in _context.Childinfo.Include(c => c.Educator).Include(c => c.Parent1Navigation).Include(c => c.Parent2Navigation).Include(c => c.Room).Where(c => c.Educatorid == educatorID)
+
+            var searchchildren = from c in _context.Childinfo.Include(c => c.Educator).Include(c => c.Parent1Navigation).Include(c => c.Parent2Navigation).Include(c => c.Room)
                                  select c;
 
             //search users
@@ -113,11 +106,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             return View(await searchchildren.ToListAsync());
         }
 
-        //--------------------------------------------------------------------------------------------------------------------------------------//
-        //----------------------------------------------------      DETAILS PAGES     ----------------------------------------------------------//
-        //--------------------------------------------------------------------------------------------------------------------------------------//
-
-        // GET: ChildinfoDB/Details/5   ADMIN
+        // GET: ChildinfoDB/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -139,7 +128,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             return View(childinfo);
         }
 
-        // GET: ChildinfoDB/Details/5   EDUCATOR
+        // GET: ChildinfoDB/Details/5
         public async Task<IActionResult> DetailsEducator(int? id)
         {
             if (id == null)
@@ -160,10 +149,6 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             return View(childinfo);
         }
-
-        //--------------------------------------------------------------------------------------------------------------------------------------//
-        //----------------------------------------------------      CREATE PAGES     -----------------------------------------------------------//
-        //--------------------------------------------------------------------------------------------------------------------------------------//
 
         // GET: ChildinfoDB/Create
         public IActionResult Create()
@@ -202,6 +187,15 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 childinfo.Roomid = educatorassigned.Roomid;
                 childinfo.Inroom = educatorassigned.Roomassigned;
 
+                //set room name for child
+                /*if (childinfo.Roomid == 1)
+                    childinfo.Inroom = "Room 1";
+                if (childinfo.Roomid == 2)
+                    childinfo.Inroom = "Room 2";
+                if (childinfo.Roomid == 3)
+                    childinfo.Inroom = "Room 3";
+                */
+
                 _context.Add(childinfo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -215,12 +209,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
         }
 
 
-        //--------------------------------------------------------------------------------------------------------------------------------------//
-        //----------------------------------------------------      EDIT PAGES     -------------------------------------------------------------//
-        //--------------------------------------------------------------------------------------------------------------------------------------//
 
-
-        // GET: ChildinfoDB/Edit/5  ADMIN
+        // GET: ChildinfoDB/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -233,22 +223,16 @@ namespace Shapees.Controllers.DatabaseModelControllers
             {
                 return NotFound();
             }
-
-            //get educators list for assign educator select list
-            var assignededucators = _context.Userinfo.Where(e => e.Usertype == 2);
-
-            //get only parent users for parent1 and parent2 select lists
-            var parentlist = _context.Userinfo.Where(p => p.Usertype == 1);
-
-            ViewData["Educatorid"] = new SelectList(assignededucators, "Userid", "FullName");
-            ViewData["Parent1"] = new SelectList(parentlist, "Userid", "FullName");
-            ViewData["Parent2"] = new SelectList(parentlist, "Userid", "FullName");
-            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomname");
-
+            ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Educatorid);
+            ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent1);
+            ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent2);
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", childinfo.Roomid);
             return View(childinfo);
         }
 
-        // POST: ChildinfoDB/Edit/5 ADMIN
+        // POST: ChildinfoDB/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Childid,Roomid,Inroom,Educatorfname,Educatorlname,Educatorid,Street,City,Postcode,State,Childfirstname,Childlastname,Dob,Currentage,Contacnumber1,Contacnumber2,Parent1,Parent1fname,Parent1lname,Parent2,Parent2fname,Parent2lname,Shortinfo,Specialneeds,Profileimage")] Childinfo childinfo)
@@ -286,8 +270,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             return View(childinfo);
         }
 
-
-        // GET: ChildinfoDB/Edit/5  EDUCATOR
+        // GET: ChildinfoDB/Edit/5
         public async Task<IActionResult> EditEducator(int? id)
         {
             if (id == null)
@@ -300,22 +283,16 @@ namespace Shapees.Controllers.DatabaseModelControllers
             {
                 return NotFound();
             }
-
-            //get educators list for assign educator select list
-            var assignededucators = _context.Userinfo.Where(e => e.Usertype == 2);
-
-            //get only parent users for parent1 and parent2 select lists
-            var parentlist = _context.Userinfo.Where(p => p.Usertype == 1);
-
-            ViewData["Educatorid"] = new SelectList(assignededucators, "Userid", "FullName");
-            ViewData["Parent1"] = new SelectList(parentlist, "Userid", "FullName");
-            ViewData["Parent2"] = new SelectList(parentlist, "Userid", "FullName");
-            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomname");
-
+            ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Educatorid);
+            ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent1);
+            ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent2);
+            ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", childinfo.Roomid);
             return View(childinfo);
         }
 
-        // POST: ChildinfoDB/Edit/5 EDUCATOR
+        // POST: ChildinfoDB/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditEducator(int id, [Bind("Childid,Roomid,Inroom,Educatorfname,Educatorlname,Educatorid,Street,City,Postcode,State,Childfirstname,Childlastname,Dob,Currentage,Contacnumber1,Contacnumber2,Parent1,Parent1fname,Parent1lname,Parent2,Parent2fname,Parent2lname,Shortinfo,Specialneeds,Profileimage")] Childinfo childinfo)
@@ -352,7 +329,6 @@ namespace Shapees.Controllers.DatabaseModelControllers
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", childinfo.Roomid);
             return View(childinfo);
         }
-
 
         // GET: ChildinfoDB/Delete/5
         public async Task<IActionResult> Delete(int? id)
