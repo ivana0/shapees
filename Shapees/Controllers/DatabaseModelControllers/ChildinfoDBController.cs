@@ -187,6 +187,31 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 childinfo.Roomid = educatorassigned.Roomid;
                 childinfo.Inroom = educatorassigned.Roomassigned;
 
+                //set parent info if entered
+                if (childinfo.Parent1 != null)
+                {
+                    //get parent info to set first and last name
+                    var parent1 = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == childinfo.Parent1);
+                    childinfo.Parent1fname = parent1.Firstname;
+                    childinfo.Parent1lname = parent1.Lastname;
+                    //get child info to update parent
+                    var child1 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    parent1.Parentof = child1.FullName;
+
+                }
+
+                if (childinfo.Parent2 != null)
+                {
+                    //get parent info to set first and last name
+                    var parent2 = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == childinfo.Parent2);
+                    childinfo.Parent2fname = parent2.Firstname;
+                    childinfo.Parent2lname = parent2.Lastname;
+                    //get child info to update parent
+                    var child2 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    parent2.Parentof = child2.FullName;
+                }
+
+
                 //set room name for child
                 /*if (childinfo.Roomid == 1)
                     childinfo.Inroom = "Room 1";
@@ -253,6 +278,31 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
+                //set parent info if entered
+                if (childinfo.Parent1 != null && !String.IsNullOrEmpty(childinfo.Parent1fname) && !String.IsNullOrEmpty(childinfo.Parent1lname))
+                {
+                    //get parent info to set first and last name
+                    var parent1 = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == childinfo.Parent1);
+                    childinfo.Parent1fname = parent1.Firstname;
+                    childinfo.Parent1lname = parent1.Lastname;
+                    //get child info to update parent
+                    var child1 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    parent1.Parentof = child1.FullName;
+
+                }
+
+                if (childinfo.Parent2 != null && !String.IsNullOrEmpty(childinfo.Parent2fname) && !String.IsNullOrEmpty(childinfo.Parent2lname))
+                {
+                    //get parent info to set first and last name
+                    var parent2 = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == childinfo.Parent2);
+                    childinfo.Parent2fname = parent2.Firstname;
+                    childinfo.Parent2lname = parent2.Lastname;
+                    //get child info to update parent
+                    var child2 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    parent2.Parentof = child2.FullName;
+
+                }
+
                 try
                 {
                     _context.Update(childinfo);
@@ -313,6 +363,31 @@ namespace Shapees.Controllers.DatabaseModelControllers
 
             if (ModelState.IsValid)
             {
+                //set parent info if entered
+                if (childinfo.Parent1 != null && !String.IsNullOrEmpty(childinfo.Parent1fname) && !String.IsNullOrEmpty(childinfo.Parent1lname))
+                {
+                    //get parent info to set first and last name
+                    var parent1 = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == childinfo.Parent1);
+                    childinfo.Parent1fname = parent1.Firstname;
+                    childinfo.Parent1lname = parent1.Lastname;
+                    //get child info to update parent
+                    var child1 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    parent1.Parentof = child1.FullName;
+
+                }
+
+                if (childinfo.Parent2 != null && !String.IsNullOrEmpty(childinfo.Parent2fname) && !String.IsNullOrEmpty(childinfo.Parent2lname))
+                {
+                    //get parent info to set first and last name
+                    var parent2 = await _context.Userinfo.SingleOrDefaultAsync(m => m.Userid == childinfo.Parent2);
+                    childinfo.Parent2fname = parent2.Firstname;
+                    childinfo.Parent2lname = parent2.Lastname;
+                    //get child info to update parent
+                    var child2 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    parent2.Parentof = child2.FullName;
+
+                }
+
                 try
                 {
                     _context.Update(childinfo);

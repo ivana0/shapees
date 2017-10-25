@@ -13,10 +13,9 @@
 @* ---------------------------------------------------------------------------------- *@
 
 
-@model IEnumerable<Shapees.Models.DatabaseModel.Userinfo>
+@model Shapees.Models.DatabaseModel.Userinfo
 @{
     ViewData["Title"] = "Dashboard";
-
     Layout = "~/Views/Shared/_EducatorLayout.cshtml";
 }
 
@@ -92,76 +91,52 @@
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="row">
-            <h2>Quick Links</h2>
-            <ul class="ds-btn">
-                <li>
-                    <a class="btn btn-lg btn-primary" href="/DocumentsDB/CreateEducator">
-                        <i class="glyphicon glyphicon-file pull-left"></i><span>Users<br><small>Upload document</small></span>
-                    </a>
-                </li>
-                <li>
-                    <a class="btn btn-lg btn-success " href="/MediaDB/CreateEducator">
-                        <i class="glyphicon glyphicon-picture pull-left"></i><span>Media<br><small>Upload Media</small></span>
-                    </a>
-                </li>
-                <li>
-                    <a class="btn btn-lg btn-info" href="/ReportsDB/CreateEducator">
-                        <i class="glyphicon glyphicon-edit pull-left"></i><span>Reports<br><small>Create New Report</small></span>
-                    </a>
-                </li>
-                <li>
-                    <a class="btn btn-lg btn-danger" href="/TasksDB/CreateEducator">
-                        <i class="glyphicon glyphicon-calendar pull-left"></i><span>Tasks<br><small>Set a New Task</small></span>
-                    </a>
-                </li>
-                <li>
-                    <a class="btn btn-lg btn-warning" href="/ChildinfoDB/IndexEducator">
-                        <i class="glyphicon glyphicon-user pull-left"></i><span>Search<br><small>Search for a Child</small></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="container">
+<div class="container">
         <div class="row">
 
-            <div class="col-md-5">
+            <div class="col-md-12">
 
                 <p></p>
-                <h2>Sample User</h2>
+                <h2></h2>
                 <p> </p><p> </p>
 
-                <div class="panel panel-info">
+                <div class="panel panel-info ">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-3" align="center"> <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg" class="img-circle img-responsive"></div>
-                            <div class=" col-md-2">
+                            <div class="col-md-3" align="center">
+                                @if (Model.Profileimage != null)
+                                {
+                                        //height="150" width="150" in user details
+                                        <img src="@ViewBag.imagesrc" class="img-circle img-responsive">
+                                }
+                                @if (Model.Profileimage == null)
+                                {
+                                    <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg" class="img-circle img-responsive">
+                                }
+                            </div>
+                            <div class=" col-md-7">
                                 <table class="table table-user-information">
                                     <tbody>
                                         <tr>
-                                            <td>Department</td>
-                                            <td>Programming</td>
+                                            <td>Role</td>
+                                            <td>Educator</td>
                                         </tr>
                                         <tr>
                                             <td>Hire date</td>
-                                            <td>25/02/2013</td>
+                                            <td>@Model.Employedon</td>
                                         </tr>
                                         <tr>
-                                            <td>Room</td>
-                                            <td>3</td>
+                                            <td>Full Name</td>
+                                            <td>@Model.FullName</td>
                                         </tr>
                                         <tr>
                                         <tr>
-                                            <td>Gender</td>
-                                            <td>Female</td>
+                                            <td>Bio</td>
+                                            <td>@Model.Shortbio</td>
                                         </tr>
                                         <tr>
                                             <td>Email</td>
-                                            <td><a href="mailto:info@support.com">sampleemail@email.com</a></td>
+                                            <td><a href="mailto:info@support.com">@Model.Email</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -172,75 +147,77 @@
             </div>
 
             <p></p>
-            <h2>Annoucements</h2>
+            @if (Model.Usertype == 2)
+            {<h2>Educator's Performance</h2>
             <p> </p><p> </p>
-
-            <div class="col-md-7">
-                <div class="panel panel-default panel-table">
-                    <div class="panel-body">
-                        <table class="table table-striped table-bordered table-list">
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Announcement</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <td>Director</td>
-                                    <td></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
+            @:<br /><br />
+                @:<div class="container">
+                    @:<span>Progress bar of educator's performance: </span><br /><br />
+                        @:</div>
+                    @:<div class="progress">
+                        @:<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow=@(Model.PerformancePercentage) aria-valuemin="0" aria-valuemax="100" style="width:@(Model.PerformancePercentageStr);min-width: 2em;">
+                            @(Model.PerformancePercentageStr)
+                        @:</div>
+                            @:</div>
+                        @:<dl class="dl-horizontal">
+                            @:<dt>
+                                @Html.Label("Tasks given: ")
+                            @:</dt>
+                            @:<dd>
+                                @Html.DisplayFor(model => model.Totaltasks)
+                            @:</dd>
+                            @:<dt>
+                                @Html.Label("Tasks completed: ")
+                            @:</dt>
+                            @:<dd>
+                                @Html.DisplayFor(model => model.Taskscompleted)
+                           @: </dd>
+                            @:</dl>
+            }
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
+    @if (Model.Task.Count > 0)
+    {
+        @:<div class="container">
+            @:<div class="row">
+                @:<p></p>
+                @:<h3>Latest Task Assigned</h3>
+                @:<p> </p>
+                @:<div class="col-md-12">
+                    @:<div class="panel panel-default panel-table">
+                        @:<div class="panel-body">
+                            @:<table class="table table-striped table-bordered table-list">
+                                @:<thead>
+                                    @:<tr>
+                                        @:<th>Task given by</th>
+                                        @:<th>Task information</th>
+                                        @:
+                                        <th>Due Date</th>
+                                        @:
+                                        <th>Is Completed</th>
+                                        @:</tr>
+                                    @:</thead>
+                                @:<tbody>
+                                    @:<tr>
+                                        @:
+                                        <td>@(Model.Task.Last().Authorfirst)&ensp;@(Model.Task.Last().Authorlast)</td>
+                                        @:<td>
+                                            @(Model.Task.Last().Report.Title) 
+                                        @:</td >
+                                        @:
+                                    <td>@(Model.Task.Last().Duedate)</td>
+                                    @:
+                                    <td>@(Model.Task.Last().Iscompleted)</td>
+                                    @:</tr>
+                                @:</tbody>
+                            @:</table>
+                        @:</div>
+                    @:</div>
+                @: </div>
 
-            <p></p>
-            <h2>Upcoming Events</h2>
-            <p> </p><p> </p>
-
-            <div class="col-md-12">
-                <div class="panel panel-default panel-table">
-                    <div class="panel-body">
-                        <table class="table table-striped table-bordered table-list">
-                            <thead>
-                                <tr>
-                                    <th>Given By</th>
-                                    <th>Event</th>
-                                    <th>Due Date</th>
-                                    <th>Completed</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Director</td>
-                                    <td>Half Yearly Report</td>
-                                    <td>24/11/17</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Sarah Test</td>
-                                    <td>Upload Media from Tuesday</td>
-                                    <td>20/9/17</td>
-                                    <td>Yes</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-         
-        </div>   
-    </div>
-
+            @:</div>
+        @:</div>
+    }
 
 </body>

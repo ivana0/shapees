@@ -15,6 +15,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
             FileStream fs = new FileStream(imagePath, FileMode.Open);
             byte[] byteData = new byte[fs.Length];
             fs.Read(byteData, 0, byteData.Length);
+            fs.Dispose();
             return byteData;
         }
     }

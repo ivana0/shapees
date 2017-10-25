@@ -18,6 +18,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Shapees.Models.DatabaseModel;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Shapees.Controllers.DatabaseModelControllers;
 
 namespace Shapees.Controllers
 {
@@ -30,37 +33,113 @@ namespace Shapees.Controllers
             _context = context;
         }
 
-        //  Dashboard/Home page    
-        public IActionResult Index()
+        // GET: UserinfoDB/Details/5
+        public async Task<IActionResult> Index()
         {
-            //var searchusers = from u in _context.Userinfo.Select(u => u.Room)
-                              //select u;
-            //additional sets
-            //ViewBag.Task = ViewData["User"] = new Userinfo();
-            //var task = from t in _context.Userinfo.Select(t => t.Task)
-                          // select t;
 
-            //var announcement = from a in _context.Announcement.Select(a => a.Announcementid)
-                      // select a;
+            var userID = HttpContext.Session.GetInt32("uID");
+            if (userID == null)
+            {
+                return NotFound();
+            }
 
-            //ViewData["Task"] = new SelectList(task, "Taskid", "Taskid");
-            //ViewData["Announcement"] = new SelectList(task, "Announcementid", "Announcementid");
-            //ViewData["Taskfor"] = new SelectList(task, "Assignedfor", "Assignedfor");
+            var userinfo = await _context.Userinfo
+                //.AsNoTracking()
+                .Include(u => u.Room)
+                .Include(u => u.Task)
+                .SingleOrDefaultAsync(u => u.Userid == userID);
 
-            return View();
+            if (userinfo == null)
+            {
+                return NotFound();
+            }
+
+            if (userinfo.Profileimage != null)
+            {
+                //added for image load
+                var filename = userinfo.Profileimage;
+
+
+                string path = FileStrem.GetFilePath("wwwroot/uploads/profilepictures/" + filename);
+                byte[] imagebyte = LoadImage.GetPictureData(path);
+                var base64 = Convert.ToBase64String(imagebyte);
+                ViewBag.imagesrc = string.Format("data:image/png;base64,{0}", base64);
+
+            }
+
+
+            return View(userinfo);
         }
 
         //  Dashboard/Home page for Educator
-        public IActionResult IndexEducator()
+        public async Task<IActionResult> IndexEducator()
         {
-            return View();
-        }
-        //  Dashboard/Home page for Parent
-        public IActionResult IndexParent()
-        {
-            return View();
+
+            var userID = HttpContext.Session.GetInt32("uID");
+            if (userID == null)
+            {
+                return NotFound();
+            }
+
+            var userinfo = await _context.Userinfo
+                //.AsNoTracking()
+                .Include(u => u.Room)
+                .Include(u => u.Task)
+                .SingleOrDefaultAsync(u => u.Userid == userID);
+
+            if (userinfo == null)
+            {
+                return NotFound();
+            }
+
+            if (userinfo.Profileimage != null)
+            {
+                //added for image load
+                var filename = userinfo.Profileimage;
+
+                string path = FileStrem.GetFilePath("wwwroot/uploads/profilepictures/" + filename);
+                byte[] imagebyte = LoadImage.GetPictureData(path);
+                var base64 = Convert.ToBase64String(imagebyte);
+                ViewBag.imagesrc = string.Format("data:image/png;base64,{0}", base64);
+
+            }
+
+
+            return View(userinfo);
         }
 
+        //  Dashboard/Home page for Parent
+        public async Task<IActionResult> IndexParent()
+        {
+
+            var userID = HttpContext.Session.GetInt32("uID");
+            if (userID == null)
+            {
+                return NotFound();
+            }
+
+            var userinfo = await _context.Userinfo.SingleOrDefaultAsync(u => u.Userid == userID);
+
+            if (userinfo == null)
+            {
+                return NotFound();
+            }
+
+            if (userinfo.Profileimage != null)
+            {
+                //added for image load
+                var filename = userinfo.Profileimage;
+
+                string path = FileStrem.GetFilePath("wwwroot/uploads/profilepictures/" + filename);
+                byte[] imagebyte = LoadImage.GetPictureData(path);
+                var base64 = Convert.ToBase64String(imagebyte);
+                ViewBag.imagesrc = string.Format("data:image/png;base64,{0}", base64);
+
+            }
+
+
+            return View(userinfo);
+        }
 
         //  Documents and Media page  
         public IActionResult DocumentsAndMedia()

@@ -289,7 +289,12 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
+
+                   // stream.Flush();
+                   // stream.Dispose();
                 }
+
+                
             }
 
             //get room info to display
@@ -394,6 +399,7 @@ namespace Shapees.Controllers.DatabaseModelControllers
                            "wwwroot", filename);
 
             var memory = new MemoryStream();
+
             using (var stream = new FileStream(path, FileMode.Open))
             {
                 await stream.CopyToAsync(memory);

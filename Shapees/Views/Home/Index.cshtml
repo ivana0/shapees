@@ -13,7 +13,7 @@
 @* ---------------------------------------------------------------------------------- *@
 
 
-@model IEnumerable<Shapees.Models.DatabaseModel.Userinfo>
+@model  Shapees.Models.DatabaseModel.Userinfo
 @{
     ViewData["Title"] = "Dashboard";
     int? type = (HttpContextAccessor.HttpContext.Session.GetInt32("role"));
@@ -113,31 +113,6 @@
 </head>
 
 <body>
-
-    @*
-        <div class="container">
-            <div class="row">
-                <div class="col-*-*"></div>
-            </div>
-            <div class="row">
-                <div class="col-*-*"></div>
-                <div class="col-*-*"></div>
-                <div class="col-*-*"></div>
-            </div>
-            <div class="row">
-                ...
-            </div>
-        </div>
-
-        col-md-12 (needs to add up to 12)
-        col-md-12 (needs to add up to 12)
-
-        xs (for phones)
-        sm (for tablets)
-        md (for desktops)
-        lg (for larger desktops)
-    *@
-
     <div class="container">
         <div class="row">
             <h2>Quick Links</h2>
@@ -174,39 +149,49 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-5">
+            <div class="col-md-12">
 
                 <p></p>
                 <h2></h2>
                 <p> </p><p> </p>
 
-                <div class="panel panel-info">
+                <div class="panel panel-info ">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-3" align="center"> <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg" class="img-circle img-responsive"></div>
-                            <div class=" col-md-2">
+                            <div class="col-md-3" align="center">
+                                @if (Model.Profileimage != null)
+                                {
+                                        //height="150" width="150" in user details
+                                        <img src="@ViewBag.imagesrc" class="img-circle img-responsive">
+                                }
+                                @if (Model.Profileimage == null)
+                                 {
+                                  <img src="http://s3.amazonaws.com/nvest/Blank_Club_Website_Avatar_Gray.jpg" class="img-circle img-responsive">
+                                }
+                            </div>
+                            <div class=" col-md-7">
                                 <table class="table table-user-information">
                                     <tbody>
                                         <tr>
-                                            <td>Department</td>
-                                            <td>Programming</td>
+                                            <td>Role</td>
+                                            <td>Director</td>
                                         </tr>
                                         <tr>
                                             <td>Hire date</td>
-                                            <td>25/02/2013</td>
+                                            <td>@Model.Employedon</td>
                                         </tr>
                                         <tr>
-                                            <td>Room</td>
-                                            <td>3</td>
+                                            <td>Full Name</td>
+                                            <td>@Model.FullName</td>
                                         </tr>
                                         <tr>
                                         <tr>
-                                            <td>Gender</td>
-                                            <td>Female</td>
+                                            <td>Bio</td>
+                                            <td>@Model.Shortbio</td>
                                         </tr>
                                         <tr>
                                             <td>Email</td>
-                                            <td><a href="mailto:info@support.com">sampleemail@email.com</a></td>
+                                            <td><a href="mailto:info@support.com">@Model.Email</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -217,75 +202,44 @@
             </div>
 
             <p></p>
-            <h2>Annoucements</h2>
-            <p> </p><p> </p>
-
-            <div class="col-md-7">
-                <div class="panel panel-default panel-table">
-                    <div class="panel-body">
-                        <table class="table table-striped table-bordered table-list">
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Announcement</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <td>Director</td>
-                                    <td></td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
+           
         </div>
     </div>
-
-    <div class="container">
-        <div class="row">
-
-            <p></p>
-            <h2>Upcoming Events</h2>
-            <p> </p><p> </p>
-
-            <div class="col-md-12">
-                <div class="panel panel-default panel-table">
-                    <div class="panel-body">
-                        <table class="table table-striped table-bordered table-list">
-                            <thead>
-                                <tr>
-                                    <th>Given By</th>
-                                    <th>Event</th>
-                                    <th>Due Date</th>
-                                    <th>Completed</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Director</td>
-                                    <td>Half Yearly Report</td>
-                                    <td>24/11/17</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Sarah Test</td>
-                                    <td>Upload Media from Tuesday</td>
-                                    <td>20/9/17</td>
-                                    <td>Yes</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            
+    @if(Model.Task.Count > 0)
+    {
+        @:<div class="container">
+        @:<div class="row">
+            @:<p></p>
+            @:<h3>Latest Task Assigned</h3>
+            @:<p> </p>
+            @:<div class="col-md-12">
+                @:<div class="panel panel-default panel-table">
+                    @:<div class="panel-body">
+                        @:<table class="table table-striped table-bordered table-list">
+                            @:<thead>
+                                @:<tr>
+                                    @:<th>Task given by</th>
+                                    @:<th>Task information</th>
+                                    @:<th>Due Date</th>
+                                    @:<th>Is Completed</th>
+                                @:</tr>
+                           @: </thead>
+                            @:<tbody>
+                            @:    <tr>
+                            @:        <td>@(Model.Task.Last().Authorfirst)&ensp;@(Model.Task.Last().Authorlast)</td>
+                            @:        <td>@(Model.Task.Last().Report.Title) </ td >
+                            @:         <td>@(Model.Task.Last().Duedate)</td>
+                            @:        <td>@(Model.Task.Last().Iscompleted)</td>
+                            @:    </tr>
+                           @: </tbody>
+                        @:</table>
+                    @:</div>
+               @: </div>
+          @:  </div>
          
-        </div>   
-    </div>
-
+         @: </div>   
+        @:</div>
+    }
 
 </body>

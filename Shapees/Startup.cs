@@ -78,7 +78,7 @@ namespace Shapees
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
 
             AppHttpContext.Services = app.ApplicationServices;

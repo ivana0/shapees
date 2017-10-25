@@ -318,8 +318,8 @@
                         @:<span>Progress bar of educator's performance: </span><br /><br />
                     @:</div>
                     @:<div class="progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow=@Model.PerformancePercentage aria-valuemin="0" aria-valuemax="100" style="width:@(Model.PerformancePercentageStr);min-width: 2em;">
-                                @Model.PerformancePercentageStr
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow=@(Model.PerformancePercentage) aria-valuemin="0" aria-valuemax="100" style="width:@(Model.PerformancePercentageStr);min-width: 2em;">
+                                Model.PerformancePercentageStr
                             </div>
                     @:</div>
                     @:<dl class="dl-horizontal">
