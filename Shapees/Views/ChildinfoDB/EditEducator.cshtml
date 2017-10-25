@@ -223,177 +223,218 @@
     <!--    3RD TAB - Edit User    -->
     <div id="EditChild" class="tabcontent">
 
-        <h2> &emsp;Edit</h2>
 
         <form asp-action="EditEducator">
-            <div class="form-horizontal">
-                <h4> &emsp;Child information</h4>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Childid" />
-                <div class="form-group">
-                    <div class="form-group">
-                        <label asp-for="Childfirstname" class="col-md-2 control-label" style="font-weight:normal;">Child's First Name</label>
-                        <div class="col-md-10">
-                            <input asp-for="Childfirstname" class="form-control" />
-                            <span asp-validation-for="Childfirstname" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Childlastname" class="col-md-2 control-label" style="font-weight:normal;">Child's First Name</label>
-                        <div class="col-md-10">
-                            <input asp-for="Childlastname" class="form-control" />
-                            <span asp-validation-for="Childlastname" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Dob" class="col-md-2 control-label" style="font-weight:normal;"></label>
-                        <div class="col-md-10">
-                            <input asp-for="Dob" type="date" class="form-control" />
-                            <span asp-validation-for="Dob" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <label asp-for="Inroom" class="col-md-2 control-label" style="font-weight:normal;">In room</label>
-                    <div class="col-md-10">
-                        <input asp-for="Inroom" class="form-control" />
-                        <span asp-validation-for="Inroom" class="text-danger"></span>
-                    </div>
+            <br />
+            <h4> &emsp;Edit Child Information</h4>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Childid" />
+            <h4>Child information</h4>
+            <hr width="90%" />
+            <div class="row">
+                <div class="col-md-5">
+                    <label asp-for="Childfirstname" style="font-weight:normal;">First Name</label>
+                    <small style="width: 100%; max-width:none; " id="namehelp" class="text-muted">
+                        (Include middle names if any)
+                    </small>
+                    <input asp-for="Childfirstname" style="width: 100%; max-width:none; " type="text" class="form-control" id="firstname" required>
+                    <span asp-validation-for="Childfirstname" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Educatorfname" class="col-md-2 control-label" style="font-weight:normal;">Educator Assigned First Name</label>
-                    <div class="col-md-10">
-                        <input asp-for="Educatorfname" class="form-control" readonly />
-                        <span asp-validation-for="Educatorfname" class="text-danger"></span>
-                    </div>
+                <div class="col-md-6">
+                    <label asp-for="Childlastname" style="font-weight:normal;">Last Name</label>
+                    <input asp-for="Childlastname" style="width: 100%; max-width:none; " type="text" class="form-control" id="lastname" required>
+                    <span asp-validation-for="Childlastname" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Educatorlname" class="col-md-2 control-label" style="font-weight:normal;">Educator Assigned Last Name</label>
-                    <div class="col-md-10">
-                        <input asp-for="Educatorlname" class="form-control" readonly />
-                        <span asp-validation-for="Educatorlname" class="text-danger"></span>
-                    </div>
+            </div>
+            <br />
+            <div class="row">
+                <div id="dob" class="col-md-3">
+                    <label asp-for="Dob" style="font-weight:normal;">Date of Birth </label>
+                    <input asp-for="Dob" type="date" class="form-control" id="dob">
+                    <span asp-validation-for="Dob" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Educatorid" class="control-label col-md-2" style="font-weight:normal;"></label>
-                    <div class="col-md-10">
-                        <select asp-for="Educatorid" class="form-control" asp-items="ViewBag.Educatorid"></select>
-                        <span asp-validation-for="Educatorid" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Street" class="col-md-2 control-label" style="font-weight:normal;"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Street" class="form-control" />
-                        <span asp-validation-for="Street" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="City" class="col-md-2 control-label" style="font-weight:normal;"></label>
-                    <div class="col-md-10">
-                        <input asp-for="City" class="form-control" />
-                        <span asp-validation-for="City" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Postcode" class="col-md-2 control-label" style="font-weight:normal;"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Postcode" class="form-control" />
-                        <span asp-validation-for="Postcode" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="State" class="col-md-2 control-label" style="font-weight:normal;"></label>
-                    <div class="col-md-10">
-                        <input asp-for="State" class="form-control" />
-                        <span asp-validation-for="State" class="text-danger"></span>
-                    </div>
-                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-10">
 
-                <div class="form-group">
-                    <label asp-for="Parent1" class="control-label col-md-2" style="font-weight:normal;">Parent 1</label>
-                    <div class="col-md-10">
-                        @if (Model.Parent1 == null)
-                        {
-                            <select asp-for="Parent1" class="form-control" asp-items="ViewBag.Parent1">
-                                <option value="">Choose Parent 1 ...</option>
-                            </select>
+                    <label asp-for="Shortinfo" class="control-label" style="font-weight:normal;">About</label>
+                    <input asp-for="Shortinfo" type="text" size="6" class="form-control" />
+                    <span asp-validation-for="Shortinfo" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-10">
 
-                        }
-                        else
-                        {
-                            <select asp-for="Parent1" class="form-control" asp-items="ViewBag.Parent1"></select>
+                    <label asp-for="Specialneeds" class="control-label" style="font-weight:normal;">Specials needs</label>
+                    <select class="form-control" asp-for="Specialneeds" id="specialneeds" name="specialneeds">
+                        <option value="NO">No</option>
+                        <option value="YES">Yes</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+            <h4>Educator Information</h4>
+            <hr width="90%" />
+            <div class="row">
+                <div class="col-md-5">
+                    <label asp-for="Educatorfname" style="font-weight:normal;">First Name</label>
+                    <small style="width: 100%; max-width:none; " id="namehelp" class="text-muted">
+                        (Include middle names if any)
+                    </small>
+                    <input asp-for="Educatorfname" style="width: 100%; max-width:none; " type="text" class="form-control" id="firstname" readonly />
+                    <span asp-validation-for="Educatorfname" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Educatorlname" style="font-weight:normal;">Last Name</label>
+                    <input asp-for="Educatorlname" style="width: 100%; max-width:none; " type="text" class="form-control" id="lastname" readonly />
+                    <span asp-validation-for="Educatorlname" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-10">
+
+                    <label asp-for="Educatorid" class="control-label " style="font-weight:normal;">Educator ID</label>
+                    <select asp-for="Educatorid" class="form-control" asp-items="ViewBag.Educatorid" readonly></select>
+                    <span asp-validation-for="Educatorid" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-10">
+                    <label asp-for="Inroom" style="font-weight:normal;">In Room</label>
+                    <input asp-for="Inroom" class="form-control" />
+                    <span asp-validation-for="Inroom" class="text-danger"></span>
+                </div>
+            </div>
+            <br /> <br />
+            <h4>Contact Information</h4>
+            <hr width="90%" />
+
+            <!--        ADDRESS INFO           -->
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label for="address" style="font-weight:normal;font-size:larger;">Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11">
+                    <label for="street" style="font-weight:normal;">Street </label>
+                    <small style="width: 100%; max-width:none; " id="namehelp" class="text-muted">
+                        (If building, include Unit and Street number)
+                    </small>
+                    <input asp-for="Street" style="width: 100%; max-width:none; " type="text" class="form-control" id="street" placeholder="E.g. 1 Northfields Avenue">
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="city" style="font-weight:normal;">City</label>
+                    <input asp-for="City" style="width: 100%; max-width:none;" type="text" class="form-control" id="city" placeholder="City">
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="col-md-3">
+                    <label asp-for="State" style="font-weight:normal;">State </label>
+                    <select asp-for="State" class="form-control" id="state" name="state">
+                        <option value="@Model.State" hidden>@Model.State</option>
+                        <option value="">N/A</option>
+                        <option value="NSW">NSW</option>
+                        <option value="ACT">ACT</option>
+                        <option value="QLD">QLD</option>
+                        <option value="VIC">VIC</option>
+                        <option value="SA">SA</option>
+                        <option value="NT">NT</option>
+                        <option value="WA">WA</option>
+                        <option value="TAS">TAS</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="postcode" style="font-weight:normal;">Postcode</label>
+                    <input asp-for="Postcode" type="text" class="form-control" id="postcode" placeholder="Postcode">
+                    <span asp-validation-for="Postcode" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+
+            <h5>Caregivers</h5>
+            <br />
+            <div class="row">
+                <div class="col-md-5">
+
+                    <label asp-for="Parent1" class="control-label" style="font-weight:bold;">Parent 1</label>
+                    @if (Model.Parent1 == null)
+                    {
+                        <select asp-for="Parent1" class="form-control" asp-items="ViewBag.Parent1">
+                            <option value="">Choose Parent 1 ...</option>
+                        </select>
+
+                    }
+                    else
+                    {
+                        <select asp-for="Parent1" class="form-control" asp-items="ViewBag.Parent1"></select>
                             <span asp-validation-for="Parent1" class="text-danger"></span>
 
-                        }
-                    </div>
+                    }
                 </div>
-                <div class="form-group">
-                    <label asp-for="Contacnumber1" class="col-md-2 control-label" style="font-weight:normal;">Parent 1 Contact:</label>
-                    <div class="col-md-10">
-                        <input asp-for="Contacnumber1" class="form-control" />
-                        <span asp-validation-for="Contacnumber1" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Parent2" class="control-label col-md-2" style="font-weight:normal;">Parent 2</label>
-                    <div class="col-md-10">
-                        @if (Model.Parent2 == null)
-                        {
-                            <select asp-for="Parent2" class="form-control" asp-items="ViewBag.Parent2">
-                                <option value="">Choose Parent 2 ...</option>
-                            </select>
 
-                        }
-                        else
-                        {
-                            <select asp-for="Parent2" class="form-control" asp-items="ViewBag.Parent2"></select>
+
+                <div class="col-md-6">
+
+                    <label asp-for="Contacnumber1" class=" control-label" style="font-weight:normal;">Contact Number:</label>
+                    <input asp-for="Contacnumber1" class="form-control" />
+                    <span asp-validation-for="Contacnumber1" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-5">
+                    <label asp-for="Parent2" class="control-label " style="font-weight:bold;">Parent 2</label>
+                    @if (Model.Parent2 == null)
+                    {
+                        <select asp-for="Parent2" class="form-control" asp-items="ViewBag.Parent2">
+                            <option value="">Choose Parent 2 ...</option>
+                        </select>
+
+                    }
+                    else
+                    {
+                        <select asp-for="Parent2" class="form-control" asp-items="ViewBag.Parent2"></select>
                             <span asp-validation-for="Parent2" class="text-danger"></span>
 
-                        }
-                    </div>
+                    }
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="Contacnumber2" class="col-md-2 control-label" style="font-weight:normal;">Parent 2 Contact:</label>
-                    <div class="col-md-10">
-                        <input asp-for="Contacnumber2" class="form-control" />
-                        <span asp-validation-for="Contacnumber2" class="text-danger"></span>
-                    </div>
+
+
+                <div class="col-md-6">
+                    <label asp-for="Contacnumber2" class="control-label" style="font-weight:normal;">Contact Number:</label>
+                    <input asp-for="Contacnumber2" class="form-control" />
+                    <span asp-validation-for="Contacnumber2" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Shortinfo" class="col-md-2 control-label" style="font-weight:normal;">About</label>
-                    <div class="col-md-10">
-                        <input asp-for="Shortinfo" type="text" size="6" class="form-control" />
-                        <span asp-validation-for="Shortinfo" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Specialneeds" class="col-md-2 control-label" style="font-weight:normal;">Specials needs</label>
-                    <div class="col-md-10">
-                        <select class="form-control" asp-for="Specialneeds" id="specialneeds" name="specialneeds">
-                            <option value="NO">No</option>
-                            <option value="YES">Yes</option>
-                        </select>
-                    </div>
-                </div>
-                <!--<div class="form-group">
-                    <label asp-for="Profileimage" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Profileimage" class="form-control" />
-                        <span asp-validation-for="Profileimage" class="text-danger"></span>
-                    </div>
-                </div>-->
-                <hr width="90%" />
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-success" />
-                    </div>
-                </div>
-                <div>
-                    &emsp;<a asp-action="IndexEditEducator"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Children List</a>&emsp;
+            </div>
+
+            <!--<div class="form-group">
+            <label asp-for="Profileimage" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Profileimage" class="form-control" />
+                <span asp-validation-for="Profileimage" class="text-danger"></span>
+            </div>
+        </div>-->
+            <hr width="90%" />
+
+            <div class="row">
+                <div class="col-md-10">
+                    &emsp;<a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Children List</a>&emsp;|&emsp;
+                    <input type="submit" value="  Save Changes  " class="btn btn-success" />
                 </div>
             </div>
         </form>
+
+
 
         <br /><br />
     </div>

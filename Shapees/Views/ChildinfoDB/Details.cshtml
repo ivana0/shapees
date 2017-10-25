@@ -172,7 +172,10 @@
             document.location = '@Url.Action("Create", "ChildinfoDB")';
 
         }
+        function openReports() {
+            document.location = '@Url.Action("Index", "ReportsDB")';
 
+        }
 
         function openEdit() {
 
@@ -247,10 +250,18 @@
     <div id="ChildDetails" class="tabcontent">
 
         <h2>Child Details</h2>
-
+        <div>
+            <a aria-hidden="true" onclick="openReports()">
+                View Child's Reports
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-list-alt"></span>
+            </a>
+        </div>
+        <br />
         <div>
             <h4>&emsp;Child Information</h4>
             <hr />
+
             <dl class="dl-horizontal">
 
 
@@ -297,6 +308,7 @@
                     @Html.DisplayFor(model => model.Profileimage)
                 </dd>
                 <br />
+                
                 <br />
                 <h4>&emsp;Educator Information</h4>
                 <hr />
@@ -390,6 +402,8 @@
                 </dd>
             </dl>
         </div>
+
+       
         <div>
             &emsp;
             <a asp-action="Index"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>&ensp;Back to Children List</a> &emsp;|&emsp;

@@ -224,9 +224,18 @@ namespace Shapees.Controllers.DatabaseModelControllers
                 return NotFound();
             }
             ViewData["Educatorid"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Educatorid);
-            ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent1);
-            ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "Email", childinfo.Parent2);
+            ViewData["Parent1"] = new SelectList(_context.Userinfo, "Userid", "FullName", childinfo.Parent1);
+            ViewData["Parent2"] = new SelectList(_context.Userinfo, "Userid", "FullName", childinfo.Parent2);
             ViewData["Roomid"] = new SelectList(_context.Room, "Roomid", "Roomid", childinfo.Roomid);
+
+            //get educators list for assign educator select list
+            var assignededucators = _context.Userinfo.Where(e => e.Usertype == 2);
+
+            //get only parent users for parent1 and parent2 select lists
+            var parentlist = _context.Userinfo.Where(p => p.Usertype == 1);
+
+           
+
             return View(childinfo);
         }
 
