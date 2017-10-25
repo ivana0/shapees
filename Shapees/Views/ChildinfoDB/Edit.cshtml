@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/ChildrenLayout.cshtml";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 
@@ -235,7 +235,7 @@
 
         <h2>Edit</h2>
 
-        <form asp-action="Edit" method="post" enctype="multipart/form-data" class="container">
+        <form asp-action="Edit" class="container">
             <div class="form-horizontal">
                 <br />
                 <!--Child First and Lastname-->
@@ -294,14 +294,14 @@
                     </div>
                 </div>
                 <br /><br />
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-md-5">
                         <label asp-for="Profileimage" class="control-label">Profile Image</label>
                         <input asp-for="Profileimage" type="file" class="form-control" />
                         <span asp-validation-for="Profileimage" class="text-danger"></span>
                     </div>
                 </div>
-                <br />
+                <br />-->
                 <h4>Other Information</h4>
                 <hr width="90%" />
                 <div class="row">
