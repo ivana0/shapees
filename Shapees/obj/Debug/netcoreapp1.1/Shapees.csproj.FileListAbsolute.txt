@@ -1,0 +1,11 @@
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.deps.json
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.json
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.runtimeconfig.dev.json
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.dll
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\bin\Debug\netcoreapp1.1\Shapees.pdb
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csprojResolveAssemblyReference.cache
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.csproj.CoreCompileInputs.cache
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfoInputs.cache
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.AssemblyInfo.cs
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.dll
+C:\Users\yea_i\Desktop\Project\shapees\Shapees\obj\Debug\netcoreapp1.1\Shapees.pdb

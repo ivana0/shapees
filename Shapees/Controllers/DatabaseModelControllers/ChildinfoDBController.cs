@@ -195,8 +195,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                     childinfo.Parent1fname = parent1.Firstname;
                     childinfo.Parent1lname = parent1.Lastname;
                     //get child info to update parent
-                    var child1 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
-                    parent1.Parentof = child1.FullName;
+                    //var child1 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    //parent1.Parentof = child1.FullName;
 
                 }
 
@@ -207,8 +207,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                     childinfo.Parent2fname = parent2.Firstname;
                     childinfo.Parent2lname = parent2.Lastname;
                     //get child info to update parent
-                    var child2 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
-                    parent2.Parentof = child2.FullName;
+                    //var child2 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    //parent2.Parentof = child2.FullName;
                 }
 
 
@@ -286,8 +286,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                     childinfo.Parent1fname = parent1.Firstname;
                     childinfo.Parent1lname = parent1.Lastname;
                     //get child info to update parent
-                    var child1 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
-                    parent1.Parentof = child1.FullName;
+                    //var child1 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    //parent1.Parentof = child1.FullName;
 
                 }
 
@@ -298,8 +298,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                     childinfo.Parent2fname = parent2.Firstname;
                     childinfo.Parent2lname = parent2.Lastname;
                     //get child info to update parent
-                    var child2 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
-                    parent2.Parentof = child2.FullName;
+                    //var child2 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    //parent2.Parentof = child2.FullName;
 
                 }
 
@@ -371,8 +371,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                     childinfo.Parent1fname = parent1.Firstname;
                     childinfo.Parent1lname = parent1.Lastname;
                     //get child info to update parent
-                    var child1 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
-                    parent1.Parentof = child1.FullName;
+                    //var child1 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    //parent1.Parentof = child1.FullName;
 
                 }
 
@@ -383,8 +383,8 @@ namespace Shapees.Controllers.DatabaseModelControllers
                     childinfo.Parent2fname = parent2.Firstname;
                     childinfo.Parent2lname = parent2.Lastname;
                     //get child info to update parent
-                    var child2 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
-                    parent2.Parentof = child2.FullName;
+                    //var child2 = await _context.Childinfo.SingleOrDefaultAsync(m => m.Childid == childinfo.Childid);
+                    //parent2.Parentof = child2.FullName;
 
                 }
 
